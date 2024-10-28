@@ -38,10 +38,11 @@ You need either an Azure User Account or Service Principal with the following pe
 Now choose your next step!
 
 The Accelerator allows you to quickly get started with IaC and DevOps best practices for Azure Landing Zones.
-It supports both Terraform and Bicep.
-
-You can also opt to use Bicep and Terraform directly.
+It supports both Terraform and Bicep:
 
 - [**Accelerator**](/Azure-Landing-Zones/accelerator/)
+
+You can also opt to use Bicep and Terraform directly:
+
 - [**Bicep**](/Azure-Landing-Zones/bicep/)
 - [**Terraform**](/Azure-Landing-Zones/terraform/)
