@@ -10,3 +10,7 @@ hugo.linux
 
 # Temporary lock file while building
 .hugo_build.lock
+
+# Exclude Terraform files used for testing examples
+.terraform
+.terraform.lock.hcl

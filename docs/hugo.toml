@@ -27,7 +27,7 @@ tag = "tags"
 [params]
 # (Optional, default 6) Set how many table of contents levels to be showed on page.
 # Use false to hide ToC, note that 0 will default to 6 (https://gohugo.io/functions/default/)
-# You can also specify this parameter per page in front matter.
+# You can also specify this paramet.Site.IsMultiLingualer per page in front matter.
 geekdocToC = 2
 
 # (Optional, default static/brand.svg) Set the path to a logo for the Geekdoc
@@ -41,6 +41,15 @@ geekdocMenuBundle = false
 # (Optional, default false) Collapse all menu entries, can not be overwritten
 # per page if enabled. Can be enabled per page via 'geekdocCollapseSection'.
 geekdocCollapseAllSections = false
+
+# Defautl align left
+geekdocAlign = "left"
+
+# Default include nav
+geekdockNav = true
+
+# Defautl include anchor
+geekdockAnchor = true
 
 # (Optional, default true) Show page navigation links at the bottom of each
 # docs page (bundle menu only).
