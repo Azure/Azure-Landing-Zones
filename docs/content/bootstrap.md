@@ -1,5 +1,5 @@
 ---
-title: Enterprise Bootstrap
+title: Bootstrap your environment
 ---
 
 Before we begin our Azure Landing Zones journey proper, we need some pre-requisites in place.

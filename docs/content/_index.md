@@ -1,5 +1,10 @@
 ---
 title: Azure Landing Zones Documentation
+resources:
+  - name: alz-journey
+    src: img/customer-landing-zone-journey.png
+    alt: Azure Landing Zones Journey
+    title: Azure Landing Zones Journey
 ---
 
 Welcome to the Azure Landing Zones technical documentation site.
@@ -13,23 +18,17 @@ Please see our [documentation on Learn](https://learn.microsoft.com/azure/cloud-
 
 ## The Azure Landing Zones Journey
 
-The Azure Landing Zones journey is a multi-step process that starts with the enterprise bootstrap and ends with the deployment of workloads.
+The Azure Landing Zones journey is a multi-step process that starts with bootstrapping your environment and ends with the deployment of workloads.
 
-```mermaid
-graph LR;
-    A[Enterprise bootstrap] --> B[Azure Landing Zones platform];
-    B --> C[Subscription vending];
-    C --> D[Application landing zones];
-    D --> E[Workloads];
-```
+{{< img name="alz-journey" size="large" lazy=true >}}
 
-### Enterprise bootstrap
+### Bootstrap your environment
 
-The enterprise bootstrap is the first step in the Azure Landing Zones journey.
+The bootstrap is the first step in the Azure Landing Zones journey.
 It is the process of setting up the foundational components that will be used to deploy and manage Azure Landing Zones.
 In this step we ensure we have the correct access and some subscriptions to work with.
 
-See the [Enterprise Bootstrap](enterprisebootstrap) section for more information.
+See the [bootstrap](bootstrap) section for more information.
 
 ### Azure Landing Zones platform
 
@@ -63,4 +62,4 @@ Workloads are the applications and services that are deployed into the Azure Lan
 
 ## Next steps
 
-To get started with the Azure Landing Zones journey, let's look at the [enterprise bootstrap](enterprisebootstrap) process.
+To get started with the Azure Landing Zones journey, let's look at the [bootstrap your environment](bootstrap) process.
