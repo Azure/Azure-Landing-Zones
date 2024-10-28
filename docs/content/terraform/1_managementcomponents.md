@@ -35,3 +35,7 @@ However you can also run Terraform locally:
 Run `terraform init` to download the module and initialize the directory.
 Next, run `terraform plan` to see what resources will be created.
 Finally, run `terraform apply` to create the resources.
+
+## Next Steps
+
+Add networking components to your Azure Landing Zone by following the [Networking](2_networking) guide.
