@@ -2,7 +2,7 @@
 title: Azure Landing Zones Documentation
 resources:
   - name: alz-journey
-    src: img/customer-landing-zone-journey.png
+    src: _img/customer-landing-zone-journey.png
     alt: Azure Landing Zones Journey
     title: Azure Landing Zones Journey
 ---
