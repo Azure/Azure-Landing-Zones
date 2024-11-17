@@ -42,6 +42,12 @@ Here is the list of modules that pertain to Azure Landing Zones and covers the s
 
 Using these modules together, you can create a fully customized Azure Landing Zone.
 
+## What if I want to use the old approach?
+
+If you want a simpler, more opinionated approach, you can use the Accel[Accelerator]({{< relref "accelerator" >}})erator.
+This uses all the modules above, but in a pre-defined configuration and opinionated approach.
+There are still customization options available, but the [Accelerator]({{< relref "accelerator" >}}) is designed to get you up and running quickly - as a bonus it also includes CI/CD pipelines!
+
 ## How do I get started?
 
 We recognize that this is a significant change, and we want to make it as easy as possible for you to get started.
@@ -50,9 +56,9 @@ We have created this documentation site to centralize the integration documentat
 In here you will find examples and guidance on how to use the new modules to build your very own Azure Landing Zone.
 
 {{< hint type=note title="Deployment order" >}}
-We recommend deploying the management components first, followed by the hub networking components and then finally the management groups and policy.
+This guide will walk you through the deployment of the management components first, then the networking components, and finally  management groups and policy.
 
-This is because we need certain resources to exist so that we can reference them in Azure Policy.
+it is possible to deploy all these in one apply, but for the purposes of this guide we will break it down into these three sections.
 {{< /hint >}}
 
-[Get started with deploying the management components](1_managementcomponents)
+[Get started with deploying the management components]({{< relref "terraform/1_managementcomponents" >}})

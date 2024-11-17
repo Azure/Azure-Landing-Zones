@@ -40,9 +40,9 @@ Now choose your next step!
 The Accelerator allows you to quickly get started with IaC and DevOps best practices for Azure Landing Zones.
 It supports both Terraform and Bicep:
 
-- [**Accelerator**](/Azure-Landing-Zones/accelerator/)
+- [**Accelerator**]({{< relref "accelerator" >}})
 
 You can also opt to use Bicep and Terraform directly:
 
-- [**Bicep**](/Azure-Landing-Zones/bicep/)
-- [**Terraform**](/Azure-Landing-Zones/terraform/)
+- [**Bicep**]({{< relref "bicep" >}})
+- [**Terraform**]({{< relref "terraform" >}})

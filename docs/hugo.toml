@@ -48,9 +48,6 @@ geekdocAlign = "left"
 # Default include nav
 geekdockNav = true
 
-# Defautl include anchor
-geekdockAnchor = true
-
 # (Optional, default true) Show page navigation links at the bottom of each
 # docs page (bundle menu only).
 geekdocNextPrev = true
