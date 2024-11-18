@@ -1,4 +1,7 @@
-<!-- markdownlint-disable first-line-h1 -->
+---
+title: Terraform hub networking
+---
+
 The `hubnetworking` starter module deploys the management group hierarchy, management resources, policies and hub networking.
 
 Example input files can be found here:

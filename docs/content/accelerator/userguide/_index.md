@@ -1,21 +1,15 @@
 ---
-title: User Guide ToC
+title: Accelerator User Guide
 ---
 
-Please refer to the following to learn about the accelerator:
+## Quick Start
 
-- [Getting Started][wiki_getting_started]
-- [Quick Start][wiki_quick_start]
-  - [Quick Start Phase 1][wiki_quick_start_phase_1]
-  - [Quick Start Phase 2][wiki_quick_start_phase_2]
-  - [Quick Start Phase 3][wiki_quick_start_phase_3]
+For the majority of users, this is the place to start. The quick start is a step by step guide to get your Azure Landing Zone environment up and running.
 
- [//]: # (************************)
- [//]: # (INSERT LINK LABELS BELOW)
- [//]: # (************************)
+Now follow the [Quick Start]({{< relref "quickstart" >}}) guide.
 
-[wiki_getting_started]:               %5BUser-Guide%5D-Getting-Started "Wiki - Getting Started"
-[wiki_quick_start]:                   %5BUser-Guide%5D-Quick-Start "Wiki - Quick Start"
-[wiki_quick_start_phase_1]:           %5BUser-Guide%5D-Quick-Start-Phase-1 "Wiki - Quick Start - Phase 1"
-[wiki_quick_start_phase_2]:           %5BUser-Guide%5D-Quick-Start-Phase-2 "Wiki - Quick Start - Phase 2"
-[wiki_quick_start_phase_3]:           %5BUser-Guide%5D-Quick-Start-Phase-3 "Wiki - Quick Start - Phase 3"
+## Advanced Users
+
+For those users with very specific requirements we provide some advanced capabilities that allow you to override some of the defaults.
+
+See our [FAQ]({{< relref "faq" >}}) and [Advanced Scenarios]({{< relref "advancedscenarios" >}}) for more info.

@@ -1,11 +1,12 @@
-<!-- markdownlint-disable first-line-h1 -->
+---
+title: YAML Schema Reference
+---
 
 ## `archetypes`
 
 Specifies the archetypes to be used through the `caf-enterprise-scale` module.
 
 ```yaml
-
 archetypes: # Arguments from https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/v4.2.0/variables.tf converted to YAML.
   disable_telemetry: # boolean
   default_location: # string
@@ -52,7 +53,6 @@ archetypes: # Arguments from https://github.com/Azure/terraform-azurerm-caf-ente
 ### `archetypes` Example
 
 ```yaml
-
 archetypes: # `caf-enterprise-scale` module, add inputs as listed on the module registry where necessary.
   root_name: es
   root_id: Enterprise-Scale
@@ -82,9 +82,7 @@ archetypes: # `caf-enterprise-scale` module, add inputs as listed on the module 
 Specifies the connectivity configuration to be used.
 
 ```yaml
-
 connectivity: [ hubnetworking ] # Type of connectivity to be deployed (e.g. hubnetworking or virtual wan.)
-
 ```
 
 ## `connectivity.hubnetworking`
@@ -92,11 +90,9 @@ connectivity: [ hubnetworking ] # Type of connectivity to be deployed (e.g. hubn
 Specifies the hub networking configuration to be used from the `terraform-azurerm-hubnetworking` module.
 
 ```yaml
-
 connectivity:
   hubnetworking: # # Arguments from https://github.com/Azure/terraform-azurerm-hubnetworking/blob/v1.1.1/variables.tf converted to YAML.
     hub_virtual_networks: # object
-
 ```
 
 ### `connectivity.hubnetworking` Example
@@ -116,7 +112,6 @@ connectivity:
           sku_name: AZFW_VNet
           sku_tier: Standard
           subnet_address_prefix: 10.0.1.0/24
-
 ```
 
 ## `connectivity.hubnetworking.hub_virtual_networks.<hub_key>.virtual_network_gateway`
@@ -124,7 +119,6 @@ connectivity:
 Specifies the virtual network gateway configuration to be used from the `terraform-azurerm-avm-ptn-vnetgateway` module.
 
 ```yaml
-
 connectivity:
   hubnetworking:
     hub_virtual_networks:
@@ -156,7 +150,6 @@ connectivity:
           route_table_creation_enabled: # boolean
           route_table_name: # string
           route_table_tags: # object
-
 ```
 
 ### `connectivity.hubnetworking.hub_virtual_networks.<hub_key>.virtual_network_gateway` Example
@@ -188,7 +181,6 @@ connectivity:
 Specifies the hub networking configuration to be used from the `terraform-azurerm-avm-ptn-virtualwan` module.
 
 ```yaml
-
 connectivity:
   vwan: # Arguments from https://github.com/Azure/terraform-azurerm-avm-ptn-virtualwan/blob/v0.4.0/variables.tf converted to YAML.
     allow_branch_to_branch_traffic: # boolean
@@ -216,7 +208,3 @@ connectivity:
     vpn_sites: # object
     tags: # object
 ```
-
- [//]: # (************************)
- [//]: # (INSERT LINK LABELS BELOW)
- [//]: # (************************)

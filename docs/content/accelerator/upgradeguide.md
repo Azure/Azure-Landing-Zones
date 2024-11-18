@@ -16,7 +16,9 @@ This upgrade path is specifically for customers using the accelerator who haven'
 
 If you want to upgrade to a newer version of the accelerator bootstrap and / or starter, you can follow the steps below.
 
-> NOTE: Behind the scenes the upgrade process copies the Terraform state file and the last set of cacched variables you entered, it is not any more intelligent than that.
+{{< hint type=note >}}
+Behind the scenes the upgrade process copies the Terraform state file and the last set of cached variables you entered, it is not any more intelligent than that.
+{{< /hint >}}
 
 1. Run `Deploy-Accelerator`, targeting the same output folder you did for the previous version and optionally specify the version you wish to upgrade to.
     - For example if you want to upgrade to specific versions of the starter and bootstrap module, you could run:
@@ -38,4 +40,6 @@ If you want to upgrade to a newer version of the accelerator bootstrap and / or 
 6. If the new version of the accelerator has any new variables, you will be prompted to enter those manually if you haven't supplied them in an input file.
 7. The module will then run the Terraform `init` and `apply` and you will see a success message once it completes.
 
-> NOTE: As per the important notes above. If the new version of the accelerator starter module has any changes to the files it creates, it may fail due to branch protection rules. If this happens, you will need to manually disable the branch protection rules and then re-run the `Deploy-Accelerator` command.
+{{< hint type="note" >}}
+As per the important notes above. If the new version of the accelerator starter module has any changes to the files it creates, it may fail due to branch protection rules. If this happens, you will need to manually disable the branch protection rules and then re-run the `Deploy-Accelerator` command.
+{{< /hint >}}

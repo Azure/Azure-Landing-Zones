@@ -44,7 +44,7 @@ Using these modules together, you can create a fully customized Azure Landing Zo
 
 ## What if I want to use the old approach?
 
-If you want a simpler, more opinionated approach, you can use the Accel[Accelerator]({{< relref "accelerator" >}})erator.
+If you want a simpler, more opinionated approach, you can use the [Accelerator]({{< relref "accelerator" >}}).
 This uses all the modules above, but in a pre-defined configuration and opinionated approach.
 There are still customization options available, but the [Accelerator]({{< relref "accelerator" >}}) is designed to get you up and running quickly - as a bonus it also includes CI/CD pipelines!
 

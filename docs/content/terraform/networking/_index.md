@@ -2,4 +2,5 @@
 Title: 2. Networking
 ---
 
-TBC...
+- [Private link DNS zones]({{< relref "a_privatedns" >}})
+- [DDoS Protection]({{< relref "b_ddosprotection" >}})

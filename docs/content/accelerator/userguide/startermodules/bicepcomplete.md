@@ -1,4 +1,7 @@
-<!-- markdownlint-disable first-line-h1 -->
+---
+title: Bicep complete
+---
+
 The `complete` starter module is currently the only option available for Bicep.
 
 The following table describes the inputs required for the `complete` starter module.

@@ -1,7 +1,10 @@
-<!-- markdownlint-disable first-line-h1 -->
-### 1.3.2 Authenticate via Service Principal (Skip this if using a User account)
+---
+title: Phase 1a - Authenticating via Service Principal
+---
 
-#### 1.3.2.1 Create Service Principal
+## Authenticate via Service Principal (Skip this if using a User account)
+
+### Create Service Principal
 
 1. Navigate to the [Azure Portal](https://portal.azure.com) and sign in to your tenant.
 1. Search for `Azure Active Directory` and open it.
@@ -22,7 +25,7 @@
 1. Click `Add`.
 1. Copy the `Value` field save it somewhere safe, making a note that it is the `ARM_CLIENT_SECRET`.
 
-#### 1.3.2.2 Create Permissions
+### Create Permissions
 
 1. The service principal name (SPN) is the username of the User account or the name of the app registration you created.
 1. Search for `Subscriptions` and click to navigate to the subscription view.
@@ -51,7 +54,7 @@
 1. Click `Review + assign`, then click `Review + assign` again when the warning appears.
 1. Wait for the role to be assigned and you are done with this part.
 
-#### 1.3.2.3 Set Service Principal Credentials in Terminal
+### Set Service Principal Credentials in Terminal
 
 1. Open a new PowerShell Core (pwsh) terminal.
 1. Find the `ARM_TENANT_ID` you made a note of earlier.
@@ -63,15 +66,10 @@
 1. Find the subscription id of the management subscription you made a note of earlier.
 1. Type `$env:ARM_SUBSCRIPTION_ID="<subscription id>"` and hit enter.
 
-[!NOTE]
+{{< hint type=note >}}
 If you close your PowerShell prompt prior to running the bootstrap, you need to re-enter these environment variables.
+{{< /hint >}}
 
 ## Next Steps
 
-Return to [Phase 1][wiki_quick_start_phase_1] step 1.4.
-
- [//]: # (************************)
- [//]: # (INSERT LINK LABELS BELOW)
- [//]: # (************************)
-
-[wiki_quick_start_phase_1]:           %5BUser-Guide%5D-Quick-Start-Phase-1 "Wiki - Quick Start - Phase 1"
+Return to [Phase 1]({{< relref "1_prerequisites" >}}) step **version control systems**.

@@ -1,4 +1,10 @@
-<!-- markdownlint-disable first-line-h1 -->
+---
+title: Terraform FSI
+resources:
+  - name: fsi
+    src: img/fsi.png
+---
+
 The `financial_services_landing_zone` starter module provides full customization of the Financial Services Industry Landing Zone (FSILZ) using the `inputs.yaml` file. The `inputs.yaml` file provides the ability to enable and disable modules, configure module inputs and outputs, and configure module resources.
 A custom `inputs.yaml` file can be passed to the `inputs` argument of the ALZ PowerShell Module. This allows you to firstly design your Azure Landing Zone, and then deploy it.
 
@@ -195,6 +201,8 @@ Certain resources will show as being out of compliance by default. This will be 
 The Terraform-based deployment for the Financial Services Industry Landing Zone (FSILZ) provides an Enterprise Scale Landing Zone with compliance posture
 
 ### High Level Design
+
+{{< img name="fsi" size="origin" lazy=true >}}
 
 ![Alt text](./media/starter-module-microsoft_cloud_for_financial_services_industry.png)
 

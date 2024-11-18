@@ -1,4 +1,6 @@
-<!-- markdownlint-disable first-line-h1 -->
+---
+title: Advanced scenarios
+---
 
 ## Scenario 1 - Secure island for bootstrap resources
 
@@ -19,9 +21,9 @@ In order to use the secure island approach, you can follow these steps:
 1. Apply your desired policies and permissions to the new management group.
 1. Create a new subscription for the bootstrap resources and place it in the new management group. Take note of the subscription id.
 1. Grant owner rights to the account you are using to deploy the accelerator on the new subscription.
-1. Run the bootstrap as normal, following the instructions in the [Quick Start][wiki_quick_start] guide.
+1. Run the bootstrap as normal, following the instructions in the [Quick Start]({{< relref "quickstart" >}}) guide.
 1. When you get to step for updating the input config file variables, enter the subscription id of the new subscription you created into the `bootstrap_subscription_id` field.
-1. Continue with the rest of the steps in the [Quick Start][wiki_quick_start] guide.
+1. Continue with the rest of the steps in the [Quick Start]({{< relref "quickstart" >}}) guide.
 
 This will result in the bootstrap resources being deployed in the new subscription and management group hierarchy, while the Azure Landing Zone is deployed into the defined management group hierarchy.
 
@@ -64,14 +66,9 @@ This will result in the bootstrap resources being deployed in the new subscripti
           - "00000000-0000-0000-0000-000000000000"  # Your new subscription id
     ```
 
-5. Run the bootstrap as normal, following the instructions in the [Quick Start][wiki_quick_start] guide.
+5. Run the bootstrap as normal, following the instructions in the [Quick Start]({{< relref "quickstart" >}}) guide.
 6. When you get to step for updating the input config file variables, enter the subscription id of the new subscription you created into the `bootstrap_subscription_id` field.
-7. Continue with the rest of the steps in the [Quick Start][wiki_quick_start] guide.
+7. Continue with the rest of the steps in the [Quick Start]({{< relref "quickstart" >}}) guide.
 
-This will result in the bootstrap resources being deployed in the new subscription. When you then deploy the Azure Landing Zone your subscription will be moved under the `management` management group.
-
- [//]: # (************************)
- [//]: # (INSERT LINK LABELS BELOW)
- [//]: # (************************)
-
-[wiki_quick_start]:                                                  %5BUser-Guide%5D-Quick-Start "Wiki - Quick start"
+This will result in the bootstrap resources being deployed in the new subscription.
+When you then deploy the Azure Landing Zone your subscription will be moved under the `management` management group.

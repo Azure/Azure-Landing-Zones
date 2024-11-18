@@ -1,5 +1,10 @@
-<!-- markdownlint-disable first-line-h1 -->
-> **WARNING:** The Complete vNext starter module is a work in progress. Do not use this for any production workloads.
+---
+title: Terraform complete v.next
+---
+
+{{< hint type=warning >}}
+The Complete vNext starter module is a work in progress. Do not use this for any production workloads.
+{{< /hint >}}
 
 The `complete_vnext` starter module provides full customization of the Azure Landing Zone using the `config.yaml` file. The `config.yaml` file provides the ability to enable and disable modules, configure module inputs and outputs, and configure module resources.
 A custom `config.yaml` file can be passed to the `configuration_file_path` argument of the ALZ PowerShell Module. This allows you to firstly design your Azure Landing Zone, and then deploy it.

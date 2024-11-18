@@ -1,11 +1,12 @@
 ---
-title: Accelerator FAQ
+title: FAQ
 ---
-<!-- markdownlint-disable first-line-h1 -->
 
 This article answers frequently asked questions relating to the Azure landing zones Terraform accelerator.
 
-> If you have a question not listed here, please raise an [issue](https://github.com/Azure/alz-terraform-accelerator/issues) and we'll do our best to help.
+{{< hint type=note >}}
+If you have a question not listed here, please raise an [issue](https://github.com/Azure/alz-terraform-accelerator/issues) and we'll do our best to help.
+{{< /hint >}}
 
 ## Questions about customisation
 
@@ -87,7 +88,7 @@ When you run the PowerShell module, it caches the responses you supply. If you w
 
 ### How do I upgrade to a newer version of the accelerator?
 
-Follow the steps in the [Upgrade Guide][wiki_upgrade_process] to upgrade to a newer version of the accelerator.
+Follow the steps in the [Upgrade Guide]({{< relref "upgradeguide" >}}) to upgrade to a newer version of the accelerator.
 
 ## Questions about Multiple landing zone deployments
 
@@ -185,9 +186,3 @@ Deploy-Accelerator -i "terraform" -b "alz_azuredevops" -starterModuleOverrideFol
 ```
 
 Alternatively, if you are also supplying a custom bootstrap module, you can specify the starter module repo url in the `json` config file in the bootstrap module.
-
-[//]: # "************************"
-[//]: # "INSERT LINK LABELS BELOW"
-[//]: # "************************"
-
-[wiki_upgrade_process]:                                              Upgrade-Guide "Wiki - Upgrade Process"

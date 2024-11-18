@@ -1,4 +1,7 @@
-<!-- markdownlint-disable first-line-h1 -->
+---
+title: Terraform basic
+---
+
 The `basic` starter module deploys the management group hierarchy, management resources and policies only.
 
 Example input files can be found here:

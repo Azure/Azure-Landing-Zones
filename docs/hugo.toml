@@ -36,7 +36,7 @@ geekdocLogo = "img/alzlibrary-logo-square.png"
 
 # (Optional, default false) Render menu from data file in 'data/menu/main.yaml'.
 # See also https://geekdocs.de/usage/menus/#bundle-menu.
-geekdocMenuBundle = false
+geekdocMenuBundle = true
 
 # (Optional, default false) Collapse all menu entries, can not be overwritten
 # per page if enabled. Can be enabled per page via 'geekdocCollapseSection'.

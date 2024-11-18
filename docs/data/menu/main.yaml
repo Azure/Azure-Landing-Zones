@@ -3,3 +3,28 @@ main:
   - name: Home
     ref: /
     icon: gdoc_home
+  - name: Bootstrap
+    ref: /bootstrap
+  - name: Accelerator
+    ref: /accelerator
+    sub:
+      - name: User guide
+        ref: /accelerator/userguide
+        sub:
+          - name: Starter modules
+            ref: /accelerator/userguide/startermodules
+      - name: FAQ
+        ref: /accelerator/faq
+      - name: Contributing
+        ref: /accelerator/contributing
+      - name: Troubleshooting
+        ref: /accelerator/troubleshooting
+  - name: Bicep
+    ref: /bicep
+  - name: Terraform
+    ref: /terraform
+    sub:
+      - name: Management components
+        ref: /terraform/1_managementcomponents
+      - name: Networking
+        ref: /terraform/networking

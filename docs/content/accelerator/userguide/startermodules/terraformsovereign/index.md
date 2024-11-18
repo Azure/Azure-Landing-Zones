@@ -1,4 +1,12 @@
-<!-- markdownlint-disable first-line-h1 -->
+---
+title: Terraform sovereign
+resources:
+  - name: microsoft_cloud_for_sovereignty
+    src: img/microsoft_cloud_for_sovereignty.png
+    alt: A process flow showing the areas covered by the Azure landing zones Terraform accelerator.
+    title: Sovereign Landing Zone Starter Module
+---
+
 The `sovereign_landing_zone` starter module provides full customization of the Sovereign Landing Zone (SLZ) using the `inputs.yaml` file. The `inputs.yaml` file provides the ability to enable and disable modules, configure module inputs and outputs, and configure module resources.
 A custom `inputs.yaml` file can be passed to the `inputs` argument of the ALZ PowerShell Module. This allows you to firstly design your Azure Landing Zone, and then deploy it.
 
@@ -208,7 +216,7 @@ The Terraform-based deployment for the Sovereign Landing Zone (SLZ) provides an 
 
 ### High Level Design
 
-![Alt text](./media/starter-module-microsoft_cloud_for_sovereignty.png)
+{{< img name="microsoft_cloud_for_sovereignty" size="origin" lazy=true >}}
 
 ### Terraform Modules
 

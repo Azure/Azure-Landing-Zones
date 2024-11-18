@@ -1,4 +1,7 @@
-<!-- markdownlint-disable first-line-h1 -->
+---
+title: Terraform complete multi-region
+---
+
 The `complete_multi_region` starter module provides full customization of the Azure Landing Zone. It is multi-regional by default and can support 1 or more regions.
 
 The ALZ PowerShell Module can accept multiple input files and we recommend using a separate file for the `complete_multi_region` starter module. This allows you to more easily manage and maintain your configuration files.

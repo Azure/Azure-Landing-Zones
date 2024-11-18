@@ -1,7 +1,10 @@
-<!-- markdownlint-disable first-line-h1 -->
+---
+title: Phase 1 - Prerequisites
+---
+
 Phase 1 of the accelerator is to setup your pre-requisites. Follow the steps below to do that.
 
-## 1.1 Tools
+## Tools
 
 You'll need to install the following tools before getting started.
 
@@ -10,9 +13,9 @@ You'll need to install the following tools before getting started.
 
 > NOTE: In all cases, ensure that the tools are available from a PowerShell core (pwsh) terminal. You may need to add them to your environment path if they are not.
 
-## 1.2 Azure Subscriptions
+## Azure Subscriptions
 
-We recommend setting up 3 subscriptions for Azure landing zones. These are management, identity and connectivity. See our [advanced scenarios][wiki_advanced_scenarios] section for alternatives.
+We recommend setting up 3 subscriptions for Azure landing zones. These are management, identity and connectivity. See our [advanced scenarios]({{< relref "../advancedscenarios" >}}) section for alternatives.
 
 - Management: This is used to deploy the bootstrap and management resources, such as log analytics and automation accounts.
 - Identity: This is used to deploy the identity resources, such as Azure AD and Azure AD Domain Services.
@@ -29,7 +32,7 @@ Once you have the access required, create the three subscriptions following your
 
 Take note of the subscription id of each subscription as we will need them later.
 
-## 1.3 Azure Authentication and Permissions
+## Azure Authentication and Permissions
 
 You need either an Azure User Account or Service Principal with the following permissions to run the bootstrap:
 
@@ -39,7 +42,7 @@ You need either an Azure User Account or Service Principal with the following pe
 
 For simplicity we recommend using a User account since this is a one off process that you are unlikely to repeat.
 
-### 1.3.1 Authenticate via User Account
+### Authenticate via User Account
 
 1. Open a new PowerShell Core (pwsh) terminal.
 1. Run `az login`.
@@ -48,26 +51,26 @@ For simplicity we recommend using a User account since this is a one off process
 1. Type `az account set --subscription "<subscription id of your management subscription>"` and hit enter.
 1. Type `az account show` and verify that you are connected to the management subscription.
 
-### 1.3.2 Authenticate via Service Principal (Skip this if using a User account)
+### Authenticate via Service Principal (Skip this if using a User account)
 
-Follow the instructions in the [Service Principal][wiki_quick_start_phase_1_service_principal] section.
+Follow the instructions in the [Service Principal]({{< relref "1a_serviceprincipal" >}}) section.
 
-## 1.4 Version Control Systems
+## Version Control Systems
 
 You'll need to decide if you are using GitHub, Azure DevOps or the Local File System and follow these steps:
 
-### 1.4.1 Azure DevOps
+### Azure DevOps
 
-#### 1.4.1.1 Azure DevOps Pre-Requisites
+#### Azure DevOps Pre-Requisites
 
 When you first create an Azure DevOps organization, it will not have any Microsoft-hosted agents available. If you intend to use Microsoft-hosted agents, you must either license your org or request a free pipeline.
 
-1. Setup billing for your organization: [Set up billing for your organization](https://learn.microsoft.com/en-us/azure/devops/organizations/billing/set-up-billing-for-your-organization-vs?view=azure-devops)
-2. Check for and request a free pipeline via the form here: [Configure and pay for parallel jobs](https://learn.microsoft.com/en-us/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted#how-much-do-parallel-jobs-cost)
+1. Setup billing for your organization: [Set up billing for your organization](https://learn.microsoft.com/azure/devops/organizations/billing/set-up-billing-for-your-organization-vs?view=azure-devops)
+2. Check for and request a free pipeline via the form here: [Configure and pay for parallel jobs](https://learn.microsoft.com/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted#how-much-do-parallel-jobs-cost)
 
-If you choose the billing option, you'll then need to purchase at least one parallel pipeline. You can do this by following the instructions here: [Configure and pay for parallel jobs](https://learn.microsoft.com/en-us/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted#how-do-i-buy-more-parallel-jobs).
+If you choose the billing option, you'll then need to purchase at least one parallel pipeline. You can do this by following the instructions here: [Configure and pay for parallel jobs](https://learn.microsoft.com/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted#how-do-i-buy-more-parallel-jobs).
 
-#### 1.4.1.2 Azure DevOps Personal Access Token (PAT)
+#### Azure DevOps Personal Access Token (PAT)
 
 This first PAT is referred to as `token-1`.
 
@@ -98,17 +101,21 @@ If you are using self-hosted runners, you will need to create a second PAT that 
 1. Select the maximum value for the `Expiration` field (this allows up to 1 year). NOTE: You may want to set a shorter expiration date for security reasons. In either case, you will need to have a process in place to extend expiration the token before it expires.
 1. Select only the `Agent Pools`: `Read & manage` scope.
 
-### 1.4.2 GitHub
+### GitHub
 
-#### 1.4.2.1 GitHub Pre-Requisites
+#### GitHub Pre-Requisites
 
 The accelerator does not support GitHub personal accounts, since they don't support all the features required for security. You must have a GitHub organization account or the accelerator will fail on apply. You can create a free organization [here](https://github.com/organizations/plan). Learn more about account types [here](https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts).
 
-> NOTE: If you choose to use a `free` organization account the accelerator bootstrap will make your repositories public. It must do this to support the functionality required by the accelerator. This is not recommended for production environments.
+{{< hint type=note >}}
+If you choose to use a `free` organization account the accelerator bootstrap will make your repositories public. It must do this to support the functionality required by the accelerator. This is not recommended for production environments.
+{{< /hint >}}
 
-#### 1.4.2.2 GitHub Personal Access Token (PAT)
+#### GitHub Personal Access Token (PAT)
 
-> NOTE: The following instructions refer to `classic` personal access tokens. You can also use `fine-grained` access tokens which are still in beta to provide more granular permissions. These docs will be updated to reflect this in the future.
+{{< hint type=note >}}
+The following instructions refer to `classic` personal access tokens. You can also use `fine-grained` access tokens which are still in beta to provide more granular permissions. These docs will be updated to reflect this in the future.
+{{< /hint >}}
 
 This first PAT is referred to as `token-1`.
 
@@ -136,21 +143,13 @@ If you are using self-hosted runners, you will need to create a second PAT that 
 
 1. Select `No expiration` for the `Expiration` field. NOTE: You may want to set an expiration date for security reasons, but you will need to have a process in place to regenerate the token in that scenario.
 1. The scope required depends on the type of organization you are using:
-    1. If you are using a Free organization or an Enterprise orgnization without a runner group, select only the `repo` scope.
+    1. If you are using a Free organization or an Enterprise organization without a runner group, select only the `repo` scope.
     1. If you are using an Enterprise organization and a runner group, select the `admin:org` scope for classic tokens (or `organization_self_hosted_runners:write` for fine-grained tokens).
 
-### 1.4.3 Local File System
+### Local File System
 
 You just need to ensure that you have a folder on your local file system that you can use to store the files, which your current session has access to.
 
 ## Next Steps
 
-Now head to [Phase 2][wiki_quick_start_phase_2].
-
- [//]: # (************************)
- [//]: # (INSERT LINK LABELS BELOW)
- [//]: # (************************)
-
-[wiki_quick_start_phase_2]:           %5BUser-Guide%5D-Quick-Start-Phase-2 "Wiki - Quick Start - Phase 2"
-[wiki_quick_start_phase_1_service_principal]:           %5BUser-Guide%5D-Quick-Start-Phase-1-Service-Principal "Wiki - Quick Start - Phase 1 - Service Principal"
-[wiki_advanced_scenarios]:             %5BUser-Guide%5D-Advanced-Scenarios "Wiki - Advanced Scenarios"
+Now head to [Phase 2]({{< relref "2_start" >}}).

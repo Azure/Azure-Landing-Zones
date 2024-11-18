@@ -1,4 +1,12 @@
-<!-- markdownlint-disable first-line-h1 -->
+---
+title: Terraform complete
+resources:
+  - name: starter-module-hubnetworking
+    src: img/starter-module-hubnetworking.png
+    alt: A diagram depicting the hub networking design overview.
+    title: Hub networking design overview
+---
+
 The `complete` starter module provides full customization of the Azure Landing Zone using the `config.yaml` file. The `config.yaml` file provides the ability to enable and disable modules, configure module inputs and outputs, and configure module resources.
 A custom `config.yaml` file can be passed to the `configuration_file_path` argument of the ALZ PowerShell Module. This allows you to firstly design your Azure Landing Zone, and then deploy it.
 
@@ -21,13 +29,15 @@ The following table describes the inputs required for the `complete` starter mod
 
 The `config.yaml` file also comes with helpful templated variables such as `starter_location` and `root_parent_management_group_id` which get prompted for during the ALZ PowerShell Module run. Alternatively, you can opt to not use the templated variables and hard-code the values in the `config.yaml` file.
 
-> **Note:** We recommend that you use the `caf-enterprise-scale` module for management groups and policies, and the `hubnetworking` module for connectivity resources. However, connectivity resources can be deployed using the `caf-enterprise-scale` module if you desire.
+{{< hint type=note >}}
+We recommend that you use the `caf-enterprise-scale` module for management groups and policies, and the `hubnetworking` module for connectivity resources. However, connectivity resources can be deployed using the `caf-enterprise-scale` module if you desire.
+{{< /hint >}}
 
 The schema for the `config.yaml` is documented here - [Configuration YAML Schema][wiki_yaml_schema_reference].
 
 ### High Level Design
 
-![Alt text](./media/starter-module-hubnetworking.png)
+{{< img name="starter-module-hubnetworking" size="origin" lazy=true >}}
 
 ### Terraform Modules
 

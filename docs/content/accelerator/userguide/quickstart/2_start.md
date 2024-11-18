@@ -1,4 +1,7 @@
-<!-- markdownlint-disable first-line-h1 -->
+---
+title: Phase 2 - Run PowerShell
+---
+
 Phase 2 of the accelerator is to run the bootstrap. Follow the steps below to do that.
 
 ## 2.1 Install the ALZ PowerShell module
@@ -6,7 +9,7 @@ Phase 2 of the accelerator is to run the bootstrap. Follow the steps below to do
 The ALZ PowerShell module is used to run the bootstrap phase. It is available on the [PowerShell Gallery](https://www.powershellgallery.com/packages/ALZ/). You can install it using the following steps:
 
 1. Open a PowerShell Core (pwsh) terminal.
-2. Check if you already have the ALZ module installed  by runnung `Get-InstalledModule -Name ALZ`. You'll see something like this if it is already installed:
+2. Check if you already have the ALZ module installed  by running `Get-InstalledModule -Name ALZ`. You'll see something like this if it is already installed:
 
 ```powershell
 Version    Name                                Repository           Description
@@ -23,19 +26,10 @@ You are now ready to run the bootstrap and setup your environment. If you want t
 
 The inputs differ depending on the version control system and infrastructure as code tooling you have chosen. Click through to the relevant page for detailed instructions:
 
-- [Azure DevOps][wiki_quick_start_phase_2_azure_devops]
-- [GitHub][wiki_quick_start_phase_2_github]
-- [Local file system][wiki_quick_start_phase_2_local]
+- [Azure DevOps]({{< relref "2b_azuredevops" >}})
+- [GitHub]({{< relref "2a_github" >}})
+- [Local file system]({{< relref "2c_local" >}})
 
 ## Next Steps
 
-Once the steps in the VCS specific section are completed, head to [Phase 3][wiki_quick_start_phase_3].
-
- [//]: # (************************)
- [//]: # (INSERT LINK LABELS BELOW)
- [//]: # (************************)
-
-[wiki_quick_start_phase_2_azure_devops]: %5BUser-Guide%5D-Quick-Start-Phase-2-Azure-DevOps "Wiki - Quick Start - Phase 2 - Azure DevOps"
-[wiki_quick_start_phase_2_github]:       %5BUser-Guide%5D-Quick-Start-Phase-2-GitHub "Wiki - Quick Start - Phase 2 - GitHub"
-[wiki_quick_start_phase_2_local]:         %5BUser-Guide%5D-Quick-Start-Phase-2-Local "Wiki - Quick Start - Phase 2 - Local"
-[wiki_quick_start_phase_3]:           %5BUser-Guide%5D-Quick-Start-Phase-3 "Wiki - Quick Start - Phase 3"
+Once the steps in the VCS specific section are completed, head to [Phase 3]({{< relref "3_deploy" >}}).

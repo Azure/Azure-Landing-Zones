@@ -1,11 +1,12 @@
-<!-- markdownlint-disable first-line-h1 -->
-## 2.2.1 Azure DevOps
+---
+title: Phase 2b - Azure DevOps
+---
 
 You can choose to bootstrap with `bicep` or `terraform` skip to the relevant section below to do that.
 
 Although you can just run `Deploy-Accelerator` and fill out the prompted inputs, we recommend creating an inputs file.  This will make it easier to run the accelerator more than once in order to refine your preferred configuration. In the following docs, we'll show that approach, but if you want to be prompted for inputs, just go ahead and run `Deploy-Accelerator` now.
 
-### 2.2.1.1 Azure DevOps with Bicep
+## Azure DevOps with Bicep
 
 1. Create a new folder on your local drive called `accelerator`.
 1. Inside the accelerator create two folders called `config` and `output`. You'll store you input file inside config and the output folder will be the place that the accelerator stores files while it works.
@@ -39,7 +40,7 @@ Although you can just run `Deploy-Accelerator` and fill out the prompted inputs,
     | - | - | -- | --- |
     | `iac_type` | `ALZ` | `bicep` | This is the choice of `bicep` or `terraform`. Keep this as `bicep` for this example. |
     | `bootstrap_module_name` | `ALZ` | `alz_azuredevops` | This is the choice of Version Control System. Keep this as `alz_azuredevops` for this example. |
-    | `starter_module_name` | `ALZ` | `complete` | This is the choice of [Starter Modules][wiki_starter_modules], which is the baseline configuration you want for your Azure landing zone. Keep this as `complete` for this example. |
+    | `starter_module_name` | `ALZ` | `complete` | This is the choice of [Starter Modules]({{< relref "../startermodules" >}}), which is the baseline configuration you want for your Azure landing zone. Keep this as `complete` for this example. |
     | `bootstrap_location` | `TF_VAR` | `<region>` | Replace `<region>` with the Azure region where you would like to deploy the bootstrap resources in Azure. This field expects the `name` of the region, such as `uksouth`. You can find a full list of names by running `az account list-locations -o table`. |
     | `starter_locations` | `TF_VAR` | `[<region-1>,<region-2>]` | Replace `<region-1>` and `<region-2>` with the Azure regions where you would like to deploy the starter module resources in Azure. This field expects the `name` of the regions in and array, such as `["uksouth", "ukwest"]`. You can find a full list of names by running `az account list-locations -o table`. |
     | `root_parent_management_group_id` | `TF_VAR` | `""` | This is the id of the management group that will be the parent of the management group structure created by the accelerator. If you are using the `Tenant Root Group` management group, you leave this as an empty string `""` or supply the tenant id. |
@@ -65,7 +66,7 @@ Although you can just run `Deploy-Accelerator` and fill out the prompted inputs,
     | `create_branch_policies` | `TF_VAR` | `true` | This controls whether to create branch policies for the repository. This defaults to `true`. |
 
 1. Now head over to your chosen starter module documentation to get the specific inputs for that module. Come back here when you are done.
-    - [Bicep Complete Starter Module][wiki_starter_module_bicep_complete]
+    - [Bicep Complete Starter Module]({{< relref "../startermodules/bicepcomplete" >}})
 1. In your PowerShell Core (pwsh) terminal run the module:
 
     ```pwsh
@@ -83,7 +84,7 @@ Although you can just run `Deploy-Accelerator` and fill out the prompted inputs,
 1. If you are happy with the plan, then type `yes` and hit enter.
 1. The Terraform will `apply` and your environment will be bootstrapped.
 
-### 2.2.1.2 Azure DevOps with Terraform
+## Azure DevOps with Terraform
 
 1. Create a new folder on you local drive called `accelerator`.
 1. Inside the accelerator create two folders called `config` and `output`. You'll store you input file inside config and the output folder will be the place that the accelerator stores files while it works.
@@ -124,7 +125,7 @@ Although you can just run `Deploy-Accelerator` and fill out the prompted inputs,
     | - | - | -- | --- |
     | `iac_type` | `ALZ` | `terraform` | This is the choice of `bicep` or `terraform`. Keep this as `terraform` for this example. |
     | `bootstrap_module_name` | `ALZ` | `alz_azuredevops` | This is the choice of Version Control System. Keep this as `alz_azuredevops` for this example. |
-    | `starter_module_name` | `ALZ` | `complete_multi_region` | This is the choice of [Starter Modules][wiki_starter_modules], which is the baseline configuration you want for your Azure landing zone. Choose `complete_multi_region`, `complete`, `hubnetworking` or `basic` for this example. |
+    | `starter_module_name` | `ALZ` | `complete_multi_region` | This is the choice of [Starter Modules]({{< relref "../startermodules" >}}), which is the baseline configuration you want for your Azure landing zone. Choose `complete_multi_region`, `complete`, `hubnetworking` or `basic` for this example. |
     | `bootstrap_location` | `TF_VAR` | `<region>` | Replace `<region>` with the Azure region where you would like to deploy the bootstrap resources in Azure. This field expects the `name` of the region, such as `uksouth`. You can find a full list of names by running `az account list-locations -o table`. |
     | `starter_locations` | `TF_VAR` | `[<region-1>,<region-2>]` | Replace `<region-1>` and `<region-2>` with the Azure regions where you would like to deploy the starter module resources in Azure. This field expects the `name` of the regions in and array, such as `["uksouth", "ukwest"]`. You can find a full list of names by running `az account list-locations -o table`. |
     | `root_parent_management_group_id` | `TF_VAR` | `""` | This is the id of the management group that will be the parent of the management group structure created by the accelerator. If you are using the `Tenant Root Group` management group, you leave this as an empty string `""` or supply the tenant id. |
@@ -150,12 +151,12 @@ Although you can just run `Deploy-Accelerator` and fill out the prompted inputs,
     | `architecture_definition_name` | `TF_VAR` | N/A | This is the name of the architecture definition to use when applying the ALZ archetypes via the architecture definition template. This is only relevant to some starter modules, such as the `sovereign_landing_zone` starter module. This defaults to `null`. |
 
 1. Now head over to your chosen starter module documentation to get the specific inputs for that module. Come back here when you are done.
-    - [Terraform Complete Multi Region Starter Module][wiki_starter_module_terraform_complete_multi_region]: Management groups, policies, Multi Region hub networking with fully custom configuration.
-    - [Terraform Financial Services Industry Landing Zone Starter Module][wiki_starter_module_terraform_financial_services_industry_landing_zone]: Management groups, policies, hub networking for the Financial Services Industry Landing Zone.
-    - [Terraform Sovereign Landing Zone Starter Module][wiki_starter_module_terraform_sovereign_landing_zone]: Management groups, policies, hub networking for the Sovereign Landing Zone.
-    - [Terraform Basic Starter Module][wiki_starter_module_terraform_basic]: Management groups and policies.
-    - [Terraform Hub Networking Starter Module][wiki_starter_module_terraform_hubnetworking]: Management groups, policies and hub networking.
-    - [Terraform Complete Starter Module][wiki_starter_module_terraform_complete]: Management groups, policies, hub networking with fully custom configuration.
+    - [Terraform Complete Multi Region Starter Module]({{< relref "../startermodules/terraformcompletemultiregion" >}}): Management groups, policies, Multi Region hub networking with fully custom configuration.
+    - [Terraform Financial Services Industry Landing Zone Starter Module]({{< relref "../startermodules/terraformfsi" >}}): Management groups, policies, hub networking for the Financial Services Industry Landing Zone.
+    - [Terraform Sovereign Landing Zone Starter Module]({{< relref "../startermodules/terraformsovereign" >}}): Management groups, policies, hub networking for the Sovereign Landing Zone.
+    - [Terraform Basic Starter Module][({{< relref "../startermodules/terraformbasic" >}})]: Management groups and policies.
+    - [Terraform Hub Networking Starter Module][({{< relref "../startermodules/terraformhubnetworking" >}})]: Management groups, policies and hub networking.
+    - [Terraform Complete Starter Module][({{< relref "../startermodules/terraformcomplete" >}})]: Management groups, policies, hub networking with fully custom configuration.
 
 1. In your PowerShell Core (pwsh) terminal run the module:
 
@@ -178,21 +179,8 @@ Although you can just run `Deploy-Accelerator` and fill out the prompted inputs,
 
 ## Next Steps
 
-Now head to [Phase 3][wiki_quick_start_phase_3].
+Now head to [Phase 3]({{< relref "3_deploy" >}}).
 
- [//]: # (************************)
- [//]: # (INSERT LINK LABELS BELOW)
- [//]: # (************************)
-
-[wiki_starter_modules]:                             %5BUser-Guide%5D-Starter-Modules "Wiki - Starter Modules"
-[wiki_starter_module_bicep_complete]:               %5BUser-Guide%5D-Starter-Module-Bicep-Complete "Wiki - Starter Modules - Bicep Complete"
-[wiki_starter_module_terraform_basic]:              %5BUser-Guide%5D-Starter-Module-Terraform-Basic "Wiki - Starter Modules - Terraform Basic"
-[wiki_starter_module_terraform_hubnetworking]:      %5BUser-Guide%5D-Starter-Module-Terraform-HubNetworking "Wiki - Start Modules - Terraform Hub Networking"
-[wiki_starter_module_terraform_complete]:           %5BUser-Guide%5D-Starter-Module-Terraform-Complete "Wiki - Starter Modules - Terraform Complete"
-[wiki_starter_module_terraform_complete_multi_region]:           %5BUser-Guide%5D-Starter-Module-Terraform-Complete-Multi-Region "Wiki - Starter Modules - Terraform Complete Multi Region"
-[wiki_starter_module_terraform_financial_services_industry_landing_zone]:           %5BUser-Guide%5D-Starter-Module-Terraform-Financial-Services-Industry-Landing-Zone "Wiki - Starter Modules - Terraform Financial Services Industry Landing Zone"
-[wiki_starter_module_terraform_sovereign_landing_zone]:           %5BUser-Guide%5D-Starter-Module-Terraform-Sovereign-Landing-Zone "Wiki - Starter Modules - Terraform Sovereign Landing Zone"
-[wiki_quick_start_phase_3]:                         %5BUser-Guide%5D-Quick-Start-Phase-3 "Wiki - Quick Start - Phase 3"
 [example_powershell_inputs_azure_devops_bicep_complete]:     examples/powershell-inputs/inputs-azure-devops-bicep-complete.yaml "Example - PowerShell Inputs - Azure DevOps - Bicep - Complete"
 [example_powershell_inputs_azure_devops_terraform_basic]:     examples/powershell-inputs/inputs-azure-devops-terraform-basic.yaml "Example - PowerShell Inputs - Azure DevOps - Terraform - Basic"
 [example_powershell_inputs_azure_devops_terraform_hubnetworking]:     examples/powershell-inputs/inputs-azure-devops-terraform-hubnetworking.yaml "Example - PowerShell Inputs - Azure DevOps - Terraform - Hub Networking"
