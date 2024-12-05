@@ -21,6 +21,6 @@ The following table describes the inputs required for the `basic` starter module
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[example_powershell_inputs_azure_devops_terraform_basic]:     examples/powershell-inputs/inputs-azure-devops-terraform-basic.yaml "Example - PowerShell Inputs - Azure DevOps - Terraform - Basic"
-[example_powershell_inputs_github_terraform_basic]:     examples/powershell-inputs/inputs-github-terraform-basic.yaml "Example - PowerShell Inputs - GitHub - Terraform - Basic"
-[example_powershell_inputs_local_terraform_basic]:     examples/powershell-inputs/inputs-local-terraform-basic.yaml "Example - PowerShell Inputs - Local - Terraform - Basic"
+[example_powershell_inputs_azure_devops_terraform_basic]: https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-azure-devops-terraform-basic.yaml "Example - PowerShell Inputs - Azure DevOps - Terraform - Basic"
+[example_powershell_inputs_github_terraform_basic]:     https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-github-terraform-basic.yaml "Example - PowerShell Inputs - GitHub - Terraform - Basic"
+[example_powershell_inputs_local_terraform_basic]:     https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-local-terraform-basic.yaml "Example - PowerShell Inputs - Local - Terraform - Basic"
