@@ -66,9 +66,9 @@ Create a custom yaml config to tailor to your needs, for example an Azure Landin
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[wiki_yaml_schema_reference]: %5BUser-Guide%5D-YAML-Schema-Reference "Wiki - YAML Schema Reference"
-[example_starter_module_complete_vnext_config_hub_spoke]: examples/starter-module-config/complete_vnext/config-hub-spoke.yaml "Example - Starter Module Config - Complete - Hub and Spoke"
-[example_starter_module_complete_vnext_config_vwan]: examples/starter-module-config/complete_vnext/config-vwan.yaml "Example - Starter Module Config - Complete - Virtual WAN"
-[example_powershell_inputs_azure_devops_terraform_complete_vnext]:     examples/powershell-inputs/inputs-azure-devops-terraform-complete_vnext.yaml "Example - PowerShell Inputs - Azure DevOps - Terraform - Complete vNext"
-[example_powershell_inputs_github_terraform_complete_vnext]:     examples/powershell-inputs/inputs-github-terraform-complete_vnext.yaml "Example - PowerShell Inputs - GitHub - Terraform - Complete vNext"
-[example_powershell_inputs_local_terraform_complete_vnext]:     examples/powershell-inputs/inputs-local-terraform-complete_vnext.yaml "Example - PowerShell Inputs - Local - Terraform - Complete vNext"
+[wiki_yaml_schema_reference]: https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/%5BUser-Guide%5D-YAML-Schema-Reference.md "Wiki - YAML Schema Reference"
+[example_starter_module_complete_vnext_config_hub_spoke]: https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/starter-module-config/complete/config-hub-spoke.yaml "Example - Starter Module Config - Complete - Hub and Spoke"
+[example_starter_module_complete_vnext_config_vwan]: https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/starter-module-config/complete/config-vwan.yaml "Example - Starter Module Config - Complete - Virtual WAN"
+[example_powershell_inputs_azure_devops_terraform_complete_vnext]: https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-azure-devops-terraform-complete-vnext.yaml "Example - PowerShell Inputs - Azure DevOps - Terraform - Complete vNext"
+[example_powershell_inputs_github_terraform_complete_vnext]: https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-github-terraform-complete-vnext.yaml "Example - PowerShell Inputs - GitHub - Terraform - Complete vNext"
+[example_powershell_inputs_local_terraform_complete_vnext]: https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-local-terraform-complete-vnext.yaml "Example - PowerShell Inputs - Local - Terraform - Complete vNext"
