@@ -25,6 +25,6 @@ The following table describes the inputs required for the `hubnetworking` starte
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[example_powershell_inputs_azure_devops_terraform_hubnetworking]:     examples/powershell-inputs/inputs-azure-devops-terraform-hubnetworking.yaml "Example - PowerShell Inputs - Azure DevOps - Terraform - Hub Networking"
-[example_powershell_inputs_github_terraform_hubnetworking]:     examples/powershell-inputs/inputs-github-terraform-hubnetworking.yaml "Example - PowerShell Inputs - GitHub - Terraform - Hub Networking"
-[example_powershell_inputs_local_terraform_hubnetworking]:     examples/powershell-inputs/inputs-local-terraform-hubnetworking.yaml "Example - PowerShell Inputs - Local - Terraform - Hub Networking"
+[example_powershell_inputs_azure_devops_terraform_hubnetworking]:    https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-azure-devops-terraform-hubnetworking.yaml "Example - PowerShell Inputs - Azure DevOps - Terraform - Hub Networking"
+[example_powershell_inputs_github_terraform_hubnetworking]:     https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-github-terraform-hubnetworking.yaml "Example - PowerShell Inputs - GitHub - Terraform - Hub Networking"
+[example_powershell_inputs_local_terraform_hubnetworking]:  https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-local-terraform-hubnetworking.yaml "Example - PowerShell Inputs - Local - Terraform - Hub Networking"
