@@ -24,6 +24,6 @@ Example input files can be found here:
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[example_powershell_inputs_azure_devops_bicep_complete]:     examples/powershell-inputs/inputs-azure-devops-bicep-complete.yaml "Example - PowerShell Inputs - Azure DevOps - Bicep - Complete"
-[example_powershell_inputs_github_bicep_complete]:     examples/powershell-inputs/inputs-github-bicep-complete.yaml "Example - PowerShell Inputs - GitHub - Bicep - Complete"
-[example_powershell_inputs_local_bicep_complete]:     examples/powershell-inputs/inputs-local-bicep-complete.yaml "Example - PowerShell Inputs - Local - Bicep - Complete"
+[example_powershell_inputs_azure_devops_bicep_complete]: https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-azure-devops-bicep-complete.yaml "Example - PowerShell Inputs - Azure DevOps - Bicep - Complete"
+[example_powershell_inputs_github_bicep_complete]:  https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-github-bicep-complete.yaml "Example - PowerShell Inputs - GitHub - Bicep - Complete"
+[example_powershell_inputs_local_bicep_complete]:  https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-local-bicep-complete.yaml "Example - PowerShell Inputs - Local - Bicep - Complete"
