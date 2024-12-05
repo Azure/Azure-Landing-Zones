@@ -36,16 +36,16 @@ The following tables describe the inputs required for the `complete_multi_region
 
 Example ALZ PowerShell input files can be found here:
 
-- [inputs-azure-devops-terraform-complete-multi-region.yaml][example_powershell_inputs_azure_devops_terraform_complete_multi_region]
-- [inputs-github-terraform-complete-multi-region.yaml][example_powershell_inputs_github_terraform_complete_multi_region]
-- [inputs-local-terraform-complete-multi-region.yaml][example_powershell_inputs_local_terraform_complete_multi_region]
+- [inputs-azure-devops-terraform-complete-multi-region.yaml](https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-azure-devops-terraform-complete-multi-region.yaml)
+- [inputs-github-terraform-complete-multi-region.yaml](https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-github-terraform-complete-multi-region.yaml)
+- [inputs-local-terraform-complete-multi-region.yaml](https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/powershell-inputs/inputs-local-terraform-complete-multi-region.yaml)
 
 Example network technology specific input files can be found here:
 
-- Multi region hub and spoke virtual network: [config-hub-and-spoke-vnet-multi-region.yaml][example_starter_module_complete_config_hub_spoke_multi_region]
-- Multi region virtual WAN: [config-virtual-wan-multi-region.yaml][example_starter_module_complete_config_vwan_multi_region]
-- Single region hub and spoke virtual network: [config-hub-and-spoke-vnet-single-region.yaml][example_starter_module_complete_config_hub_spoke_single_region]
-- Single region virtual WAN: [config-virtual-wan-single-region.yaml][example_starter_module_complete_config_vwan_single_region]
+- Multi region hub and spoke virtual network: [config-hub-and-spoke-vnet-multi-region.yaml](https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/starter-module-config/complete-multi-region/config-hub-and-spoke-vnet-multi-region.yaml)
+- Multi region virtual WAN: [config-virtual-wan-multi-region.yaml](https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/starter-module-config/complete-multi-region/config-virtual-wan-multi-region.yaml)
+- Single region hub and spoke virtual network: [config-hub-and-spoke-vnet-single-region.yaml](https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/starter-module-config/complete-multi-region/config-hub-and-spoke-vnet-single-region.yaml)
+- Single region virtual WAN: [config-virtual-wan-single-region.yaml](https://raw.githubusercontent.com/Azure/ALZ-PowerShell-Module/refs/heads/main/docs/wiki/examples/starter-module-config/complete-multi-region/config-virtual-wan-single-region.yaml)
 
 ## Further details on the Complete Multi Region Starter Module and config file
 
