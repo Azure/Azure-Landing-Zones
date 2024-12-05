@@ -55,7 +55,7 @@ The example config files have helpful templated variables such as `starter_locat
 
 ### High Level Design
 
-![Alt text](./media/starter-module-hubnetworking.png)
+![Alt text](Azure-Landing-Zones/docs/content/accelerator/startermodules/terraformcomplete/img/starter-module-hubnetworking.png)
 
 ### Terraform Modules
 
