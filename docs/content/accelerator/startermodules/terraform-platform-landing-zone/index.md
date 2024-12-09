@@ -21,7 +21,9 @@ Each scenario comes with a version of the platform landing zone configuration fi
 
 Scenarios are common customer use cases when deploying the platform landing zone. The followin section provide a description of the scenario and link to the pre-configured files for that scenario.
 
-### Multi-region hub and spoke vnet with Azure Firewall
+### [Multi-region hub and spoke vnet with Azure Firewall](multi-region-hub-and-spoke-vnet-with-azure-firewall.md)
+
+A full platform landing zone deployment with hub and spoke virtual network connectivity using Azure Firewall.
 
 ### Multi-region virtual wan with Azure Firewall
 
@@ -37,7 +39,7 @@ Scenarios are common customer use cases when deploying the platform landing zone
 
 ## How to
 
-The how to section details how to make common configuration changes that apply to the common scenarios
+The how to section details how to make common configuration changes that apply to the common scenarios.
 
 ### Turn off DDOS protection plan
 
