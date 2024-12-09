@@ -79,3 +79,9 @@ Private DNS is configured ready for using Private Link and Virtual Machine Auto-
 - Azure Firewall forwards DNS traffic to the Private DNS resolver
 - Azure Private DNS Resolver has an inbound endpoint from the hub network
 - Azure Private Link DNS zones are linked to the all hub Virtual Netorks
+
+### Azure Routing
+
+Route tables are pre-configured for spoke virtual networks in each region. Assign the user subnet route table to any subnets created in spokes.
+
+- Azure Firewall in relevant region as next hop in Route Table
