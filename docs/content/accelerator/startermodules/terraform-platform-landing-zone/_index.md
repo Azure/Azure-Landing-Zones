@@ -21,11 +21,11 @@ Each scenario comes with a version of the platform landing zone configuration fi
 
 Scenarios are common customer use cases when deploying the platform landing zone. The followin section provide a description of the scenario and link to the pre-configured files for that scenario.
 
-### [Multi-region hub and spoke vnet with Azure Firewall](multi-region-hub-and-spoke-vnet-with-azure-firewall.md)
+### [Multi-region hub and spoke vnet with Azure Firewall]({{< relref "multi-region-hub-and-spoke-vnet-with-azure-firewall" >}})
 
 A full platform landing zone deployment with hub and spoke virtual network connectivity using Azure Firewall.
 
-### [Multi-region virtual wan with Azure Firewall](multi-region-virtual-wan-with-azure-firewall.md)
+### [Multi-region virtual wan with Azure Firewall]({{< relref "multi-region-virtual-wan-with-azure-firewall" >}})
 
 A full platform landing zone deployment with Virtual WAN network connectivity using Azure Firewall.
 
@@ -56,8 +56,12 @@ The how to section details how to make common configuration changes that apply t
 
 ## Platform landing zone configuration file
 
-This section details the available configuration settings for this file.
+This section details the available configuration settings / variables in this starter module.
 
+| Variable | Child Variable | Description |
+| -- | -- | -- | -- |
+| `custom_replacements` | `names` | Used to define custom names and strings that can be used throughout the configuration file. This can leverage the built in  {{< include file="/static/examples/tf/accelerator/config/custom_replacements.names.tfvars" language="terraform" >}} |
+| `custom_replacements` | `names` |
 
 ## Azure Verified Modules Reference
 

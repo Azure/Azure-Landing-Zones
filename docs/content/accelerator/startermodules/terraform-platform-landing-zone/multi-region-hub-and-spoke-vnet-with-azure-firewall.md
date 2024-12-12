@@ -1,5 +1,5 @@
 ---
-title: Terraform Azure Verified Modules for Platform Landing Zone (ALZ) - Scenario - Multi-region hub and spoke vnet with Azure Firewall
+title: Scenario - Multi-region hub and spoke vnet with Azure Firewall
 ---
 
 A full platform landing zone deployment with hub and spoke virtual network connectivity using Azure Firewall.

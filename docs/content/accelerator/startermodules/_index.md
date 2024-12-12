@@ -11,8 +11,6 @@ These are called starter modules because the expectation is you'll update these 
 Each starter module expects different inputs and the following pages detail those inputs. You'll be prompted for these inputs when you run the Accelerator PowerShell module.
 
 - [Bicep Complete Starter Module]({{< relref "bicepcomplete" >}}): Management groups, policies and hub networking.
-- [Terraform Basic Starter Module]({{< relref "terraformbasic" >}}): Management groups and policies.
-- [Terraform Hub Networking Starter Module]({{< relref "terraformhubnetworking" >}}): Management groups, policies and hub networking.
-- [Terraform Complete Starter Module]({{< relref "terraformcomplete" >}}): Management groups, policies, hub networking with fully custom configuration.
+- [Terraform Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "terraform-platform-landing-zone" >}}): Management groups, policies, hub networking with fully custom configuration.
 - [Terraform FSI Starter Module]({{< relref "terraformfsi" >}}): Management groups, policies, hub networking and financial services industry (FSI) specific configurations.
 - [Terraform Sovereign Starter Module]({{< relref "terraformsovereign" >}}): Management groups, policies, hub networking and sovereign cloud specific configurations.

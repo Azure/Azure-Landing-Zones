@@ -7,15 +7,20 @@ Make sure you install the same version as the one specified in the `.github/work
 
 ## Creating a local HTTP server
 
-To create a local HTTP server, if you have GNU make installed, run the following command:
+To create a local HTTP server, if you are on Linux and have GNU make installed, run the following command:
 
 ```bash
 make server
 ```
 
-Alternatively, you can run the following commands:
+Alternatively, you can run the following commands on Linux or Windows:
 
 ```bash
+cd docs
+hugo server
+```
+
+```pwsh
 cd docs
 hugo server
 ```

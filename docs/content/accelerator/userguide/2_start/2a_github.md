@@ -102,12 +102,9 @@ The following inputs can also be supplied via environment variables. This may be
     ```
 
 1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from the relevant input file for your chosen starter module:
-    1. Complete Multi Region - [inputs-github-terraform-complete-multi-region.yaml][example_powershell_inputs_github_terraform_complete_multi_region]
+    1. Azure Verified Modules for Platform Landing Zone (ALZ) - [inputs-github-terraform-complete-multi-region.yaml][example_powershell_inputs_github_terraform_complete_multi_region]
     1. Financial Services Industry Landing Zone - [inputs-github-terraform-financial-services-landing-zone.yaml][example_powershell_inputs_github_terraform_financial_services_industry_landing_zone]
     1. Sovereign Landing Zone - [inputs-github-terraform-sovereign-landing-zone.yaml][example_powershell_inputs_github_terraform_sovereign_landing_zone]
-    1. Basic - [inputs-github-terraform-basic.yaml][example_powershell_inputs_github_terraform_basic]
-    1. Hub Networking - [inputs-github-terraform-hubnetworking.yaml][example_powershell_inputs_github_terraform_hubnetworking]
-    1. Complete - [inputs-github-terraform-complete.yaml][example_powershell_inputs_github_terraform_complete]
 1. Check through the file and update each input as required. It is mandatory to update items with placeholders surrounded by angle brackets `<>`:
 
     {{< hint type=note >}}
@@ -141,12 +138,9 @@ The following inputs can also be supplied via environment variables. This may be
     | `architecture_definition_name` | `TF_VAR` | N/A | This is the name of the architecture definition to use when applying the ALZ archetypes via the architecture definition template. This is only relevant to some starter modules, such as the `sovereign_landing_zone` starter module. This defaults to `null`. |
 
 1. Now head over to your chosen starter module documentation to get the specific inputs for that module. Come back here when you are done.
-    - [Terraform Complete Multi Region Starter Module]({{< relref "../../startermodules/terraformcompletemultiregion" >}}): Management groups, policies, Multi Region hub networking with fully custom configuration.
+    - [Terraform Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../../startermodules/terraform-platform-landing-zone" >}}): Management groups, policies, Multi Region hub networking with fully custom configuration.
     - [Terraform Financial Services Industry Landing Zone Starter Module]({{< relref "../../startermodules/terraformfsi" >}}): Management groups, policies, hub networking for the Financial Services Industry Landing Zone.
     - [Terraform Sovereign Landing Zone Starter Module]({{< relref "../../startermodules/terraformsovereign" >}}): Management groups, policies, hub networking for the Sovereign Landing Zone.
-    - [Terraform Basic Starter Module]({{< relref "../../startermodules/terraformbasic" >}}): Management groups and policies.
-    - [Terraform Hub Networking Starter Module]({{< relref "../../startermodules/terraformhubnetworking" >}}): Management groups, policies and hub networking.
-    - [Terraform Complete Starter Module]({{< relref "../../startermodules/terraformcomplete" >}}): Management groups, policies, hub networking with fully custom configuration.
 
 1. In your PowerShell Core (pwsh) terminal run the module:
 

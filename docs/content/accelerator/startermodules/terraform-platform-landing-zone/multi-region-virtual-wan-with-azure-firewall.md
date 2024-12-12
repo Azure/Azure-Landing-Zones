@@ -1,5 +1,5 @@
 ---
-title: Terraform Azure Verified Modules for Platform Landing Zone (ALZ) - Scenario - Multi-region Virtual WAN with Azure Firewall
+title: Scenario - Multi-region Virtual WAN with Azure Firewall
 ---
 
 A full platform landing zone deployment with Virtual WAN network connectivity using Azure Firewall.
