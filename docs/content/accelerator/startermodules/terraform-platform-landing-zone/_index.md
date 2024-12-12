@@ -66,7 +66,7 @@ There are 4 layers of replacements that can be built upon to provide the level o
 
 The layers and precedence order is:
 
-1. Built-in Replacements: These can be found at the top of our example config files and you can also see them in the code base [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/complete_multi_region/locals-config.tf#L2)
+1. Built-in Replacements: These can be found at the top of our example config files and you can also see them in the code base [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/platform_landing_zone/locals.config.tf#L2)
 2. Names: This is for resource names and other basic strings
 3. Resource Group Identifiers: This is for resource group IDs
 4. Resource Identifiers: This is for resource IDs
@@ -159,6 +159,31 @@ This variable is a `map(object)` and has two properties:
 Example usage:
 
 {{< include file="/static/examples/tf/accelerator/config/connectivity_resource_groups.tfvars" language="terraform" >}}
+
+### Hub and Spoke Virtual Network Settings (`hub_and_spoke_vnet_settings`)
+
+The `hub_and_spoke_vnet_settings` variable is used to set the non-regional settings for the hub and spoke Virtual Network connectivity option. It is only used to set the DDOS Protection Plan at this time.
+
+This variable is of type `any` as it will be used for other purposes moving forward.
+
+Example usage:
+
+{{< include file="/static/examples/tf/accelerator/config/hub_and_spoke_vnet_settings.tfvars" language="terraform" >}}
+
+### Hub and Spoke Virtual Networks (`hub_and_spoke_vnet_virtual_networks`)
+
+The `hub_and_spoke_vnet_virtual_networks` variable is used to set the regional settings for the hub and spoke Virtual Network connectivity options. This includes Hub Networks, Peering, Routing, Subnets, Firewalls, Virtual Network Gateways, Bastion Hosts, Private DNS Zones, and Private DNS Resolver
+
+This variable is of type `map(object)`. Some of theobject properties map directly to the Azure Verified Module variables. To determine what can be supplied to these variable you can refer to the documentation for this module directly.
+
+The `map(object)` definition can be found [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/platform_landing_zone/modules/hub-and-spoke-vnet/variables.tf#L14).
+
+The supported object properties are:
+
+* `hub_virtual_network`: This maps directly to the variables of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-ptn-hubnetworking](https://registry.terraform.io/modules/Azure/avm-ptn-hubnetworking/azurerm/0.4.0?tab=inputs)
+
+
+
 
 ## Azure Verified Modules Reference
 
