@@ -58,10 +58,72 @@ The how to section details how to make common configuration changes that apply t
 
 This section details the available configuration settings / variables in this starter module.
 
-| Variable | Child Variable | Description |
-| -- | -- | -- | -- |
-| `custom_replacements` | `names` | Used to define custom names and strings that can be used throughout the configuration file. This can leverage the built in  {{< include file="/static/examples/tf/accelerator/config/custom_replacements.names.tfvars" language="terraform" >}} |
-| `custom_replacements` | `names` |
+### Custom Replacements (`custom_replacements`)
+
+The `custom_replacements` variable builds on the built-in replacements to provide user defined replacements that can be used throughout your configuration. This reduces the complexity of the configuration file by allowing re-use of names and other definitions that may be repeated throughout the configuration. 
+
+There are 4 layers of replacements that can be built upon to provide the level of flexibility you need. The order of precendence determines which other replacements can be used to build your replacement. For example a 'Name' replacement can be used to build a 'Resource Group Identifier' replacement, but a 'Resource Group Identifier' replacement cannot be used to build a 'Name' replacement.
+
+The layers and precedence order is:
+
+1. Built-in Replacements: These can be found at the top of our example config files and you can also see them in the code base [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/complete_multi_region/locals-config.tf#L2)
+2. Names: This is for resource names and other basic strings
+3. Resource Group Identifiers: This is for resource group IDs
+4. Resource Identifiers: This is for resource IDs
+
+#### Names (`custom_replacements.names`)
+
+Used to define custom names and strings that can be used throughout the configuration file. This can leverage the built-in replacements. 
+
+Exanple usage:
+
+{{< include file="/static/examples/tf/accelerator/config/custom_replacements.names.tfvars" language="terraform" >}}
+
+#### Resource Group Identifiers (`custom_replacements.resource_group_identifiers`)
+
+Used to define resource group IDs that can be used throughout the configuration file. This can leverage the built-in replacements and custom names. 
+
+Exanple usage:
+
+{{< include file="/static/examples/tf/accelerator/config/custom_replacements.resource_group_identifiers.tfvars" language="terraform" >}}
+
+#### Resource Identifiers (`custom_replacements.resource_identifiers`)
+
+Used to define resource IDs that can be used throughout the configuration file. This can leverage the built-in replacements, custom names, and resource group IDs. 
+
+Exanple usage:
+
+{{< include file="/static/examples/tf/accelerator/config/custom_replacements.resource_identifiers.tfvars" language="terraform" >}}
+
+### Enable Telemetry (`enable_telemetry`)
+
+The `enable_telemetry` variable determines whether telemetry about module usage is sent to Microsoft, enabling us to invest in improvements to the Accelerator and Azure Verified Modules.
+
+Example usage:
+
+{{< include file="/static/examples/tf/accelerator/config/enable_telemetry.tfvars" language="terraform" >}}
+
+### Tags (`tags`)
+
+The `tags` variable is a default set of tags to apply to resources that support them. In many cases, these tags can be overriden on a per resource basis.
+
+Example usage:
+
+{{< include file="/static/examples/tf/accelerator/config/tags.tfvars" language="terraform" >}}
+
+### Management Resource Settings (`management_resource_settings`)
+
+The `management_resource_settings` variable is used to configure the management resources. This includes the log analytics workspace, automation account, and data collection rules for Azure Monitoring Agent (AMA).
+
+This variable is of type `any` as it maps directly to the Azure Verified Module variables. To determine what can be supplied to this variable you can refer to the documentation for this module directly:
+
+Documentation link: [registry.terraform.io/modules/Azure/avm-ptn-alz-management](https://registry.terraform.io/modules/Azure/avm-ptn-alz-management/azurerm/0.4.0?tab=inputs)
+
+Example usage:
+
+{{< include file="/static/examples/tf/accelerator/config/management_resource_settings.tfvars" language="terraform" >}}
+
+
 
 ## Azure Verified Modules Reference
 

@@ -2,3 +2,6 @@
 .container {
   max-width: 80%;
 }
+.lntable tr td {
+  padding: 0 !important;
+}
