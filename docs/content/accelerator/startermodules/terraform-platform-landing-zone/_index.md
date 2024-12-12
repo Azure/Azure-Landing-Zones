@@ -123,7 +123,42 @@ Example usage:
 
 {{< include file="/static/examples/tf/accelerator/config/management_resource_settings.tfvars" language="terraform" >}}
 
+### Management Group Settings (`management_group_settings`)
 
+The `management_group_settings` variable is used to configure the management groups, policies, and policy role assignments.
+
+This variable is of type `any` as it maps directly to the Azure Verified Module variables. To determine what can be supplied to this variable you can refer to the documentation for this module directly:
+
+Documentation link: [registry.terraform.io/modules/Azure/avm-ptn-alz](https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/0.10.0?tab=inputs)
+
+Example usage:
+
+{{< include file="/static/examples/tf/accelerator/config/management_group_settings.tfvars" language="terraform" >}}
+
+### Connectivity Type (`connectivity_type`)
+
+The `connectivity_type` variable is used to choose the type of connectivity to deploy. Supported values are:
+
+* `hub_and_spoke_vnet`: Deploy hub and spoke networking using Azure Virtual Networks
+* `virtual_wan`: Deploy Azure Virtual WAN networking
+* `none`: Don't deploy any networking
+
+Example usage:
+
+{{< include file="/static/examples/tf/accelerator/config/connectivity_type.tfvars" language="terraform" >}}
+
+### Connectivity Resource Groups (`connectivity_resource_groups`)
+
+The `connectivity_resource_groups` variable is used to specify the name and location of the resource groups used for connectivity.
+
+This variable is a `map(object)` and has two properties:
+
+* `name`: The resource group name
+* `location`: The resource group location
+
+Example usage:
+
+{{< include file="/static/examples/tf/accelerator/config/connectivity_resource_groups.tfvars" language="terraform" >}}
 
 ## Azure Verified Modules Reference
 
