@@ -180,10 +180,31 @@ The `map(object)` definition can be found [here](https://github.com/Azure/alz-te
 
 The supported object properties are:
 
-* `hub_virtual_network`: This maps directly to the variables of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-ptn-hubnetworking](https://registry.terraform.io/modules/Azure/avm-ptn-hubnetworking/azurerm/0.4.0?tab=inputs)
+* `hub_virtual_network`: This `object` maps directly to the variables of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-ptn-hubnetworking](https://registry.terraform.io/modules/Azure/avm-ptn-hubnetworking/azurerm/0.4.0?tab=inputs)
+* `bastion`: This an `object` to specify the Bastion Host settings (omit this object if you don't want to deploy a Bastion Host)
+  * `subnet_address_prefix`: The Bastion Host subnet address space
+  * `bastion_host`: This `object` maps directly to the variables of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-res-network-bastionhost](https://registry.terraform.io/modules/Azure/avm-res-network-bastionhost/azurerm/0.3.1?tab=inputs)
+  * `bastion_public_ip`: This `object` maps directly to the variables of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-res-network-publicipaddress](https://registry.terraform.io/modules/Azure/avm-res-network-publicipaddress/azurerm/0.1.2?tab=inputs) 
+* `virtual_network_gateways`: This an `object` to specify the Virtual Network Gateways settings (omit this object if you don't want to deploy any Virtual Network Gateways)
+  * `subnet_address_prefix`: The Virtual Network Gateway subnet address space
+  * `express_route`: This `object` maps directly to the variables of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-ptn-vnetgateway](https://registry.terraform.io/modules/Azure/avm-ptn-vnetgateway/azurerm/0.5.0?tab=inputs)
+  * `vpn`: This `object` maps directly to the variables of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-ptn-vnetgateway](https://registry.terraform.io/modules/Azure/avm-ptn-vnetgateway/azurerm/0.5.0?tab=inputs)
+* `private_dns_zones`: This an `object` to specify the Private DNS Zone settings (omit this object if you don't want to deploy any Private DNS Zones)
+  * `subnet_address_prefix`: The Private DNS Resolver subnet address space
+  * `resource_group_name`: The name of the resource group to deploy the Private DNS Zones into
+  * `is_primary`: Whether this is the primary region. Any non-regional Private Link Private DNS Zones will be deployed into this region. Although the Private DNS Zones are a global resource, their meta-data needs to reside in a specific region.
+  * `private_link_private_dns_zones`: This is a `map(object)` used to override the Private Link Private DNS Zones that are deployed, leave this empty to deploy the default set of zones specified by ALZ
+    * `zone_name`: The name of the Private DNS Zone to deploy
+  * `auto_registration_zone_enabled`: Whether to deploy the Virtual Machine auto-registration Private DNS Zone
+  * `auto_registration_zone_name`: The name of the Virtual Machine auto-registration Private DNS Zone
+  * `private_dns_resolver`: This is an `object` to specify the Private DNS Resolver
+    * `name`: The name of the Private DNS Resolver
+    * `resource_group_name`: The name of the resource group to deploy the Private DNS Resolver into
+    * `ip_address`: The static IP Address of the Private DNS Resolver. This will be auto calculated if not supplied
 
+Example usage:
 
-
+{{< include file="/static/examples/tf/accelerator/config/hub_and_spoke_vnet_virtual_networks.tfvars" language="terraform" >}}
 
 ## Azure Verified Modules Reference
 
