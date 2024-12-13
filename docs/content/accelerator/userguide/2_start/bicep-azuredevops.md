@@ -5,7 +5,7 @@ title: Azure DevOps with Bicep
 Follow these instructions to bootstrap Azure DevOps ready to deploy your platform landing zone with Bicep.
 
 1. Create a new folder on your local drive called `accelerator`.
-1. Inside the accelerator create two folders called `config` and `output`. You'll store you input file inside config and the output folder will be the place that the accelerator stores files while it works.
+1. Inside the accelerator create two folders called `config` and `output`. You'll store your input file inside config and the output folder will be the place that the accelerator stores files while it works.
 1. Inside the `config` folder create a new file called `inputs.yaml`. You can use `json` if you prefer, but our examples here are `yaml`.
 
     ```pwsh
@@ -59,7 +59,7 @@ The following inputs can also be supplied via environment variables. This may be
     | `azure_devops_project_name` | `TF_VAR` | `<azure-devops-project-name>` | Replace `<azure-devops-project-name>` with the name of the Azure DevOps project to create or the name of an existing project if you set `azure_devops_create_project` to `false`. |
     | `use_self_hosted_agents` | `TF_VAR` | `true` | This controls if you want to deploy self-hosted agents. This will default to `true`. |
     | `use_private_networking` | `TF_VAR` | `true` | This controls whether private networking is deployed for your self-hosted agents and storage account. This only applies if you have `use_self_hosted_agents` set to `true`. This defaults to `true`. |
-    | `allow_storage_access_from_my_ip` | `TF_VAR` | `false` | This is not relecant to Bicep and we'll remove the need to specify it later, leave it set to `false`. |
+    | `allow_storage_access_from_my_ip` | `TF_VAR` | `false` | This is not relevant to Bicep and we'll remove the need to specify it later, leave it set to `false`. |
     | `apply_approvers` | `TF_VAR` | `<email-address>` | This is a list of service principal names (SPN) of people you wish to be in the group that approves apply of the Azure landing zone module. This is an array of strings like `["abc@xyz.com", "def@xyz.com", "ghi@xyz.com"]`. You may need to check what the SPN is prior to filling this out as it can vary based on identity provider. Use empty array `[]` to disable approvals. Note if supplying via the user interface, use a comma separated string like `abc@xyz.com,def@xyz.com,ghi@xyz.com`. |
     | `create_branch_policies` | `TF_VAR` | `true` | This controls whether to create branch policies for the repository. This defaults to `true`. |
 

@@ -5,7 +5,7 @@ title: GitHub with Bicep
 Follow these instructions to bootstrap GitHub ready to deploy your platform landing zone with Bicep.
 
 1. Create a new folder on your local drive called `accelerator`.
-1. Inside the accelerator create two folders called `config` and `output`. You'll store you input file inside config and the output folder will be the place that the accelerator stores files while it works.
+1. Inside the accelerator create two folders called `config` and `output`. You'll store your input file inside config and the output folder will be the place that the accelerator stores files while it works.
 1. Inside the `config` folder create a new file called `inputs.yaml`. You can use `json` if you prefer, but our examples here are `yaml`.
 
     ```pwsh
@@ -70,7 +70,7 @@ The following inputs can also be supplied via environment variables. This may be
     ```
 
 1. You will see a Terraform `init` and `apply` happen.
-1. There will be a pause after the `plan` phase you allow you to validate what is going to be deployed.
+1. There will be a pause after the `plan` phase to allow you to validate what is going to be deployed.
 1. If you are happy with the plan, then type `yes` and hit enter.
 1. The Terraform will `apply` and your environment will be bootstrapped.
 
