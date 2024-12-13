@@ -6,7 +6,7 @@ A full platform landing zone deployment with Virtual WAN network connectivity us
 
 ## Links
 
-- Example Platform landing zone config file: [full-multi-region/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region/virtual-wan.tfvars)
+* Example Platform landing zone config file: [full-multi-region/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region/virtual-wan.tfvars)
 
 ## Resources
 

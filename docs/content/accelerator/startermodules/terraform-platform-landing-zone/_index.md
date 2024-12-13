@@ -6,7 +6,7 @@ The `platform_landing_zone` starter module deploys the end to end platform landi
 
 This documentation covers the top scenarios and documents all available configuration settings for this module.
 
-We aim to cover the 90% of customer scenarios. If the particular customer scenario is not covered here, it may be possible to adjust the configuration settings to match the customer requirements. If not, then it my be the case the customer needs to adjust their code post deployment.
+We aim to cover 80% of common customer scenarios. If the particular customer scenario is not covered here, it may be possible to adjust the configuration settings to match the customer requirements. If not, then it my be the case the customer needs to adjust their Terraform code post bootstrap.
 
 This documentation covers the following:
 
@@ -32,9 +32,9 @@ We provide examples of this file for each version control system. These can be f
 
 ### Platform Landing Zone Configuration File
 
-This is a `tfvars` file in HCL format that determines which resources are deployed and what type of hub networking connectivity is deployed.
+This is the `tfvars` file in HCL format that determines which resources are deployed and what type of hub networking connectivity is deployed.
 
-This file is validated by the accelerator and then directly copied to your repository, so it retains the ordering, comments, etc.
+This file is validated by the accelerator and then directly copied to your repository, so it retains the ordering, comments, etc. You will see the file is renamed to `*.auto.tfvars`, so that it is automatically picked up by Terraform.
 
 We provide examples of this file for each scenario. These can be found in the [scenarios](#scenarios) documentation.
 
@@ -58,13 +58,21 @@ The detailed documentation for the library and it's usage can be found here:
 
 Scenarios are common customer use cases when deploying the platform landing zone. The followin section provide a description of the scenario and link to the pre-configured files for that scenario.
 
-### [Multi-region hub and spoke vnet with Azure Firewall]({{< relref "multi-region-hub-and-spoke-vnet-with-azure-firewall" >}})
+### Multi-region hub and spoke vnet with Azure Firewall
 
 A full platform landing zone deployment with hub and spoke virtual network connectivity using Azure Firewall.
 
-### [Multi-region virtual wan with Azure Firewall]({{< relref "multi-region-virtual-wan-with-azure-firewall" >}})
+Example Platform landing zone configuration file: [full-multi-region/hub-and-spoke-vnet.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region/hub-and-spoke-vnet.tfvars)
+
+Detailed documentation: [Multi-region hub and spoke vnet with Azure Firewall]({{< relref "multi-region-hub-and-spoke-vnet-with-azure-firewall" >}})
+
+### Multi-region virtual wan with Azure Firewall
 
 A full platform landing zone deployment with Virtual WAN network connectivity using Azure Firewall.
+
+Example Platform landing zone config file: [full-multi-region/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region/virtual-wan.tfvars)
+
+Detailed documentation: [Multi-region virtual wan with Azure Firewall]({{< relref "multi-region-virtual-wan-with-azure-firewall" >}})
 
 ### Multi-region hub and spoke vnet with NVA
 
@@ -78,7 +86,7 @@ A full platform landing zone deployment with Virtual WAN network connectivity us
 
 ## How to
 
-The how to section details how to make common configuration changes that apply to the common scenarios.
+The how to section details how to make configuration changes that apply to the common scenarios.
 
 ### Customise Management Groups
 
@@ -90,8 +98,24 @@ The how to section details how to make common configuration changes that apply t
 
 ### Additional Regions
 
+Additional regions are supported. The custom can add up to 10 regions using the out of the box module.
+
+>NOTE: If a customer needs to scale beyond 10 regions, that can be accomodated by adding additional built in replacements [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/platform_landing_zone/locals.config.tf#L2)
+
+To add an additional regions, the process is `copy` -> `paste` -> `update`:
+
+1. Copy, paste and update the regional resource group names in `custom_replacements.names`
+1. Copy, paste and update the regional IP Ranges in `custom_replacements.names`
+1. Copy, paste and update the regional resource group in `connectivity_resource_groups`
+1. Copy, paste and update the region in `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs`
+
 ### IP Address Ranges
 
+The example configuration files that include connectivity include an out of the box set of ip address ranges. These ranges have been chosen to support a real world scenario with optimal use to avoid ip exhaustion as a customer scales. However many customers will not want to use these ranges if they may overlap with their existing ranges or they are planning to scale beyond the /16 per region we cater for.
+
+In order to update the IP ranges, you can update the `custom_replacements.names` section that includes the IP ranges. For example if the customer prefers to use `172.16` or `192.168`, they could update the ranges as follows:
+
+{{< include file="/static/examples/tf/accelerator/config/custom_replacements.names.ip_ranges.tfvars" language="terraform" >}}
 
 ## Platform landing zone configuration file
 
