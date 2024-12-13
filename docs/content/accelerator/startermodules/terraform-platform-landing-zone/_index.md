@@ -28,7 +28,7 @@ This is the YAML file used to provide the base configuration required to boostra
 
 Some of this configuration is also fed into this starter module. You will see a `terraform.tfvars.json` file is created to hold these inputs. They include management group ID, subscriptions IDs, starter locatrions, etc.
 
-We provide examples of this file for each version control system. These can be found in the [Phase 1](TBC) documentation.
+We provide examples of this file for each version control system. These can be found in the [Phase 2](TBC) documentation.
 
 ### Platform Landing Zone Configuration File
 
@@ -327,7 +327,7 @@ Example usage:
 
 The `hub_and_spoke_vnet_virtual_networks` variable is used to set the regional settings for the hub and spoke Virtual Network connectivity options. This includes Hub Networks, Peering, Routing, Subnets, Firewalls, Virtual Network Gateways, Bastion Hosts, Private DNS Zones, and Private DNS Resolver
 
-This variable is of type `map(object)`. Some of theobject properties map directly to the Azure Verified Module variables. To determine what can be supplied to these variable you can refer to the documentation for this module directly.
+This variable is of type `map(object)`. Some of the object properties map directly to the Azure Verified Module variables. To determine what can be supplied to these variable you can refer to the documentation for this module directly.
 
 The `map(object)` definition can be found [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/platform_landing_zone/modules/hub-and-spoke-vnet/variables.tf#L14).
 
@@ -358,6 +358,56 @@ The supported object properties are:
 Example usage:
 
 {{< include file="/static/examples/tf/accelerator/config/hub_and_spoke_vnet_virtual_networks.tfvars" language="terraform" >}}
+
+### Virtual WAN Settings (`virtual_wan_settings`)
+
+The `virtual_wan_settings` variable is used to set the non-regional settings for the Virtual WAN connectivity option. It is used to set the Virtual WAN non-regional properites and the DDOS Protection Plan.
+
+This variable is of type `any` as it maps directly to the Azure Verified Module variables. To determine what can be supplied to this variable you can refer to the documentation for this module directly:
+
+Documentation link: [registry.terraform.io/modules/Azure/avm-ptn-virtualwan](https://registry.terraform.io/modules/Azure/avm-ptn-virtualwan/azurerm/0.5.3?tab=inputs)
+
+Example usage:
+
+{{< include file="/static/examples/tf/accelerator/config/virtual_wan_settings.tfvars" language="terraform" >}}
+
+### Virtual WAN Virtual Hubs (`virtual_wan_virtual_hubs`)
+
+The `hub_and_spoke_vnet_virtual_networks` variable is used to set the regional settings for the Virtual WAN connectivity options. This includes Virtual WAN Hubs, Firewalls, Virtual Network Gateways, Bastion Hosts, Private DNS Zones, and Private DNS Resolver
+
+This variable is of type `map(object)`. Some of the object properties map directly to the Azure Verified Module variables. To determine what can be supplied to these variable you can refer to the documentation for this module directly.
+
+The `map(object)` definition can be found [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/platform_landing_zone/modules/hub-and-spoke-vnet/variables.tf#L14).
+
+The supported object properties are:
+
+* `hub`: This `object` maps directly to the `virtual_hubs` variable of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-ptn-virtualwan](https://registry.terraform.io/modules/Azure/avm-ptn-virtualwan/azurerm/0.5.3?tab=inputs)
+* `firewall`: This `object` maps directly to the `firewalls` variable of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-ptn-virtualwan](https://registry.terraform.io/modules/Azure/avm-ptn-virtualwan/azurerm/0.5.3?tab=inputs)
+* `firewall_policy`: This `object` maps directly to the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-res-network-firewallpolicy](https://registry.terraform.io/modules/Azure/avm-res-network-firewallpolicy/azurerm/0.2.3?tab=inputs)
+* `bastion`: This an `object` to specify the Bastion Host settings (omit this object if you don't want to deploy a Bastion Host)
+  * `subnet_address_prefix`: The Bastion Host subnet address space
+  * `bastion_host`: This `object` maps directly to the variables of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-res-network-bastionhost](https://registry.terraform.io/modules/Azure/avm-res-network-bastionhost/azurerm/0.3.1?tab=inputs)
+  * `bastion_public_ip`: This `object` maps directly to the variables of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-res-network-publicipaddress](https://registry.terraform.io/modules/Azure/avm-res-network-publicipaddress/azurerm/0.1.2?tab=inputs) 
+* `virtual_network_gateways`: This an `object` to specify the Virtual Network Gateways settings (omit this object if you don't want to deploy any Virtual Network Gateways)
+  * `express_route`: This `object` maps directly to the `expressroute_gateways` variable of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-ptn-virtualwan](https://registry.terraform.io/modules/Azure/avm-ptn-virtualwan/azurerm/0.5.3?tab=inputs)
+  * `vpn`: This `object` maps directly to the `vpn_gateways` variable of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-ptn-virtualwan](https://registry.terraform.io/modules/Azure/avm-ptn-virtualwan/azurerm/0.5.3?tab=inputs)
+* `private_dns_zones`: This an `object` to specify the Private DNS Zone settings (omit this object if you don't want to deploy any Private DNS Zones)
+  * `subnet_address_prefix`: The Private DNS Resolver subnet address space
+  * `resource_group_name`: The name of the resource group to deploy the Private DNS Zones into
+  * `is_primary`: Whether this is the primary region. Any non-regional Private Link Private DNS Zones will be deployed into this region. Although the Private DNS Zones are a global resource, their meta-data needs to reside in a specific region.
+  * `private_link_private_dns_zones`: This is a `map(object)` used to override the Private Link Private DNS Zones that are deployed, leave this empty to deploy the default set of zones specified by ALZ
+    * `zone_name`: The name of the Private DNS Zone to deploy
+  * `auto_registration_zone_enabled`: Whether to deploy the Virtual Machine auto-registration Private DNS Zone
+  * `auto_registration_zone_name`: The name of the Virtual Machine auto-registration Private DNS Zone
+  * `private_dns_resolver`: This is an `object` to specify the Private DNS Resolver
+    * `name`: The name of the Private DNS Resolver
+    * `resource_group_name`: The name of the resource group to deploy the Private DNS Resolver into
+    * `ip_address`: The static IP Address of the Private DNS Resolver. This will be auto calculated if not supplied
+* `side_car_virtual_network`: This `object` maps directly to the variables of the Azure Verified Module, which can be found here: [registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork](https://registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork/azurerm/0.7.1?tab=inputs)
+
+Example usage:
+
+{{< include file="/static/examples/tf/accelerator/config/virtual_wan_virtual_hubs.tfvars" language="terraform" >}}
 
 ## Azure Verified Modules Reference
 
