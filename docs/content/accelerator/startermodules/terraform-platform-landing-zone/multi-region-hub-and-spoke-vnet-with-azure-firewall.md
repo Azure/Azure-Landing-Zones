@@ -77,7 +77,7 @@ Private DNS is configured ready for using Private Link and Virtual Machine Auto-
 - Azure Firewall is configured as DNS proxy
 - Azure Firewall forwards DNS traffic to the Private DNS resolver
 - Azure Private DNS Resolver has an inbound endpoint from the hub network
-- Azure Private Link DNS zones are linked to the all hub Virtual Networks
+- Azure Private Link DNS zones are linked to all the hub Virtual Networks
 
 ### Azure Routing
 
