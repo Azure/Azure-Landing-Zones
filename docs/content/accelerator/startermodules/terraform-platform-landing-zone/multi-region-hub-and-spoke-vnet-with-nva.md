@@ -1,5 +1,6 @@
 ---
 title: Scenario - Multi-Region Hub and Spoke Virtual Network with Network Virtual Appliance (NVA)
+weight: 7
 ---
 
 A full platform landing zone deployment with hub and spoke Virtual Network connectivity in multiple regions, ready for a third party Network Virtual Appliance (NVA).

@@ -1,7 +1,7 @@
 ---
 title: User guide
 geekdocCollapseSection: true
-weight: 10
+weight: 5
 resources:
   - name: alz-accelerator-overview
     src: img/alz-terraform-accelerator.png

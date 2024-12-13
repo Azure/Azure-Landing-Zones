@@ -35,7 +35,7 @@ The accelerator follows a 3 phase approach:
 
 1. Pre-requisites: Instructions to configure credentials and subscriptions.
 2. Bootstrap: Run the PowerShell module to generate the continuous delivery environment.
-3. Run: Update the module (if needed) to suit the needs of your organisation and deploy via continuous delivery.
+3. Run: Update the module (if needed) to suit the needs of your organization and deploy via continuous delivery.
 
 {{< img name="overview" size="origin" lazy=true >}}
 
@@ -66,7 +66,7 @@ The components of the environment are similar, but differ depending on your choi
   - Environment for Apply
   - Action Variables for Backend and Plan / Apply
   - Team and Members for Apply Approval
-  - Customised OIDC Token Subject for governed Actions
+  - Customized OIDC Token Subject for governed Actions
   - [Optional] Runner Group
 
 ### Azure DevOps

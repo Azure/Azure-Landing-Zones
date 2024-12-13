@@ -1,5 +1,6 @@
 ---
 title: Scenario - Multi-Region Virtual WAN with Network Virtual Appliance (NVA)
+weight: 8
 ---
 
 A full platform landing zone deployment with Virtual WAN network connectivity in multiple regions, ready for a third party Network Virtual Appliance (NVA).

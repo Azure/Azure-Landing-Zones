@@ -4,7 +4,7 @@ weight: 15
 ---
 Having trouble using the module and unable to find a solution in the Wiki?
 
-If it isn't listed below, let us know about it in our [Issues][Issues] log. We'll do our best to help and you may find your issue documented here.
+If it isn't listed below, let us know about it in our [Issues](https://github.com/Azure/ALZ-PowerShell-Module/issues) log. We'll do our best to help and you may find your issue documented here.
 
 ## PowerShell ALZ Module Failing for non-obvious reasons
 
@@ -40,10 +40,6 @@ Unfortunately, this requires manual intervantion at the moment. The runners do n
 To resolve this, you can manually delete the runners from Runner Group in the GitHub UI. You can then re-run the destroy to complete the clean up.
 
 This only affects you if you have Enterprise licensing and have chosen to use a Runner Group. More details can be found here: <https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/removing-self-hosted-runners>
-
-<!-- markdownlint-enable no-inline-html -->
-
-[Issues]:     https://github.com/Azure/alz-terraform-accelerator/issues "Our issues log"
 
 ## Error: creating Container Group
 

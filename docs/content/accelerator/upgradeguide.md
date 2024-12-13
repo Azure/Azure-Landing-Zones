@@ -7,6 +7,10 @@ Although the accelerator is designed to be a one-time run, we have some rudiment
 
 This upgrade path is specifically for customers using the accelerator who haven't updated the repositories it deploys. If you have updated the repositories post initial bootstrap, you will need to take an alternative approach to upgrading.
 
+{{< hint type=warning >}}
+This upgrade process is not supported and may be removed in a future version
+{{< /hint >}}
+
 ## Important Notes
 
 - The upgrade process does not support the scenario where you have made any changes to the deployed bootstrap or starter modules via git or the VCS system. If you run the upgrade it will overwrite your changes or fail.

@@ -1,5 +1,6 @@
 ---
 title: Scenario - Multi-Region Virtual WAN with Azure Firewall
+weight: 6
 ---
 
 A full platform landing zone deployment with Virtual WAN network connectivity using Azure Firewall in multiple regions.

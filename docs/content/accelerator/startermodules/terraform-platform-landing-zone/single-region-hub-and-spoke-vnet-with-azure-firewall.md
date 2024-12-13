@@ -1,5 +1,6 @@
 ---
 title: Scenario - Single-Region Hub and Spoke Virtual Network with Azure Firewall
+weight: 9
 ---
 
 A full platform landing zone deployment with hub and spoke Virtual Network connectivity using Azure Firewall in a single region.

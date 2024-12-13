@@ -1,5 +1,6 @@
 ---
 title: Advanced scenarios
+weight: 10
 ---
 
 ## Scenario 1 - Secure island for bootstrap resources
@@ -31,43 +32,34 @@ This will result in the bootstrap resources being deployed in the new subscripti
 
 1. Create a new subscription for the bootstrap resources. Take note of the subscription id.
 2. Grant owner rights to the account you are using to deploy the accelerator on the new subscription.
-3. Use the `complete` starter module to deploy the Azure Landing Zone.
-4. Update the `config.yaml` file to include subscription placement for the new subscription using the `subscription-id-overrides` setting. For example:
+3. Use the `platform_landing_zone` starter module to deploy the Azure Landing Zone.
+4. Update the `tfvars` file to include subscription placement for the new subscription using the `management_group_settings.subscription_placement` setting. For example:
 
-    ```yaml
-    archetypes:  # `caf-enterprise-scale` module, add inputs as listed on the module registry where necessary.
-      root_name: es
-      root_id: Enterprise-Scale
-      deploy_corp_landing_zones: true
-      deploy_online_landing_zones: true
-      default_location: uksouth
-      disable_telemetry: true
-      deploy_management_resources: true
-      configure_management_resources:
-        location: uksouth
-        settings:
-          security_center:
-            config:
-              email_security_contact: "security_contact@replace_me"
-        advanced:
-          asc_export_resource_group_name: rg-asc-export
-          custom_settings_by_resource_type:
-            azurerm_resource_group:
-              management:
-                name: rg-management
-            azurerm_log_analytics_workspace:
-              management:
-                name: log-management
-            azurerm_automation_account:
-              management:
-                name: aa-management
-      subscription-id-overrides:
-        management:
-          - "00000000-0000-0000-0000-000000000000"  # Your new subscription id
+    ```terraform
+    management_group_settings = {
+      subscription_placement = {
+        identity = {
+          subscription_id       = "$${subscription_id_identity}"
+          management_group_name = "identity"
+        }
+        connectivity = {
+          subscription_id       = "$${subscription_id_connectivity}"
+          management_group_name = "connectivity"
+        }
+        management = {
+          subscription_id       = "$${subscription_id_management}"
+          management_group_name = "management"
+        }
+        bootstrap = {
+          subscription_id       = "<bootstrap-subscription-id>" # Add your bootstrap subscription id here
+          management_group_name = "management"
+        }
+      }
+    }
     ```
 
 5. Run the bootstrap as normal, following the instructions in the [Quick Start]({{< relref "1_prerequisites" >}}) guide.
-6. When you get to step for updating the input config file variables, enter the subscription id of the new subscription you created into the `bootstrap_subscription_id` field.
+6. When you get to step for updating the bootstrap configuration file variables, enter the subscription id of the new subscription you created into the `bootstrap_subscription_id` field.
 7. Continue with the rest of the steps in the [Quick Start]({{< relref "1_prerequisites" >}}) guide.
 
 This will result in the bootstrap resources being deployed in the new subscription.

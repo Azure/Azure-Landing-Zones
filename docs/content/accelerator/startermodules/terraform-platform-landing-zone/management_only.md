@@ -1,5 +1,6 @@
 ---
 title: Scenario - Management Groups, Policy and Management Resources Only
+weight: 20
 ---
 
 A platform landing zone deployment without any connectivity resources.

@@ -1,6 +1,7 @@
 ---
 title: Phase 2 - Bootstrap
 geekdocCollapseSection: true
+weight: 5
 ---
 
 Phase 2 of the accelerator is to run the bootstrap. Follow the steps below to do that.

@@ -1,5 +1,6 @@
 ---
-title: 1.a - Authenticating via Service Principal
+title: Authenticating via Service Principal
+weight: 100
 ---
 
 ## Authenticate via Service Principal (Skip this if using a User account)

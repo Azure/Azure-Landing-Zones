@@ -31,7 +31,7 @@ Although you can just run `Deploy-Accelerator` and fill out the prompted inputs,
     ┗ 📂output
     ```
 
-1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from [inputs-azure-devops-bicep-complete.yaml][example_powershell_inputs_azure_devops_bicep_complete] into that file.
+1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from [inputs-azure-devops.yaml](https://raw.githubusercontent.com/Azure/alz-bicep/refs/heads/main/accelerator/examples/bootstrap/inputs-azure-devops.yaml) into that file.
 1. Check through the file and update each input as required. It is mandatory to update items with placeholders surrounded by angle brackets `<>`:
 
     {{< hint type=tip >}}
@@ -179,5 +179,3 @@ The following examples include 2 input files. This is the recommended approach f
 ## Next Steps
 
 Now head to [Phase 3]({{< relref "3_deploy" >}}).
-
-[example_powershell_inputs_azure_devops_bicep_complete]:     examples/powershell-inputs/inputs-azure-devops-bicep-complete.yaml "Example - PowerShell Inputs - Azure DevOps - Bicep - Complete"
