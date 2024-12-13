@@ -113,9 +113,8 @@ The following inputs can also be supplied via environment variables. This may be
 
 1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from the relevant input file for your chosen starter module:
     1. Azure Verified Modules for Platform Landing Zone (ALZ) - [inputs-azure-devops.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/bootstrap/inputs-azure-devops.yaml)
-    1. Financial Services Industry Landing Zone - [inputs-azure-devops-terraform-financial-services-landing-zone.yaml][example_powershell_inputs_azure_devops_terraform_financial_services_industry_landing_zone]
-    1. Sovereign Landing Zone - [inputs-azure-devops-terraform-sovereign-landing-zone.yaml][example_powershell_inputs_azure_devops_terraform_sovereign_landing_zone]
-
+    1. Financial Services Industry Landing Zone - [inputs-azure-devops.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/microsoft_cloud_for_industry/financial_services_landing_zone/examples/bootstrap/azure-devops-local.yaml)
+    1. Sovereign Landing Zone - [inputs-azure-devops.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/microsoft_cloud_for_industry/sovereign_landing_zone/examples/bootstrap/azure-devops-local.yaml)
 1. Check through the file and update each input as required. It is mandatory to update items with placeholders surrounded by angle brackets `<>`:
 
     {{< hint type=tip >}}
@@ -182,5 +181,3 @@ The following examples include 2 input files. This is the recommended approach f
 Now head to [Phase 3]({{< relref "3_deploy" >}}).
 
 [example_powershell_inputs_azure_devops_bicep_complete]:     examples/powershell-inputs/inputs-azure-devops-bicep-complete.yaml "Example - PowerShell Inputs - Azure DevOps - Bicep - Complete"
-[example_powershell_inputs_azure_devops_terraform_financial_services_industry_landing_zone]:     examples/powershell-inputs/inputs-azure-devops-terraform-financial-services-landing-zone.yaml "Example - PowerShell Inputs - Azure DevOps - Terraform - Financial Services Industry Landing Zone"
-[example_powershell_inputs_azure_devops_terraform_sovereign_landing_zone]:     examples/powershell-inputs/inputs-azure-devops-terraform-sovereign-landing-zone.yaml "Example - PowerShell Inputs - Azure DevOps - Terraform - Sovereign Landing Zone"

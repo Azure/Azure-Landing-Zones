@@ -98,9 +98,8 @@ The following inputs can also be supplied via environment variables. This may be
 
 1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from the relevant input file for your chosen starter module:
     1. Azure Verified Modules for Platform Landing Zone (ALZ) - [inputs-local.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/bootstrap/inputs-local.yaml)
-    1. Financial Services Industry Landing Zone - [inputs-local-terraform-financial-services-landing-zone.yaml][example_powershell_inputs_local_terraform_financial_service_industry_landing_zone]
-    1. Sovereign Landing Zone - [inputs-local-terraform-sovereign-landing-zone.yaml][example_powershell_inputs_local_terraform_sovereign_landing_zone]
-
+    1. Financial Services Industry Landing Zone - [inputs-local.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/microsoft_cloud_for_industry/financial_services_landing_zone/examples/bootstrap/inputs-local.yaml)
+    1. Sovereign Landing Zone - [inputs-local.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/microsoft_cloud_for_industry/sovereign_landing_zone/examples/bootstrap/inputs-local.yaml)
 1. Check through the file and update each input as required. It is mandatory to update items with placeholders surrounded by angle brackets `<>`:
 
     {{< hint type=tip >}}
@@ -159,5 +158,3 @@ The following examples include 2 input files. This is the recommended approach f
 Now head to [Phase 3]({{< relref "3_deploy" >}})
 
 [example_powershell_inputs_local_bicep_complete]:     examples/powershell-inputs/inputs-local-bicep-complete.yaml "Example - PowerShell Inputs - Local - Bicep - Complete"
-[example_powershell_inputs_local_terraform_financial_service_industry_landing_zone]:     examples/powershell-inputs/inputs-local-terraform-financial-services-landing-zone.yaml "Example - PowerShell Inputs - Local - Terraform - Financial Services Industry Landing Zone"
-[example_powershell_inputs_local_terraform_sovereign_landing_zone]:     examples/powershell-inputs/inputs-local-terraform-sovereign-landing-zone.yaml "Example - PowerShell Inputs - Local - Terraform - Sovereign Landing Zone"
