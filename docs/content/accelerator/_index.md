@@ -13,7 +13,7 @@ resources:
 
 Welcome to the Azure Landing Zones Accelerators for Bicep and Terraform!
 
-The Azure landing zones [Terraform][alz_tf_module] and [Bicep][alz_bc_module] modules provide an opinionated approach for deploying and managing the core platform capabilities of [Azure landing zones architecture][alz_architecture] using Bicep or Terraform.
+The Azure landing zones [Terraform](https://github.com/Azure/alz-terraform-accelerator/tree/main/templates/platform_landing_zone) and [Bicep](https://github.com/Azure/ALZ-Bicep) modules provide an opinionated approach for deploying and managing the core platform capabilities of [Azure landing zones architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture) using Bicep or Terraform.
 
 This accelerator provides an opinionated approach for configuring and securing those modules in a continuous delivery environment. It has end to end automation for bootstrapping the modules.
 
@@ -119,10 +119,4 @@ Check out the [User Guide]({{< relref "userguide" >}}).
 
 The following diagram and links detail the Azure landing zone, but you can learn a lot more about Azure landing zones [here](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
 
-![Azure landing zone conceptual architecture][alz_tf_overview]
-
-[alz_tf_overview]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/media/ns-arch-cust-expanded.svg "A conceptual architecture diagram highlighting the design areas covered by the Azure landing zones Terraform module."
-
-[alz_tf_module]:  https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform: Azure landing zones module"
-[alz_bc_module]:  https://github.com/Azure/ALZ-Bicep "Bicep: Azure landing zones module"
-[alz_architecture]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture
+![Azure landing zone conceptual architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/media/ns-arch-cust-expanded.svg)
