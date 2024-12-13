@@ -72,6 +72,6 @@ The following relevant configuration is applied:
 Private DNS is configured ready for using Private Link and Virtual Machine Auto-registration. Spoke Virtual Networks should use the Network Virtual Appliance IP Address in the same region as their DNS configuration.
 
 - Network Virtual Appliance should be configured as DNS proxy
-- Network Virtual Appliance should be forward DNS traffic to the Private DNS resolver
+- Network Virtual Appliance should forward DNS traffic to the Private DNS resolver
 - Azure Private DNS Resolver has an inbound endpoint from the sidecar network
 - Azure Private Link DNS zones are linked to the all hub sidecar Virtual Networks
