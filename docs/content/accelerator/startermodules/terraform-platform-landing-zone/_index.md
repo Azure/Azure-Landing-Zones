@@ -88,128 +88,31 @@ Detailed documentation: [Multi-region virtual wan with Azure Firewall]({{< relre
 
 The how to section details how to make configuration changes that apply to the common scenarios.
 
-### Customise Management Group Names
+### Customise Management Group Names and IDs
 
-The customer may want to customise the management groups names. In order to do this they need to supply a `lib` folder to the accelerator.
+The customer may want to customise the management groups names and IDs. In order to do this they need to supply a `lib` folder to the accelerator.
 
 The `lib` folder should contain the following structure (we are showing it nested under the standard accelerator file structure here):
 
-    ```plaintext
-    📂accelerator
-    ┣ 📂config
-    ┃ ┣ 📂lib
-    ┃ ┃ ┗ 📂architecture_definitions
-    ┃ ┃   ┗ 📜alz.alz_architecture_definition.json
-    ┃ ┗ 📜inputs.yaml
-    ┗ 📂output
-    ```
+```plaintext
+📂accelerator
+┣ 📂config
+┃ ┣ 📂lib
+┃ ┃ ┗ 📂architecture_definitions
+┃ ┃   ┗ 📜alz.alz_architecture_definition.json
+┃ ┗ 📜inputs.yaml
+┗ 📂output
+```
 
 >NOTE: The `lib` folder must be named `lib`, any other name will not work
 
 The `alz.alz_architecture_definition.json` file content should be copied from [here](https://github.com/Azure/Azure-Landing-Zones-Library/blob/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json).
 
-The customer can then edit this configuration file to update the management group names. 
+The customer can then edit this configuration file to update the management group names and IDs. 
 
 For example to prefix all the management group display names with `Contoso` and update the management group IDs to have the `contoso-` prefix they can update the file to look like this:
 
-```json
-{
-  "$schema": "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/main/schemas/architecture_definition.json",
-  "name": "alz",
-  "management_groups": [
-    {
-      "archetypes": [
-        "root"
-      ],
-      "display_name": "Contoso",
-      "exists": false,
-      "id": "contoso-root",
-      "parent_id": null
-    },
-    {
-      "archetypes": [
-        "platform"
-      ],
-      "display_name": "Contoso Platform",
-      "exists": false,
-      "id": "contoso-platform",
-      "parent_id": "contoso-root"
-    },
-    {
-      "archetypes": [
-        "landing_zones"
-      ],
-      "display_name": "Contoso Landing zones",
-      "exists": false,
-      "id": "contoso-landingzones",
-      "parent_id": "contoso-root"
-    },
-    {
-      "archetypes": [
-        "corp"
-      ],
-      "display_name": "Contoso Corp",
-      "exists": false,
-      "id": "contoso-corp",
-      "parent_id": "contoso-landingzones"
-    },
-    {
-      "archetypes": [
-        "online"
-      ],
-      "display_name": "Contoso Online",
-      "exists": false,
-      "id": "contoso-online",
-      "parent_id": "contoso-landingzones"
-    },
-    {
-      "archetypes": [
-        "sandboxes"
-      ],
-      "display_name": "Contoso Sandboxes",
-      "exists": false,
-      "id": "contoso-sandboxes",
-      "parent_id": "contoso-root"
-    },
-    {
-      "archetypes": [
-        "management"
-      ],
-      "display_name": "Contoso Management",
-      "exists": false,
-      "id": "contoso-management",
-      "parent_id": "contoso-platform"
-    },
-    {
-      "archetypes": [
-        "connectivity"
-      ],
-      "display_name": "Contoso Connectivity",
-      "exists": false,
-      "id": "contoso-connectivity",
-      "parent_id": "contoso-platform"
-    },
-    {
-      "archetypes": [
-        "identity"
-      ],
-      "display_name": "Contoso Identity",
-      "exists": false,
-      "id": "contoso-identity",
-      "parent_id": "contoso-platform"
-    },
-    {
-      "archetypes": [
-        "decommissioned"
-      ],
-      "display_name": "Contoso Decommissioned",
-      "exists": false,
-      "id": "contoso-decommissioned",
-      "parent_id": "contoso-root"
-    }
-  ]
-}
-```
+{{< include file="/static/examples/tf/accelerator/config/lib/architecture_definitions/alz.alz_architecture_definition.json" language="json" >}}
 
 >NOTE: When updating the management group `id`, you also need to consider any child management groups that refer to it by the `parent_id`
 

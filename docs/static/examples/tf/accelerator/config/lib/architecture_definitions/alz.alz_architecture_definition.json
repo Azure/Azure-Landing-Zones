@@ -1,0 +1,96 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/main/schemas/architecture_definition.json",
+  "name": "alz",
+  "management_groups": [
+    {
+      "archetypes": [
+        "root"
+      ],
+      "display_name": "Contoso",
+      "exists": false,
+      "id": "contoso-root",
+      "parent_id": null
+    },
+    {
+      "archetypes": [
+        "platform"
+      ],
+      "display_name": "Contoso Platform",
+      "exists": false,
+      "id": "contoso-platform",
+      "parent_id": "contoso-root"
+    },
+    {
+      "archetypes": [
+        "landing_zones"
+      ],
+      "display_name": "Contoso Landing zones",
+      "exists": false,
+      "id": "contoso-landingzones",
+      "parent_id": "contoso-root"
+    },
+    {
+      "archetypes": [
+        "corp"
+      ],
+      "display_name": "Contoso Corp",
+      "exists": false,
+      "id": "contoso-corp",
+      "parent_id": "contoso-landingzones"
+    },
+    {
+      "archetypes": [
+        "online"
+      ],
+      "display_name": "Contoso Online",
+      "exists": false,
+      "id": "contoso-online",
+      "parent_id": "contoso-landingzones"
+    },
+    {
+      "archetypes": [
+        "sandboxes"
+      ],
+      "display_name": "Contoso Sandboxes",
+      "exists": false,
+      "id": "contoso-sandboxes",
+      "parent_id": "contoso-root"
+    },
+    {
+      "archetypes": [
+        "management"
+      ],
+      "display_name": "Contoso Management",
+      "exists": false,
+      "id": "contoso-management",
+      "parent_id": "contoso-platform"
+    },
+    {
+      "archetypes": [
+        "connectivity"
+      ],
+      "display_name": "Contoso Connectivity",
+      "exists": false,
+      "id": "contoso-connectivity",
+      "parent_id": "contoso-platform"
+    },
+    {
+      "archetypes": [
+        "identity"
+      ],
+      "display_name": "Contoso Identity",
+      "exists": false,
+      "id": "contoso-identity",
+      "parent_id": "contoso-platform"
+    },
+    {
+      "archetypes": [
+        "decommissioned"
+      ],
+      "display_name": "Contoso Decommissioned",
+      "exists": false,
+      "id": "contoso-decommissioned",
+      "parent_id": "contoso-root"
+    }
+  ]
+}
