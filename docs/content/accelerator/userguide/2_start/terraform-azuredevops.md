@@ -6,24 +6,27 @@ Follow these instructions to bootstrap Azure DevOps ready to deploy your platfor
 
 1. Create a new folder on you local drive called `accelerator`.
 1. Inside the accelerator create two folders called `config` and `output`. You'll store you input file inside config and the output folder will be the place that the accelerator stores files while it works.
-1. Inside the `config` folder create a new file called `inputs.yaml`. You can use `json` if you prefer, but our examples here are `yaml`.
+1. Inside the `config` folder create a new files called `inputs.yaml` and `platform-landing-zone.tfvars`.
 
     ```pwsh
     # Windows
     New-Item -ItemType "file" c:\accelerator\config\inputs.yaml -Force
+    New-Item -ItemType "file" c:\accelerator\config\platform-landing-zone.tfvars -Force
     New-Item -ItemType "directory" c:\accelerator\output
     ```
 
     ```pwsh
     # Linux/Mac
     New-Item -ItemType "file" /accelerator/config/inputs.yaml -Force
+    New-Item -ItemType "file" c:\accelerator\config\platform-landing-zone.tfvars -Force
     New-Item -ItemType "directory" /accelerator/output
     ```
 
     ```plaintext
     📂accelerator
     ┣ 📂config
-    ┃ ┗ 📜inputs.yaml
+    ┃ ┣📜inputs.yaml
+    ┃ ┗📜platform-landing-zone.tfvars
     ┗ 📂output
     ```
 
@@ -66,7 +69,9 @@ The following inputs can also be supplied via environment variables. This may be
     | `create_branch_policies` | `TF_VAR` | `true` | This controls whether to create branch policies for the repository. This defaults to `true`. |
     | `architecture_definition_name` | `TF_VAR` | N/A | This is the name of the architecture definition to use when applying the ALZ archetypes via the architecture definition template. This is only relevant to some starter modules, such as the `sovereign_landing_zone` starter module. This defaults to `null`. |
 
-1. Now head over to your chosen starter module documentation to get the specific inputs for that module. Come back here when you are done.
+1. Open your `platform-landing-zone.tfvars` file in Visual Studio Code (or your preferred editor)
+
+1. Now head over to your chosen starter module documentation to get the specific inputs for that module. Make sure to copy the contents of your chosen configuration file into `platform-landing-zone.tfvars`.
     - [Terraform Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../../startermodules/terraform-platform-landing-zone" >}}): Management groups, policies, Multi Region hub networking with fully custom configuration.
     - [Terraform Financial Services Industry Landing Zone Starter Module]({{< relref "../../startermodules/terraformfsi" >}}): Management groups, policies, hub networking for the Financial Services Industry Landing Zone.
     - [Terraform Sovereign Landing Zone Starter Module]({{< relref "../../startermodules/terraformsovereign" >}}): Management groups, policies, hub networking for the Sovereign Landing Zone.
@@ -74,17 +79,37 @@ The following inputs can also be supplied via environment variables. This may be
 1. In your PowerShell Core (pwsh) terminal run the module:
 
     {{< hint type=tip >}}
-The following examples include 2 input files. This is the recommended approach for the `platform_landing_zone` starter module. However, all inputs into multiple files if desired.
+The following examples include 2 input files. This is the recommended approach for the `platform_landing_zone` starter module. However, all inputs can be split into multiple files if desired.
     {{< /hint >}}
 
     ```pwsh
-    # Windows (adjust the paths to match your setup)
-    Deploy-Accelerator -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\networking.yaml" -output "c:\accelerator\output"
+    # Windows without a lib folder (adjust the paths to match your setup)
+    Deploy-Accelerator `
+      -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\platform-landing-zone.tfvars" `
+      -output "c:\accelerator\output"
     ```
 
     ```pwsh
-    # Linux/Mac (adjust the paths to match your setup)
-    Deploy-Accelerator -inputs "/accelerator/config/inputs.yaml", "/accelerator/config/networking.yaml" -output "/accelerator/output"
+    # Linux/Mac without a lib folder (adjust the paths to match your setup)
+    Deploy-Accelerator `
+      -inputs "/accelerator/config/inputs.yaml", "/accelerator/config/platform-landing-zone.tfvars" `
+      -output "/accelerator/output"
+    ```
+
+    ```pwsh
+    # Windows with a lib folder (adjust the paths to match your setup)
+    Deploy-Accelerator `
+      -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\platform-landing-zone.tfvars" `
+      -starterAdditionalFiles "c:\accelerator\config\lib" `
+      -output "c:\accelerator\output"
+    ```
+
+    ```pwsh
+    # Linux/Mac with a lib folder (adjust the paths to match your setup)
+    Deploy-Accelerator `
+      -inputs "/accelerator/config/inputs.yaml", "/accelerator/config/platform-landing-zone.tfvars" `
+      -starterAdditionalFiles "/accelerator/config/lib" `
+      -output "/accelerator/output"
     ```
 
 1. You will see a Terraform `init` and `apply` happen.

@@ -6,16 +6,20 @@ weight: 15
 This article answers frequently asked questions relating to the Azure landing zones Terraform accelerator.
 
 {{< hint type=note >}}
-If you have a question not listed here, please raise an [issue](https://github.com/Azure/alz-terraform-accelerator/issues) and we'll do our best to help.
+If you have a question not listed here, please raise an [Issue](https://github.com/Azure/ALZ-PowerShell-Module/issues) and we'll do our best to help.
 {{< /hint >}}
 
-## Questions about customisation
+## Questions about customization
 
 ### How do I use my own naming convention for the resources that are deployed?
 
-You can add any hidden variables to your inputs file, including the `resource_names` map. This map is used to set the names of the resources that are deployed. You can find the default values in the `terraform.tfvars` file in the bootstrap module.
+You can add any hidden variables to your inputs file, including the `resource_names` map. This map is used to set the names of the resources that are deployed. You can find the default values in the `variables.hidden.tf` file in the bootstrap module:
 
-For example adding this to the end of your inputs file and updating to your standard:
+* Azure DevOps: [variables.hidden.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/2b3aa805fd03fa5afa4de970ca11899a9a66d2a6/alz/azuredevops/variables.hidden.tf#L79)
+* GitHub: [variables.hidden.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/2b3aa805fd03fa5afa4de970ca11899a9a66d2a6/alz/github/variables.hidden.tf#L13)
+* Local: [variables.hidden.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/2b3aa805fd03fa5afa4de970ca11899a9a66d2a6/alz/local/variables.hidden.tf#L25)
+
+For example adding this to the end of your bootstrap config file and updating to your standard:
 
 ```yaml
 # Extra Inputs
@@ -56,9 +60,6 @@ resource_names:
   container_registry_private_endpoint: "pe-{{service_name}}-{{environment_name}}-{{azure_location}}-acr-{{postfix_number}}"
   container_image_name: "azure-devops-agent"
 ```
-
-Alternatively, you can take a copy of the `terraform.tfvars` file from the bootstrap module, update it and supply it via the `-bootstrapTfVarsOverridePath` parameter as an absolute path.
-
 ## Questions about bootstrap clean up
 
 ### I was just testing or I made a mistake, how do I remove the bootstrap environment and start again?
@@ -67,7 +68,7 @@ After the Terraform apply has been completed there is an opportunity to remove t
 
 1. If you already ran the CD pipeline / action in phase 3 to deploy the ALZ, then you will need to run the pipeline / action again, but this time select the `destroy` option. This will delete the landing zone resources. If you don't do this, those resource will be left orphaned and you will have to clean them up manually.
 1. Wait for the destroy run to complete before moving to the next step, you will need to approve it if you configured approvals.
-1. Now run `Deploy-Accelerator` with the `-destroy` flag. E.g. `Deploy-Accelerator -i "terraform" -b "alz_azuredevops" -o "./my-folder" -destroy`.
+1. Now run `Deploy-Accelerator` with the `-destroy` flag. E.g. `Deploy-Accelerator -inputs "~/config/inputs.json" -output "./my-folder" -destroy`.
 1. The module will run and ask if you want to use the existing variables, enter `use` to use them.
 1. You can confirm the destroy by typing `yes` when prompted.
 1. To fully clean up, you should now delete the folder that was created for the accelerator. E.g. `./my-folder`.
@@ -97,48 +98,14 @@ Follow the steps in the [Upgrade Guide]({{< relref "upgradeguide" >}}) to upgrad
 
 After bootstrapping, the PowerShell leaves the folder structure intact, including the Terraform state file. This is by design, so you have an opportunity to amend or destroy the environment.
 
-If you want to deploy to a separate environment, the simplest approach is to specify a separate folder for each deployment using the `-Output` parameter. For example:
+If you want to deploy to a separate environment, the simplest approach is to specify a separate folder for each deployment using the `-output` parameter. For example:
 
-- Deployment 1: `Deploy-Accelerator -i "terraform" -b "alz_azuredevops" -Output "./deployment1"`
-- Deployment 2: `Deploy-Accelerator -i "terraform" -b "alz_azuredevops" -Output "./deployment2"`
+- Deployment 1: `Deploy-Accelerator -inputs "~/config/inputs1.json" -output "./deployment1"`
+- Deployment 2: `Deploy-Accelerator -inputs "~/config/inputs2.json" -output "./deployment2"`
 
 You can then deploy as many times as you like without interferring with a previous deployment.
 
 ## Questions about Automating the PowerShell Module
-
-### I want to automate the PowerShell module, but it keeps prompting me for input, can I supply the answers?
-
->NOTE: We now recommend this as the preferred approach and our documentation has been updated to reflect this.
-
-Yes, you can supply the variables to the PowerShell module by using the `-inputs` parameter. You just need to supply a single file that includes the variables for the bootstrap and the starter module. The ordering of the variables in the file is not important.
-
-The module will accept inputs as in json or yaml format. `.json,`, `.yaml` or `.yml` file extensions are supported. Examples of both are shown below.
-
-To call the module, you then specify the `-inputs` parameter with the path to the file containing the inputs. For example:
-
-```powershell
-Deploy-Accelerator -i "terraform" -b "alz_azuredevops" -Inputs "~/config/inputs.json"
-```
-
-yaml example:
-
-```yaml
-starter: "basic"
-azure_location: "uksouth"
-```
-
-json example:
-
-```json
-{
-  "starter": "basic",
-  "azure_location": "uksouth"
-}
-```
-
-> NOTE: These examples show a partial set of variables. In this scenario, the module will prompt for the remaining variables. You can find the full list of variables in the quick start phase 2 and starter module documentation.
-
-Full yaml examples can be found under the `Input Files` section of the right-hand menu.
 
 ### I get prompted to approve the Terraform plan, can I skip that?
 
@@ -147,7 +114,7 @@ Yes, you can skip the approval of the Terraform plan by using the `-autoApprove`
 For example:
 
 ```powershell
-Deploy-Accelerator -i "terraform" -b "alz_azuredevops" -Inputs "~/config/inputs.json" -autoApprove
+Deploy-Accelerator -inputs "~/config/inputs.json" -autoApprove
 ```
 
 ## Questions about adding more subscriptions post initial deployment
@@ -171,11 +138,11 @@ There are some steps you need to take:
 Follow the structure and json schema in the [Azure/accelerator-bootstrap-modules](https://github.com/Azure/accelerator-bootstrap-modules). You can then target your custom bootstrap module by using the `bootstrapModuleUrl` or `bootstrapModuleOverrideFolderPath` parameters in the PowerShell module. For example:
 
 ```powershell
-Deploy-Accelerator -i "terraform" -b "alz_azuredevops" -bootstrapModuleUrl "https://github.com/my-org/my-boostrap-modules"
+Deploy-Accelerator -inputs "~/config/inputs.json" -bootstrapModuleUrl "https://github.com/my-org/my-boostrap-modules"
 ```
 
 ```powershell
-Deploy-Accelerator -i "terraform" -b "alz_azuredevops" -bootstrapModuleOverrideFolderPath "./my-bootstrap-modules"
+Deploy-Accelerator -inputs "~/config/inputs.json" -bootstrapModuleOverrideFolderPath "./my-bootstrap-modules"
 ```
 
 ### I want to use my own custom starter modules, how do I do that?
@@ -183,7 +150,7 @@ Deploy-Accelerator -i "terraform" -b "alz_azuredevops" -bootstrapModuleOverrideF
 Follow the folder structure in this repository and create your own custom starter module(s). You can then target your custom starter module by using the `starterModuleOverrideFolderPath` parameters in the PowerShell module. For example:
 
 ```powershell
-Deploy-Accelerator -i "terraform" -b "alz_azuredevops" -starterModuleOverrideFolderPath "~/my-custom-starter-modules"
+Deploy-Accelerator -inputs "~/config/inputs.json" -starterModuleOverrideFolderPath "~/my-custom-starter-modules"
 ```
 
 Alternatively, if you are also supplying a custom bootstrap module, you can specify the starter module repo url in the `json` config file in the bootstrap module.
