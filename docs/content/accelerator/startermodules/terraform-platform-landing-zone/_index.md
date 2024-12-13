@@ -29,7 +29,11 @@ This is the YAML file used to provide the base configuration required to bootstr
 
 Some of this configuration is also fed into this starter module. You will see a `terraform.tfvars.json` file is created to hold these inputs. They include management group ID, subscriptions IDs, starter locations, etc.
 
-We provide examples of this file for each version control system. These can be found in the [Phase 2]({{< relref "/accelerator/userguide/2_start" >}}) documentation.
+We provide examples of this file for each version control system. These can be found in the [Phase 2]({{< relref "/accelerator/userguide/2_start" >}}) documentation, but are also listed here for convenience:
+
+* Azure DevOps: [inputs-azure-devops.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/bootstrap/inputs-azure-devops.yaml)
+* GitHub: [inputs-github.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/bootstrap/inputs-github.yaml)
+* Local: [inputs-local.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/bootstrap/inputs-local.yaml)
 
 ### Platform Landing Zone Configuration File
 

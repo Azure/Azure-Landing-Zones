@@ -1,5 +1,5 @@
 ---
-title: 2.c Local filesystem
+title: Local File System
 ---
 
 You can choose to bootstrap with `bicep` or `terraform` skip to the relevant section below to do that.
@@ -32,7 +32,9 @@ Although you can just run `Deploy-Accelerator` and fill out the prompted inputs,
 1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from [inputs-local-bicep-complete.yaml][example_powershell_inputs_local_bicep_complete] into that file.
 1. Check through the file and update each input as required. It is mandatory to update items with placeholders surrounded by angle brackets `<>`:
 
-    >NOTE: The following inputs can also be supplied via environment variables. This may be useful for sensitive values you don't wish to persist to a file. The `Env Var Prefix` denotes the prefix the environment variable should have. The environment variable is formatting is `<PREFIX>_<variable_name>`, e.g. `env:ALZ_iac_type = "bicep"` or `env:TF_VAR_target_directory = "./accelerator/target"`.
+    {{< hint type=tip >}}
+The following inputs can also be supplied via environment variables. This may be useful for sensitive values you don't wish to persist to a file. The `Env Var Prefix` denotes the prefix the environment variable should have. The environment variable is formatting is `<PREFIX>_<variable_name>`, e.g. `$env:ALZ_iac_type = "terraform"` or `$env:TF_VAR_github_personal_access_token = "*****..."`.
+    {{< /hint >}}
 
     | Input | Env Var Prefix | Placeholder | Description |
     | - | - | -- | --- |
@@ -101,8 +103,8 @@ Although you can just run `Deploy-Accelerator` and fill out the prompted inputs,
 
 1. Check through the file and update each input as required. It is mandatory to update items with placeholders surrounded by angle brackets `<>`:
 
-    {{< hint type=note >}}
-The following inputs can also be supplied via environment variables. This may be useful for sensitive values you don't wish to persist to a file. The `Env Var Prefix` denotes the prefix the environment variable should have. The environment variable is formatting is `<PREFIX>_<variable_name>`, e.g. `env:ALZ_iac_type = "terraform"` or `env:TF_VAR_target_directory = "./accelerator/target"`.
+    {{< hint type=tip >}}
+The following inputs can also be supplied via environment variables. This may be useful for sensitive values you don't wish to persist to a file. The `Env Var Prefix` denotes the prefix the environment variable should have. The environment variable is formatting is `<PREFIX>_<variable_name>`, e.g. `$env:ALZ_iac_type = "terraform"` or `$env:TF_VAR_github_personal_access_token = "*****..."`.
     {{< /hint >}}
 
     | Input | Env Var Prefix | Placeholder | Description |
@@ -132,8 +134,8 @@ The following inputs can also be supplied via environment variables. This may be
 
 1. In your PowerShell Core (pwsh) terminal run the module:
 
-    {{< hint type=note >}}
-The following examples include 2 input files. This is the recommended approach for the `complete_multi_region` starter module. However, all inputs can be combined into a single file if desired and other starter modules only require a single input file.
+    {{< hint type=tip >}}
+The following examples include 2 input files. This is the recommended approach for the `platform_landing_zone` starter module. However, all inputs into multiple files if desired.
     {{< /hint >}}
 
     ```pwsh
