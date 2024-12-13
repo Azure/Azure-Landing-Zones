@@ -48,7 +48,7 @@ The following resources are deployed by default in this scenario:
 #### Azure Bastion
 
 - Azure Bastion per region
-- Azure Bastion public ip per region
+- Azure Bastion public IP per region
 
 #### Azure Private DNS
 
