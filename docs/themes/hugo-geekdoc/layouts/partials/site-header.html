@@ -3,7 +3,7 @@
   {{ if site.Params.showPreviewBanner }}
   <div class="gdoc-markdown" style="padding-left: 2rem; padding-right: 2rem;">
     <blockquote class="gdoc-hint warning">
-      <div class="gdoc-hint__title flex align-center"><i class="fa warning" title="Preview Only"></i></div>
+      <div class="gdoc-hint__title flex align-center"><i class="fa warning" title="{{ site.Params.previewBannerTitle }}"></i></div>
       <div class="gdoc-hint__text">{{ site.Params.previewBannerText }}</div>
     </blockquote>
   </div>
