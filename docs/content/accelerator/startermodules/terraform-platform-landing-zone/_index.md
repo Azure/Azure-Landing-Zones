@@ -92,9 +92,67 @@ The how to section details how to make configuration changes that apply to the c
 
 ### Turn off DDOS protection plan
 
+The customer can choose to not deploy a DDOS protection plan. In order to do that, they need to remove the DDOS protection plan configuration and disable the DINE policy. The customer can either comment out or remove the configuration entirely.
+
+>NOTE: DDOS Protection plan is a critical security protection for public facing services. Carefully consider this and be sure to put in place an alternative solution, such as per IP protection.
+
+The steps to follow are:
+
+1. To keep the code tidy remove the follow settings from `custom_replacements.names`:
+  1. `ddos_resource_group_name`
+  1. `ddos_protection_plan_name`
+1. To keep the code tidy remove the follow settings from `custom_replacements.resource_group_identifiers`:
+  1. `ddos_protection_plan_resource_group_id`
+1. To keep the code tidy remove the follow settings from `custom_replacements.resource_identifiers`:
+  1. `ddos_protection_plan_id`
+1. Remove the follow configuration settings from `management_group_settings.policy_default_values`:
+  1. `ddos_protection_plan_id`
+1. Add the follow section to `management_group_settings.policy_assignments_to_modify`:
+    ```terraform
+    connectivity = {
+      policy_assignments = {
+        Enable-DDoS-VNET = {
+          enforcement_mode = "DoNotEnforce"
+        }
+      }
+    }
+    ```
+1. Remove the whole `ddos_protection_plan` section from `hub_and_spoke_vnet_settings` or `virtual_wan_settings`
+
 ### Turn off Bastion host
 
+The customer can choose to not deploy a Bastion Host. In order to do that, they need to remove the Bastion Host configuration. The customer can either comment out or remove the configuration entirely.
+
+The steps to follow are:
+
+1. To keep the code tidy remove the follow settings from `custom_replacements.names`:
+  1. `<region>_bastion_subnet_address_prefix` where `<region>` is for each region
+1. Remove the whole `bastion` section from each `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs` region
+
 ### Turn off Private DNS zones and Private DNS resolver
+
+The customer can choose to not deploy any DNS related resources. In order to do that, they need to remove the DNS configuration and disable the DINE policy. The customer can either comment out or remove the configuration entirely.
+
+The steps to follow are:
+
+1. To keep the code tidy remove the follow settings from `custom_replacements.names`:
+  1. `dns_resource_group_name`
+  1. `<region>_private_dns_resolver_subnet_address_prefix` where `<region>` is for each region
+1. Remove the follow configuration settings from `management_group_settings.policy_default_values`:
+  1. `private_dns_zone_subscription_id`
+  1. `private_dns_zone_region`
+  1. `private_dns_zone_resource_group_name`
+1. Add the follow section to `management_group_settings.policy_assignments_to_modify`:
+    ```terraform
+    corp = {
+      policy_assignments = {
+        Deploy-Private-DNS-Zones = {
+          enforcement_mode = "DoNotEnforce"
+        }
+      }
+    }
+    ```
+1. Remove the whole `private_dns_zones` section from each `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs` region
 
 ### Additional Regions
 
