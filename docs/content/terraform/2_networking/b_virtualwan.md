@@ -1,5 +1,6 @@
 ---
 title: 2.b Virtual WAN
+draft: true
 ---
 
 TBC...

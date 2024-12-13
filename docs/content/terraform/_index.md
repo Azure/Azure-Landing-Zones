@@ -57,10 +57,4 @@ We have created this documentation site to centralize the integration documentat
 
 In here you will find examples and guidance on how to use the new modules to build your very own Azure Landing Zone.
 
-{{< hint type=note title="Deployment order" >}}
-This guide will walk you through the deployment of the management components first, then the networking components, and finally  management groups and policy.
-
-it is possible to deploy all these in one apply, but for the purposes of this guide we will break it down into these three sections.
-{{< /hint >}}
-
-[Get started with deploying the management components]({{< relref "terraform/1_managementcomponents" >}})
+TBC more soon...

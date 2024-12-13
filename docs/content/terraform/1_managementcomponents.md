@@ -1,5 +1,6 @@
 ---
 title: 1. Management components
+draft: true
 ---
 
 Core to Azure Landing Zones is the concept of centralized logging.
