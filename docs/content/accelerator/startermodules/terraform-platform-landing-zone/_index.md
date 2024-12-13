@@ -8,14 +8,51 @@ This documentation covers the top scenarios and documents all available configur
 
 We aim to cover the 90% of customer scenarios. If the particular customer scenario is not covered here, it may be possible to adjust the configuration settings to match the customer requirements. If not, then it my be the case the customer needs to adjust their code post deployment.
 
-## Configuration settings
+This documentation covers the following:
 
-Outside of the input config file covered elsewhere in this documentation, this starter module also accepts two additional methods of customisation:
+* [Usage](#usage): How to use this starter module
+* [Scenarios](#scenarios): The scenarios supported with example configuration files
+* [How To](#how-to): Common customisation tasks and how to perform them are documented here
+* [Platform landing zone configuration file](#platform-landing-zone-configuration-file): Comprehensive documentation of the available input variables
+* [Azure Verified Modules Reference](#azure-verified-modules-reference): A reference list and explanation of the Azure Verified Modules used in this starter module 
 
-- Platform landing zone configuration file. This is a tfvars file in HCL format that determines which resources are deployed and what type of hub networking connectivity is deployed.
-- Platform landing zone library (lib) folder. This is a folder of configuration files used to customise the management groups and associated policies.
+## Usage
 
-Each scenario comes with a version of the platform landing zone configuration file pre-configured for that scenario.
+To use the module, follow the detailed steps documented in phases 1, 2, and 3 of the Accelerator. Here we cover come specifics to help with understanding.
+
+There are 3 sets of configuration that can be supplied to the accelerator to pre-configure it. 
+
+### Bootstrap Configuration File
+
+This is the YAML file used to provide the base configuration required to boostrap your version control system and Azure. 
+
+Some of this configuration is also fed into this starter module. You will see a `terraform.tfvars.json` file is created to hold these inputs. They include management group ID, subscriptions IDs, starter locatrions, etc.
+
+We provide examples of this file for each version control system. These can be found in the [Phase 1](TBC) documentation.
+
+### Platform Landing Zone Configuration File
+
+This is a `tfvars` file in HCL format that determines which resources are deployed and what type of hub networking connectivity is deployed.
+
+This file is validated by the accelerator and then directly copied to your repository, so it retains the ordering, comments, etc.
+
+We provide examples of this file for each scenario. These can be found in the [scenarios](#scenarios) documentation.
+
+### Platform Landing Zone Library (lib) Folder
+
+This is a folder of configuration files used to customise the management groups and associated policies. This library and its usage is documented alongside the `avm-ptn-alz` module. However, we cover a common customisation use case in our [How To](#how-to) section.
+
+By default we supply an empty `lib` folder. This folder can be overridden with a set of files to customise Management Groups and Policy Assignments. Use cases include:
+
+* Renaming management groups
+* Customising the management group structure
+* Removing policy assignments
+* Adding custom policy definitions and assignments
+
+The detailed documentation for the library and it's usage can be found here:
+
+* Platform Landing Zone Library Documentation: https://azure.github.io/Azure-Landing-Zones-Library/
+* Azure Verified Module for Management Groups and Policy: https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/0.10.0
 
 ## Scenarios
 
@@ -42,6 +79,8 @@ A full platform landing zone deployment with Virtual WAN network connectivity us
 ## How to
 
 The how to section details how to make common configuration changes that apply to the common scenarios.
+
+### Customise Management Groups
 
 ### Turn off DDOS protection plan
 
