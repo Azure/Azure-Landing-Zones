@@ -25,6 +25,8 @@ endLevel = 9
 tag = "tags"
 
 [params]
+showPreviewBanner = true
+previewBannerText = "This site is under development and subject to change. Please do not rely on the information contained here. Look out for some exciting updates to Azure Landing Zones coming in 2025!"
 # (Optional, default 6) Set how many table of contents levels to be showed on page.
 # Use false to hide ToC, note that 0 will default to 6 (https://gohugo.io/functions/default/)
 # You can also specify this paramet.Site.IsMultiLingualer per page in front matter.

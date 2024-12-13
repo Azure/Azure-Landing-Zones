@@ -1,4 +1,14 @@
 <header class="gdoc-header">
+  <!--TODO: Remove this div and comments prior to go live or set showPreviewBanner to false in hugo.toml-->
+  {{ if site.Params.showPreviewBanner }}
+  <div class="gdoc-markdown" style="padding-left: 2rem; padding-right: 2rem;">
+    <blockquote class="gdoc-hint warning">
+      <div class="gdoc-hint__title flex align-center"><i class="fa warning" title="Preview Only"></i></div>
+      <div class="gdoc-hint__text">{{ site.Params.previewBannerText }}</div>
+    </blockquote>
+  </div>
+  {{ end }}
+  <!--TODO-->
   <div class="container flex align-center justify-between">
     {{ if .MenuEnabled }}
       <label for="menu-control" class="gdoc-nav__control" tabindex="0">
