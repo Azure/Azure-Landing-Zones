@@ -1,5 +1,5 @@
 ---
-title: 4. Advanced scenarios
+title: Advanced scenarios
 ---
 
 ## Scenario 1 - Secure island for bootstrap resources

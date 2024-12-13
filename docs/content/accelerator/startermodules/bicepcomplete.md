@@ -1,5 +1,5 @@
 ---
-title: Bicep complete
+title: Bicep - Complete
 ---
 
 The `complete` starter module is currently the only option available for Bicep.

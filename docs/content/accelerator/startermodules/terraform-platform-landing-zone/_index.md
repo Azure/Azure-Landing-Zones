@@ -1,5 +1,6 @@
 ---
-title: Terraform Azure Verified Modules for Platform Landing Zone (ALZ)
+title: Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)
+geekdocCollapseSection: true
 ---
 
 The `platform_landing_zone` starter module deploys the end to end platform landing zone using Azure Verified Modules. It is fully configurable to meet different customer scenarios.
@@ -12,7 +13,7 @@ This documentation covers the following:
 
 * [Usage](#usage): How to use this starter module
 * [Scenarios](#scenarios): The scenarios supported with example configuration files
-* [How To](#how-to): Common customisation tasks and how to perform them are documented here
+* [How To](#how-to): Common customization tasks and how to perform them are documented here
 * [Platform landing zone configuration file](#platform-landing-zone-configuration-file): Comprehensive documentation of the available input variables
 * [Azure Verified Modules Reference](#azure-verified-modules-reference): A reference list and explanation of the Azure Verified Modules used in this starter module 
 
@@ -24,11 +25,11 @@ There are 3 sets of configuration that can be supplied to the accelerator to pre
 
 ### Bootstrap Configuration File
 
-This is the YAML file used to provide the base configuration required to boostrap your version control system and Azure. 
+This is the YAML file used to provide the base configuration required to bootstrap your version control system and Azure. 
 
-Some of this configuration is also fed into this starter module. You will see a `terraform.tfvars.json` file is created to hold these inputs. They include management group ID, subscriptions IDs, starter locatrions, etc.
+Some of this configuration is also fed into this starter module. You will see a `terraform.tfvars.json` file is created to hold these inputs. They include management group ID, subscriptions IDs, starter locations, etc.
 
-We provide examples of this file for each version control system. These can be found in the [Phase 2](TBC) documentation.
+We provide examples of this file for each version control system. These can be found in the [Phase 2]({{< relref "/accelerator/userguide/2_start" >}}) documentation.
 
 ### Platform Landing Zone Configuration File
 
@@ -40,12 +41,12 @@ We provide examples of this file for each scenario. These can be found in the [s
 
 ### Platform Landing Zone Library (lib) Folder
 
-This is a folder of configuration files used to customise the management groups and associated policies. This library and its usage is documented alongside the `avm-ptn-alz` module. However, we cover a common customisation use case in our [How To](#how-to) section.
+This is a folder of configuration files used to customize the management groups and associated policies. This library and its usage is documented alongside the `avm-ptn-alz` module. However, we cover a common customization use case in our [How To](#how-to) section.
 
-By default we supply an empty `lib` folder. This folder can be overridden with a set of files to customise Management Groups and Policy Assignments. Use cases include:
+By default we supply an empty `lib` folder. This folder can be overridden with a set of files to customize Management Groups and Policy Assignments. Use cases include:
 
 * Renaming management groups
-* Customising the management group structure
+* Customizing the management group structure
 * Removing policy assignments
 * Adding custom policy definitions and assignments
 
@@ -56,41 +57,72 @@ The detailed documentation for the library and it's usage can be found here:
 
 ## Scenarios
 
-Scenarios are common customer use cases when deploying the platform landing zone. The followin section provide a description of the scenario and link to the pre-configured files for that scenario.
+Scenarios are common customer use cases when deploying the platform landing zone. The following section provide a description of the scenario and link to the pre-configured files for that scenario.
 
-### Multi-region hub and spoke vnet with Azure Firewall
+### Multi-Region Hub and Spoke Virtual Network with Azure Firewall
 
-A full platform landing zone deployment with hub and spoke virtual network connectivity using Azure Firewall.
+A full platform landing zone deployment with hub and spoke Virtual Network connectivity using Azure Firewall in multiple regions.
 
-Example Platform landing zone configuration file: [full-multi-region/hub-and-spoke-vnet.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region/hub-and-spoke-vnet.tfvars)
+* Example Platform landing zone configuration file: [full-multi-region/hub-and-spoke-vnet.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region/hub-and-spoke-vnet.tfvars)
+* Detailed documentation: [Multi-region hub and spoke virtual network with Azure Firewall]({{< relref "multi-region-hub-and-spoke-vnet-with-azure-firewall" >}})
 
-Detailed documentation: [Multi-region hub and spoke vnet with Azure Firewall]({{< relref "multi-region-hub-and-spoke-vnet-with-azure-firewall" >}})
+### Multi-Region Virtual WAN with Azure Firewall
 
-### Multi-region virtual wan with Azure Firewall
+A full platform landing zone deployment with Virtual WAN network connectivity using Azure Firewall in multiple regions.
 
-A full platform landing zone deployment with Virtual WAN network connectivity using Azure Firewall.
+* Example platform landing zone configuration file: [full-multi-region/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region/virtual-wan.tfvars)
+* Detailed documentation: [Multi-region virtual wan with Azure Firewall]({{< relref "multi-region-virtual-wan-with-azure-firewall" >}})
 
-Example Platform landing zone config file: [full-multi-region/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region/virtual-wan.tfvars)
+### Multi-Region Hub and Spoke Virtual Network with Network Virtual Appliance (NVA)
 
-Detailed documentation: [Multi-region virtual wan with Azure Firewall]({{< relref "multi-region-virtual-wan-with-azure-firewall" >}})
+A full platform landing zone deployment with hub and spoke Virtual Network connectivity in multiple regions, ready for a third party Network Virtual Appliance (NVA).
 
-### Multi-region hub and spoke vnet with NVA
+* Example platform landing zone configuration file: [full-multi-region-nva/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region-nva/virtual-wan.tfvars)
+* Detailed documentation: [Multi-region virtual wan with Network Virtual Appliance]({{< relref "multi-region-virtual-wan-with-nva" >}})
 
-### Multi-region virtual wan with NVA
+### Multi-Region Virtual WAN with Network Virtual Appliance (NVA)
 
-### Single-region hub and spoke vnet with Azure Firewall
+A full platform landing zone deployment with Virtual WAN network connectivity in multiple regions, ready for a third party Network Virtual Appliance (NVA).
 
-### Single-region virtual wan with Azure Firewall
+* Example platform landing zone configuration file: [full-multi-region-nva/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region-nva/virtual-wan.tfvars)
+* Detailed documentation: [Multi-region virtual wan with Azure Firewall]({{< relref "multi-region-virtual-wan-with-nva" >}})
 
-### Management groups, policy and resources only
+### Single-Region Hub and Spoke Virtual Network with Azure Firewall
+
+A full platform landing zone deployment with hub and spoke Virtual Network connectivity using Azure Firewall in a single region.
+
+{{< hint type=warning >}}
+The single region option is here for completeness, we recommend always having at least 2 regions to support resiliency.
+{{< /hint >}}
+
+* Example Platform landing zone configuration file: [full-single-region/hub-and-spoke-vnet.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-single-region/hub-and-spoke-vnet.tfvars)
+* Detailed documentation: [Single-region hub and spoke virtual network with Azure Firewall]({{< relref "multi-region-hub-and-spoke-vnet-with-azure-firewall" >}})
+
+### Single-Region Virtual WAN with Azure Firewall
+
+A full platform landing zone deployment with Virtual WAN network connectivity using Azure Firewall in a single region.
+
+{{< hint type=warning >}}
+The single region option is here for completeness, we recommend always having at least 2 regions to support resiliency.
+{{< /hint >}}
+
+* Example platform landing zone configuration file: [full-single-region/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-single-region/virtual-wan.tfvars)
+* Detailed documentation: [Single-region virtual wan with Azure Firewall]({{< relref "multi-region-virtual-wan-with-azure-firewall" >}})
+
+### Management Groups, Policy and Management Resources Only
+
+A platform landing zone deployment without any connectivity resources.
+
+* Example Platform landing zone configuration file: [management_only/management.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/management_only/management.tfvars)
+* Detailed documentation: [Management Only]({{< relref "management_only" >}})
 
 ## How to
 
 The how to section details how to make configuration changes that apply to the common scenarios.
 
-### Customise Management Group Names and IDs
+### Customize Management Group Names and IDs
 
-The customer may want to customise the management groups names and IDs. In order to do this they need to supply a `lib` folder to the accelerator.
+The customer may want to customize the management groups names and IDs. In order to do this they need to supply a `lib` folder to the accelerator.
 
 The `lib` folder should contain the following structure (we are showing it nested under the standard accelerator file structure here):
 
@@ -103,8 +135,9 @@ The `lib` folder should contain the following structure (we are showing it neste
 ┃ ┗ 📜inputs.yaml
 ┗ 📂output
 ```
-
->NOTE: The `lib` folder must be named `lib`, any other name will not work
+{{< hint type=warning >}}
+The `lib` folder must be named `lib`, any other name will not work
+{{< /hint >}}
 
 The `alz.alz_architecture_definition.json` file content should be copied from [here](https://github.com/Azure/Azure-Landing-Zones-Library/blob/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json).
 
@@ -114,7 +147,9 @@ For example to prefix all the management group display names with `Contoso` and 
 
 {{< include file="/static/examples/tf/accelerator/config/lib/architecture_definitions/alz.alz_architecture_definition.json" language="json" >}}
 
->NOTE: When updating the management group `id`, you also need to consider any child management groups that refer to it by the `parent_id`
+{{< hint type=tip >}}
+When updating the management group `id`, you also need to consider any child management groups that refer to it by the `parent_id`
+{{< /hint >}}
 
 Now, when deploying the accelerator they need to supply their lib folder as an argument with `starterAdditionalFiles`:
 
@@ -126,7 +161,9 @@ Deploy-Accelerator -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\
 
 The customer can choose to not deploy a DDOS protection plan. In order to do that, they need to remove the DDOS protection plan configuration and disable the DINE policy. The customer can either comment out or remove the configuration entirely.
 
->NOTE: DDOS Protection plan is a critical security protection for public facing services. Carefully consider this and be sure to put in place an alternative solution, such as per IP protection.
+{{< hint type=warning >}}
+DDOS Protection plan is a critical security protection for public facing services. Carefully consider this and be sure to put in place an alternative solution, such as per IP protection.
+{{< /hint >}}
 
 The steps to follow are:
 
@@ -190,7 +227,9 @@ The steps to follow are:
 
 Additional regions are supported. The custom can add up to 10 regions using the out of the box module.
 
->NOTE: If a customer needs to scale beyond 10 regions, that can be accomodated by adding additional built in replacements [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/platform_landing_zone/locals.config.tf#L2)
+{{< hint type=tip >}}
+If a customer needs to scale beyond 10 regions, that can be accomodated by adding additional built in replacements [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/platform_landing_zone/locals.config.tf#L2)
+{{< /hint >}}
 
 To add an additional regions, the process is `copy` -> `paste` -> `update`:
 

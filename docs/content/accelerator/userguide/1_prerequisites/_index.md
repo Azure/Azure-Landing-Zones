@@ -1,5 +1,5 @@
 ---
-title: 1. Prerequisites
+title: Phase 1 - Prerequisites
 geekdocCollapseSection: true
 ---
 

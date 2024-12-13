@@ -1,5 +1,5 @@
 ---
-title: Terraform sovereign
+title: Terraform - Sovereign Landing Zone
 resources:
   - name: microsoft_cloud_for_sovereignty
     src: img/microsoft_cloud_for_sovereignty.png

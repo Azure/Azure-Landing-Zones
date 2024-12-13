@@ -1,5 +1,5 @@
 ---
-title: Terraform FSI
+title: Terraform - Financial Services Industry Landing Zone
 resources:
   - name: fsi
     src: img/fsi.png

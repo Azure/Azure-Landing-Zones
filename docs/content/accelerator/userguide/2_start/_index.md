@@ -1,5 +1,5 @@
 ---
-title: 2. Run PowerShell
+title: Phase 2 - Bootstrap
 geekdocCollapseSection: true
 ---
 
