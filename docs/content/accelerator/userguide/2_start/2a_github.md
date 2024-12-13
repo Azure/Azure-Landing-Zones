@@ -102,7 +102,7 @@ The following inputs can also be supplied via environment variables. This may be
     ```
 
 1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from the relevant input file for your chosen starter module:
-    1. Azure Verified Modules for Platform Landing Zone (ALZ) - [inputs-github-terraform-complete-multi-region.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/bootstrap/inputs-azure-devops.yaml)
+    1. Azure Verified Modules for Platform Landing Zone (ALZ) - [inputs-github.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/bootstrap/inputs-github.yaml)
     1. Financial Services Industry Landing Zone - [inputs-github-terraform-financial-services-landing-zone.yaml][example_powershell_inputs_github_terraform_financial_services_industry_landing_zone]
     1. Sovereign Landing Zone - [inputs-github-terraform-sovereign-landing-zone.yaml][example_powershell_inputs_github_terraform_sovereign_landing_zone]
 1. Check through the file and update each input as required. It is mandatory to update items with placeholders surrounded by angle brackets `<>`:
