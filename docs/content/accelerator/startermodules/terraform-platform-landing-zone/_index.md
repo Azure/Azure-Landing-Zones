@@ -3,11 +3,11 @@ title: Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)
 geekdocCollapseSection: true
 ---
 
-The `platform_landing_zone` starter module deploys the end to end platform landing zone using Azure Verified Modules. It is fully configurable to meet different customer scenarios.
+The `platform_landing_zone` starter module deploys the end to end platform landing zone using Azure Verified Modules. It is fully configurable to meet different scenarios.
 
 This documentation covers the top scenarios and documents all available configuration settings for this module.
 
-We aim to cover 80% of common customer scenarios. If the particular customer scenario is not covered here, it may be possible to adjust the configuration settings to match the customer requirements. If not, then it my be the case the customer needs to adjust their Terraform code post bootstrap.
+We aim to cover 80% of common scenarios. If the particular scenario is not covered here, it may be possible to adjust the configuration settings to match the requirements. If not, then it my be the case you need to adjust their Terraform code post bootstrap.
 
 This documentation covers the following:
 
@@ -61,7 +61,7 @@ The detailed documentation for the library and it's usage can be found here:
 
 ## Scenarios
 
-Scenarios are common customer use cases when deploying the platform landing zone. The following section provide a description of the scenario and link to the pre-configured files for that scenario.
+Scenarios are common use cases when deploying the platform landing zone. The following section provide a description of the scenario and link to the pre-configured files for that scenario.
 
 The available scenarios are:
 
@@ -146,7 +146,7 @@ The available options are:
 
 ### Customize Management Group Names and IDs
 
-The customer may want to customize the management groups names and IDs. In order to do this they need to supply a `lib` folder to the accelerator.
+You may want to customize the management groups names and IDs. In order to do this they need to supply a `lib` folder to the accelerator.
 
 The `lib` folder should contain the following structure (we are showing it nested under the standard accelerator file structure here):
 
@@ -165,7 +165,7 @@ The `lib` folder must be named `lib`, any other name will not work
 
 The `alz.alz_architecture_definition.json` file content should be copied from [here](https://github.com/Azure/Azure-Landing-Zones-Library/blob/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json).
 
-The customer can then edit this configuration file to update the management group names and IDs. 
+You can then edit this configuration file to update the management group names and IDs. 
 
 For example to prefix all the management group display names with `Contoso` and update the management group IDs to have the `contoso-` prefix they can update the file to look like this:
 
@@ -183,7 +183,7 @@ Deploy-Accelerator -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\
 
 ### Turn off DDOS protection plan
 
-The customer can choose to not deploy a DDOS protection plan. In order to do that, they need to remove the DDOS protection plan configuration and disable the DINE policy. The customer can either comment out or remove the configuration entirely.
+You can choose to not deploy a DDOS protection plan. In order to do that, they need to remove the DDOS protection plan configuration and disable the DINE policy. You can either comment out or remove the configuration entirely.
 
 {{< hint type=warning >}}
 DDOS Protection plan is a critical security protection for public facing services. Carefully consider this and be sure to put in place an alternative solution, such as per IP protection.
@@ -214,7 +214,7 @@ The steps to follow are:
 
 ### Turn off Bastion host
 
-The customer can choose to not deploy a Bastion Host. In order to do that, they need to remove the Bastion Host configuration. The customer can either comment out or remove the configuration entirely.
+You can choose to not deploy a Bastion Host. In order to do that, they need to remove the Bastion Host configuration. You can either comment out or remove the configuration entirely.
 
 The steps to follow are:
 
@@ -224,7 +224,7 @@ The steps to follow are:
 
 ### Turn off Private DNS zones and Private DNS resolver
 
-The customer can choose to not deploy any DNS related resources. In order to do that, they need to remove the DNS configuration and disable the DINE policy. The customer can either comment out or remove the configuration entirely.
+You can choose to not deploy any DNS related resources. In order to do that, they need to remove the DNS configuration and disable the DINE policy. You can either comment out or remove the configuration entirely.
 
 The steps to follow are:
 
@@ -249,7 +249,7 @@ The steps to follow are:
 
 ### Turn off Virtual Network Gateways
 
-You can choose to not deploy any Virtual Network Gateways. In order to do that, you need to remove the Virtual Network Gateway configuration. The customer can either comment out or remove the configuration entirely.
+You can choose to not deploy any Virtual Network Gateways. In order to do that, you need to remove the Virtual Network Gateway configuration. You can either comment out or remove the configuration entirely.
 
 The steps to follow are:
 
@@ -272,7 +272,7 @@ For VPN Virtual Network Gateways:
 Additional regions are supported. The custom can add up to 10 regions using the out of the box module.
 
 {{< hint type=tip >}}
-If a customer needs to scale beyond 10 regions, that can be accomodated by adding additional built in replacements [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/platform_landing_zone/locals.config.tf#L2)
+If you need to scale beyond 10 regions, that can be accommodated by adding additional built in replacements [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/platform_landing_zone/locals.config.tf#L2)
 {{< /hint >}}
 
 To add an additional regions, the process is `copy` -> `paste` -> `update`:
@@ -284,9 +284,9 @@ To add an additional regions, the process is `copy` -> `paste` -> `update`:
 
 ### IP Address Ranges
 
-The example configuration files that include connectivity include an out of the box set of ip address ranges. These ranges have been chosen to support a real world scenario with optimal use to avoid ip exhaustion as a customer scales. However many customers will not want to use these ranges if they may overlap with their existing ranges or they are planning to scale beyond the /16 per region we cater for.
+The example configuration files that include connectivity include an out of the box set of ip address ranges. These ranges have been chosen to support a real world scenario with optimal use to avoid ip exhaustion as you scale. However you may not want to use these ranges if they may overlap with their existing ranges or they are planning to scale beyond the /16 per region we cater for.
 
-In order to update the IP ranges, you can update the `custom_replacements.names` section that includes the IP ranges. For example if the customer prefers to use `172.16` or `192.168`, they could update the ranges as follows:
+In order to update the IP ranges, you can update the `custom_replacements.names` section that includes the IP ranges. For example if you prefer to use `172.16` or `192.168`, they could update the ranges as follows:
 
 {{< include file="/static/examples/tf/accelerator/config/custom_replacements.names.ip_ranges.tfvars" language="terraform" >}}
 
@@ -298,7 +298,7 @@ This section details the available configuration settings / variables in this st
 
 The `custom_replacements` variable builds on the built-in replacements to provide user defined replacements that can be used throughout your configuration. This reduces the complexity of the configuration file by allowing re-use of names and other definitions that may be repeated throughout the configuration. 
 
-There are 4 layers of replacements that can be built upon to provide the level of flexibility you need. The order of precendence determines which other replacements can be used to build your replacement. For example a 'Name' replacement can be used to build a 'Resource Group Identifier' replacement, but a 'Resource Group Identifier' replacement cannot be used to build a 'Name' replacement.
+There are 4 layers of replacements that can be built upon to provide the level of flexibility you need. The order of precedence determines which other replacements can be used to build your replacement. For example a 'Name' replacement can be used to build a 'Resource Group Identifier' replacement, but a 'Resource Group Identifier' replacement cannot be used to build a 'Name' replacement.
 
 The layers and precedence order is:
 
