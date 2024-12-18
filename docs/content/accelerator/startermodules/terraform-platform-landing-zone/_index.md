@@ -21,7 +21,13 @@ This documentation covers the following:
 
 To use the module, follow the detailed steps documented in phases 1, 2, and 3 of the Accelerator. Here we cover come specifics to help with understanding.
 
-There are 3 sets of configuration that can be supplied to the accelerator to pre-configure it. 
+There are 3 sets of configuration that can be supplied to the accelerator to pre-configure it.
+
+The available configuration inputs are:
+
+* [Bootstrap Configuration File](#bootstrap-configuration-file)
+* [Platform Landing Zone Configuration File](#platform-landing-zone-configuration-file)
+* [Platform Landing Zone Library (lib) Folder](#platform-landing-zone-library-lib-folder)
 
 ### Bootstrap Configuration File
 
