@@ -31,7 +31,9 @@ Version    Name                                Repository           Description
 
 You are now ready to run the bootstrap and setup your environment. If you want to use custom names for your resources or automate the bootstrap, please refer to our [FAQs]({{< relref "../../faq" >}}) section.
 
-The inputs differ depending on the version control system and infrastructure as code tooling you have chosen. 
+The inputs differ depending on the version control system and infrastructure as code tooling you have chosen.
+
+We provide a spreadsheet that you can use to help gather the required information to fill out the configuration files. You can download it {{< a-download href="examples/tf/accelerator/config/checklist.xlsx" download="checklist.xlsx" >}}HERE{{< /a-download >}}.
 
 ### 2.2.1 Bicep
 
