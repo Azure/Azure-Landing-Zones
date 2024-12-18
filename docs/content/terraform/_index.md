@@ -56,5 +56,6 @@ We recognize that this is a significant change, and we want to make it as easy a
 We have created this documentation site to centralize the integration documentation for the new modular approach.
 
 In here you will find examples and guidance on how to use the new modules to build your very own Azure Landing Zone.
+If you choose to deploy Azure Landing Zones without using the Accelerator, then we will help you
 
-TBC more soon...
+Move on to the [getting started]({{< relref "gettingStarted" >}}) section to get started with the new approach.
