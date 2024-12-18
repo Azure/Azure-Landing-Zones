@@ -242,6 +242,7 @@ The steps to follow are:
   1. `private_dns_zone_region`
   1. `private_dns_zone_resource_group_name`
 1. Add the follow section to `management_group_settings.policy_assignments_to_modify`:
+
     ```terraform
     corp = {
       policy_assignments = {
@@ -251,6 +252,7 @@ The steps to follow are:
       }
     }
     ```
+
 1. Remove the whole `private_dns_zones` section from each `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs` region
 
 ### Turn off Virtual Network Gateways
