@@ -13,7 +13,7 @@ This documentation covers the following:
 
 * [Usage](#usage): How to use this starter module
 * [Scenarios](#scenarios): The scenarios supported with example configuration files
-* [How To](#how-to): Common customization tasks and how to perform them are documented here
+* [Options](#options): Common customization tasks and how to perform them are documented here
 * [Platform landing zone configuration file](#platform-landing-zone-configuration-file): Comprehensive documentation of the available input variables
 * [Azure Verified Modules Reference](#azure-verified-modules-reference): A reference list and explanation of the Azure Verified Modules used in this starter module 
 
@@ -62,6 +62,16 @@ The detailed documentation for the library and it's usage can be found here:
 ## Scenarios
 
 Scenarios are common customer use cases when deploying the platform landing zone. The following section provide a description of the scenario and link to the pre-configured files for that scenario.
+
+The available scenarios are:
+
+* [Multi-Region Hub and Spoke Virtual Network with Azure Firewall](#multi-region-hub-and-spoke-virtual-network-with-azure-firewall)
+* [Multi-Region Virtual WAN with Azure Firewall](#multi-region-virtual-wan-with-azure-firewall)
+* [Multi-Region Hub and Spoke Virtual Network with Network Virtual Appliance (NVA)](#multi-region-hub-and-spoke-virtual-network-with-network-virtual-appliance-nva)
+* [Multi-Region Virtual WAN with Network Virtual Appliance (NVA)](#multi-region-virtual-wan-with-network-virtual-appliance-nva)
+* [Single-Region Hub and Spoke Virtual Network with Azure Firewall](#single-region-hub-and-spoke-virtual-network-with-azure-firewall)
+* [Single-Region Virtual WAN with Azure Firewall](#single-region-virtual-wan-with-azure-firewall)
+* [Management Groups, Policy and Management Resources Only](#management-groups-policy-and-management-resources-only)
 
 ### Multi-Region Hub and Spoke Virtual Network with Azure Firewall
 
@@ -120,9 +130,19 @@ A platform landing zone deployment without any connectivity resources.
 * Example Platform landing zone configuration file: [management_only/management.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/management_only/management.tfvars)
 * Detailed documentation: [Management Only]({{< relref "management_only" >}})
 
-## How to
+## Options
 
-The how to section details how to make configuration changes that apply to the common scenarios.
+The options section details how to make configuration changes that apply to the common scenarios.
+
+The available options are:
+
+* [Customize Management Group Names and IDs](#customize-management-group-names-and-ids)
+* [Turn off DDOS protection plan](#turn-off-ddos-protection-plan)
+* [Turn off Bastion host](#turn-off-bastion-host)
+* [Turn off Private DNS zones and Private DNS resolver](#turn-off-private-dns-zones-and-private-dns-resolver)
+* [Turn off Virtual Network Gateways](#turn-off-virtual-network-gateways)
+* [Additional Regions](#additional-regions)
+* [IP Address Ranges](#ip-address-ranges)
 
 ### Customize Management Group Names and IDs
 
@@ -226,6 +246,26 @@ The steps to follow are:
     }
     ```
 1. Remove the whole `private_dns_zones` section from each `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs` region
+
+### Turn off Virtual Network Gateways
+
+You can choose to not deploy any Virtual Network Gateways. In order to do that, you need to remove the Virtual Network Gateway configuration. The customer can either comment out or remove the configuration entirely.
+
+The steps to follow are:
+
+1.  To keep the code tidy remove the follow settings from `custom_replacements.names`:
+  1. `<region>_gateway_subnet_address_prefix` where `<region>` is for each region
+1. Remove the whole `virtual_network_gateways` section from each `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs` region
+
+You can also just turn off the specific Virtual Network Gateway types you don't want to deploy.
+
+For ExpressRoute Virtual Network Gateways:
+
+1. Remove the whole `express_route` section from the `virtual_network_gateways` section in each `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs` region
+
+For VPN Virtual Network Gateways:
+
+1. Remove the whole `vpn` section from the `virtual_network_gateways` section in each `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs` region
 
 ### Additional Regions
 
