@@ -1,0 +1,17 @@
+{{- $ref := "" }}
+{{- $download := ""}}
+
+{{- with .Get "href" }}
+  {{- $ref = relURL . }}
+{{- end }}
+
+{{- with .Get "download" }}
+  {{- $download = . }}
+{{- end }}
+
+<a
+    {{- with $ref }}{{ printf " href=\"%s\"" . | safeHTMLAttr }}{{ end }}
+    {{- with $download }}{{ printf " download=\"%s\"" . | safeHTMLAttr }}{{ end }}
+  >
+  {{- .Inner | .Page.RenderString -}}
+</a>

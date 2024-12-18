@@ -3,25 +3,31 @@ title: Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)
 geekdocCollapseSection: true
 ---
 
-The `platform_landing_zone` starter module deploys the end to end platform landing zone using Azure Verified Modules. It is fully configurable to meet different customer scenarios.
+The `platform_landing_zone` starter module deploys the end to end platform landing zone using Azure Verified Modules. It is fully configurable to meet different scenarios.
 
 This documentation covers the top scenarios and documents all available configuration settings for this module.
 
-We aim to cover 80% of common customer scenarios. If the particular customer scenario is not covered here, it may be possible to adjust the configuration settings to match the customer requirements. If not, then it my be the case the customer needs to adjust their Terraform code post bootstrap.
+We aim to cover 80% of common scenarios. If the particular scenario is not covered here, it may be possible to adjust the configuration settings to match the requirements. If not, then it my be the case you need to adjust their Terraform code post bootstrap.
 
 This documentation covers the following:
 
 * [Usage](#usage): How to use this starter module
 * [Scenarios](#scenarios): The scenarios supported with example configuration files
-* [How To](#how-to): Common customization tasks and how to perform them are documented here
+* [Options](#options): Common customization tasks and how to perform them are documented here
 * [Platform landing zone configuration file](#platform-landing-zone-configuration-file): Comprehensive documentation of the available input variables
 * [Azure Verified Modules Reference](#azure-verified-modules-reference): A reference list and explanation of the Azure Verified Modules used in this starter module 
 
 ## Usage
 
-To use the module, follow the detailed steps documented in phases 1, 2, and 3 of the Accelerator. Here we cover come specifics to help with understanding.
+To use the starter module, follow the detailed steps documented in phases 1, 2, and 3 of the [Accelerator]({{< relref "/accelerator/userguide" >}}). Here we cover come specifics of this starter module.
 
-There are 3 sets of configuration that can be supplied to the accelerator to pre-configure it. 
+There are 3 sets of configuration that can be supplied to the accelerator to pre-configure it.
+
+The available configuration inputs are:
+
+* [Bootstrap Configuration File](#bootstrap-configuration-file)
+* [Platform Landing Zone Configuration File](#platform-landing-zone-configuration-file)
+* [Platform Landing Zone Library (lib) Folder](#platform-landing-zone-library-lib-folder)
 
 ### Bootstrap Configuration File
 
@@ -61,7 +67,17 @@ The detailed documentation for the library and it's usage can be found here:
 
 ## Scenarios
 
-Scenarios are common customer use cases when deploying the platform landing zone. The following section provide a description of the scenario and link to the pre-configured files for that scenario.
+Scenarios are common use cases when deploying the platform landing zone. The following section provide a description of the scenario and link to the pre-configured files for that scenario.
+
+The available scenarios are:
+
+* [Multi-Region Hub and Spoke Virtual Network with Azure Firewall](#multi-region-hub-and-spoke-virtual-network-with-azure-firewall)
+* [Multi-Region Virtual WAN with Azure Firewall](#multi-region-virtual-wan-with-azure-firewall)
+* [Multi-Region Hub and Spoke Virtual Network with Network Virtual Appliance (NVA)](#multi-region-hub-and-spoke-virtual-network-with-network-virtual-appliance-nva)
+* [Multi-Region Virtual WAN with Network Virtual Appliance (NVA)](#multi-region-virtual-wan-with-network-virtual-appliance-nva)
+* [Single-Region Hub and Spoke Virtual Network with Azure Firewall](#single-region-hub-and-spoke-virtual-network-with-azure-firewall)
+* [Single-Region Virtual WAN with Azure Firewall](#single-region-virtual-wan-with-azure-firewall)
+* [Management Groups, Policy and Management Resources Only](#management-groups-policy-and-management-resources-only)
 
 ### Multi-Region Hub and Spoke Virtual Network with Azure Firewall
 
@@ -120,13 +136,23 @@ A platform landing zone deployment without any connectivity resources.
 * Example Platform landing zone configuration file: [management_only/management.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/management_only/management.tfvars)
 * Detailed documentation: [Management Only]({{< relref "management_only" >}})
 
-## How to
+## Options
 
-The how to section details how to make configuration changes that apply to the common scenarios.
+The options section details how to make configuration changes that apply to the common scenarios.
+
+The available options are:
+
+* [Customize Management Group Names and IDs](#customize-management-group-names-and-ids)
+* [Turn off DDOS protection plan](#turn-off-ddos-protection-plan)
+* [Turn off Bastion host](#turn-off-bastion-host)
+* [Turn off Private DNS zones and Private DNS resolver](#turn-off-private-dns-zones-and-private-dns-resolver)
+* [Turn off Virtual Network Gateways](#turn-off-virtual-network-gateways)
+* [Additional Regions](#additional-regions)
+* [IP Address Ranges](#ip-address-ranges)
 
 ### Customize Management Group Names and IDs
 
-The customer may want to customize the management groups names and IDs. In order to do this they need to supply a `lib` folder to the accelerator.
+You may want to customize the management groups names and IDs. In order to do this they need to supply a `lib` folder to the accelerator.
 
 The `lib` folder should contain the following structure (we are showing it nested under the standard accelerator file structure here):
 
@@ -145,7 +171,7 @@ The `lib` folder must be named `lib`, any other name will not work
 
 The `alz.alz_architecture_definition.json` file content should be copied from [here](https://github.com/Azure/Azure-Landing-Zones-Library/blob/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json).
 
-The customer can then edit this configuration file to update the management group names and IDs. 
+You can then edit this configuration file to update the management group names and IDs. 
 
 For example to prefix all the management group display names with `Contoso` and update the management group IDs to have the `contoso-` prefix they can update the file to look like this:
 
@@ -163,7 +189,7 @@ Deploy-Accelerator -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\
 
 ### Turn off DDOS protection plan
 
-The customer can choose to not deploy a DDOS protection plan. In order to do that, they need to remove the DDOS protection plan configuration and disable the DINE policy. The customer can either comment out or remove the configuration entirely.
+You can choose to not deploy a DDOS protection plan. In order to do that, they need to remove the DDOS protection plan configuration and disable the DINE (deploy if not exists) policy. You can either comment out or remove the configuration entirely.
 
 {{< hint type=warning >}}
 DDOS Protection plan is a critical security protection for public facing services. Carefully consider this and be sure to put in place an alternative solution, such as per IP protection.
@@ -194,7 +220,7 @@ The steps to follow are:
 
 ### Turn off Bastion host
 
-The customer can choose to not deploy a Bastion Host. In order to do that, they need to remove the Bastion Host configuration. The customer can either comment out or remove the configuration entirely.
+You can choose to not deploy a Bastion Host. In order to do that, they need to remove the Bastion Host configuration. You can either comment out or remove the configuration entirely.
 
 The steps to follow are:
 
@@ -204,7 +230,7 @@ The steps to follow are:
 
 ### Turn off Private DNS zones and Private DNS resolver
 
-The customer can choose to not deploy any DNS related resources. In order to do that, they need to remove the DNS configuration and disable the DINE policy. The customer can either comment out or remove the configuration entirely.
+You can choose to not deploy any DNS related resources. In order to do that, they need to remove the DNS configuration and disable the DINE (deploy if not exists) policy. You can either comment out or remove the configuration entirely.
 
 The steps to follow are:
 
@@ -216,6 +242,7 @@ The steps to follow are:
   1. `private_dns_zone_region`
   1. `private_dns_zone_resource_group_name`
 1. Add the follow section to `management_group_settings.policy_assignments_to_modify`:
+
     ```terraform
     corp = {
       policy_assignments = {
@@ -225,14 +252,35 @@ The steps to follow are:
       }
     }
     ```
+
 1. Remove the whole `private_dns_zones` section from each `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs` region
+
+### Turn off Virtual Network Gateways
+
+You can choose to not deploy any Virtual Network Gateways. In order to do that, you need to remove the Virtual Network Gateway configuration. You can either comment out or remove the configuration entirely.
+
+The steps to follow are:
+
+1.  To keep the code tidy remove the follow settings from `custom_replacements.names`:
+  1. `<region>_gateway_subnet_address_prefix` where `<region>` is for each region
+1. Remove the whole `virtual_network_gateways` section from each `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs` region
+
+You can also just turn off the specific Virtual Network Gateway types you don't want to deploy.
+
+For ExpressRoute Virtual Network Gateways:
+
+1. Remove the whole `express_route` section from the `virtual_network_gateways` section in each `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs` region
+
+For VPN Virtual Network Gateways:
+
+1. Remove the whole `vpn` section from the `virtual_network_gateways` section in each `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs` region
 
 ### Additional Regions
 
 Additional regions are supported. The custom can add up to 10 regions using the out of the box module.
 
 {{< hint type=tip >}}
-If a customer needs to scale beyond 10 regions, that can be accomodated by adding additional built in replacements [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/platform_landing_zone/locals.config.tf#L2)
+If you need to scale beyond 10 regions, that can be accommodated by adding additional built in replacements [here](https://github.com/Azure/alz-terraform-accelerator/blob/cf0b37351cd4f2dde9d2cf20642d76bacadf923c/templates/platform_landing_zone/locals.config.tf#L2)
 {{< /hint >}}
 
 To add an additional regions, the process is `copy` -> `paste` -> `update`:
@@ -244,9 +292,9 @@ To add an additional regions, the process is `copy` -> `paste` -> `update`:
 
 ### IP Address Ranges
 
-The example configuration files that include connectivity include an out of the box set of ip address ranges. These ranges have been chosen to support a real world scenario with optimal use to avoid ip exhaustion as a customer scales. However many customers will not want to use these ranges if they may overlap with their existing ranges or they are planning to scale beyond the /16 per region we cater for.
+The example configuration files that include connectivity include an out of the box set of ip address ranges. These ranges have been chosen to support a real world scenario with optimal use to avoid ip exhaustion as you scale. However you may not want to use these ranges if they may overlap with their existing ranges or they are planning to scale beyond the /16 per region we cater for.
 
-In order to update the IP ranges, you can update the `custom_replacements.names` section that includes the IP ranges. For example if the customer prefers to use `172.16` or `192.168`, they could update the ranges as follows:
+In order to update the IP ranges, you can update the `custom_replacements.names` section that includes the IP ranges. For example if you prefer to use `172.16` or `192.168`, they could update the ranges as follows:
 
 {{< include file="/static/examples/tf/accelerator/config/custom_replacements.names.ip_ranges.tfvars" language="terraform" >}}
 
@@ -258,7 +306,7 @@ This section details the available configuration settings / variables in this st
 
 The `custom_replacements` variable builds on the built-in replacements to provide user defined replacements that can be used throughout your configuration. This reduces the complexity of the configuration file by allowing re-use of names and other definitions that may be repeated throughout the configuration. 
 
-There are 4 layers of replacements that can be built upon to provide the level of flexibility you need. The order of precendence determines which other replacements can be used to build your replacement. For example a 'Name' replacement can be used to build a 'Resource Group Identifier' replacement, but a 'Resource Group Identifier' replacement cannot be used to build a 'Name' replacement.
+There are 4 layers of replacements that can be built upon to provide the level of flexibility you need. The order of precedence determines which other replacements can be used to build your replacement. For example a 'Name' replacement can be used to build a 'Resource Group Identifier' replacement, but a 'Resource Group Identifier' replacement cannot be used to build a 'Name' replacement.
 
 The layers and precedence order is:
 
