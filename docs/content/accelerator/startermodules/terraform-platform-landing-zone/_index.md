@@ -189,7 +189,7 @@ Deploy-Accelerator -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\
 
 ### Turn off DDOS protection plan
 
-You can choose to not deploy a DDOS protection plan. In order to do that, they need to remove the DDOS protection plan configuration and disable the DINE policy. You can either comment out or remove the configuration entirely.
+You can choose to not deploy a DDOS protection plan. In order to do that, they need to remove the DDOS protection plan configuration and disable the DINE (deploy if not exists) policy. You can either comment out or remove the configuration entirely.
 
 {{< hint type=warning >}}
 DDOS Protection plan is a critical security protection for public facing services. Carefully consider this and be sure to put in place an alternative solution, such as per IP protection.
@@ -230,7 +230,7 @@ The steps to follow are:
 
 ### Turn off Private DNS zones and Private DNS resolver
 
-You can choose to not deploy any DNS related resources. In order to do that, they need to remove the DNS configuration and disable the DINE policy. You can either comment out or remove the configuration entirely.
+You can choose to not deploy any DNS related resources. In order to do that, they need to remove the DNS configuration and disable the DINE (deploy if not exists) policy. You can either comment out or remove the configuration entirely.
 
 The steps to follow are:
 
