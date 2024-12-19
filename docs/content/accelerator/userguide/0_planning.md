@@ -90,10 +90,10 @@ Below is a table describing the available starter modules, along with guidance o
 
 | Starter Module | Setting | Description | Recommendation |
 |--|--|----|---|
-| [Bicep - Complete](< relref "../../../startermodules/bicepcomplete">) | `complete` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Bicep |
-| [Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)](< relref "../../../startermodules/bicepcomplete">) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for any customer that does not want SLZ or FSI |
-| [Terraform - Sovereign Landing Zone](< relref "../../../startermodules/terraformsovereign" >) | `sovereign_landing_zone` | Compliance-focused implementation for regulated industries demanding high data sovereignty. | Select for government and regulated industry environments. |
-| [Terraform - Financial Services Industry Landing Zone](< relref "../../../startermodules/terraformfsi" >) | `financial_services_landing_zone` | Compliance-focused implementation for the financial services industry. | Select for financial service industry environments. |
+| [Bicep - Complete]({{< relref "../startermodules/bicepcomplete">}}) | `complete` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Bicep |
+| [Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../startermodules/bicepcomplete">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for any customer that does not want SLZ or FSI |
+| [Terraform - Sovereign Landing Zone]({{< relref "../startermodules/terraformsovereign" >}}) | `sovereign_landing_zone` | Compliance-focused implementation for regulated industries demanding high data sovereignty. | Select for government and regulated industry environments. |
+| [Terraform - Financial Services Industry Landing Zone]({{< relref "../startermodules/terraformfsi" >}}) | `financial_services_landing_zone` | Compliance-focused implementation for the financial services industry. | Select for financial service industry environments. |
 
 Fill out the `Starter module` value with either `complete`, `platform_landing_zone`, `sovereign_landing_zone`, or `financial_services_landing_zone`.
 
@@ -138,13 +138,13 @@ We strongly encourage and only support using 3 subscription model with separate 
 A single subscription model is technically possible, but only recommended for sandbox testing purposes.
 {{< /hint >}}
 
-You may wish to follow the steps in the [phase 1 prerequisites](< relref "../../../userguide/1_prerequisites/platform-subscriptions" >) to create the 3 subscriptions and add the subscription IDs to the checklist now.
+You may wish to follow the steps in the [phase 1 prerequisites]({{< relref "1_prerequisites/platform-subscriptions">}}) to create the 3 subscriptions and add the subscription IDs to the checklist now.
 
 Fill out the `Management subscription id`, `Connectivity subscription id`, and `Identity subscription id` values with the subscription IDs you have chosen.
 
 ### 8 - Choose the bootstrap subscription
 
-The customer can choose to use a 3 or 4 subscription model. The 4 subscription model is where the bootstrap resources are deployed to a 4th subscription. Should they wish to do that, you can follow the advice found [HERE](< relref "../../advancedscenarios">).
+The customer can choose to use a 3 or 4 subscription model. The 4 subscription model is where the bootstrap resources are deployed to a 4th subscription. Should they wish to do that, you can follow the advice found [HERE]({{< relref "advancedscenarios">}}).
 
 In either case, you should make a choice of where to place the bootstrap resources. We recommend using the Management platform subscription if they don't need the 4 subscription model.
 
@@ -157,7 +157,7 @@ Fill out the `Bootstrap subscription id` value with the subscription ID you have
 Choose a `service name` and `environment name` that will be used to derive the bootstrap resource names. 
 
 {{< hint type=tip >}}
-If you must use an alternative naming convention, they can be overridden by follow the instructions found [HERE](< relref "../../../faq">)
+If you must use an alternative naming convention, they can be overridden by follow the instructions found [HERE]({{< relref "../faq">}})
 {{< /hint >}}
 
 Fill out the `Service name` and `Environment name` values with the names you have chosen.
@@ -198,12 +198,12 @@ Fill out the `Use private networking`, `Use self-hosted agents`, and / or `Use s
 
 Review the remaining settings in the `Accelerator - Bootstrap` tab of the `checklist.xlsx` file and fill out any remaining settings relevant to the chosen version control system.
 
-You may wish to follow the steps for [phase 1 pre-requisites Azure DevOps](< relref "../../1_prerequisites/azuredevops.md">) or [phase 1 pre-requisites GitHub](< relref "../../1_prerequisites/github.md">) to create the personal access tokens (PAT) and add the PAT to the checklist.
+You may wish to follow the steps for [phase 1 pre-requisites Azure DevOps]({{< relref "1_prerequisites/azuredevops">}}) or [phase 1 pre-requisites GitHub]({{< relref "1_prerequisites/github">}}) to create the personal access tokens (PAT) and add the PAT to the checklist.
 
 ## Platform Landing Zone (Starter) Decisions
 
 {{< hint type=note >}}
-This section applies only to the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module at this time. For all others, continue on to [Phase 1](< relref "../../1_prerequisites">).
+This section applies only to the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module at this time. For all others, continue on to [Phase 1]({{< relref "1_prerequisites">}}).
 {{< /hint >}}
 
 The following decisions need to be made before you start the starter module process.
@@ -214,7 +214,7 @@ Fill out the `Accelerator - Terraform - ALZ` tab of the `checklist.xlsx` file wi
 
 The Azure Verified Modules for Platform Landing Zone (ALZ) starter module supports a number of scenarios as a starting point.
 
-The scenarios can be found in the [SCENARIOS](< relref "../../../startermodules/terraformplatformlandingzone/scenarios.md" >) section.
+The scenarios can be found in the [SCENARIOS]({{< relref "../startermodules/terraform-platform-landing-zone/scenarios" >}}) section.
 
 Choose a scenario that best fits your requirements.
 
@@ -224,7 +224,7 @@ Fill out the `Scenario` section with the scenario you have chosen.
 
 The Azure Verified Modules for Platform Landing Zone (ALZ) starter module supports a number of options that can be applied to a scenario.
 
-The options can be found in the [OPTIONS](< relref "../../../startermodules/terraformplatformlandingzone/options.md" >) section.
+The options can be found in the [OPTIONS]({{< relref "../startermodules/terraform-platform-landing-zone/options" >}}) section.
 
 Choose the options that best fit your requirements.
 
