@@ -47,11 +47,11 @@ This is the `tfvars` file in HCL format that determines which resources are depl
 
 This file is validated by the accelerator and then directly copied to your repository, so it retains the ordering, comments, etc. You will see the file is renamed to `*.auto.tfvars`, so that it is automatically picked up by Terraform.
 
-We provide examples of this file for each scenario. These can be found in the [scenarios](#scenarios) documentation.
+We provide examples of this file for each scenario. These can be found in the [Scenarios]({{< relref "scenarios">}}) documentation.
 
 ### Platform Landing Zone Library (lib) Folder
 
-This is a folder of configuration files used to customize the management groups and associated policies. This library and its usage is documented alongside the `avm-ptn-alz` module. However, we cover a common customization use case in our [How To](#how-to) section.
+This is a folder of configuration files used to customize the management groups and associated policies. This library and its usage is documented alongside the `avm-ptn-alz` module. However, we cover a common customization use case in our [Options]({{< relref "options" >}}) documentation.
 
 By default we supply an empty `lib` folder. This folder can be overridden with a set of files to customize Management Groups and Policy Assignments. Use cases include:
 
@@ -62,20 +62,20 @@ By default we supply an empty `lib` folder. This folder can be overridden with a
 
 The detailed documentation for the library and it's usage can be found here:
 
-* Platform Landing Zone Library Documentation: https://azure.github.io/Azure-Landing-Zones-Library/
-* Azure Verified Module for Management Groups and Policy: https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/0.10.0
+* [Platform Landing Zone Library Documentation](https://azure.github.io/Azure-Landing-Zones-Library/)
+* [Azure Verified Module for Management Groups and Policy](https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/0.10.0)
 
 ## Scenarios
 
 Scenarios are common use cases when deploying the platform landing zone. 
 
-The scenarios can be found in the [SCENARIOS]({{< relref "scenarios" >}}) documentation.
+The scenarios can be found in the [Scenarios]({{< relref "scenarios" >}}) documentation.
 
 ## Options
 
 The options section details how to make configuration changes that apply to the common scenarios.
 
-The options can be found in the [OPTIONS]({{< relref "options" >}}) documentation.
+The options can be found in the [Options]({{< relref "options" >}}) documentation.
 
 ## Platform landing zone configuration file
 
