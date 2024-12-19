@@ -98,7 +98,7 @@ The layers and precedence order is:
 
 Used to define custom names and strings that can be used throughout the configuration file. This can leverage the built-in replacements. 
 
-Exanple usage:
+Example usage:
 
 {{< include file="/static/examples/tf/accelerator/config/custom_replacements.names.tfvars" language="terraform" >}}
 
@@ -106,7 +106,7 @@ Exanple usage:
 
 Used to define resource group IDs that can be used throughout the configuration file. This can leverage the built-in replacements and custom names. 
 
-Exanple usage:
+Example usage:
 
 {{< include file="/static/examples/tf/accelerator/config/custom_replacements.resource_group_identifiers.tfvars" language="terraform" >}}
 
@@ -114,7 +114,7 @@ Exanple usage:
 
 Used to define resource IDs that can be used throughout the configuration file. This can leverage the built-in replacements, custom names, and resource group IDs. 
 
-Exanple usage:
+Example usage:
 
 {{< include file="/static/examples/tf/accelerator/config/custom_replacements.resource_identifiers.tfvars" language="terraform" >}}
 
@@ -128,7 +128,7 @@ Example usage:
 
 ### Tags (`tags`)
 
-The `tags` variable is a default set of tags to apply to resources that support them. In many cases, these tags can be overriden on a per resource basis.
+The `tags` variable is a default set of tags to apply to resources that support them. In many cases, these tags can be overridden on a per resource basis.
 
 Example usage:
 
@@ -231,7 +231,7 @@ Example usage:
 
 ### Virtual WAN Settings (`virtual_wan_settings`)
 
-The `virtual_wan_settings` variable is used to set the non-regional settings for the Virtual WAN connectivity option. It is used to set the Virtual WAN non-regional properites and the DDOS Protection Plan.
+The `virtual_wan_settings` variable is used to set the non-regional settings for the Virtual WAN connectivity option. It is used to set the Virtual WAN non-regional properties and the DDOS Protection Plan.
 
 This variable is of type `any` as it maps directly to the Azure Verified Module variables. To determine what can be supplied to this variable you can refer to the documentation for this module directly:
 
