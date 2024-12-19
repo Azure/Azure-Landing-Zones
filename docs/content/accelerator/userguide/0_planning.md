@@ -49,6 +49,13 @@ This file has several tabs, described here:
 As an advanced user, you can go right ahead and fill in the configuration file directly, you don't have to use the spreadsheet.
 {{< /hint >}}
 
+After following this set of decisions, you will have a completed `checklist.xlsx` file that you can use in phases 1 and 2.
+
+There are two sets of decisions to make, one for the bootstrap and one for the platform landing zone.
+
+* [Bootstrap Decisions](#bootstrap-decisions)
+* [Platform Landing Zone (Starter) Decisions](#platform-landing-zone-starter-decisions)
+
 ## Bootstrap Decisions
 
 The following decisions need to be made before you start the bootstrap process.
@@ -117,9 +124,9 @@ The parent management group is the management group that will contain the manage
 
 We recommend using `Tenant Root Group`, the platform landing zone management group hierarchy will be build underneath the chosen parent management group. The only changes to the parent management group will be permissions, no policies are applied at that level.
 
-{{ < hint type=warning >}}
+{{< hint type=warning >}}
 If a parent management group other than Tenant Root Group is chosen, then move the 3 platform subscriptions into the management group before proceeding.
-{{ < /hint >}}
+{{< /hint >}}
 
 Fill out the `Parent management group id` value with the management group you have chosen.
 
@@ -127,9 +134,9 @@ Fill out the `Parent management group id` value with the management group you ha
 
 We strongly encourage and only support using 3 subscription model with separate Management, Connectivity and Identity platform subscriptions. 
 
-{{ < hint type=warning >}}
+{{< hint type=note >}}
 A single subscription model is technically possible, but only recommended for sandbox testing purposes.
-{{ < /hint >}}
+{{< /hint >}}
 
 You may wish to follow the steps in the [phase 1 prerequisites](< relref "../../../userguide/1_prerequisites/platform-subscriptions" >) to create the 3 subscriptions and add the subscription IDs to the checklist now.
 
@@ -149,7 +156,9 @@ Fill out the `Bootstrap subscription id` value with the subscription ID you have
 
 Choose a `service name` and `environment name` that will be used to derive the bootstrap resource names. 
 
-> NOTE: If you must use an alternative naming convention, they can be overridden by follow the instructions found [HERE](< relref "../../../faq">)
+{{< hint type=tip >}}
+If you must use an alternative naming convention, they can be overridden by follow the instructions found [HERE](< relref "../../../faq">)
+{{< /hint >}}
 
 Fill out the `Service name` and `Environment name` values with the names you have chosen.
 
@@ -179,7 +188,9 @@ We offer 3 agent / runner and networking options for the bootstrap. The options 
     * `use_private_networking` = `false`
     * `use_self_hosted_runners` = `false`
 
-> NOTE: Self-hosted agents / runners are required for private networking, so that setting will be ignored if private networking is selected.
+{{< hint type=note >}}
+Self-hosted agents / runners are required for private networking, so that setting will be ignored if private networking is selected.
+{{< /hint >}}
 
 Fill out the `Use private networking`, `Use self-hosted agents`, and / or `Use self-hosted runners` values with the settings you have chosen.
 
@@ -189,7 +200,7 @@ Review the remaining settings in the `Accelerator - Bootstrap` tab of the `check
 
 You may wish to follow the steps for [phase 1 pre-requisites Azure DevOps](< relref "../../1_prerequisites/azuredevops.md">) or [phase 1 pre-requisites GitHub](< relref "../../1_prerequisites/github.md">) to create the personal access tokens (PAT) and add the PAT to the checklist.
 
-## Starter Decisions
+## Platform Landing Zone (Starter) Decisions
 
 {{< hint type=note >}}
 This section applies only to the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module at this time. For all others, continue on to [Phase 1](< relref "../../1_prerequisites">).
@@ -218,3 +229,7 @@ The options can be found in the [OPTIONS](< relref "../../../startermodules/terr
 Choose the options that best fit your requirements.
 
 Fill out the `Options` section with the options you have chosen.
+
+## Next Steps
+
+Now head to [Phase 1]({{< relref "1_prerequisites" >}}).
