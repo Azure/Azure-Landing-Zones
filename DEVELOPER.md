@@ -1,6 +1,6 @@
 # Developer Guide
 
-## Pre-Requisites
+## Prerequisites
 
 You will need Hugo installed on your machine to build the documentation. You can download Hugo from the [Hugo website](https://gohugo.io/installation/).
 Make sure you install the same version as the one specified in the `.github/workflows/hugo.yml` file.

@@ -33,7 +33,7 @@ For Bicep users, the accelerator uses Terraform to bootstrap the environment onl
 
 The accelerator follows a 3 phase approach:
 
-1. Pre-requisites: Instructions to configure credentials and subscriptions.
+1. Prerequisites: Instructions to configure credentials and subscriptions.
 2. Bootstrap: Run the PowerShell module to generate the continuous delivery environment.
 3. Run: Update the module (if needed) to suit the needs of your organization and deploy via continuous delivery.
 

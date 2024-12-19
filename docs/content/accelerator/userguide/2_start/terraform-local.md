@@ -8,25 +8,29 @@ Follow these instructions to bootstrap a local file system folder ready to deplo
 1. Inside the accelerator create two folders called `config` and `output`. You'll store you input file inside config and the output folder will be the place that the accelerator stores files while it works.
 1. Inside the `config` folder create a new files called `inputs.yaml` and `platform-landing-zone.tfvars`.
 
+    {{< hint type=note >}}
+If you are using the FSI or SLZ starter modules, you do not currently require the `tfvars` file, so you can exclude it.
+    {{< /hint >}}
+
     ```pwsh
     # Windows
     New-Item -ItemType "file" c:\accelerator\config\inputs.yaml -Force
-    New-Item -ItemType "file" c:\accelerator\config\platform-landing-zone.tfvars -Force
+    New-Item -ItemType "file" c:\accelerator\config\platform-landing-zone.tfvars -Force  # Exclude this line if using FSI or SLZ starter modules
     New-Item -ItemType "directory" c:\accelerator\output
     ```
 
     ```pwsh
     # Linux/Mac
     New-Item -ItemType "file" /accelerator/config/inputs.yaml -Force
-    New-Item -ItemType "file" c:\accelerator\config\platform-landing-zone.tfvars -Force
+    New-Item -ItemType "file" /accelerator/config/platform-landing-zone.tfvars -Force  # Exclude this line if using FSI or SLZ starter modules
     New-Item -ItemType "directory" /accelerator/output
     ```
 
     ```plaintext
     📂accelerator
     ┣ 📂config
-    ┃ ┣📜inputs.yaml
-    ┃ ┗📜platform-landing-zone.tfvars
+    ┃ ┃ 📜inputs.yaml
+    ┃ ┗ 📜platform-landing-zone.tfvars
     ┗ 📂output
     ```
 

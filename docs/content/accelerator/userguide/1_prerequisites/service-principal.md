@@ -3,7 +3,9 @@ title: Authenticating via Service Principal
 weight: 100
 ---
 
-## Authenticate via Service Principal (Skip this if using a User account)
+## Authenticate via Service Principal
+
+Skip this if using a User account as recommended.
 
 ### Create Service Principal
 
