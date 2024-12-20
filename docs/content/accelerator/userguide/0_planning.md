@@ -95,7 +95,7 @@ Below is a table describing the available starter modules, along with guidance o
 | Starter Module | Setting | Description | Recommendation |
 |--|--|----|---|
 | [Bicep - Complete]({{< relref "../startermodules/bicepcomplete">}}) | `complete` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Bicep |
-| [Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../startermodules/bicepcomplete">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for any customer that does not want SLZ or FSI |
+| [Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../startermodules/terraform-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for any customer that does not want SLZ or FSI |
 | [Terraform - Sovereign Landing Zone]({{< relref "../startermodules/terraformsovereign" >}}) | `sovereign_landing_zone` | Compliance-focused implementation for regulated industries demanding high data sovereignty. | Select for government and regulated industry environments. |
 | [Terraform - Financial Services Industry Landing Zone]({{< relref "../startermodules/terraformfsi" >}}) | `financial_services_landing_zone` | Compliance-focused implementation for the financial services industry. | Select for financial service industry environments. |
 
