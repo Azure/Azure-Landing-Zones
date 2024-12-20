@@ -51,4 +51,29 @@ For example to prefix all the management group display names with `Contoso` and 
 When updating the management group `id`, you also need to consider any child management groups that refer to it by the `parent_id`
 {{< /hint >}}
 
+If you updated the `connectivity`, `management` or `identity` management group IDs, then you'll also need to update the `management_group_settings` in the `platform-landing-zone.tfvars` file to match.
+
+For example:
+
+{{< highlight terraform "linenos=table" >}}
+management_group_settings = {
+  ...
+  subscription_placement = {
+    identity = {
+      subscription_id       = "$${subscription_id_identity}"
+      management_group_name = "contoso-identity"
+    }
+    connectivity = {
+      subscription_id       = "$${subscription_id_connectivity}"
+      management_group_name = "contoso-connectivity"
+    }
+    management = {
+      subscription_id       = "$${subscription_id_management}"
+      management_group_name = "contoso-management"
+    }
+  }
+  ...
+}
+{{< / highlight >}}
+
 Now, when deploying the accelerator you need to supply the lib folder as an argument with `-starterAdditionalFiles`.
