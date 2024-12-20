@@ -11,12 +11,16 @@ The `lib` folder should contain the following structure (we are showing it neste
 {{< tabs "1" >}}
 {{< tab "Windows" >}}
 ```pwsh
-New-Item -ItemType "file" c:\accelerator\config\lib\architecture_definitions\alz.alz_architecture_definition.json -Force
+$filePath = "c:\accelerator\config\lib\archetype_definitions\alz.alz_architecture_definition.json"
+New-Item -ItemType "file" $filePath -Force
+(Invoke-WebRequest https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/archetype_definitions/alz.alz_architecture_definition.json).Content | Out-File $filePath -Force
 ```
 {{< /tab >}}
 {{< tab "Linux / macOS" >}}
 ```pwsh
-New-Item -ItemType "file" /accelerator/config/lib/architecture_definitions/alz.alz_architecture_definition.json -Force 
+$filePath = "c/accelerator/config/lib/archetype_definitions/alz.alz_architecture_definition.json"
+New-Item -ItemType "file" $filePath -Force
+(Invoke-WebRequest https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/archetype_definitions/alz.alz_architecture_definition.json).Content | Out-File $filePath -Force
 ```
 {{< /tab >}}
 {{< /tabs >}}
@@ -27,14 +31,15 @@ New-Item -ItemType "file" /accelerator/config/lib/architecture_definitions/alz.a
 ┃ ┣ 📂lib
 ┃ ┃ ┗ 📂architecture_definitions
 ┃ ┃   ┗ 📜alz.alz_architecture_definition.json
-┃ ┗ 📜inputs.yaml
+┃ ┃ 📜inputs.yaml
+┃ ┗ 📜platform-landing-zone.tfvars
 ┗ 📂output
 ```
 {{< hint type=warning >}}
 The `lib` folder must be named `lib`, any other name will not work
 {{< /hint >}}
 
-The `alz.alz_architecture_definition.json` file content should be copied from [here](https://github.com/Azure/Azure-Landing-Zones-Library/blob/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json).
+The `alz.alz_architecture_definition.json` file content should have been copied from [here](https://github.com/Azure/Azure-Landing-Zones-Library/blob/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json).
 
 You can then edit this configuration file to update the management group names and IDs. 
 

@@ -22,7 +22,8 @@ The steps to follow are:
 1. Remove the follow configuration settings from `management_group_settings.policy_default_values`:
   1. `ddos_protection_plan_id`
 1. Add the follow section to `management_group_settings.policy_assignments_to_modify`:
-    ```terraform
+    
+    {{< highlight terraform "linenos=table" >}}
     connectivity = {
       policy_assignments = {
         Enable-DDoS-VNET = {
@@ -30,5 +31,5 @@ The steps to follow are:
         }
       }
     }
-    ```
+    {{< / highlight >}}
 1. Remove the whole `ddos_protection_plan` section from `hub_and_spoke_vnet_settings` or `virtual_wan_settings`

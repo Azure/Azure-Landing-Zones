@@ -9,5 +9,7 @@ You can choose to not deploy a Bastion Host. In order to do that, they need to r
 The steps to follow are:
 
 1. To keep the code tidy remove the follow settings from `custom_replacements.names`:
+  1. `<region>_bastion_host_name` where `<region>` is for each region
+  1. `<region>_bastion_public_ip_name` where `<region>` is for each region
   1. `<region>_bastion_subnet_address_prefix` where `<region>` is for each region
 1. Remove the whole `bastion` section from each `hub_and_spoke_vnet_virtual_networks` or `virtual_wan_virtual_hubs` region
