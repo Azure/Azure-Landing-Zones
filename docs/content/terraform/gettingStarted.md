@@ -76,7 +76,7 @@ module "alz" {
 ```
 
 {{< hint type=warning >}}
-Due to constraints in Terraform, you should not supply computed valued as inputs into the module.
+Due to constraints in Terraform, you should not supply computed values as inputs into the module.
 Instead use string interpolation to supply the values from the original inputs and use `var.dependencies` to ensure that resources are only created after the dependencies are created.
 See the [module documentation](https://github.com/Azure/terraform-azurerm-avm-ptn-alz?tab=readme-ov-file#unknown-values--depends-on).
 {{< /hint >}}
