@@ -1,15 +1,15 @@
 ---
-title: Scenario - Single-Region Hub and Spoke Virtual Network with Azure Firewall
-weight: 9
+title: 7 - Single-Region Virtual WAN with Azure Firewall
+weight: 7
 ---
 
-A full platform landing zone deployment with hub and spoke Virtual Network connectivity using Azure Firewall in a single region.
+A full platform landing zone deployment with Virtual WAN network connectivity using Azure Firewall in a single region.
 
 {{< hint type=warning >}}
 The single region option is here for completeness, we recommend always having at least 2 regions to support resiliency.
 {{< /hint >}}
 
-* Example Platform landing zone configuration file: [full-single-region/hub-and-spoke-vnet.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-single-region/hub-and-spoke-vnet.tfvars)
+* Example platform landing zone configuration file: [full-single-region/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-single-region/virtual-wan.tfvars)
 
 ## Resources
 
@@ -38,12 +38,16 @@ The following resources are deployed by default in this scenario:
 
 - DDOS Protection Plan
 
+#### Azure Virtual WAN
+
+- Virtual WAN
+- Virtual Hubs in one region
+
 #### Azure Virtual Networks
 
-- Hub virtual network in one region
-- Subnets for Firewall, Gateway, Bastion, and Private DNS Resolver in one region
-- Azure Route table for Firewall in one region
-- Azure Route table for other subnets and spokes in one region
+- Sidecar Virtual Network
+- Sidecar to Virtual Hub peering
+- Subnets for Bastion, and Private DNS Resolver in one region
 
 #### Azure Firewall
 
@@ -79,11 +83,5 @@ Private DNS is configured ready for using Private Link and Virtual Machine Auto-
 
 - Azure Firewall is configured as DNS proxy
 - Azure Firewall forwards DNS traffic to the Private DNS resolver
-- Azure Private DNS Resolver has an inbound endpoint from the hub network
-- Azure Private Link DNS zones are linked to the all hub Virtual Networks
-
-### Azure Routing
-
-Route tables are pre-configured for spoke virtual networks in one region. Assign the user subnet route table to any subnets created in spokes.
-
-- Azure Firewall in one region as next hop in Route Table
+- Azure Private DNS Resolver has an inbound endpoint from the sidecar network
+- Azure Private Link DNS zones are linked to the all hub sidecar Virtual Networks

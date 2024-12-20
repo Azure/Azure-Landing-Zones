@@ -1,9 +1,9 @@
 ---
-title: Scenario - Multi-Region Hub and Spoke Virtual Network with Network Virtual Appliance (NVA)
-weight: 7
+title: 4 - Multi-Region Virtual WAN with Network Virtual Appliance (NVA)
+weight: 4
 ---
 
-A full platform landing zone deployment with hub and spoke Virtual Network connectivity in multiple regions, ready for a third party Network Virtual Appliance (NVA).
+A full platform landing zone deployment with Virtual WAN network connectivity in multiple regions, ready for a third party Network Virtual Appliance (NVA).
 
 * Example platform landing zone configuration file: [full-multi-region-nva/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region-nva/virtual-wan.tfvars)
 
@@ -34,18 +34,21 @@ The following resources are deployed by default in this scenario:
 
 - DDOS Protection Plan
 
+#### Azure Virtual WAN
+
+- Virtual WAN homed in the primary region
+- Virtual Hubs in each region
+
 #### Azure Virtual Networks
 
-- Hub virtual networks in each region
-- Hub virtual network peering
-- Subnets for Network Virtual Appliance, Gateway, Bastion, and Private DNS Resolver in each region
-- Azure Route table for Network Virtual Appliance per region
-- Azure Route table for other subnets and spokes per region
+- Sidecar Virtual Networks
+- Sidecar to Virtual Hub peering
+- Subnets for Bastion, and Private DNS Resolver in each region
 
 #### Azure Bastion
 
 - Azure Bastion per region
-- Azure Bastion public ip per region
+- Azure Bastion public IP per region
 
 #### Azure Private DNS
 
@@ -69,12 +72,6 @@ The following relevant configuration is applied:
 Private DNS is configured ready for using Private Link and Virtual Machine Auto-registration. Spoke Virtual Networks should use the Network Virtual Appliance IP Address in the same region as their DNS configuration.
 
 - Network Virtual Appliance should be configured as DNS proxy
-- Network Virtual Appliance should be forward DNS traffic to the Private DNS resolver
-- Azure Private DNS Resolver has an inbound endpoint from the hub network
-- Azure Private Link DNS zones are linked to the all hub Virtual Networks
-
-### Azure Routing
-
-Route tables are pre-configured for spoke virtual networks in each region. Assign the user subnet route table to any subnets created in spokes.
-
-- Network Virtual Appliance in relevant region as next hop in Route Table
+- Network Virtual Appliance should forward DNS traffic to the Private DNS resolver
+- Azure Private DNS Resolver has an inbound endpoint from the sidecar network
+- Azure Private Link DNS zones are linked to the all hub sidecar Virtual Networks

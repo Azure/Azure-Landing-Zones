@@ -17,7 +17,7 @@ You'll need to install the following tools before getting started.
 In all cases, ensure that the tools are available from a PowerShell core (pwsh) terminal. You may need to add them to your environment path if they are not.
 {{< /hint >}}
 
-## 2 - Azure Subscriptions
+## 2 - Azure Subscriptions and Permissions
 
 Follow the instructions in the [Platform Subscriptions and Permissions]({{< relref "platform-subscriptions" >}}) section.
 
