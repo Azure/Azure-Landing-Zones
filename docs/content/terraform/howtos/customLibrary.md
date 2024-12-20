@@ -5,8 +5,8 @@ title: Using a custom library
 You will need a custom library if you want to do any of the following:
 
 - [Modify the management group hierarchy]({{< relref "modifyingMgHierarchy" >}}) (including naming)
-- Adding or removing policy assignments
-- Adding or removing policy or policy set definitions
+- [Adding or removing policy assignments]({{< relref "modifyingPolicyAssets" >}})
+- [Adding or removing policy or policy set definitions]({{< relref "modifyingPolicyAssets" >}})
 
 We recommend reviewing the [ALZ Library](https://azure.github.io/Azure-Landing-Zones-Library/) documentation before continuing.
 
@@ -22,8 +22,6 @@ This method is the simplest approach and is recommended for cases where the cust
 Please be sure to read the [provider documentation](https://registry.terraform.io/providers/Azure/alz/latest/docs#nestedatt--library_references).
 
 In this method you add your new custom library to the end of the library_references list in the `alz` provider block:
-
-e.g.
 
 ```terraform
 provider "alz" {
@@ -84,7 +82,7 @@ provider "alz" {
 ## Replacing existing library assets
 
 Everything in the combined library must be uniquely named.
-If you want to replace something in the existing library with your own version, you can do so by creating a file with the same name in your custom library and setting the following provider configuration:
+If you want to replace something in the existing library with your own version, you can do so by creating an asset with the same name in your custom library and setting the following provider configuration:
 
 ```terraform
 provider "alz" {

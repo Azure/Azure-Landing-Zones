@@ -42,9 +42,15 @@ Here is the list of modules that pertain to Azure Landing Zones and covers the s
 - [Virtual WAN](https://registry.terraform.io/modules/Azure/avm-ptn-virtualwan/azurerm/latest)
 - [Private link DNS zones](https://registry.terraform.io/modules/Azure/avm-ptn-network-private-link-private-dns-zones/azurerm/latest)
 
+{{< hint type=tip >}}
+Refer to each module's documentation to understand the full list of features and customization options.
+In this documentation site, we will cover the ALZ core module and the inputs that we need.
+We do not cover the inputs to the other modules, as they are covered in the module documentation.
+{{< /hint >}}
+
 Using these modules together, you can create a fully customized Azure Landing Zone.
 
-## What if I want to use the old approach?
+## What if I want a simplified, all-in-one approach?
 
 If you want a simpler, more opinionated approach, you can use the [Accelerator]({{< relref "accelerator" >}}).
 This uses all the modules above, but in a pre-defined configuration and opinionated approach.
@@ -55,7 +61,8 @@ There are still customization options available, but the [Accelerator]({{< relre
 We recognize that this is a significant change, and we want to make it as easy as possible for you to get started.
 We have created this documentation site to centralize the integration documentation for the new modular approach.
 
-In here you will find examples and guidance on how to use the new modules to build your very own Azure Landing Zone.
-If you choose to deploy Azure Landing Zones without using the Accelerator, then we will help you
+In here you will find guidance on how to use the ALZ Core module with those listed above to build your very own Azure Landing Zone.
+To proceed, you should be comfortable creating Terraform configurations and using Terraform modules.
+If you are not, we recommend that you take a look at the [Accelerator]({{< relref "accelerator" >}}) as it offers a simplified experience.
 
 Move on to the [getting started]({{< relref "gettingStarted" >}}) section to get started with the new approach.

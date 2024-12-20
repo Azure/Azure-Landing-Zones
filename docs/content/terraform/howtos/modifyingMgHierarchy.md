@@ -2,7 +2,10 @@
 title: Modifying the Management Group Hierarchy
 ---
 
-Please make sure you have read and implemented the [using a custom library]({{< relref "customLibrary" >}}) documentation before continuing.
+{{< hint type=important >}}
+You will need to have a [custom library]({{< relref "customLibrary" >}}) if you want to modify the management group hierarchy.
+Make sure you have completed that step before continuing.
+{{< /hint >}}
 
 To modify the management group hierarchy you can declare your own [alz_architecture_definition](https://azure.github.io/Azure-Landing-Zones-Library/assets/architectures/) file in your custom library.
 This file can be in either YAML or JSON format.
@@ -12,17 +15,17 @@ Here is an example architecture definition file in YAML format:
 ```yaml
 name: my custom architecture
 management_groups:
-  - id: my-mg
-    display_name: My Management Group
+  - id: my-root
+    display_name: My Oaganizational Root Management Group
     archetypes:
       - root
     parent_id: null # this means that the mg will be created at the parent as defined in the module configuration.
     exists: false
-  - id: my-mg-child
-    display_name: My Management Group Child
+  - id: my-landingzones
+    display_name: My Landing Zones Management Group
     archetypes:
       - landing_zones
-    parent_id: my-mg
+    parent_id: my-root
     exists: false
 ```
 
