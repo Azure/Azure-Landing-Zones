@@ -17,6 +17,8 @@ The Azure landing zones [Terraform](https://github.com/Azure/alz-terraform-accel
 
 This accelerator provides an opinionated approach for configuring and securing those modules in a continuous delivery environment. It has end to end automation for bootstrapping the modules.
 
+Head to the [User Guide]({{< relref "userguide" >}}) to get started now.
+
 ## Supported Version Control Systems (VCS)
 
 The accelerator supports both Azure DevOps and GitHub. We are only able to support the hosted versions of these services.

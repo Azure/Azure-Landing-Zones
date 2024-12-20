@@ -1,5 +1,5 @@
 ---
-title: Upgrade guide
+title: Upgrade Guide
 weight: 20
 ---
 

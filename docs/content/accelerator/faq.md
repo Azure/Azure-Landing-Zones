@@ -19,7 +19,7 @@ You can add any hidden variables to your inputs file, including the `resource_na
 * GitHub: [variables.hidden.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/2b3aa805fd03fa5afa4de970ca11899a9a66d2a6/alz/github/variables.hidden.tf#L13)
 * Local: [variables.hidden.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/2b3aa805fd03fa5afa4de970ca11899a9a66d2a6/alz/local/variables.hidden.tf#L25)
 
-For example adding this to the end of your bootstrap config file and updating to your standard:
+For example adding this to the end of your bootstrap config file and updating to your naming standard:
 
 ```yaml
 # Extra Inputs
@@ -135,7 +135,7 @@ There are some steps you need to take:
 
 ### I want to use my own custom bootstrap module(s), how do I do that?
 
-Follow the structure and json schema in the [Azure/accelerator-bootstrap-modules](https://github.com/Azure/accelerator-bootstrap-modules). You can then target your custom bootstrap module by using the `bootstrapModuleUrl` or `bootstrapModuleOverrideFolderPath` parameters in the PowerShell module. For example:
+Follow the structure and json schema in the [Azure/accelerator-bootstrap-modules](https://github.com/Azure/accelerator-bootstrap-modules) repository. You can then target your custom bootstrap module by using the `bootstrapModuleUrl` or `bootstrapModuleOverrideFolderPath` parameters in the PowerShell module. For example:
 
 ```powershell
 Deploy-Accelerator -inputs "~/config/inputs.json" -bootstrapModuleUrl "https://github.com/my-org/my-boostrap-modules"
@@ -147,7 +147,7 @@ Deploy-Accelerator -inputs "~/config/inputs.json" -bootstrapModuleOverrideFolder
 
 ### I want to use my own custom starter modules, how do I do that?
 
-Follow the folder structure in this repository and create your own custom starter module(s). You can then target your custom starter module by using the `starterModuleOverrideFolderPath` parameters in the PowerShell module. For example:
+Follow the folder structure in the [Azure/alz-terraform-accelerator](https://github.com/Azure/accelerator-terraform-accelerator) repository and create your own custom starter module(s). You can then target your custom starter module by using the `starterModuleOverrideFolderPath` parameters in the PowerShell module. For example:
 
 ```powershell
 Deploy-Accelerator -inputs "~/config/inputs.json" -starterModuleOverrideFolderPath "~/my-custom-starter-modules"

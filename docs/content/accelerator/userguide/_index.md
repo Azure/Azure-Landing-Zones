@@ -1,5 +1,5 @@
 ---
-title: User guide
+title: User Guide
 geekdocCollapseSection: true
 weight: 5
 resources:
@@ -8,6 +8,7 @@ resources:
     alt: A process flow showing the areas covered by the Azure landing zones Terraform accelerator.
     title: ALZ Accelerator Overview
 ---
+
 ## Quick Start
 
 For the majority of users, this is the place to start. The quick start is a step by step guide to get your Azure Landing Zone environment up and running.
