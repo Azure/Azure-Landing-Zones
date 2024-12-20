@@ -3,6 +3,8 @@ title: Terraform - Financial Services Industry Landing Zone
 resources:
   - name: fsi
     src: img/fsi.png
+    alt: A process flow showing the areas covered by the Azure landing zones Terraform accelerator.
+    title: Financial Service Industry Landing Zone Starter Module
 ---
 
 The `financial_services_landing_zone` starter module provides full customization of the Financial Services Industry Landing Zone (FSILZ) using the `inputs.yaml` file. The `inputs.yaml` file provides the ability to enable and disable modules, configure module inputs and outputs, and configure module resources.
@@ -203,8 +205,6 @@ The Terraform-based deployment for the Financial Services Industry Landing Zone 
 ### High Level Design
 
 {{< img name="fsi" size="origin" lazy=true >}}
-
-![Alt text](./media/starter-module-microsoft_cloud_for_financial_services_industry.png)
 
 ### Terraform Modules
 
