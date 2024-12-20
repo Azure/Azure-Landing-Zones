@@ -23,6 +23,19 @@ You may want to customize the management groups names and IDs. In order to do th
 
 The `lib` folder should contain the following structure (we are showing it nested under the standard accelerator file structure here):
 
+{{< tabs "1" >}}
+{{< tab "Windows" >}}
+```pwsh
+New-Item -ItemType "file" c:\accelerator\config\lib\architecture_definitions\alz.alz_architecture_definition.json -Force
+```
+{{< /tab >}}
+{{< tab "Linux / macOS" >}}
+```pwsh
+New-Item -ItemType "file" /accelerator/config/lib/architecture_definitions/alz.alz_architecture_definition.json -Force 
+```
+{{< /tab >}}
+{{< /tabs >}}
+
 ```plaintext
 📂accelerator
 ┣ 📂config
@@ -48,11 +61,7 @@ For example to prefix all the management group display names with `Contoso` and 
 When updating the management group `id`, you also need to consider any child management groups that refer to it by the `parent_id`
 {{< /hint >}}
 
-Now, when deploying the accelerator they need to supply their lib folder as an argument with `starterAdditionalFiles`:
-
-```pwsh
-Deploy-Accelerator -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\networking.yaml" -starterAdditionalFiles "c:\accelerator\config\lib" -output "c:\accelerator\output"
-```
+Now, when deploying the accelerator you need to supply the lib folder as an argument with `-starterAdditionalFiles`.
 
 ## Turn off DDOS protection plan
 

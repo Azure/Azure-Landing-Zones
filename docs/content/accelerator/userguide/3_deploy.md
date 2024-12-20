@@ -45,7 +45,7 @@ Follow the steps below to deploy the landing zone locally. If you want to hook i
 The Bicep option outputs a `deploy-local.ps1` file that you can use to deploy the ALZ.
 
 {{< hint type=note >}}
-NOTE: If you set the `grant_permissions_to_current_user` input to `false` in the bootstrap, you will need to set permissions on your management group, subscriptions and storage account before the commands will succeed.
+If you set the `grant_permissions_to_current_user` input to `false` in the bootstrap, you will need to set permissions on your management group, subscriptions and storage account before the commands will succeed.
 {{< /hint >}}
 
 1. Ensure you have the latest versions of the [AZ PowerShell Module](https://learn.microsoft.com/en-us/powershell/azure/install-azure-powershell) and [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install) installed.
@@ -63,7 +63,7 @@ NOTE: If you set the `grant_permissions_to_current_user` input to `false` in the
 The Terraform option outputs a `deploy-local.ps1` file that you can use to deploy the ALZ.
 
 {{< hint type=note >}}
-NOTE: If you set the `grant_permissions_to_current_user` input to `false` in the bootstrap, you will need to set permissions on your management group, subscriptions and storage account before the commands will succeed.
+If you set the `grant_permissions_to_current_user` input to `false` in the bootstrap, you will need to set permissions on your management group, subscriptions and storage account before the commands will succeed.
 {{< /hint >}}
 
 1. Open a new PowerShell Core (pwsh) terminal or use the one you already have open.
@@ -79,4 +79,4 @@ NOTE: If you set the `grant_permissions_to_current_user` input to `false` in the
 ## Fin
 
 This concludes the accelerator. You now have a fully deployed Azure landing zone.
-If you have any issues, please raise them in the [GitHub issues](https://github.com/Azure/ALZ-PowerShell-Module/issues).
+If you have any issues, please raise them in the [GitHub issues](https://aka.ms/alz/acc/issues).

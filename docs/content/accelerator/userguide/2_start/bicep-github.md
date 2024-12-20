@@ -8,15 +8,20 @@ Follow these instructions to bootstrap GitHub ready to deploy your platform land
 1. Inside the accelerator create two folders called `config` and `output`. You'll store your input file inside config and the output folder will be the place that the accelerator stores files while it works.
 1. Inside the `config` folder create a new file called `inputs.yaml`. You can use `json` if you prefer, but our examples here are `yaml`.
 
-    ```pwsh
-    # Windows
-    New-Item -ItemType "file" c:\accelerator\config\inputs.yaml -Force
-    New-Item -ItemType "directory" c:\accelerator\output
-
-    # Linux/Mac
-    New-Item -ItemType "file" /accelerator/config/inputs.yaml -Force
-    New-Item -ItemType "directory" /accelerator/output
-    ```
+    {{< tabs "1" >}}
+    {{< tab "Windows" >}}
+```pwsh
+New-Item -ItemType "file" c:\accelerator\config\inputs.yaml -Force
+New-Item -ItemType "directory" c:\accelerator\output
+```
+    {{< /tab >}}
+    {{< tab "Linux / macOS" >}}
+```pwsh
+New-Item -ItemType "file" /accelerator/config/inputs.yaml -Force
+New-Item -ItemType "directory" /accelerator/output
+```
+    {{< /tab >}}
+    {{< /tabs >}}
 
     ```plaintext
     📂accelerator
@@ -30,6 +35,10 @@ Follow these instructions to bootstrap GitHub ready to deploy your platform land
 
     {{< hint type=tip >}}
 The following inputs can also be supplied via environment variables. This may be useful for sensitive values you don't wish to persist to a file. The `Env Var Prefix` denotes the prefix the environment variable should have. The environment variable is formatting is `<PREFIX>_<variable_name>`, e.g. `$env:ALZ_iac_type = "terraform"` or `$env:TF_VAR_github_personal_access_token = "*****..."`.
+    {{< /hint >}}
+    
+    {{< hint type=tip >}}
+If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">}}) guidance, you should have these values already.
     {{< /hint >}}
 
     | Input | Env Var Prefix | Placeholder | Description |
@@ -61,17 +70,22 @@ The following inputs can also be supplied via environment variables. This may be
     - [Bicep Complete Starter Module]({{< relref "../../startermodules/bicepcomplete" >}})
 1. In your PowerShell Core (pwsh) terminal run the module:
 
-    ```pwsh
-    # Windows (adjust the paths to match your setup)
-    Deploy-Accelerator -inputs "c:\accelerator\config\inputs.yaml" -output "c:\accelerator\output"
-
-    # Linux/Mac (adjust the paths to match your setup)
-    Deploy-Accelerator -inputs "/accelerator/config/inputs.yaml" -output "/accelerator/output"
-    ```
+    {{< tabs "1" >}}
+    {{< tab "Windows" >}}
+```pwsh
+Deploy-Accelerator -inputs "c:\accelerator\config\inputs.yaml" -output "c:\accelerator\output"
+```
+    {{< /tab >}}
+    {{< tab "Linux / macOS" >}}
+```pwsh
+Deploy-Accelerator -inputs "/accelerator/config/inputs.yaml" -output "/accelerator/output"
+```
+    {{< /tab >}}
+    {{< /tabs >}}
 
 1. You will see a Terraform `init` and `apply` happen.
 1. There will be a pause after the `plan` phase to allow you to validate what is going to be deployed.
-1. If you are happy with the plan, then type `yes` and hit enter.
+1. If you are happy with the plan, then hit enter.
 1. The Terraform will `apply` and your environment will be bootstrapped.
 
 ## Next Steps
