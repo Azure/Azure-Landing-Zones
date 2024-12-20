@@ -6,7 +6,7 @@ weight: 5
 
 Phase 2 of the accelerator is to run the bootstrap. Follow the steps below to do that.
 
-## 2.1 Install the ALZ PowerShell module
+## 1 - Install the ALZ PowerShell module
 
 The ALZ PowerShell module is used to run the bootstrap phase. It is available on the [PowerShell Gallery](https://www.powershellgallery.com/packages/ALZ/). You can install it using the following steps:
 
@@ -27,7 +27,7 @@ Version    Name                                Repository           Description
 3. If the module is already installed, run `Update-Module -Name ALZ` to ensure you have the latest version.
 4. If the module is not installed, run `Install-Module -Name ALZ`.
 
-## 2.2 Run the Bootstrap
+## 2 - Learn about the configuration
 
 You are now ready to run the bootstrap and setup your environment. 
 
@@ -85,9 +85,9 @@ The detailed documentation for the library and it's usage can be found here:
 * [Platform Landing Zone Library Documentation](https://azure.github.io/Azure-Landing-Zones-Library/)
 * [Azure Verified Module for Management Groups and Policy](https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/0.10.0)
 
-## 2.3 Choose your Infrastructure as Code tool and Version Control System
+## 3 - Choose your Infrastructure as Code tool and Version Control System
 
-### 2.2.1 Bicep
+### Bicep
 
 Click through to the relevant page for detailed instructions:
 
@@ -95,7 +95,7 @@ Click through to the relevant page for detailed instructions:
 * [GitHub with Bicep]({{< relref "bicep-github" >}})
 * [Local File System]({{< relref "bicep-local" >}})
 
-### 2.2.2 Terraform
+### Terraform
 
 Click through to the relevant page for detailed instructions:
 
@@ -105,4 +105,4 @@ Click through to the relevant page for detailed instructions:
 
 ## Next Steps
 
-Once the steps in the VCS specific section are completed, head to [Phase 3]({{< relref "3_deploy" >}}).
+Once the steps in the specific section are completed, head to [Phase 3]({{< relref "3_deploy" >}}).
