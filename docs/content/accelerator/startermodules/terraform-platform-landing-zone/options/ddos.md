@@ -15,7 +15,7 @@ The steps to follow are:
 1. To keep the code tidy remove the following settings from `custom_replacements.names`:
   1. `ddos_resource_group_name`
   1. `ddos_protection_plan_name`
-1. To keep the code tidy remove the follow settings from `custom_replacements.resource_group_identifiers`:
+1. To keep the code tidy remove the following settings from `custom_replacements.resource_group_identifiers`:
   1. `ddos_protection_plan_resource_group_id`
 1. To keep the code tidy remove the follow settings from `custom_replacements.resource_identifiers`:
   1. `ddos_protection_plan_id`
