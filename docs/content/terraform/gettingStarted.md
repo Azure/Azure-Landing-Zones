@@ -100,7 +100,7 @@ module "alz_management" {
   # other variable inputs...
 }
 
-# We cannot add a depends_on to the ALZ module, so we use the dependencies variable instead.
+# We cannot add a depends_on to the ALZ module as this causes the dreaded 'known after apply' issue with for_each, so we use the dependencies variable instead.
 module "alz" {
   source  = "Azure/avm-ptn-alz/azurerm"
   version = "~> 0.10"
