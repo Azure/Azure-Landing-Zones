@@ -5,7 +5,8 @@ weight: 10
 
 ## Add `.alzlib` to your gitignore
 
-The Azure Landing Zones provider uses a local cache to store the library references.
+The [Azure Landing Zones provider](https://registry.terraform.io/providers/Azure/alz/latest/docs) is used to process the landing zone library data and produce a coherent set of policy assets for deployment.
+The provider uses a local cache to store the library references.
 This cache is stored in a directory called `.alzlib` in your working directory.
 You should add this directory to your gitignore file to prevent it from being committed to your repository.
 
