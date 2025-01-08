@@ -117,8 +117,13 @@ module "alz" {
 
 ## Review Policy Assignments
 
+{{< hint type=tip >}}
+Azure Landing Zones contains Microsoft's prescriptive guidance for getting started in Azure.
+We recommend leaving these policy assignments enabled unless you have a specific reason to disable them.
+{{< /hint >}}
+
 We recommend that you review the following policy assignments before deploying the module.
-If you do not use certain features, you should disable the policy assignments.
+If you do not use certain features or use have an alternative product, then you can disable the policy assignments.
 
 To do this, please use the [`policy_assienments_to_modify`]({{< relref "howtos/modifyingPolicyAssignments" >}}) variable to disable the policy assignments:
 
@@ -146,11 +151,11 @@ module "alz" {
 Azure Landing Zones has a policy assignment called `Enable-DDoS-VNET` that enables DDoS protection on all in-scope virtual networks.
 It is assigned at the `platform` management group.
 
-If you do not have a DDoS protection plan, you should disable this policy assignment.
+If you do not have a DDoS protection plan, you should disable this policy assignment, if you do not then virtual networks deployments in the `platform` management group will fail due to the default value for the DDoS protection plan resource id.
 
 ### Private DNS Zones for Private Endpoints
 
-If you do not use this feature in your environment, you should disable the policy assignment called `Deploy-Private-DNS-Zones` that is assigned at the `corp` management group.
+If you do not use private endpoints for Azure services in your environment, you should disable the policy assignment called `Deploy-Private-DNS-Zones` that is assigned at the `corp` management group.
 
 ### Azure Monitor Agent
 
@@ -180,6 +185,12 @@ This approach has the following advantages:
 
 However, there are some policies that do not have the `assignPermissions` metadata property set when it should be.
 This causes the policy to not have the correct role assignments created.
+
+{{< hint type=note >}}
+We are working with Azure product groups to remediate policies that do not have the `assignPermissions` parameter metadata set.
+If you spot an instance odf this, please raise a [GitHub issue](https://github.com/Azure/Enterprise-Scale/issues/new) on our Enterprise-Scale repo.
+{{< /hint >}}
+
 In this case we must make manual role assignments, and we have listed these below:
 
 > TODO: Add a list of policies that require manual role assignments
