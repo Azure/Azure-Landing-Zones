@@ -1,5 +1,6 @@
 ---
 title: Modifying policy assets (archetypes)
+weight: 10
 ---
 
 {{< hint type=important >}}

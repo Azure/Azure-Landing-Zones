@@ -1,5 +1,6 @@
 ---
 title: Using a custom library
+weight: 1
 ---
 
 You will need a custom library if you want to do any of the following:
@@ -14,6 +15,12 @@ Typically this is achieved by creating a directory in your repo, idiomatically c
 If you don't want to use a filesystem, you may use a git reference, or any other reference supported by [go-getter](https://github.com/hashicorp/go-getter), however filesystem references are typical.
 
 You can then use one of two approaches to tell the provider to use your custom library:
+
+{{< hint type=tip >}}
+The ALZ provider has a default value for the `library_references` attribute, which is the official Azure Landing Zones library.
+Each release of the provider may update this value to a newer version.
+The value is documented [here](https://registry.terraform.io/providers/Azure/alz/latest/docs#library_references-1).
+{{< /hint >}}
 
 ## Method one - Using library references
 
@@ -38,7 +45,7 @@ provider "alz" {
 ```
 
 {{< hint type=note >}}
-The library references are processed in order, so make sure to add your custom library at the end.
+The library references are processed in order, so make sure to add your custom library at the end if there are dependencies.
 {{< /hint >}}
 
 ## Method two - Using a library metadata file

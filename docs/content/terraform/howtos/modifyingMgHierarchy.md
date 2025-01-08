@@ -1,5 +1,6 @@
 ---
 title: Modifying the Management Group Hierarchy
+weight: 10
 ---
 
 {{< hint type=important >}}
@@ -28,6 +29,9 @@ management_groups:
     parent_id: my-root
     exists: false
 ```
+
+The above architecture would create two management groups, `my-root` and `my-landingzones`, with the `root` and `landing_zones` archetypes respectively.
+You must define the entire hierarchy in your architecture definition file.
 
 ## Renaming Management Groups
 

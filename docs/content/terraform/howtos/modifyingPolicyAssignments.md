@@ -1,12 +1,13 @@
 ---
 title: Modifying Policy Assignments
+weight: 10
 ---
 
 To modify a policy assignment, use the [`policy_assignments_to_modify`](https://github.com/Azure/terraform-azurerm-avm-ptn-alz?tab=readme-ov-file#-policy_assignments_to_modify) variable.
-Please read the above documentation section before continuing.
+Please familiarize yourself with the variable documentation section before continuing.
 
 This input is a map of maps.
-The first key is the management group name, and the second key is the policy assignment name.
+The first key is the management group name as defined in the architecture definition file, and the second key is the policy assignment name.
 
 The value then contains the items you can modify, refer to the module documentation for the full list.
 You only need to specify the values you want to modify, you can leave the others out.
