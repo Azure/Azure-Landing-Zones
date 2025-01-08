@@ -54,7 +54,10 @@ Once you have created your new assets, you will need to create an [override arch
 This can be in either YAML or JSON format.
 
 An override archetype is a special type of archetype that is used to store a delta of changes to an existing archetype.
-It creates a new archetype that is a combination of the original archetype and the override archetype.
+It creates a new archetype that is a combination of the base archetype and the override archetype.
+
+Base archetypes must exist in your supplied library references.
+The [ALZ library member](https://github.com/Azure/Azure-Landing-Zones-Library/tree/main/platform/alz/archetype_definitions) contains several archetypes than can be modified.
 
 Here is an example override archetype in YAML format:
 
@@ -78,6 +81,8 @@ It is possible to add or remove policy assignments, policy definitions, policy s
 
 Finally, you will need to assign the override archetype to the management group(s) you want to modify.
 For this you will need to create an [architecture definition](https://azure.github.io/Azure-Landing-Zones-Library/assets/architectures/) in your custom library.
+
+The architecture definition must contain the complete set of management groups that you wish to deploy.
 
 ```yaml
 name: my architecture
