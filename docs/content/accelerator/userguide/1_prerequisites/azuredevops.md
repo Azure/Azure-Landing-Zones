@@ -1,7 +1,7 @@
 ---
 title: Azure DevOps
 geekdocCollapseSection: true
-weight: 7
+weight: 6
 ---
 
 This section details the prerequisites for Azure DevOps.

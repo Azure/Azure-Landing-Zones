@@ -19,7 +19,7 @@ $archetypes = $("connectivity", "corp", "decommissioned", "identity", "managemen
 foreach($archetype in $archetypes){
     $filePath = "c:\accelerator\config\lib\archetype_definitions\$($archetype).alz_archetype_override.json"
     New-Item -ItemType "file" $filePath -Force
-    $policy_assignments = ((Invoke-WebRequest https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/archetype_definitions/$($archetype).alz_archetype_definition.json).Content | ConvertFrom-Json).policy_assignments
+    $policy_assignments = ((Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/archetype_definitions/$($archetype).alz_archetype_definition.json").Content | ConvertFrom-Json).policy_assignments
     $archetype_override = [ordered]@{
       name = "$($archetype)_override"
       base_archetype = $archetype
@@ -35,7 +35,7 @@ $archetypes = $("connectivity", "corp", "decommissioned", "identity", "managemen
 foreach($archetype in $archetypes){
     $filePath = "/accelerator/config/lib/archetype_definitions/$($archetype).alz_archetype_override.json"
     New-Item -ItemType "file" $filePath -Force
-    $policy_assignments = ((Invoke-WebRequest https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/archetype_definitions/$($archetype).alz_archetype_definition.json).Content | ConvertFrom-Json).policy_assignments
+    $policy_assignments = ((Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/archetype_definitions/$($archetype).alz_archetype_definition.json").Content | ConvertFrom-Json).policy_assignments
     $archetype_override = [ordered]@{
       name = "$($archetype)_override"
       base_archetype = $archetype

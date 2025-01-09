@@ -1,7 +1,7 @@
 ---
 title: GitHub
 geekdocCollapseSection: true
-weight: 6
+weight: 7
 ---
 
 This section details the prerequisites for GitHub.
