@@ -72,6 +72,7 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
 
 1. Now head over to your chosen starter module documentation to get the specific inputs for that module. Come back here when you are done.
     - [Bicep Complete Starter Module]({{< relref "../../startermodules/bicepcomplete" >}})
+1. Verify that you are logged in to Azure CLI or have the Service Principal credentials set as env vars. You should have completed this in the [Prerequisites]({{< relref "../1_prerequisites" >}}) phase.
 1. In your PowerShell Core (pwsh) terminal run the module:
 
     {{< tabs "2" >}}
