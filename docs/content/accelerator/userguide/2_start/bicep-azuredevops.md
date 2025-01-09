@@ -8,10 +8,6 @@ Follow these instructions to bootstrap Azure DevOps ready to deploy your platfor
 1. Inside the accelerator create two folders called `config` and `output`. You'll store your input file inside config and the output folder will be the place that the accelerator stores files while it works.
 1. Inside the `config` folder create a new file called `inputs.yaml`. You can use `json` if you prefer, but our examples here are `yaml`.
 
-    {{< hint type=note >}}
-If you are using the FSI or SLZ starter modules, you do not currently require the `tfvars` file, so you can exclude it.
-    {{< /hint >}}
-
     {{< tabs "1" >}}
     {{< tab "Windows" >}}
 ```pwsh
@@ -34,7 +30,7 @@ New-Item -ItemType "directory" /accelerator/output
     ┗ 📂output
     ```
 
-1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from [inputs-azure-devops.yaml](https://raw.githubusercontent.com/Azure/alz-bicep/refs/heads/main/accelerator/examples/bootstrap/inputs-azure-devops.yaml) into that file.
+1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from [inputs-azure-devops.yaml](https://raw.githubusercontent.com/Azure/alz-bicep/refs/heads/main/accelerator/examples/bootstrap/inputs-azure-devop.yaml) into that file.
 1. Check through the file and update each input as required. It is mandatory to update items with placeholders surrounded by angle brackets `<>`:
 
     {{< hint type=tip >}}
@@ -78,7 +74,7 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
     - [Bicep Complete Starter Module]({{< relref "../../startermodules/bicepcomplete" >}})
 1. In your PowerShell Core (pwsh) terminal run the module:
 
-    {{< tabs "1" >}}
+    {{< tabs "2" >}}
     {{< tab "Windows" >}}
 ```pwsh
 Deploy-Accelerator -inputs "c:\accelerator\config\inputs.yaml" -output "c:\accelerator\output"

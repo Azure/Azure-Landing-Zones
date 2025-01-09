@@ -8,7 +8,7 @@ Follow these instructions to bootstrap GitHub ready to deploy your platform land
 1. Inside the accelerator create two folders called `config` and `output`. You'll store your input file inside config and the output folder will be the place that the accelerator stores files while it works.
 1. Inside the `config` folder create a new file called `inputs.yaml`. You can use `json` if you prefer, but our examples here are `yaml`.
 
-    {{< tabs "1" >}}
+    {{< tabs "2" >}}
     {{< tab "Windows" >}}
 ```pwsh
 New-Item -ItemType "file" c:\accelerator\config\inputs.yaml -Force
@@ -36,7 +36,7 @@ New-Item -ItemType "directory" /accelerator/output
     {{< hint type=tip >}}
 The following inputs can also be supplied via environment variables. This may be useful for sensitive values you don't wish to persist to a file. The `Env Var Prefix` denotes the prefix the environment variable should have. The environment variable is formatting is `<PREFIX>_<variable_name>`, e.g. `$env:ALZ_iac_type = "terraform"` or `$env:TF_VAR_github_personal_access_token = "*****..."`.
     {{< /hint >}}
-    
+
     {{< hint type=tip >}}
 If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">}}) guidance, you should have these values already.
     {{< /hint >}}
