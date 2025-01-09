@@ -3,6 +3,12 @@ title: Getting started
 weight: 10
 ---
 
+{{< hint type=tip >}}
+We recommend that you use the [accelerator]({{< relref "accelerator" >}}) to deploy Azure Landing Zones with Terraform.
+This guide is for those that want to deploy Azure Landing Zones using the Terraform modules directly.
+This guide assumes that you are comfortable composing modules.
+{{< /hint >}}
+
 ## Add `.alzlib` to your gitignore
 
 The [Azure Landing Zones provider](https://registry.terraform.io/providers/Azure/alz/latest/docs) is used to process the landing zone library data and produce a coherent set of policy assets for deployment.
@@ -211,6 +217,6 @@ In this case we must make manual role assignments, and we have listed these belo
 ### Obtaining the Principal Ids
 
 The ALZ module will output the principal ids required for the role assignments in the form of a map.
-The output name is caled `policy_assignment_identity_ids`.
+The output name is called `policy_assignment_identity_ids`.
 
 The map key is in the form of: `mg_id/policy_assignment_name`, and the value is the object id of the identity.

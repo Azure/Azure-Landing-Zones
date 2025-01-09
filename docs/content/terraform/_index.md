@@ -4,10 +4,17 @@ geekdocCollapseSection: true
 weight: 20
 ---
 
-ALZ ❤️ AVM - A new approach to Azure Landing Zones with Terraform
+ALZ ❤️ AVM - Azure Verified Modules for Platform Landing Zones (ALZ)
 
 Based on continuous feedback from the community, we have adopted a more modular approach to deploying Azure Landing Zones with Terraform.
 This new approach is based on [Azure Verified Modules](https://aka.ms/avm) (AVM) and is designed to be more flexible.
+
+## Branding
+
+With the move to using Azure Verified Modules, we have new branding!
+We are using the following wording to describe the new offerings:
+
+> **Azure Verified Modules for Platform Landing Zones (ALZ)**
 
 ## Why have we made this change?
 
@@ -50,18 +57,18 @@ We do not cover the inputs to the other modules, as they are covered in the modu
 
 Using these modules together, you can create a fully customized Azure Landing Zone.
 
-## What if I want a simplified, all-in-one approach?
+## How do I deploy?
 
-If you want a simpler, more opinionated approach, you can use the [Accelerator]({{< relref "accelerator" >}}).
+For most customers, we recommend you use the [Accelerator]({{< relref "accelerator" >}}).
 This uses all the modules above, but in a pre-defined configuration and opinionated approach.
 There are still customization options available, but the [Accelerator]({{< relref "accelerator" >}}) is designed to get you up and running quickly - as a bonus it also includes CI/CD pipelines!
 
-## How do I get started?
+## I'm an advanced user, how to I get started?
 
 We recognize that this is a significant change, and we want to make it as easy as possible for you to get started.
 We have created this documentation site to centralize the integration documentation for the new modular approach.
 
-In here you will find guidance on how to use the ALZ Core module with those listed above to build your very own Azure Landing Zone.
+In here you will find guidance on how to use the [ALZ core pattern module](https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/latest) with those listed above to build your very own Azure Landing Zone.
 To proceed, you should be comfortable creating Terraform configurations and using Terraform modules.
 If you are not, we recommend that you take a look at the [Accelerator]({{< relref "accelerator" >}}) as it offers a simplified experience.
 
