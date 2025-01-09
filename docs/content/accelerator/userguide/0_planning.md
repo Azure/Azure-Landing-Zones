@@ -198,7 +198,7 @@ Self-hosted agents / runners are required for private networking, so that settin
 
 Fill out the `Use private networking`, `Use self-hosted agents`, and / or `Use self-hosted runners` values with the settings you have chosen.
 
-### Decision 11 Choose / validate your version control system specific settings
+### Decision 11 - Choose / validate your version control system specific settings
 
 Review the remaining settings in the `Accelerator - Bootstrap` tab of the `checklist.xlsx` file and fill out any remaining settings relevant to the chosen version control system.
 
