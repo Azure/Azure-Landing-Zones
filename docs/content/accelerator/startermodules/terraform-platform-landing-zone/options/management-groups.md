@@ -28,14 +28,14 @@ Follow these steps to customise the management group names and IDs:
 ```pwsh
 $filePath = "c:\accelerator\config\lib\archetype_definitions\alz.alz_architecture_definition.json"
 New-Item -ItemType "file" $filePath -Force
-(Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/archetype_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
+(Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
 ```
     {{< /tab >}}
     {{< tab "Linux / macOS" >}}
 ```pwsh
 $filePath = "/accelerator/config/lib/archetype_definitions/alz.alz_architecture_definition.json"
 New-Item -ItemType "file" $filePath -Force
-(Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/archetype_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
+(Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
 ```
     {{< /tab >}}
     {{< /tabs >}}
