@@ -7,7 +7,7 @@ weight: 2
 You may want to customize the management groups names and IDs. In order to do this they need to supply a `lib` folder to the accelerator.
 
 {{< hint type=warning >}}
-If you update the management and IDs, you also need to update the `management_group_settings` > `subscription_placement` block setting in the `platform-landing-zone.tfvars` file to match the management group IDs you changed. See the end of this page for more details. If you don't do this, you will get an error when you deploy the platform landing zone.
+If you update the management group IDs, you also need to update the `management_group_settings` > `subscription_placement` block setting in the `platform-landing-zone.tfvars` file to match the management group IDs you changed. See the end of this page for more details. If you don't do this, you will get an error when you deploy the platform landing zone.
 {{< /hint >}}
 
 The `lib` folder should contain the following structure (we are showing it nested under the standard accelerator file structure here):
