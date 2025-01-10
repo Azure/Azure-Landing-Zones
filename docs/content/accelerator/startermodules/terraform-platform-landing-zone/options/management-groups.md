@@ -6,6 +6,10 @@ weight: 2
 
 You may want to customize the management groups names and IDs. In order to do this they need to supply a `lib` folder to the accelerator.
 
+{{< hint type=warning >}}
+If you update the management and IDs, you also need to update the `management_group_settings` > `subscription_placement` block setting in the `platform-landing-zone.tfvars` file to match the management group IDs you changed. See the end of this page for more details. If you don't do this, you will get an error when you deploy the platform landing zone.
+{{< /hint >}}
+
 The `lib` folder should contain the following structure (we are showing it nested under the standard accelerator file structure here):
 
 ```plaintext
@@ -19,7 +23,7 @@ The `lib` folder should contain the following structure (we are showing it neste
 ┗ 📂output
 ```
 
-Follow these steps to customise the management group names and IDs:
+Follow these steps to customize the management group names and IDs:
 
 1. Run the following script to create the `lib` folder and the `alz.alz_architecture_definition.json` under the standard accelerator file structure:
 
@@ -50,8 +54,8 @@ The `lib` folder must be named `lib`, any other name will not work
 
     For example to prefix all the management group display names with `Contoso` and update the management group IDs to have the `contoso-` prefix they can update the file to look like this:
 
-    {{< hint type=tip >}}
-When updating the management group `id`, you also need to consider any child management groups that refer to it by the `parent_id`
+    {{< hint type=warning >}}
+When updating the management group `id`, you also need to update any child management groups that refer to it by the `parent_id`
     {{< /hint >}}
 
     {{< highlight terraform "linenos=table" >}}
