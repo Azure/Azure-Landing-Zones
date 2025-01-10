@@ -106,11 +106,11 @@ When updating the management group `id`, you also need to consider any child man
         },
         {
           "archetypes": [
-            "sandboxes"
+            "sandbox"
           ],
-          "display_name": "Contoso Sandboxes",
+          "display_name": "Contoso Sandbox",
           "exists": false,
-          "id": "contoso-sandboxes",
+          "id": "contoso-sandbox",
           "parent_id": "contoso-root"
         },
         {
