@@ -44,7 +44,12 @@ This first PAT is referred to as `token-1`.
 
 If you are using self-hosted runners, you will need to create a second PAT that we'll refer to as `token-2` for them. You can do this by following the steps above with the following differences:
 
-1. Select `No expiration` for the `Expiration` field. NOTE: You may want to set an expiration date for security reasons, but you will need to have a process in place to regenerate the token in that scenario.
+1. Select `No expiration` for the `Expiration` field.
+
+    {{< hint type=note >}}
+You may want to set a shorter expiration date for security reasons. In either case, you will need to have a process in place to extend expiration the token before it expires.
+    {{< /hint >}}
+
 1. The scope required depends on the type of organization you are using:
     1. If you are using a Free organization or an Enterprise organization without a runner group, select only the `repo` scope.
     1. If you are using an Enterprise organization and a runner group, select the `admin:org` scope for classic tokens (or `organization_self_hosted_runners:write` for fine-grained tokens).
