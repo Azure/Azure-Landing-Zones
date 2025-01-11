@@ -45,7 +45,7 @@ Here is the list of modules that pertain to Azure Landing Zones and covers the s
 - [ALZ core](https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/latest)
 - [ALZ management](https://registry.terraform.io/modules/Azure/avm-ptn-alz-management/azurerm/latest)
 - [Hub networking](https://registry.terraform.io/modules/Azure/avm-ptn-hubnetworking/azurerm/latest)
-- [Virtual network gateway](https://registry.terraform.io/modules/Azure/avm-ptn-virtualwan/azurerm/latest)
+- [Virtual network gateway](https://registry.terraform.io/modules/Azure/avm-ptn-vnetgateway/azurerm/latest)
 - [Virtual WAN](https://registry.terraform.io/modules/Azure/avm-ptn-virtualwan/azurerm/latest)
 - [Private link DNS zones](https://registry.terraform.io/modules/Azure/avm-ptn-network-private-link-private-dns-zones/azurerm/latest)
 
