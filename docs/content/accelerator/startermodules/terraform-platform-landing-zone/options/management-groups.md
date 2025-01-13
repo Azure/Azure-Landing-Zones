@@ -180,4 +180,50 @@ When updating the management group `id`, you also need to update any child manag
     }
     {{< / highlight >}}
 
+1. If you also updated the `root`, `management`, `connectivity`, `identity` or any other management grouo IDs, then you also need to reflect those changes for the `policy_assignments_to_modify` in the `platform-landing-zone.tfvars` file to match the management group IDs you changed them to.
+
+    For example:
+
+    {{< highlight terraform "linenos=table" >}}
+    policy_assignments_to_modify = {
+      contoso-root = {
+        policy_assignments = {
+          Deploy-MDFC-Config-H224 = {
+            parameters = {
+              ascExportResourceGroupName                  = "$${asc_export_resource_group_name}"
+              ascExportResourceGroupLocation              = "$${starter_location_01}"
+              emailSecurityContact                        = "$${defender_email_security_contact}"
+              enableAscForServers                         = "DeployIfNotExists"
+              enableAscForServersVulnerabilityAssessments = "DeployIfNotExists"
+              enableAscForSql                             = "DeployIfNotExists"
+              enableAscForAppServices                     = "DeployIfNotExists"
+              enableAscForStorage                         = "DeployIfNotExists"
+              enableAscForContainers                      = "DeployIfNotExists"
+              enableAscForKeyVault                        = "DeployIfNotExists"
+              enableAscForSqlOnVm                         = "DeployIfNotExists"
+              enableAscForArm                             = "DeployIfNotExists"
+              enableAscForOssDb                           = "DeployIfNotExists"
+              enableAscForCosmosDbs                       = "DeployIfNotExists"
+              enableAscForCspm                            = "DeployIfNotExists"
+            }
+          }
+        }
+      }
+      contoso-connectivity = {
+        policy_assignments = {
+          Enable-DDoS-VNET = {
+            enforcement_mode = "DoNotEnforce"
+          }
+        }
+      }
+      contoso-corp = {
+        policy_assignments = {
+          Deploy-Private-DNS-Zones = {
+            enforcement_mode = "DoNotEnforce"
+          }
+        }
+      }
+    }
+    {{< / highlight >}}
+
 1. Now, when deploying the accelerator you need to supply the lib folder as an argument with `-starterAdditionalFiles`.
