@@ -9,11 +9,15 @@ The Defender Plan policy is enabled by default. If you want to turn off individu
 1. Update the `management_group_settings.policy_assignments_to_modify` section.
 1. Find the `Deploy-MDFC-Config-H224` block setting and set the enforcement mode of the individual Defender plan line settings to `DoNotEnforce`. See the following example to turn off a subset the Defender plans:
 
+    {{< hint type=warning >}}
+If you have updated the `alz` management group ID, then you need to update the management group ID in this block setting to match. For example, replace `alz` with `contoso`.
+    {{< /hint >}}
+
     {{< highlight terraform "linenos=table" >}}
     management_group_settings = {
       ...
       policy_assignments_to_modify = {
-        alzroot = {
+        alz = {
           policy_assignments = {
             Deploy-MDFC-Config-H224 = {
               parameters = {

@@ -4,24 +4,18 @@ geekdocCollapseSection: true
 weight: 2
 ---
 
-You may want to customize the management groups names and IDs. In order to do this they need to supply a `lib` folder to the accelerator.
+You may want to customize the management groups names and IDs. 
 
 {{< hint type=warning >}}
-If you update the management group IDs, you also need to update the `management_group_settings` > `subscription_placement` block setting in the `platform-landing-zone.tfvars` file to match the management group IDs you changed. See the end of this page for more details. If you don't do this, you will get an error when you deploy the platform landing zone.
+If you update the management group IDs, you also need to update the `platform-landing-zone.tfvars` file to match the management group IDs you changed. If you don't do this, you will get errors or unexpected behavior when you deploy the platform landing zone.
 {{< /hint >}}
 
-The `lib` folder should contain the following structure (we are showing it nested under the standard accelerator file structure here):
+There are 2 high level steps required to customize the management group names and IDs:
 
-```plaintext
-📂accelerator
-┣ 📂config
-┃ ┣ 📂lib
-┃ ┃ ┗ 📂architecture_definitions
-┃ ┃   ┗ 📜alz.alz_architecture_definition.json
-┃ ┃ 📜inputs.yaml
-┃ ┗ 📜platform-landing-zone.tfvars
-┗ 📂output
-```
+1. (Required) Create the `lib` folder under the standard accelerator file structure and provide a modified `alz.alz_architecture_definition.json` file.
+1. (Optional) Update the platform landing zone configuration file `platform-landing-zone.tfvars` to reflect any changes to management group IDs
+    * (Optional) Update the `management_group_settings` > `subscription_placement` block setting to match any management group IDs you changed.
+    * (Optional) Update the `policy_assignments_to_modify` block setting to match any management group IDs you changed.
 
 Follow these steps to customize the management group names and IDs:
 
@@ -48,6 +42,18 @@ New-Item -ItemType "file" $filePath -Force
 The `lib` folder must be named `lib`, any other name will not work
     {{< /hint >}}
 
+    The `lib` folder should now contain the following structure (we are showing it nested under the standard accelerator file structure here):
+
+    ```plaintext
+    📂accelerator
+    ┣ 📂config
+    ┃ ┣ 📂lib
+    ┃ ┃ ┗ 📂architecture_definitions
+    ┃ ┃   ┗ 📜alz.alz_architecture_definition.json
+    ┃ ┃ 📜inputs.yaml
+    ┃ ┗ 📜platform-landing-zone.tfvars
+    ┗ 📂output
+    ```
 1. The `alz.alz_architecture_definition.json` file content should have been copied from [here](https://github.com/Azure/Azure-Landing-Zones-Library/blob/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json). If the script did not work for you, copy the content from the link and create the file manually.
 
 1. Edit the `alz.alz_architecture_definition.json` file to update the management group names and IDs. 
@@ -180,7 +186,11 @@ When updating the management group `id`, you also need to update any child manag
     }
     {{< / highlight >}}
 
-1. If you also updated the `root`, `management`, `connectivity`, `identity` or any other management grouo IDs, then you also need to reflect those changes for the `policy_assignments_to_modify` in the `platform-landing-zone.tfvars` file to match the management group IDs you changed them to.
+1. If you also updated the `alz` management group ID, then you need to update the `policy_assignments_to_modify` block setting in the `platform-landing-zone.tfvars` file to match the management group ID you changed.
+
+    {{< hint type=warning >}}
+If you have made any other changes to the `policy_assignments_to_modify` block setting, for example if you have updated policy assignment enforcement mode, then you may need to update the `policy_assignments_to_modify` block setting for other management groups too.
+    {{< /hint >}}
 
     For example:
 
@@ -206,20 +216,6 @@ When updating the management group `id`, you also need to update any child manag
               enableAscForCosmosDbs                       = "DeployIfNotExists"
               enableAscForCspm                            = "DeployIfNotExists"
             }
-          }
-        }
-      }
-      contoso-connectivity = {
-        policy_assignments = {
-          Enable-DDoS-VNET = {
-            enforcement_mode = "DoNotEnforce"
-          }
-        }
-      }
-      contoso-corp = {
-        policy_assignments = {
-          Deploy-Private-DNS-Zones = {
-            enforcement_mode = "DoNotEnforce"
           }
         }
       }

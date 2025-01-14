@@ -23,8 +23,12 @@ The Azure Monitoring Agent (AMA) is enabled by default. If you want to turn it o
 
 1. Copy and paste the following inside the `management_group_settings` > `policy_assignments_to_modify` block on a new line after the first curly brace `{`:
     
+    {{< hint type=warning >}}
+If you have updated the `alz`, `landing-zones` or `platform`  management group ID, then you need to update the management group ID in this block setting to match. For example, replace `alz` with `contoso`.
+    {{< /hint >}}
+
     {{< highlight terraform "linenos=table" >}}
-    root = {
+    alz = {
       policy_assignments = {
         Deploy-MDEndpointsAMA = {
           enforcement_mode = "DoNotEnforce"

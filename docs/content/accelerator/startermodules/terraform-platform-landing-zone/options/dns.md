@@ -23,6 +23,10 @@ The steps to follow are:
 
 1. Add the follow configuration to the `management_group_settings` > `policy_assignments_to_modify` block setting
 
+    {{< hint type=warning >}}
+If you have updated the `corp` management group ID, then you need to update the management group ID in this block setting to match. For example, replace `corp` with `contoso-corp`.
+    {{< /hint >}}
+
     ```terraform
     corp = {
       policy_assignments = {
