@@ -9,7 +9,7 @@ This will enable the HTTPS inspection feature, which is a key component of zero 
 
 The steps to follow are:
 
-1. Update each firewall SKU to `"Premium"` in the `hub_and_spoke_vnet_virtual_networks` configuration.
+1. Update each firewall SKU to `"Premium"` in the `hub_and_spoke_vnet_virtual_networks` block setting.
 
     | Setting Type | Parent block(s) | Key | Action | Count | Notes |
     | - | - | - | - | - | - |
