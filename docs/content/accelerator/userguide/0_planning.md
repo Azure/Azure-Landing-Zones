@@ -74,7 +74,7 @@ Fill out the `Infrastructure as Code` value with either `bicep` or `terraform`.
 
 ### Decision 2 - Choose a version control system
 
-We currently support bootstrapping of Azure DevOps or GitHub. H
+We currently support bootstrapping of Azure DevOps or GitHub.
 
 Hopefully you've already chosen one of these for your organization, but if not you can go off and do some research now before continuing.
 
@@ -124,7 +124,7 @@ Fill out the `Platform landing zone region(s)` value with the Azure region(s) yo
 
 ### Decision 6 - Choose a parent management group
 
-The parent management group is the management group that will contain the management groups created by the bootstrap. The parent management group must exist before the bootstrap is run. 
+The parent management group is the management group that will contain the management groups created by the bootstrap. The parent management group must exist before the bootstrap is run.
 
 We recommend using `Tenant Root Group`, the platform landing zone management group hierarchy will be build underneath the chosen parent management group. The only changes to the parent management group will be permissions, no policies are applied at that level.
 
@@ -136,7 +136,7 @@ Fill out the `Parent management group id` value with the management group you ha
 
 ### Decision 7 - Choose the platform subscriptions
 
-We strongly encourage and only support using 3 subscription model with separate Management, Connectivity and Identity platform subscriptions. 
+We strongly encourage and only support using 3 subscription model with separate Management, Connectivity and Identity platform subscriptions.
 
 {{< hint type=note >}}
 A single subscription model is technically possible, but only recommended for sandbox testing purposes.
@@ -158,7 +158,7 @@ Fill out the `Bootstrap subscription id` value with the subscription ID you have
 
 ### Decision 9 - Choose the bootstrap resource naming
 
-Choose a `service name` and `environment name` that will be used to derive the bootstrap resource names. 
+Choose a `service name` and `environment name` that will be used to derive the bootstrap resource names.
 
 {{< hint type=tip >}}
 If you must use an alternative naming convention, they can be overridden by follow the instructions found [HERE]({{< relref "../faq">}})
@@ -171,7 +171,7 @@ Fill out the `Service name` and `Environment name` values with the names you hav
 We offer 3 agent / runner and networking options for the bootstrap. The options and related settings are listed here:
 
 * Private networking with self-hosted agents / runners
-  * Azure DevOps: 
+  * Azure DevOps:
     * `use_private_networking` = `true`
     * `use_self_hosted_agents` = `true`
   * GitHub:
