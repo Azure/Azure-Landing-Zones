@@ -10,7 +10,7 @@ resources:
   - name: diagsetting-assignment-params
     src: img/diagsetting_assignment_parameters.png
     alt: The parameters in the assignment highlighting which needs to updated
-    title: ALZ Diag Setting Initiative Assignment Parameters
+    title: ALZ Diag Setting Initiative Assignment - Parameters
 ---
 
 Azure Landing Zones is a set of reference implementations that provide guidance on how to deploy and manage Azure Landing Zones using the solutions we provide. These reference implementations are continuously updated to provide the best practices for deploying and managing Azure Landing Zones, and occasionally require the introduction of breaking changes to ensure the best possible experience for our customers.
