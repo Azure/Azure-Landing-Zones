@@ -1,7 +1,7 @@
 ---
 title: Known Issues
 geekdocCollapseSection: true
-weight: 20
+weight: 40
 resources:
   - name: diagsetting-assignment
     src: img/diagsetting_assignment.png
@@ -44,4 +44,4 @@ Select the assignment:
 {{< img name="diagsetting-assignment" size="origin" lazy=true >}}
 
 Update the assignment parameter:
-![The parameters in the assignment highlighting which needs to updated](./img/diagsetting_assignment_parameters.png)
+{{< img name="diagsetting-assignment-params" size="origin" lazy=true >}}
