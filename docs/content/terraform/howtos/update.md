@@ -3,7 +3,8 @@ title: Updating the module and library version
 weight: 30
 ---
 
-The avm-prn-alz Terraform module, and its associated provider will be updated from time to time.
+The [avm-ptn-alz](https://aka.ms/alz/module) Terraform module, and its associated [provider](https://aka.ms/alz/provider) will be updated from time to time.
+Similarly, the policy library will also be updated with new features and bug fixes.
 Unlike previously, the module and the policy library are now decoupled, and can be updated independently.
 
 ## Updating the policy library
