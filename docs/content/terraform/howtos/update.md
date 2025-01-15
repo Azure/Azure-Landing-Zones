@@ -11,6 +11,7 @@ Unlike previously, the module and the policy library are now decoupled, and can 
 
 To update the policy library, you must set the [`library_references`](https://registry.terraform.io/providers/Azure/alz/latest/docs#library_references-1) configuration in the provider.
 Each provider release will have a default value, which will be the latest version of the ALZ policy library at the time of the release.
+To find the default value, you can check the [provider documentation](https://registry.terraform.io/providers/Azure/alz/latest/docs#library_references-1).
 
 To update the policy library, you can set the `library_references` configuration to the desired version:
 
