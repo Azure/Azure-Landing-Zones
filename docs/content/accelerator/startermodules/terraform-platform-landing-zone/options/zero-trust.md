@@ -13,4 +13,4 @@ The steps to follow are:
 
     | Setting Type | Parent block(s) | Key | Action | Count | Notes |
     | - | - | - | - | - | - |
-    | line | `hub_and_spoke_vnet_virtual_networks.*.hub_virtual_network.firewall` | `sku_tier` | Change value to `"Premium"` | 1+ | In multi-region deployments, change all regions [primary, secondary] value as well |
+    | line | `hub_and_spoke_vnet_virtual_networks` > `<region>` >  `hub_virtual_network` > `firewall` | `sku_tier` | Update the value from `"Standard"` to `"Premium"` | 1+ | <region> is the relevant region (e.g. primary or secondary). There will be two instances for a multi-region deployment |
