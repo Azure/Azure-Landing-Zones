@@ -12,6 +12,7 @@ You'll need to install the following tools before getting started.
 
 - PowerShell 7.4 (or newer): [Follow the instructions for your operating system](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
 - Azure CLI 2.55.0 (or newer): [Follow the instructions for your operating system](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
+- Git (any supported version): [Follow the instructions for your opersating system](https://git-scm.com/downloads).
 
 {{< hint type=note >}}
 In all cases, ensure that the tools are available from a PowerShell core (pwsh) terminal. You may need to add them to your environment path if they are not.
