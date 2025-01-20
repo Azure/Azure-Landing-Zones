@@ -82,7 +82,7 @@ agent_container_zone_support: false
 ╵
 ```
 
-## Error: Failed to delete resource - when destroying the platform landing zone on the module.management_groups.module.management_groups.azapi_resource.subscription_<platform subscription> resource
+## Error: Failed to delete resource - when destroying the platform landing zone on the module.management_groups.module.management_groups.azapi_resource.subscription_(platform subscription) resource
 
 If you are trying to destroy your platform landing zone and you see three errors like the below, it is because you don't have permissions on the management group that it is trying to move the subscriptions to.
 
