@@ -19,7 +19,7 @@ Learn about the Azure landing zones architecture and the accelerator.
 You should understand these terms before you start:
 
 * Infrastructure as Code (IaC): Infrastructure as Code (IaC) is the process of managing and provisioning computing infrastructure through machine-readable definition files, rather than through physical hardware configuration or interactive configuration tools. This is a key component of the accelerator.
-* Platform Landing Zone: Understand the scope of the Platform Landing Zone [here](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/).
+* Platform Landing Zone: Understand the scope of the Platform Landing Zone [here](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
 * Bootstrap or Bootstrap Module: The IaC module that sets up the version control system, continuous delivery pipeline, required Azure resources, etc. The bootstrap happens before the Platform Landing Zone is deployed.
 * Starter or Starter Module: This is a pre-configured IaC module that can be used to deploy a specific platform landing zone configuration.
 * Accelerator PowerShell Module: The PowerShell module that is used to deploy the bootstrap. Find it here: [https://www.powershellgallery.com/packages/ALZ](https://www.powershellgallery.com/packages/ALZ).
@@ -30,9 +30,9 @@ You should have a good understanding of the following technologies and concepts:
 
 * Terraform Workflow: Understand the standard write, init, plan and apply workflow. [Learning path](https://aka.ms/tf/fundamentals)
 * Terraform HCL (HashiCorp Configuration Language): Understand the basics of HCL. [Learning path](https://aka.ms/tf/labs)
-* DevOps: Understand the fundamentals of DevOps. [Learning path](https://learn.microsoft.com/en-us/training/modules/introduction-to-devops/)
-* Continuous Integration and Delivery: Understand the basics of CI/CD. [Learning path](https://learn.microsoft.com/en-us/training/modules/explain-devops-continous-delivery-quality/)
-* git version control: Understand the fundamentals of git. [Learning path](https://learn.microsoft.com/en-us/training/modules/intro-to-git/)
+* DevOps: Understand the fundamentals of DevOps. [Learning path](https://learn.microsoft.com/training/modules/introduction-to-devops/)
+* Continuous Integration and Delivery: Understand the basics of CI/CD. [Learning path](https://learn.microsoft.com/training/modules/explain-devops-continous-delivery-quality/)
+* git version control: Understand the fundamentals of git. [Learning path](https://learn.microsoft.com/training/modules/intro-to-git/)
 
 ## 2 - Download the checklist
 

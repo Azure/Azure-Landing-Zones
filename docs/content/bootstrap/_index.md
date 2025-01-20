@@ -19,8 +19,8 @@ You can read more about the management, identity and connectivity subscriptions 
 To create the subscriptions you will need access to a billing agreement.
 The following links detail the permissions required for each type of agreement:
 
-- [Enterprise Agreement (EA)](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-enterprise-subscription)
-- [Microsoft Customer Agreement (MCA)](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-subscription)
+- [Enterprise Agreement (EA)](https://learn.microsoft.com/azure/cost-management-billing/manage/create-enterprise-subscription)
+- [Microsoft Customer Agreement (MCA)](https://learn.microsoft.com/azure/cost-management-billing/manage/create-subscription)
 
 Once you have the access required, create the three subscriptions following your desired naming convention.
 
