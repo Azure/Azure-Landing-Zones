@@ -103,7 +103,7 @@ Fill out the `Starter module` value with either `complete`, `platform_landing_zo
 
 ### Decision 4 - Choose a region for the bootstrap resources
 
-The bootstrap resources are deployed to a single region. Choose the Azure region where you would like the deploy them.
+The bootstrap resources are deployed to a single region. Choose the Azure region where you would like to deploy them.
 
 The bootstrap resources include:
 
