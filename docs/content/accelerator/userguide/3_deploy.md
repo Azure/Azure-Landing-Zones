@@ -7,7 +7,7 @@ Phase 3 of the accelerator is to run pipeline. Follow the steps below to do that
 
 ## Deploy the Landing Zone
 
-Now you have created your bootstrapped environment you can deploy you Azure landing zone by triggering the continuous delivery pipeline in your version control system.
+Now that you have created your bootstrapped environment you can deploy you Azure landing zone by triggering the continuous delivery pipeline in your version control system.
 
 {{< hint type=note >}}
 If you encounter permission errors while running the pipelines, please note that it may take some time for permissions to fully propagate. Although the pipelines include retry logic to manage this, it can sometimes take up to 30 minutes for the permissions to take effect.
