@@ -46,7 +46,7 @@ If you are using self-hosted runners, you will need to create a second PAT that 
 1. Select the maximum value for the `Expiration` field (this allows up to 1 year). 
 
     {{< hint type=note >}}
-You may want to set a shorter expiration date for security reasons. In either case, you will need to have a process in place to extend expiration the token before it expires.
+You may want to set a shorter expiration date for security reasons. In either case, you will need to have a process in place to extend the expiration date of the token before it expires.
     {{< /hint >}}
 
 1. Select only the `Agent Pools`: `Read & manage` scope.
