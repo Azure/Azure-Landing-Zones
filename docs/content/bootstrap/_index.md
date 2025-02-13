@@ -12,7 +12,7 @@ These are management, identity and connectivity.
 
 - **Management**: This is used to deploy the bootstrap and management resources, such as log analytics and automation accounts.
 - **Connectivity**: This is used to deploy the hub networking resources, such as virtual networks and firewalls.
-- **Identity**: (Optional) This is used to deploy the identity resources, such as Azure AD and Azure AD Domain Services. You will not need this if you do not have any AD-DS or [Entra Domain Services](https://azure.microsoft.com/products/microsoft-entra-ds) requirements.
+- **Identity**: (Optional) This is used to deploy the identity resources, such as Azure AD and Microsoft Entra Domain Services (formerly Azure AD DS) . You will not need this if you do not have any AD-DS or [Entra Domain Services](https://azure.microsoft.com/products/microsoft-entra-ds) requirements.
 
 You can read more about the management, identity and connectivity subscriptions in the [Landing Zone docs](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/deploy-landing-zones-with-terraform).
 
