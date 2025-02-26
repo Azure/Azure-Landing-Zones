@@ -50,14 +50,18 @@ The ALZ team will monitor for new major versions of built-in policies and initia
 
 ## Updating
 
+Depending on the accelerator you've used to deploy your Azure Landing Zones, you may need to update your policies/initiatives and assignemnts. 
 
+- **Portal**: If you have deployed your Azure Landing Zones using the portal, you will need to update your policies/initiatives and assignments manually. This is because the portal does not support automatic updates for policies/initiatives and assignments.
+- **Bicep**: If you have deployed your Azure Landing Zones using Bicep, you will need to update your policies/initiatives and assignments manually. This is because Bicep does not support automatic updates for policies/initiatives and assignments.
+- **Terraform**: If you have deployed your Azure Landing Zones using Terraform, you will need to update to the latest version of the accelerator and apply the changes using your normal Terraform workflow. 
 
 ## Tools
 
 To help navigate the impact of policy versioning you can use the following tools:
 
-- AzAdvertizer: [ALZ Initiatives](https://www.azadvertizer.net/azpolicyinitiativesadvertizer_all.html#%7B%22col_12%22%3A%7B%22flt%22%3A%22ALZ%22%7D%7D)
-
+- AzAdvertizer: [ALZ Initiatives](https://www.azadvertizer.net/azpolicyinitiativesadvertizer_all.html#%7B%22col_12%22%3A%7B%22flt%22%3A%22ALZ%22%7D%7D) which links you directly to the ALZ initiatives we deploy and identifies the versions of policies we're pinning to.
+- Azure Governance Visualizer: [AzGovViz](https://github.com/Azure/Azure-Governance-Visualizer-Accelerator) which provides a visual representation of your Azure Policy landscape, including policy assignments, initiatives, and their versions.
 
 ## Official Links
 
