@@ -24,7 +24,7 @@ If you have updated the `alz` management group ID, then you need to update the m
                 ascExportResourceGroupName                  = "$${asc_export_resource_group_name}"
                 ascExportResourceGroupLocation              = "$${starter_location_01}"
                 emailSecurityContact                        = "security_contact@replace_me"
-                enableAscForServers                         = "DoNotEnforce"
+                enableAscForServers                         = "Disabled"
                 enableAscForServersVulnerabilityAssessments = "DeployIfNotExists"
                 enableAscForSql                             = "DeployIfNotExists"
                 enableAscForAppServices                     = "DeployIfNotExists"
