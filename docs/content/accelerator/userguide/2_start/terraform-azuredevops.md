@@ -88,6 +88,11 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
     - [Terraform Sovereign Landing Zone Starter Module]({{< relref "../../startermodules/terraformsovereign" >}}): Management groups, policies, hub networking for the Sovereign Landing Zone.
 
 1. Verify that you are logged in to Azure CLI or have the Service Principal credentials set as env vars. You should have completed this in the [Prerequisites]({{< relref "../1_prerequisites" >}}) phase.
+1. Ensure you are running the latest version of the ALZ PowerShell module by running:
+
+    ```pwsh
+    Update-Module -Name ALZ
+    ```
 
 1. In your PowerShell Core (pwsh) terminal run the module:
 
