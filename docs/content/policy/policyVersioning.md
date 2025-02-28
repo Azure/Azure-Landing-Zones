@@ -3,6 +3,10 @@ title: ALZ and Policy Versioning
 weight: 10
 ---
 
+{{< hint type=important >}}
+Even though still in public preview, it is highly recommended to update policies/initiatives and assignments and pin to major versions as soon as possible to avoid unintended consequences due to breaking changes being released.
+{{< /hint >}}
+
 In mid-2024 the Azure Policy product group released a new versioning scheme for Azure Policy definitions. This new versioning scheme is designed to provide a more consistent and predictable way to manage policy definitions and initiatives, making it easier for organizations to adopt and implement Azure Policy.
 
 In the context of Azure Policy, versioning refers to the practice of managing and maintaining different versions of policy definitions and initiatives. This is important for several reasons:
@@ -54,7 +58,15 @@ Depending on the accelerator you've used to deploy your Azure Landing Zones, you
 
 - **Portal**: If you have deployed your Azure Landing Zones using the portal, you will need to update your policies/initiatives and assignments manually. This is because the portal does not support automatic updates for policies/initiatives and assignments.
 - **Bicep**: If you have deployed your Azure Landing Zones using Bicep, you will need to update your policies/initiatives and assignments manually. This is because Bicep does not support automatic updates for policies/initiatives and assignments.
-- **Terraform**: If you have deployed your Azure Landing Zones using Terraform, you will need to update to the latest version of the accelerator and apply the changes using your normal Terraform workflow. 
+- **Terraform**: If you have deployed your Azure Landing Zones using Terraform, you will need to update to the latest version of the accelerator and apply the changes using your normal Terraform workflow.
+
+For guidance on updating existing policies/initiatives and assignments, please refer to the following links:
+
+- [Update ALZ Custom Policies to Latest](https://github.com/Azure/Enterprise-Scale/wiki/Update-ALZ-Custom-Policies-to-Latest)
+
+Assuming you are on a current release of ALZ and have updated ALZ initiatives and assignments, you will be using the latest minor and patch version of the policy or initiative definition for the currently pinned major version (e.g. 1.*.*). This means that you will automatically benefit from any new features or bug fixes introduced in the latest minor and patch versions of the policy or initiative definition.
+
+However, if a new major version is released, and ALZ team publishes the update, you will need to update your policies/initiatives and assignments to use the new major version. This is because the new major version may introduce breaking changes that require changes to your implementation, and this typically involves deleting the current assignment and re-creating it with the new major version.
 
 ## Tools
 
