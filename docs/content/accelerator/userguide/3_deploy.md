@@ -7,7 +7,7 @@ Phase 3 of the accelerator is to run pipeline. Follow the steps below to do that
 
 ## Deploy the Landing Zone
 
-Now you have created your bootstrapped environment you can deploy you Azure landing zone by triggering the continuous delivery pipeline in your version control system.
+Now that you have created your bootstrapped environment you can deploy you Azure landing zone by triggering the continuous delivery pipeline in your version control system.
 
 {{< hint type=note >}}
 If you encounter permission errors while running the pipelines, please note that it may take some time for permissions to fully propagate. Although the pipelines include retry logic to manage this, it can sometimes take up to 30 minutes for the permissions to take effect.
@@ -48,7 +48,7 @@ The Bicep option outputs a `deploy-local.ps1` file that you can use to deploy th
 If you set the `grant_permissions_to_current_user` input to `false` in the bootstrap, you will need to set permissions on your management group, subscriptions and storage account before the commands will succeed.
 {{< /hint >}}
 
-1. Ensure you have the latest versions of the [AZ PowerShell Module](https://learn.microsoft.com/en-us/powershell/azure/install-azure-powershell) and [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install) installed.
+1. Ensure you have the latest versions of the [AZ PowerShell Module](https://learn.microsoft.com/powershell/azure/install-azure-powershell) and [Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/install) installed.
 1. Open a new PowerShell Core (pwsh) terminal or use the one you already have open.
 1. Navigate to the directory shown in the `module_output_directory_path` output from the bootstrap.
 1. Login to Azure using `Connect-AzAccount -TenantId 00000000-0000-0000-0000-000000000000 -SubscriptionId 00000000-0000-0000-0000-000000000000`.

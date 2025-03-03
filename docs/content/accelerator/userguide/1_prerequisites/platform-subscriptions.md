@@ -19,15 +19,15 @@ If a parent management group other than Tenant Root Group is chosen, then you mu
 We recommend setting up 3 subscriptions for Azure landing zones. These are management, identity and connectivity. See our [advanced scenarios]({{< relref "advancedscenarios" >}}) section for alternatives.
 
 - Management: This is used to deploy the bootstrap and management resources, such as log analytics and automation accounts.
-- Identity: This is used to deploy the identity resources, such as Azure AD and Azure AD Domain Services.
+- Identity: This is used to deploy the identity resources, such as Azure AD and Microsoft Entra Domain Services (formerly Azure AD DS) .
 - Connectivity: This is used to deploy the hub networking resources, such as virtual networks and firewalls.
 
-You can read more about the management, identity and connectivity subscriptions in the [Landing Zone docs](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/deploy-landing-zones-with-terraform).
+You can read more about the management, identity and connectivity subscriptions in the [Landing Zone docs](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/deploy-landing-zones-with-terraform).
 
 To create the subscriptions you will need access to a billing agreement. The following links detail the permissions required for each type of agreement:
 
-- [Enterprise Agreement (EA)](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-enterprise-subscription)
-- [Microsoft Customer Agreement (MCA)](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-subscription)
+- [Enterprise Agreement (EA)](https://learn.microsoft.com/azure/cost-management-billing/manage/create-enterprise-subscription)
+- [Microsoft Customer Agreement (MCA)](https://learn.microsoft.com/azure/cost-management-billing/manage/create-subscription)
 
 Once you have the access required, create the three subscriptions following your desired naming convention.
 

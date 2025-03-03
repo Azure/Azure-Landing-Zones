@@ -15,7 +15,7 @@ The `lib` folder should contain the following structure (we are showing it neste
 {{< tabs "1" >}}
 {{< tab "Windows" >}}
 ```pwsh
-$archetypes = $("connectivity", "corp", "decommissioned", "identity", "management", "landing_zones", "platform", "root", "sandboxes")
+$archetypes = $("connectivity", "corp", "decommissioned", "identity", "management", "landing_zones", "platform", "root", "sandbox")
 foreach($archetype in $archetypes){
     $filePath = "c:\accelerator\config\lib\archetype_definitions\$($archetype).alz_archetype_override.json"
     New-Item -ItemType "file" $filePath -Force
@@ -31,7 +31,7 @@ foreach($archetype in $archetypes){
 {{< /tab >}}
 {{< tab "Linux / macOS" >}}
 ```pwsh
-$archetypes = $("connectivity", "corp", "decommissioned", "identity", "management", "landing_zones", "platform", "root", "sandboxes")
+$archetypes = $("connectivity", "corp", "decommissioned", "identity", "management", "landing_zones", "platform", "root", "sandbox")
 foreach($archetype in $archetypes){
     $filePath = "/accelerator/config/lib/archetype_definitions/$($archetype).alz_archetype_override.json"
     New-Item -ItemType "file" $filePath -Force

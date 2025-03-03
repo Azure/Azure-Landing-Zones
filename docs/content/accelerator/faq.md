@@ -60,6 +60,7 @@ resource_names:
   container_registry_private_endpoint: "pe-{{service_name}}-{{environment_name}}-{{azure_location}}-acr-{{postfix_number}}"
   container_image_name: "azure-devops-agent"
 ```
+
 ## Questions about bootstrap clean up
 
 ### I was just testing or I made a mistake, how do I remove the bootstrap environment and start again?
@@ -68,10 +69,29 @@ After the Terraform apply has been completed there is an opportunity to remove t
 
 1. If you already ran the CD pipeline / action in phase 3 to deploy the ALZ, then you will need to run the pipeline / action again, but this time select the `destroy` option. This will delete the landing zone resources. If you don't do this, those resource will be left orphaned and you will have to clean them up manually.
 1. Wait for the destroy run to complete before moving to the next step, you will need to approve it if you configured approvals.
-1. Now run `Deploy-Accelerator` with the `-destroy` flag. E.g. `Deploy-Accelerator -inputs "~/config/inputs.json" -output "./my-folder" -destroy`.
-1. The module will run and ask if you want to use the existing variables, enter `use` to use them.
-1. You can confirm the destroy by typing `yes` when prompted.
-1. To fully clean up, you should now delete the folder that was created for the accelerator. E.g. `./my-folder`.
+1. Now run `Deploy-Accelerator` with the `-destroy` flag, for example:
+
+    {{< tabs "1" >}}
+    {{< tab "Windows" >}}
+```pwsh
+Deploy-Accelerator `
+  -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\platform-landing-zone.tfvars" `
+  -output "c:\accelerator\output" `
+  -destroy
+```
+    {{< /tab >}}
+    {{< tab "Linux / macOS" >}}
+```pwsh
+Deploy-Accelerator `
+  -inputs "/accelerator/config/inputs.yaml", "/accelerator/config/platform-landing-zone.tfvars" `
+  -output "/accelerator/output" `
+  -destroy
+```
+    {{< /tab >}}
+    {{< /tabs >}}
+
+1. You can confirm the destroy by hitting enter when prompted.
+1. To fully clean up, you should now delete the folder that was created for the accelerator.
 1. You'll now be able to run the `Deploy-Accelerator` command again to start fresh.
 
 ## Questions about changing variables
@@ -94,14 +114,14 @@ Follow the steps in the [Upgrade Guide]({{< relref "upgradeguide" >}}) to upgrad
 
 ## Questions about Multiple landing zone deployments
 
-### I want to deploy multiple landing zones, but the PowerShell command keeps trying to overrwrite my existing environment
+### I want to deploy multiple landing zones, but the PowerShell command keeps trying to overwrite my existing environment
 
 After bootstrapping, the PowerShell leaves the folder structure intact, including the Terraform state file. This is by design, so you have an opportunity to amend or destroy the environment.
 
 If you want to deploy to a separate environment, the simplest approach is to specify a separate folder for each deployment using the `-output` parameter. For example:
 
-- Deployment 1: `Deploy-Accelerator -inputs "~/config/inputs1.json" -output "./deployment1"`
-- Deployment 2: `Deploy-Accelerator -inputs "~/config/inputs2.json" -output "./deployment2"`
+* Deployment 1: `Deploy-Accelerator -inputs "~/config/inputs1.json" -output "./deployment1"`
+* Deployment 2: `Deploy-Accelerator -inputs "~/config/inputs2.json" -output "./deployment2"`
 
 You can then deploy as many times as you like without interferring with a previous deployment.
 
@@ -114,7 +134,7 @@ Yes, you can skip the approval of the Terraform plan by using the `-autoApprove`
 For example:
 
 ```powershell
-Deploy-Accelerator -inputs "~/config/inputs.json" -autoApprove
+Deploy-Accelerator -inputs "~/config/inputs.json" -output "./deployment1" -autoApprove
 ```
 
 ## Questions about adding more subscriptions post initial deployment
