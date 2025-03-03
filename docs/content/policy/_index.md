@@ -4,6 +4,12 @@ geekdocCollapseSection: true
 weight: 30
 ---
 
-Coming soon!
+This section documents all the Azure Landing Zones specific Azure Policy details.
+
+{{< hint type=note >}}
+This section is a work in progress as we slowly move content from the [wiki](https://aka.ms/alz/policy).
+{{< /hint >}}
+
+## Table of Contents
 
 - [ALZ and Policy Versioning]({{< relref "policyVersioning" >}})

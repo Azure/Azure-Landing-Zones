@@ -4,7 +4,7 @@ weight: 10
 ---
 
 {{< hint type=important >}}
-Even though still in public preview, it is highly recommended to update policies/initiatives and assignments and pin to major versions as soon as possible to avoid unintended consequences due to breaking changes being released.
+Even though still in public preview, it is highly recommended to implement Azure Policy versioning and update policies/initiatives and assignments by pinning to major versions as soon as possible to avoid unintended consequences due to breaking changes being released.
 {{< /hint >}}
 
 In mid-2024 the Azure Policy product group released a new versioning scheme for Azure Policy definitions. This new versioning scheme is designed to provide a more consistent and predictable way to manage policy definitions and initiatives, making it easier for organizations to adopt and implement Azure Policy.
@@ -32,9 +32,9 @@ The new versioning scheme for Azure Policy is based on semantic versioning, whic
 - **Minor Version**: Indicates the addition of new features or enhancements that are backward compatible. A change in the minor version number signifies that the new version includes improvements but does not introduce breaking changes.
 - **Patch Version**: Indicates bug fixes or minor changes that do not affect the policy's functionality. A change in the patch version number signifies that the new version includes fixes but does not introduce new features or breaking changes.
 
-The most important thing to note is that the major version number is incremented when there are breaking changes. This means that if you are using a policy definition with a specific major version, you should be aware that upgrading to a new major version may require changes to your implementation. 
+The most important thing to note is that the major version number is incremented when breaking changes are introduced. This means that if you are using a policy definition with a specific major version, you should be aware that upgrading to a new major version may require changes to your implementation.
 
-Built-in policies and initiatives are now versioned using the new scheme. The version number is included in the policy definition's metadata, making it easy to identify the version being used and is tyipcally formatted as `X.Y.Z` where `X` is the major version, `Y` is the minor version, and `Z` is the patch version, e.g. 1.*.*. The `*` are used for minor and patch version as wildcards, as changes to these versions are backward compatible and will be used automatically.
+All Azure built-in policies and initiatives are now versioned using the new scheme. The version number is included in the policy definition's metadata, making it easy to identify the version being used and is typically formatted as `X.Y.Z` where `X` is the major version, `Y` is the minor version, and `Z` is the patch version, e.g. `1.*.*`. The `*` are used for minor and patch version as wildcards in initiatives and assignments, as changes to these versions are backward compatible and will be used automatically.
 
 {{< figure src="../img/policyWithVersion.png" title="Policy with version example">}}
 
@@ -46,17 +46,21 @@ The `version` attribute under `metadata` is not used for Azure Policy versioning
 
 ## Policy Versioning in ALZ
 
-Azure Policy versioning was introduced for clear benefits, but it also required ALZ to adapt to the new scheme. To align with this change, the ALZ team implemented versioning for built-in policies and initiatives by pinning them to their current major version within custom initiatives and assignments. This approach ensures that ALZ always uses the latest minor and patch versions of a policy or initiative while maintaining a consistent major version (e.g., 1..). As a result, users benefit from the most up-to-date and validated version of the pinned major release.
+Azure Policy versioning introduced several benefits but also required ALZ to adapt to the new framework. To align with this change, the ALZ team implemented versioning for built-in policies and initiatives by pinning them to their current major version within custom initiatives and assignments. This ensures ALZ consistently uses the latest minor and patch versions while maintaining a stable major version (e.g., 1.x). As a result, users benefit from the most up-to-date and validated version of the pinned major release.
 
-This update was published as part of the Q2 FY25 Policy Refresh, during which all custom initiatives and assignments referencing built-in policies and initiatives were updated to align with the latest major version at the time.
+This update was published as part of the **Q2 FY25 Policy Refresh (January 2025)**, during which all custom initiatives and assignments referencing built-in policies and initiatives were updated to align with the latest available major version.
 
-Pinning to the current major version of the policy or initiative definition means that ALZ will not automatically upgrade to a new major version of the policy or initiative definition when published. This is to ensure that the ALZ team have time to review the breaking change in the new major version of the policy or initiative definition before upgrading.
+By pinning to the current major version, ALZ does not automatically upgrade to newly released major versions. This approach allows the ALZ team time to review and assess any breaking changes before initiating an upgrade.
 
-Going forward, the ALZ team will monitor for new major versions of built-in policies and initiatives used by ALZ and will publish updates as part of the regular policy refresh cadence when a new major version is released, once changes have been accomodated and tested.
+Moving forward, the ALZ team will monitor new major versions of built-in policies and initiatives used by ALZ. Updates will be incorporated as part of the regular policy refresh cycle once the necessary changes have been reviewed, tested, and validated.
+
+{{< hint type=note >}}
+Due to upstream dependencies on product SDKs, Azure Policy versioning is not yet supported in the Terraform and Bicep accelerators.
+{{< /hint >}}
 
 ## Updating
 
-Depending on the accelerator you've used to deploy your Azure Landing Zones, you may need to update your policies/initiatives and assignemnts. 
+Depending on the accelerator you've used to deploy your Azure Landing Zones, you may need to update your policies/initiatives and assignments.
 
 - **Portal**: If you have deployed your Azure Landing Zones using the portal, you will need to update your policies/initiatives and assignments manually. This is because the portal does not support automatic updates for policies/initiatives and assignments.
 - **Bicep**: If you have deployed your Azure Landing Zones using Bicep, you will need to update your policies/initiatives and assignments manually. This is because Bicep does not support automatic updates for policies/initiatives and assignments.
@@ -66,18 +70,18 @@ For guidance on updating existing policies/initiatives and assignments, please r
 
 - [Update ALZ Custom Policies to Latest](https://github.com/Azure/Enterprise-Scale/wiki/Update-ALZ-Custom-Policies-to-Latest)
 
-Assuming you are on a current release of ALZ and have updated ALZ initiatives and assignments, you will be using the latest minor and patch version of the policy or initiative definition for the currently pinned major version (e.g. 1.*.*). This means that you will automatically benefit from any new features or bug fixes introduced in the latest minor and patch versions of the policy or initiative definition.
+If you are using the latest release of ALZ and have updated ALZ initiatives and assignments, you will automatically utilize the most recent minor and patch versions of the policy or initiative definition within the currently pinned major version. This ensures you benefit from the latest features and bug fixes.
 
-However, if a new major version is released, and ALZ team publishes the update, you will need to update your policies/initiatives and assignments to use the new major version. This is because the new major version may introduce breaking changes that require changes to your implementation, and this typically involves deleting the current assignment and re-creating it with the new major version.
+However, when a new major version is released and published by the ALZ team, you must update your policies, initiatives, and assignments to adopt the new version. Since major version updates may introduce breaking changes, this process requires deleting the existing assignment and recreating it with the updated major version.
 
 ## Tools
 
 To help navigate the impact of policy versioning you can use the following tools:
 
-- AzAdvertizer: [ALZ Initiatives](https://www.azadvertizer.net/azpolicyinitiativesadvertizer_all.html#%7B%22col_12%22%3A%7B%22flt%22%3A%22ALZ%22%7D%7D) which links you directly to the ALZ initiatives we deploy and identifies the versions of policies we're pinning to.
-- Azure Governance Visualizer: [AzGovViz](https://github.com/Azure/Azure-Governance-Visualizer-Accelerator) which provides a visual representation of your Azure Policy landscape, including policy assignments, initiatives, and their versions.
+- AzAdvertizer: [ALZ Initiatives](https://www.azadvertizer.net/azpolicyinitiativesadvertizer_all.html#%7B%22col_12%22%3A%7B%22flt%22%3A%22ALZ%22%7D%7D) which links you directly to the ALZ initiatives ALZ deploys and identifies the versions of policies we're pinning to.
+- Azure Governance Visualizer: [AzGovViz](https://github.com/Azure/Azure-Governance-Visualizer-Accelerator) which provides a visual representation of your Azure Landing Zone environment and provides tools to better understand the related Azure Policy landscape, including policy assignments, initiatives, and their versions.
 
 ## Official Links
 
-- [Azure Policy versioning](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/definition-structure-basics#version-preview)
-- [Public Preview Announcement: Azure Policy Built-in Versioning](https://techcommunity.microsoft.com/blog/azuregovernanceandmanagementblog/public-preview-announcement-azure-policy-built-in-versioning/4186105)
+- [Official Learn Docs: Azure Policy versioning](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/definition-structure-basics#version-preview)
+- [Blog: Public Preview Announcement: Azure Policy Built-in Versioning](https://techcommunity.microsoft.com/blog/azuregovernanceandmanagementblog/public-preview-announcement-azure-policy-built-in-versioning/4186105)
