@@ -34,7 +34,7 @@ The new versioning scheme for Azure Policy is based on semantic versioning, whic
 
 The most important thing to note is that the major version number is incremented when there are breaking changes. This means that if you are using a policy definition with a specific major version, you should be aware that upgrading to a new major version may require changes to your implementation. 
 
-Built-in policies and initiatives are now versioned using the new scheme. The version number is included in the policy definition's metadata, making it easy to identify the version being used and is tyipcally formatted as `X.Y.Z` where `X` is the major version, `Y` is the minor version, and `Z` is the patch version, e.g. 1.*.*. The `*` are used for minor and patch version as wildcards, as changes to these versions are backward compatible and will used automatically.
+Built-in policies and initiatives are now versioned using the new scheme. The version number is included in the policy definition's metadata, making it easy to identify the version being used and is tyipcally formatted as `X.Y.Z` where `X` is the major version, `Y` is the minor version, and `Z` is the patch version, e.g. 1.*.*. The `*` are used for minor and patch version as wildcards, as changes to these versions are backward compatible and will be used automatically.
 
 {{< figure src="../img/policyWithVersion.png" title="Policy with version example">}}
 
@@ -46,11 +46,13 @@ The `version` attribute under `metadata` is not used for Azure Policy versioning
 
 ## Policy Versioning in ALZ
 
-While the benefits are clear on why Azure Policy versioning was introduced, this also means that ALZ had to adapt to this new versioning scheme. The ALZ team has implemeted the new versioning scheme for built-in policies and initiatives used by ALZ by pinning to the current major version of the policy or initiative definition in our custom initiatives and any assignments of built-in policies/initiatives. This means that ALZ will always use the latest minor and patch version of the policy or initiative definition for the currently pinned major version (e.g. 1.*.*), ensuring that you are always using the latest and greatest version of the validated pinned major version of the policy or initiative. This effort was published as part of the Q2 FY25 Policy Refresh, where all custom initiatives and assignments rerencing built-in policies/initiatives were updated to pin to the current major version of the policy or initiative definition.
+Azure Policy versioning was introduced for clear benefits, but it also required ALZ to adapt to the new scheme. To align with this change, the ALZ team implemented versioning for built-in policies and initiatives by pinning them to their current major version within custom initiatives and assignments. This approach ensures that ALZ always uses the latest minor and patch versions of a policy or initiative while maintaining a consistent major version (e.g., 1..). As a result, users benefit from the most up-to-date and validated version of the pinned major release.
 
-Pinning to the current (at time of publishing the policy refresh) major version of the policy or initiative definition means that ALZ will not automatically upgrade to a new major version of the policy or initiative definition when published. This is to ensure that the ALZ team have time to review the breaking change in the new major version of the policy or initiative definition before upgrading.
+This update was published as part of the Q2 FY25 Policy Refresh, during which all custom initiatives and assignments referencing built-in policies and initiatives were updated to align with the latest major version at the time.
 
-The ALZ team will monitor for new major versions of built-in policies and initiatives used by ALZ and will publish updates as part of the regular policy refresh cadence when a new major version is released, once changes have been accomodated and tested.
+Pinning to the current major version of the policy or initiative definition means that ALZ will not automatically upgrade to a new major version of the policy or initiative definition when published. This is to ensure that the ALZ team have time to review the breaking change in the new major version of the policy or initiative definition before upgrading.
+
+Going forward, the ALZ team will monitor for new major versions of built-in policies and initiatives used by ALZ and will publish updates as part of the regular policy refresh cadence when a new major version is released, once changes have been accomodated and tested.
 
 ## Updating
 
