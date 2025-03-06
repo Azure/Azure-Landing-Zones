@@ -4,29 +4,29 @@ weight: 10
 ---
 
 {{< hint type=important >}}
-Even though still in public preview, it is highly recommended to implement Azure Policy versioning and update policies/initiatives and assignments by pinning to major versions as soon as possible to avoid unintended consequences due to breaking changes being released.
+Even though still in public preview, it is highly recommended to implement Azure Policy versioning and update policies/initiatives and assignments by pinning to known and tested major versions as soon as possible to avoid unintended consequences due to breaking changes being released in an uncontrolled manner.
 {{< /hint >}}
 
-In mid-2024 the Azure Policy product group released a new versioning scheme for Azure Policy definitions. This new versioning scheme is designed to provide a more consistent and predictable way to manage policy definitions and initiatives, making it easier for organizations to adopt and implement Azure Policy.
+In mid-2024 the Azure Policy product group released a new versioning JSON schema for Azure Policy definitions. This new versioning schema is designed to provide a more consistent and predictable way to manage policy definitions and initiatives, making it easier for organizations to adopt and implement Azure Policy.
 
 In the context of Azure Policy, versioning refers to the practice of managing and maintaining different versions of policy definitions and initiatives. This is important for several reasons:
 
 - **Backward Compatibility**: As Azure Policy evolves, new features and capabilities are introduced. Versioning ensures that existing policies continue to work as expected, even as new versions are released.
 - **Change Management**: Versioning allows organizations to track changes made to policies over time. This is crucial for auditing and compliance purposes.
-- **Testing and Validation**: When a new version of a policy is released, organizations can test it in a controlled environment before deploying it to production. This helps identify any potential issues or conflicts with existing policies.
+- **Testing and Validation**: When a new version of a policy is released, organizations can test them in a controlled environment before deploying it to production. This helps identify any potential issues or conflicts with existing policies.
 - **Documentation**: Versioning provides a clear history of changes made to policies, making it easier for teams to understand the evolution of their policy landscape.
 - **Rollback Capability**: If a new version of a policy causes issues, versioning allows organizations to revert to a previous version quickly.
 - **Feature Deprecation**: As Azure Policy matures, certain features may be deprecated or replaced with better alternatives. Versioning allows organizations to manage the transition to new features while maintaining support for older versions.
-- **Community Contributions**: In open-source or community-driven environments, versioning allows contributors to submit changes and improvements without disrupting existing policies.
 - **Integration with CI/CD**: Versioning policies can be integrated into continuous integration and continuous deployment (CI/CD) pipelines, allowing for automated testing and deployment of policy changes.
 
 {{< hint type=note >}}
 As of March 2025, Azure Policy version only supports built-in policies and initiatives. Custom policies and initiatives are not supported.
-{{< /hint >}}
+As of March 2025, Azure Policy version only supports built-in policies and initiatives. Custom policies and initiatives are not supported but are planned.
 
 ## How it works
 
 The new versioning scheme for Azure Policy is based on semantic versioning, which consists of three components: major, minor, and patch versions. Each component serves a specific purpose:
+The new versioning scheme for Azure Policy is based on [semantic versioning](https://semver.org/), which consists of three components: major, minor, and patch versions. Each component serves a specific purpose:
 
 - **Major Version**: Indicates significant changes or breaking changes to the policy definition. A change in the major version number signifies that the new version may not be backward compatible with previous versions.
 - **Minor Version**: Indicates the addition of new features or enhancements that are backward compatible. A change in the minor version number signifies that the new version includes improvements but does not introduce breaking changes.
@@ -55,7 +55,7 @@ By pinning to the current major version, ALZ does not automatically upgrade to n
 Moving forward, the ALZ team will monitor new major versions of built-in policies and initiatives used by ALZ. Updates will be incorporated as part of the regular policy refresh cycle once the necessary changes have been reviewed, tested, and validated.
 
 {{< hint type=note >}}
-Due to upstream dependencies on product SDKs, Azure Policy versioning is not yet supported in the Terraform and Bicep accelerators.
+Due to upstream dependencies on product SDKs, Azure Policy versioning is not yet supported in Terraform Azure Verified Modules for Platform Landing Zone (ALZ) and Bicep accelerator.
 {{< /hint >}}
 
 ## Updating
