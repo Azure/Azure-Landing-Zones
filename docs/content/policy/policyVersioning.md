@@ -20,8 +20,8 @@ In the context of Azure Policy, versioning refers to the practice of managing an
 - **Integration with CI/CD**: Versioning policies can be integrated into continuous integration and continuous deployment (CI/CD) pipelines, allowing for automated testing and deployment of policy changes.
 
 {{< hint type=note >}}
-As of March 2025, Azure Policy version only supports built-in policies and initiatives. Custom policies and initiatives are not supported.
 As of March 2025, Azure Policy version only supports built-in policies and initiatives. Custom policies and initiatives are not supported but are planned.
+{{< /hint >}}
 
 ## How it works
 
@@ -64,7 +64,7 @@ Depending on the accelerator you've used to deploy your Azure Landing Zones, you
 
 - **Portal**: If you have deployed your Azure Landing Zones using the portal, you will need to update your policies/initiatives and assignments manually. This is because the portal does not support automatic updates for policies/initiatives and assignments.
 - **Bicep**: If you have deployed your Azure Landing Zones using Bicep, you will need to update your policies/initiatives and assignments manually. This is because Bicep does not support automatic updates for policies/initiatives and assignments.
-- **Terraform**: If you have deployed your Azure Landing Zones using Terraform, you will need to update to the latest version of the accelerator and apply the changes using your normal Terraform workflow.
+- **Terraform**: If you have deployed your Azure Landing Zones using Terraform, you will need to update to the latest version of the policy library and apply the changes using your normal Terraform workflow - [more info](https://azure.github.io/Azure-Landing-Zones/terraform/howtos/update/).
 
 For guidance on updating existing policies/initiatives and assignments, please refer to the following links:
 
