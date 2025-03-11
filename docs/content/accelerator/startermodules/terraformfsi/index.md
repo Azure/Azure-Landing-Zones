@@ -257,21 +257,23 @@ There is no validation done to ensure subnets fall within the hub network CIDR o
 ### Unable to update the bastion subnet
 
 Workaround:
-Set deploy_bastion= false in inputs file
-Run deployAccelerator command
-Run .\scripts\deploy-local.ps1
-Set deploy_bastion= true in inputs file, update AzureBastionSubnet address_prefix
-Run deployAccelerator command
-Run .\scripts\deploy-local.ps1
+
+1. Set deploy_bastion= false in inputs file
+2. Run deployAccelerator command
+3. Run .\scripts\deploy-local.ps1
+4. Set deploy_bastion= true in inputs file, update AzureBastionSubnet address_prefix
+5. Run deployAccelerator command
+6. Run .\scripts\deploy-local.ps1
 
 ### Unable to update the firewall subnet
 
 Work around:
-Set deploy_bastion= false and enable_firewall = false in inputs file
-Run deployAccelerator command
-Run .\scripts\deploy-local.ps1
-Set deploy_bastion= true and enable_firewall = true in inputs file, update AzureFirewallSubnet address_prefix
-Run deployAccelerator command
+
+1. Set deploy_bastion= false and enable_firewall = false in inputs file
+2. Run deployAccelerator command
+3. Run .\scripts\deploy-local.ps1
+4. Set deploy_bastion= true and enable_firewall = true in inputs file, update AzureFirewallSubnet address_prefix
+5. Run deployAccelerator command
 
 ### Tags are Not Applied to All Resources
 
@@ -396,7 +398,3 @@ The `networksecuritygroup` module is used to deploy a default NSG for the Azure 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
-
-[example_powershell_inputs_azure_devops_terraform_financial_services_industry_landing_zone]: examples/powershell-inputs/inputs-azure-devops-terraform-financial-services-landing-zone.yaml "Example - PowerShell Inputs - Devops - Terraform - Financial Services Industry Landing Zone"
-[example_powershell_inputs_github_terraform_financial_services_industry_landing_zone]:               examples/powershell-inputs/inputs-github-terraform-financial-services-landing-zone.yaml "Example - PowerShell Inputs - Local - Terraform - Financial Services Industry Landing Zone"
-[example_powershell_inputs_local_terraform_financial_services_industry_landing_zone]:               examples/powershell-inputs/inputs-local-terraform-financial-services-landing-zone.yaml "Example - PowerShell Inputs - Local - Terraform - Financial Services Industry Landing Zone"
