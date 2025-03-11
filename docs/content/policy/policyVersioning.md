@@ -52,6 +52,8 @@ This update was published as part of the **Q2 FY25 Policy Refresh (January 2025)
 
 By pinning to the current major version, ALZ does not automatically upgrade to newly released major versions. This approach allows the ALZ team time to review and assess any breaking changes before initiating an upgrade.
 
+We do not recommend implementing updated major policy versions outside of the ALZ Policy Version Baseline. Updating to a major policy version outside of the scheduled policy refresh releases may require code or configuration changes due to breaking changes. Additionally, you would need to take extra steps to apply future policy refresh updates to stay aligned with ALZ.
+
 Moving forward, the ALZ team will monitor new major versions of built-in policies and initiatives used by ALZ. Updates will be incorporated as part of the regular policy refresh cycle once the necessary changes have been reviewed, tested, and validated.
 
 {{< hint type=note >}}
