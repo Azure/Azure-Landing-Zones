@@ -1,5 +1,5 @@
 ---
-title: ALZ and Policy Versioning
+title: Policy Versioning
 weight: 10
 ---
 
