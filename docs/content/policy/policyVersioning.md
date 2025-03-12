@@ -25,7 +25,6 @@ As of March 2025, Azure Policy version only supports built-in policies and initi
 
 ## How it works
 
-The new versioning scheme for Azure Policy is based on semantic versioning, which consists of three components: major, minor, and patch versions. Each component serves a specific purpose:
 The new versioning scheme for Azure Policy is based on [semantic versioning](https://semver.org/), which consists of three components: major, minor, and patch versions. Each component serves a specific purpose:
 
 - **Major Version**: Indicates significant changes or breaking changes to the policy definition. A change in the major version number signifies that the new version may not be backward compatible with previous versions.
@@ -36,7 +35,7 @@ The most important thing to note is that the major version number is incremented
 
 All Azure built-in policies and initiatives are now versioned using the new scheme. The version number is included in the policy definition's metadata, making it easy to identify the version being used and is typically formatted as `X.Y.Z` where `X` is the major version, `Y` is the minor version, and `Z` is the patch version, e.g. `1.*.*`. The `*` are used for minor and patch version as wildcards in initiatives and assignments, as changes to these versions are backward compatible and will be used automatically.
 
-{{< figure src="../img/policyWithVersion.png" title="Policy with version example">}}
+{{< figure src="../img/policyWithVersion.png">}}
 
 The above example highlights the new property `version` in the policy definition. The version number is included in the policy definition's metadata, making it easy to identify the version being used.
 
