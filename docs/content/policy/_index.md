@@ -12,4 +12,4 @@ This section is a work in progress as we slowly move content from the [wiki](htt
 
 ## Table of Contents
 
-- [Policy versioning]({{< relref "policyVersioning" >}})
+- [Policy Versioning]({{< relref "policyVersioning" >}})
