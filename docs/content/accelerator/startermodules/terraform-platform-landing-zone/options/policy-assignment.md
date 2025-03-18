@@ -18,7 +18,7 @@ You can run the following script to setup the `lib` folder structure:
 $filePath = "c:\accelerator\config\lib\architecture_definitions\alz.alz_architecture_definition.json"
 $skipArchitecture = $false
 if(Test-Path $filePath) {
-  $response = Read-Host "The file $filePath already exists, are you sure you want to overwrite it and loose your changes? Type 'yes' to overwrite it..."
+  $response = Read-Host "The file $filePath already exists, are you sure you want to overwrite it and lose your changes? Type 'yes' to overwrite it..."
   if($response -ne "yes") {
     $skipArchitecture = $true
   }
