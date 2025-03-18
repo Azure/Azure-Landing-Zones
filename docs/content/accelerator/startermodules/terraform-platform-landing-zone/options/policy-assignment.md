@@ -10,11 +10,25 @@ It may be simpler to change the enforcement mode of policy assignments rather th
 
 You may want to remove some policy assignments altogether. In order to do this they need to supply a `lib` folder to the accelerator.
 
-The `lib` folder should contain the following structure (we are showing it nested under the standard accelerator file structure here):
+You can run the following script to setup the `lib` folder structure:
 
 {{< tabs "1" >}}
 {{< tab "Windows" >}}
 ```pwsh
+$filePath = "c:\accelerator\config\lib\architecture_definitions\alz.alz_architecture_definition.json"
+$skipArchitecture = $false
+if(Test-Path $filePath) {
+  $response = Read-Host "The file $filePath already exists, are you sure you want to overwrite it and loose your changes? Type 'yes' to overwrite it..."
+  if($response -ne "yes") {
+    $skipArchitecture = $true
+  }
+}
+
+if(!($skipArchitecture)) {
+  New-Item -ItemType "file" $filePath -Force
+  (Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
+}
+
 $archetypes = $("connectivity", "corp", "decommissioned", "identity", "management", "landing_zones", "platform", "root", "sandbox")
 foreach($archetype in $archetypes){
     $filePath = "c:\accelerator\config\lib\archetype_definitions\$($archetype).alz_archetype_override.json"
@@ -31,6 +45,20 @@ foreach($archetype in $archetypes){
 {{< /tab >}}
 {{< tab "Linux / macOS" >}}
 ```pwsh
+$filePath = "/accelerator/config/lib/architecture_definitions/alz.alz_architecture_definition.json"
+$skipArchitecture = $false
+if(Test-Path $filePath) {
+  $response = Read-Host "The file $filePath already exists, are you sure you want to overwrite it and loose your changes? Type 'yes' to overwrite it..."
+  if($response -ne "yes") {
+    $skipArchitecture = $true
+  }
+}
+
+if(!($skipArchitecture)) {
+  New-Item -ItemType "file" $filePath -Force
+  (Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
+}
+
 $archetypes = $("connectivity", "corp", "decommissioned", "identity", "management", "landing_zones", "platform", "root", "sandbox")
 foreach($archetype in $archetypes){
     $filePath = "/accelerator/config/lib/archetype_definitions/$($archetype).alz_archetype_override.json"
@@ -47,10 +75,14 @@ foreach($archetype in $archetypes){
 {{< /tab >}}
 {{< /tabs >}}
 
+The `lib` folder should contain the following structure (we are showing it nested under the standard accelerator file structure here):
+
 ```plaintext
 📂accelerator
 ┣ 📂config
 ┃ ┣ 📂lib
+┃ ┃ ┣ 📂architecture_definitions
+┃ ┃ ┃ ┗ 📜alz.alz_architecture_definition.json
 ┃ ┃ ┗ 📂archetype_definitions
 ┃ ┃   ┃ 📜connectivity.alz_archetype_override.json
 ┃ ┃   ┃ 📜corp.alz_archetype_override.json
@@ -86,6 +118,23 @@ For example to remove just the `Deploy-ASC-Monitoring` policy assignment from th
     "Deploy-ASC-Monitoring"
   ]
 }
+```
+
+Now for each override file you need to update the `alz.alz_architecture_definition.json` to use the override archetype.
+
+For example to use the override for root, you need to update the `archetypes` array and replace with the override archetype name from `root` to `root_override`:
+
+```json
+{
+  "archetypes": [
+    "root_override"
+  ],
+  "display_name": "Azure Landing Zones",
+  "exists": false,
+  "id": "alz",
+  "parent_id": null
+},
+
 ```
 
 Now, when deploying the accelerator you need to supply the lib folder as an argument with `-starterAdditionalFiles`.
