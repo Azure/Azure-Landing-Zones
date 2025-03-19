@@ -1,0 +1,3 @@
+[submodule "docs/static/alzarchedit"]
+	path = docs/static/alzarchedit
+	url = https://github.com/Azure/alzarchitectureeditor.git
