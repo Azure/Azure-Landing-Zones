@@ -13,6 +13,10 @@ Now that you have created your bootstrapped environment you can deploy you Azure
 If you encounter permission errors while running the pipelines, please note that it may take some time for permissions to fully propagate. Although the pipelines include retry logic to manage this, it can sometimes take up to 30 minutes for the permissions to take effect.
 {{< /hint >}}
 
+{{< hint type=note >}}
+If you have questions regarding boostrap clean up, in the case you were testing or made a mistake, see the [FAQs - Questions about boostrap clean up]({{< relref "../faq/#questions-about-bootstrap-clean-up">}})
+{{< /hint >}}
+
 ### Azure DevOps
 
 1. Navigate to [dev.azure.com](https://dev.azure.com) and sign in to your organization.
