@@ -61,13 +61,13 @@ resource_names:
   container_image_name: "azure-devops-agent"
 ```
 
-## Questions about bootstrap clean up
+## Questions about clean up
 
-### I was just testing or I made a mistake, how do I remove the bootstrap environment and start again?
+### How do I remove the bootstrap environment and start again?
 
-After the Terraform apply has been completed there is an opportunity to remove the environment it just created. Follow these steps to run a `terraform destroy`.
+After the Terraform apply has been completed there is an opportunity to remove the environment it just created. Follow these steps to teardown the boostrap environment.
 
-1. If you already ran the CD pipeline / action in phase 3 to deploy the ALZ, then you will need to run the pipeline / action again, but this time select the `destroy` option. This will delete the landing zone resources. If you don't do this, those resource will be left orphaned and you will have to clean them up manually.
+1. If you already ran the CD pipeline / action in phase 3 to deploy the ALZ, then review the [How do I remove the landing zones]({{< relref "#how-do-i-remove-the-landing-zones-and-start-again">}}) guidance.
 1. Wait for the destroy run to complete before moving to the next step, you will need to approve it if you configured approvals.
 1. Now run `Deploy-Accelerator` with the `-destroy` flag, for example:
 
@@ -93,6 +93,24 @@ Deploy-Accelerator `
 1. You can confirm the destroy by hitting enter when prompted.
 1. To fully clean up, you should now delete the folder that was created for the accelerator.
 1. You'll now be able to run the `Deploy-Accelerator` command again to start fresh.
+
+### How do I remove the landing zones and start again?
+
+{{< hint type=note >}}
+The following guidance is for Terraform, if you're using Bicep and wish to destroy your landing zone, please refer to the [destroy-landing-zone.ps1](https://github.com/Azure/ALZ-Bicep/blob/main/accelerator/scripts/destroy-landing-zone.ps1) script.
+{{< /hint >}}
+
+#### Azure DevOps or GitHub
+
+1. Run the CD pipeline / action in phase 3, but this time select the `destroy` option. This will delete the landing zone resources; you will need to approve it if you configured approvals.
+
+#### Local
+
+1. Navigate to the directory shown in the `module_output_directory_path` output from the bootstrap.
+1. Run `./scripts/deploy-local.ps1 -destroy`.
+1. A plan will run and then you’ll be prompted to check it and run the deploy.
+1. Type yes and hit enter to run the deploy.
+1. The ALZ will now be destroyed, this may take some time.
 
 ## Questions about changing variables
 
