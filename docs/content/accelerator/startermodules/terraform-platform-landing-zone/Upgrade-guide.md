@@ -1,0 +1,105 @@
+## Staying up to date
+
+Deploying the latest version of the module is the recommended approach for staying up to date with the latest architectural changes to Azure landing zones. Looking at it from a governance perspective, this also ensures you have the latest recommended policies applied to your environment for improved compliance.
+
+This upgrade guidence covers four avm modules that are used to deploy the Azure platform landing zone. The modules are:
+- [hub_and_spoke_vnet](hub_and_spoke_vnet)
+- [virtual_wan](virtual_wan)
+- [management_groups](management_groups)
+- [management_resources](management_resources)
+
+
+With each release of the module, it's possible that your environment will change. We will do our best to ensure any changes are clearly documented in the release notes, or upgrade guides when publishing a new major version. To avoid unexpected or unwanted changes we recommend that you configure your version constraints to pin to a specific module version.
+
+Upgrade process consists of the following steps:
+1. [Review the release notes](#r1-eview-the-release-notes)
+2. [Update the module version](#2-update-the-module-version)
+3. [Run terraform plan to see what changes will be made to your environment](#3-run-terraform-plan)
+
+
+ ## 1. Review the release notes
+The release notes will provide you with information on what has changed in the module, including any breaking changes, new features, and bug fixes. This will help you understand what to expect when upgrading to the latest version.
+
+## 2. Update the module version
+To ensure you are using the latest version of the module, you will need to update the version constraint in your Terraform configuration file. This will allow you to pin to a specific version of the module, or allow for automatic upgrades to the latest patch release.
+
+
+### hub_and_spoke_vnet Module
+To pin to a specific version of the module, you can use the following syntax:
+
+```terraform
+module "hub_and_spoke_vnet" {
+  source  = "Azure/avm-ptn-alz-connectivity-hub-and-spoke-vnet/azurerm"
+  version = "<version>" 
+
+}
+```
+
+To allow automatic upgrades to the latest patch release, use the following version constraint syntax:
+
+```terraform
+module "hub_and_spoke_vnet" {
+  source  = "Azure/avm-ptn-alz-connectivity-hub-and-spoke-vnet/azurerm"
+  version = "~> 0.1.2"
+
+}
+```
+
+
+### Virtual_Wan Module
+To pin to a specific version of the module, you can use the following syntax:
+
+
+```terraform
+module "virtual_wan" {
+  source  = "Azure/avm-ptn-alz-connectivity-virtual-wan/azurerm"
+  version = "<version>" 
+}
+```
+
+To allow automatic upgrades to the latest patch release, use the following version constraint syntax:
+
+```terraform
+module "virtual_wan" {
+  source  = "Azure/avm-ptn-alz-connectivity-virtual-wan/azurerm"
+  version = "~> 0.1.2"
+}
+```
+
+###  Management Group Module
+    
+```terraform
+module "management_groups" {
+    source     = "Azure/avm-ptn-alz/azurerm"
+    version = "<version>"
+}
+```
+
+To allow automatic upgrades to the latest patch release, use the following version constraint syntax:
+
+```terraform
+module "management_groups" {
+ source     = "Azure/avm-ptn-alz/azurerm"
+ version     = "~>0.16.0"
+}
+```
+
+## 3. Run terraform plan & Apply
+
+### Local file system
+Follow the steps below to deploy the landing zone locally. If you want to hook it up to you custom version control system, follow their documentation on how to that.
+
+The Terraform option outputs a `deploy-local.ps1` file that you can use to deploy the ALZ.
+
+{{< hint type=note >}}
+If you set the `grant_permissions_to_current_user` input to `false` in the bootstrap, you will need to set permissions on your management group, subscriptions and storage account before the commands will succeed.
+{{< /hint >}}
+1. Open a new PowerShell Core (pwsh) terminal or use the one you already have open.
+1. Navigate to the directory shown in the `module_output_directory_path` output from the bootstrap.
+1. (Optional) Ensure you are still logged in to Azure using `az login --tenant 00000000-0000-0000-0000-000000000000`.
+1. (Optional) Connect to your target subscription using `az account set --subscription 00000000-0000-0000-0000-000000000000`.
+1. (Optional) Examine the `./scripts/deploy-local.ps1` to understand what it is doing.
+1. Run `./scripts/deploy-local.ps1`.
+1. A plan will run and then you'll be prompted to check it and run the deploy.
+1. Type `yes` and hit enter to run the deploy.
+1. The ALZ will now be deployed, this may take some time.
