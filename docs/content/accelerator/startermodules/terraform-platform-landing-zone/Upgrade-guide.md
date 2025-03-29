@@ -12,7 +12,7 @@ This upgrade guidence covers four avm modules that are used to deploy the Azure 
 With each release of the module, it's possible that your environment will change. We will do our best to ensure any changes are clearly documented in the release notes, or upgrade guides when publishing a new major version. To avoid unexpected or unwanted changes we recommend that you configure your version constraints to pin to a specific module version.
 
 Upgrade process consists of the following steps:
-1. [Review the release notes](#r1-eview-the-release-notes)
+1. [Review the release notes](#review-the-release-notes)
 2. [Update the module version](#2-update-the-module-version)
 3. [Run terraform plan to see what changes will be made to your environment](#3-run-terraform-plan)
 
@@ -31,7 +31,6 @@ To pin to a specific version of the module, you can use the following syntax:
 module "hub_and_spoke_vnet" {
   source  = "Azure/avm-ptn-alz-connectivity-hub-and-spoke-vnet/azurerm"
   version = "<version>" 
-
 }
 ```
 
@@ -41,7 +40,6 @@ To allow automatic upgrades to the latest patch release, use the following versi
 module "hub_and_spoke_vnet" {
   source  = "Azure/avm-ptn-alz-connectivity-hub-and-spoke-vnet/azurerm"
   version = "~> 0.1.2"
-
 }
 ```
 
@@ -80,21 +78,16 @@ To allow automatic upgrades to the latest patch release, use the following versi
 ```terraform
 module "management_groups" {
  source     = "Azure/avm-ptn-alz/azurerm"
- version     = "~>0.16.0"
-}
-```
+version     = "~> 0.16.0"}
+ 
 
 ## 3. Run terraform plan & Apply
 
 ### Local file system
-Follow the steps below to deploy the landing zone locally. If you want to hook it up to you custom version control system, follow their documentation on how to that.
+Follow the steps below to deploy the landing zone locally. If you want to hook it up to your custom version control system, follow their documentation on how to do that.  
 
 The Terraform option outputs a `deploy-local.ps1` file that you can use to deploy the ALZ.
-
-{{< hint type=note >}}
-If you set the `grant_permissions_to_current_user` input to `false` in the bootstrap, you will need to set permissions on your management group, subscriptions and storage account before the commands will succeed.
-{{< /hint >}}
-1. Open a new PowerShell Core (pwsh) terminal or use the one you already have open.
+Follow the steps below to deploy the landing zone locally. If you want to hook it up to your custom version control system, follow their documentation on how to do that.
 1. Navigate to the directory shown in the `module_output_directory_path` output from the bootstrap.
 1. (Optional) Ensure you are still logged in to Azure using `az login --tenant 00000000-0000-0000-0000-000000000000`.
 1. (Optional) Connect to your target subscription using `az account set --subscription 00000000-0000-0000-0000-000000000000`.
