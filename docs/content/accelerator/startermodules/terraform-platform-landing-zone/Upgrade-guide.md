@@ -2,7 +2,7 @@
 
 Deploying the latest version of the module is the recommended approach for staying up to date with the latest architectural changes to Azure landing zones. Looking at it from a governance perspective, this also ensures you have the latest recommended policies applied to your environment for improved compliance.
 
-This upgrade guidence covers four avm modules that are used to deploy the Azure platform landing zone. The modules are:
+This upgrade guide covers four avm modules that are used to deploy the Azure platform landing zone. The modules are:
 - [hub_and_spoke_vnet](hub_and_spoke_vnet)
 - [virtual_wan](virtual_wan)
 - [management_groups](management_groups)
