@@ -72,16 +72,16 @@ module "management_groups" {
     version = "<version>"
 }
 ```
-
 To allow automatic upgrades to the latest patch release, use the following version constraint syntax:
 
 ```terraform
 module "management_groups" {
  source     = "Azure/avm-ptn-alz/azurerm"
-version     = "~> 0.16.0"}
- 
+ version     = "~> 0.16.0"
+}
+ ```
 
-## 3. Run terraform plan & Apply
+## 3.Run Terraform Plan and Apply
 
 ### Local file system
 Follow the steps below to deploy the landing zone locally. If you want to hook it up to your custom version control system, follow their documentation on how to do that.  
@@ -96,3 +96,25 @@ Follow the steps below to deploy the landing zone locally. If you want to hook i
 1. A plan will run and then you'll be prompted to check it and run the deploy.
 1. Type `yes` and hit enter to run the deploy.
 1. The ALZ will now be deployed, this may take some time.
+
+### Azure DevOps
+1. In your Azure DevOps repository, create a new branch to test the upgrade. This ensures your changes are isolated and can be tested without affecting the main branch.
+
+2. Modify the `version` field in Terraform module configuration to the desired version. Use version constraints to pin to a specific version or allow automatic upgrades to the latest patch release.
+
+3. Commit your changes to the new branch and update the pipeline to use the new branch.
+4. Run the pipeline to deploy the changes. The pipeline will automatically run `terraform plan` and `terraform apply` with the approval to deploy the changes to your environment.
+
+5. Review the changes in feature branch and ensure everything is working as expected. then merge the changes into the main branch.
+6. Run the pipeline again to see the plan and deploy the changes to the Azure environment.
+
+### Github
+1. In your Github repository, create a new branch to test the upgrade. This ensures your changes are isolated and can be tested without affecting the main branch.
+
+2. Modify the `version` field in Terraform module configuration to the desired version. Use version constraints to pin to a specific version or allow automatic upgrades to the latest patch release.
+
+3. Commit your changes to the new branch and update the pipeline to use the new branch.
+4. Run the pipeline to deploy the changes. The pipeline will automatically run `terraform plan` and `terraform apply` with the approval to deploy the changes to your environment.
+5. Review the changes in feature branch and ensure everything is working as expected. then merge the changes into the main branch.
+6. Run the pipeline again to see the plan and deploy the changes to the Azure environment.
+
