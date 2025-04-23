@@ -12,27 +12,14 @@ Follow these instructions to bootstrap GitHub ready to deploy your platform land
 If you are using the FSI or SLZ starter modules, you do not currently require the `tfvars` file, so you can exclude it.
     {{< /hint >}}
 
-    {{< tabs "1" >}}
-    {{< tab "Windows" >}}
+    ```pwsh
+    New-Item -ItemType "file" "~/accelerator/config/inputs.yaml" -Force
+    New-Item -ItemType "directory" "~/accelerator/output"
+    New-Item -ItemType "file" "~/accelerator/config/platform-landing-zone.tfvars" -Force  # Exclude this line if using FSI or SLZ starter modules
 
-```pwsh
-New-Item -ItemType "file" c:\accelerator\config\inputs.yaml -Force
-New-Item -ItemType "file" c:\accelerator\config\platform-landing-zone.tfvars -Force  # Exclude this line if using FSI or SLZ starter modules
-New-Item -ItemType "directory" c:\accelerator\output
-```
+    ```
 
-    {{< /tab >}}
-    {{< tab "Linux / macOS" >}}
-
-```pwsh
-Set-Location "$HOME"
-New-Item -ItemType "file" ./accelerator/config/inputs.yaml -Force
-New-Item -ItemType "file" ./accelerator/config/platform-landing-zone.tfvars -Force  # Exclude this line if using FSI or SLZ starter modules
-New-Item -ItemType "directory" ./accelerator/output
-```
-
-    {{< /tab >}}
-    {{< /tabs >}}
+1. Your folder structure should look like this:
 
     ```plaintext
     📂accelerator
@@ -103,76 +90,33 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
 Inputs can be split into multiple files if desired.
     {{< /hint >}}
 
-    - Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module without a `lib` folder:
+    * Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module without a `lib` folder:
 
-        {{< tabs "2" >}}
-        {{< tab "Windows" >}}
+        ```pwsh
+        Deploy-Accelerator `
+        -inputs "~/accelerator/config/inputs.yaml", "~/accelerator/config/platform-landing-zone.tfvars" `
+        -output "~/accelerator/output"
 
-```pwsh
-Deploy-Accelerator `
-  -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\platform-landing-zone.tfvars" `
-  -output "c:\accelerator\output"
-```
-
-        {{< /tab >}}
-        {{< tab "Linux / macOS" >}}
-
-```pwsh
-Deploy-Accelerator `
-  -inputs "./accelerator/config/inputs.yaml", "./accelerator/config/platform-landing-zone.tfvars" `
-  -output "./accelerator/output"
-```
-
-        {{< /tab >}}
-        {{< /tabs >}}
+        ```
 
     * Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module with a `lib` folder:
 
-        {{< tabs "3" >}}
-        {{< tab "Windows" >}}
+        ```pwsh
+        Deploy-Accelerator `
+        -inputs "~/accelerator/config/inputs.yaml", "~/accelerator/config/platform-landing-zone.tfvars" `
+        -starterAdditionalFiles "~/accelerator/config/lib" `
+        -output "~/accelerator/output"
 
-```pwsh
-Deploy-Accelerator `
-  -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\platform-landing-zone.tfvars" `
-  -starterAdditionalFiles "c:\accelerator\config\lib" `
-  -output "c:\accelerator\output"
-```
-
-        {{< /tab >}}
-        {{< tab "Linux / macOS" >}}
-
-```pwsh
-Deploy-Accelerator `
-  -inputs "./accelerator/config/inputs.yaml", "./accelerator/config/platform-landing-zone.tfvars" `
-  -starterAdditionalFiles "./accelerator/config/lib" `
-  -output "./accelerator/output"
-```
-
-        {{< /tab >}}
-        {{< /tabs >}}
+        ```
 
     * Run `Deploy-Accelerator` for the Sovereign Landing Zone or Financial Services Industry Landing Zone starter module:
 
-        {{< tabs "4" >}}
-        {{< tab "Windows" >}}
+        ```pwsh
+        Deploy-Accelerator `
+        -inputs "~/accelerator/config/inputs.yaml" `
+        -output "~/accelerator/output"
 
-```pwsh
-Deploy-Accelerator `
-  -inputs "c:\accelerator\config\inputs.yaml" `
-  -output "c:\accelerator\output"
-```
-
-        {{< /tab >}}
-        {{< tab "Linux / macOS" >}}
-
-```pwsh
-Deploy-Accelerator `
-  -inputs "./accelerator/config/inputs.yaml" `
-  -output "./accelerator/output"
-```
-
-        {{< /tab >}}
-        {{< /tabs >}}
+        ```
 
 1. You will see a Terraform `init` and `apply` happen.
 1. There will be a pause after the `plan` phase you allow you to validate what is going to be deployed.

@@ -71,24 +71,13 @@ After the Terraform apply has been completed there is an opportunity to remove t
 1. Wait for the destroy run to complete before moving to the next step, you will need to approve it if you configured approvals.
 1. Now run `Deploy-Accelerator` with the `-destroy` flag, for example:
 
-    {{< tabs "1" >}}
-    {{< tab "Windows" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\platform-landing-zone.tfvars" `
-  -output "c:\accelerator\output" `
-  -destroy
-```
-    {{< /tab >}}
-    {{< tab "Linux / macOS" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "/accelerator/config/inputs.yaml", "/accelerator/config/platform-landing-zone.tfvars" `
-  -output "/accelerator/output" `
-  -destroy
-```
-    {{< /tab >}}
-    {{< /tabs >}}
+    ```pwsh
+    Deploy-Accelerator `
+      -inputs "~/accelerator/config/inputs.yaml", "~/accelerator/config/platform-landing-zone.tfvars" `
+      -output "~/accelerator/output" `
+      -destroy
+
+    ```
 
 1. You can confirm the destroy by hitting enter when prompted.
 1. To fully clean up, you should now delete the folder that was created for the accelerator.

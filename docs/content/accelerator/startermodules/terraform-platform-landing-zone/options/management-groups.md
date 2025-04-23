@@ -4,7 +4,7 @@ geekdocCollapseSection: true
 weight: 2
 ---
 
-You may want to customize the management groups names and IDs. 
+You may want to customize the management groups names and IDs.
 
 {{< hint type=warning >}}
 If you update the management group IDs, you also need to update the `platform-landing-zone.tfvars` file to match the management group IDs you changed. If you don't do this, you will get errors or unexpected behavior when you deploy the platform landing zone.
@@ -21,22 +21,12 @@ Follow these steps to customize the management group names and IDs:
 
 1. Run the following script to create the `lib` folder and the `alz.alz_architecture_definition.json` under the standard accelerator file structure:
 
-    {{< tabs "1" >}}
-    {{< tab "Windows" >}}
-```pwsh
-$filePath = "c:\accelerator\config\lib\ architecture_definitions\alz.alz_architecture_definition.json"
-New-Item -ItemType "file" $filePath -Force
-(Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
-```
-    {{< /tab >}}
-    {{< tab "Linux / macOS" >}}
-```pwsh
-$filePath = "/accelerator/config/lib/architecture_definitions/alz.alz_architecture_definition.json"
-New-Item -ItemType "file" $filePath -Force
-(Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
-```
-    {{< /tab >}}
-    {{< /tabs >}}
+    ```pwsh
+    $filePath = "~/accelerator/config/lib/architecture_definitions/alz.alz_architecture_definition.json"
+    New-Item -ItemType "file" $filePath -Force
+    (Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
+
+    ```
 
     {{< hint type=warning >}}
 The `lib` folder must be named `lib`, any other name will not work
@@ -56,7 +46,7 @@ The `lib` folder must be named `lib`, any other name will not work
     ```
 1. The `alz.alz_architecture_definition.json` file content should have been copied from [here](https://github.com/Azure/Azure-Landing-Zones-Library/blob/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json). If the script did not work for you, copy the content from the link and create the file manually.
 
-1. Edit the `alz.alz_architecture_definition.json` file to update the management group names and IDs. 
+1. Edit the `alz.alz_architecture_definition.json` file to update the management group names and IDs.
 
     For example to prefix all the management group display names with `Contoso` and update the management group IDs to have the `contoso-` prefix they can update the file to look like this:
 

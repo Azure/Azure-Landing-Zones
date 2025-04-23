@@ -12,68 +12,35 @@ You may want to remove some policy assignments altogether. In order to do this t
 
 You can run the following script to setup the `lib` folder structure:
 
-{{< tabs "1" >}}
-{{< tab "Windows" >}}
-```pwsh
-$filePath = "c:\accelerator\config\lib\architecture_definitions\alz.alz_architecture_definition.json"
-$skipArchitecture = $false
-if(Test-Path $filePath) {
-  $response = Read-Host "The file $filePath already exists, are you sure you want to overwrite it and lose your changes? Type 'yes' to overwrite it..."
-  if($response -ne "yes") {
-    $skipArchitecture = $true
-  }
-}
-
-if(!($skipArchitecture)) {
-  New-Item -ItemType "file" $filePath -Force
-  (Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
-}
-
-$archetypes = $("connectivity", "corp", "decommissioned", "identity", "management", "landing_zones", "platform", "root", "sandbox")
-foreach($archetype in $archetypes){
-    $filePath = "c:\accelerator\config\lib\archetype_definitions\$($archetype).alz_archetype_override.json"
-    New-Item -ItemType "file" $filePath -Force
-    $policy_assignments = ((Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/archetype_definitions/$($archetype).alz_archetype_definition.json").Content | ConvertFrom-Json).policy_assignments
-    $archetype_override = [ordered]@{
-      name = "$($archetype)_override"
-      base_archetype = $archetype
-      policy_assignments_to_remove = $policy_assignments
+    ```pwsh
+    $filePath = "~/accelerator/config/lib/architecture_definitions/alz.alz_architecture_definition.json"
+    $skipArchitecture = $false
+    if(Test-Path $filePath) {
+      $response = Read-Host "The file $filePath already exists, are you sure you want to overwrite it and lose your changes? Type 'yes' to overwrite it..."
+      if($response -ne "yes") {
+        $skipArchitecture = $true
+      }
     }
-    ConvertTo-Json $archetype_override -Depth 10 | Out-File $filePath -Force
-}
-```
-{{< /tab >}}
-{{< tab "Linux / macOS" >}}
-```pwsh
-$filePath = "/accelerator/config/lib/architecture_definitions/alz.alz_architecture_definition.json"
-$skipArchitecture = $false
-if(Test-Path $filePath) {
-  $response = Read-Host "The file $filePath already exists, are you sure you want to overwrite it and lose your changes? Type 'yes' to overwrite it..."
-  if($response -ne "yes") {
-    $skipArchitecture = $true
-  }
-}
 
-if(!($skipArchitecture)) {
-  New-Item -ItemType "file" $filePath -Force
-  (Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
-}
-
-$archetypes = $("connectivity", "corp", "decommissioned", "identity", "management", "landing_zones", "platform", "root", "sandbox")
-foreach($archetype in $archetypes){
-    $filePath = "/accelerator/config/lib/archetype_definitions/$($archetype).alz_archetype_override.json"
-    New-Item -ItemType "file" $filePath -Force
-    $policy_assignments = ((Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/archetype_definitions/$($archetype).alz_archetype_definition.json").Content | ConvertFrom-Json).policy_assignments
-    $archetype_override = [ordered]@{
-      name = "$($archetype)_override"
-      base_archetype = $archetype
-      policy_assignments_to_remove = $policy_assignments
+    if(!($skipArchitecture)) {
+      New-Item -ItemType "file" $filePath -Force
+      (Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
     }
-    ConvertTo-Json $archetype_override -Depth 10 | Out-File $filePath -Force
-}
-```
-{{< /tab >}}
-{{< /tabs >}}
+
+    $archetypes = $("connectivity", "corp", "decommissioned", "identity", "management", "landing_zones", "platform", "root", "sandbox")
+    foreach($archetype in $archetypes){
+        $filePath = "~/accelerator/config/lib/archetype_definitions/$($archetype).alz_archetype_override.json"
+        New-Item -ItemType "file" $filePath -Force
+        $policy_assignments = ((Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/archetype_definitions/$($archetype).alz_archetype_definition.json").Content | ConvertFrom-Json).policy_assignments
+        $archetype_override = [ordered]@{
+          name = "$($archetype)_override"
+          base_archetype = $archetype
+          policy_assignments_to_remove = $policy_assignments
+        }
+        ConvertTo-Json $archetype_override -Depth 10 | Out-File $filePath -Force
+    }
+
+    ```
 
 The `lib` folder should contain the following structure (we are showing it nested under the standard accelerator file structure here):
 
