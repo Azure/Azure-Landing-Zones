@@ -14,18 +14,23 @@ If you are using the FSI or SLZ starter modules, you do not currently require th
 
     {{< tabs "1" >}}
     {{< tab "Windows" >}}
+
 ```pwsh
 New-Item -ItemType "file" c:\accelerator\config\inputs.yaml -Force
 New-Item -ItemType "file" c:\accelerator\config\platform-landing-zone.tfvars -Force  # Exclude this line if using FSI or SLZ starter modules
 New-Item -ItemType "directory" c:\accelerator\output
 ```
+
     {{< /tab >}}
     {{< tab "Linux / macOS" >}}
+
 ```pwsh
-New-Item -ItemType "file" /accelerator/config/inputs.yaml -Force
-New-Item -ItemType "file" /accelerator/config/platform-landing-zone.tfvars -Force  # Exclude this line if using FSI or SLZ starter modules
-New-Item -ItemType "directory" /accelerator/output
+Set-Location "$HOME"
+New-Item -ItemType "file" ./accelerator/config/inputs.yaml -Force
+New-Item -ItemType "file" ./accelerator/config/platform-landing-zone.tfvars -Force  # Exclude this line if using FSI or SLZ starter modules
+New-Item -ItemType "directory" ./accelerator/output
 ```
+
     {{< /tab >}}
     {{< /tabs >}}
 
@@ -47,7 +52,7 @@ New-Item -ItemType "directory" /accelerator/output
     {{< hint type=tip >}}
 The following inputs can also be supplied via environment variables. This may be useful for sensitive values you don't wish to persist to a file. The `Env Var Prefix` denotes the prefix the environment variable should have. The environment variable is formatting is `<PREFIX>_<variable_name>`, e.g. `$env:ALZ_iac_type = "terraform"` or `$env:TF_VAR_github_personal_access_token = "*****..."`.
     {{< /hint >}}
-    
+
     {{< hint type=tip >}}
 If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">}}) guidance, you should have these values already.
     {{< /hint >}}
@@ -91,23 +96,27 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
     {{< hint type=tip >}}
 Inputs can be split into multiple files if desired.
     {{< /hint >}}
-   
-    * Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module without a `lib` folder:
+
+    - Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module without a `lib` folder:
 
         {{< tabs "2" >}}
         {{< tab "Windows" >}}
+
 ```pwsh
 Deploy-Accelerator `
   -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\platform-landing-zone.tfvars" `
   -output "c:\accelerator\output"
 ```
+
         {{< /tab >}}
         {{< tab "Linux / macOS" >}}
+
 ```pwsh
 Deploy-Accelerator `
-  -inputs "/accelerator/config/inputs.yaml", "/accelerator/config/platform-landing-zone.tfvars" `
-  -output "/accelerator/output"
+  -inputs "./accelerator/config/inputs.yaml", "./accelerator/config/platform-landing-zone.tfvars" `
+  -output "./accelerator/output"
 ```
+
         {{< /tab >}}
         {{< /tabs >}}
 
@@ -115,20 +124,24 @@ Deploy-Accelerator `
 
         {{< tabs "3" >}}
         {{< tab "Windows" >}}
+
 ```pwsh
 Deploy-Accelerator `
   -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\platform-landing-zone.tfvars" `
   -starterAdditionalFiles "c:\accelerator\config\lib" `
   -output "c:\accelerator\output"
 ```
+
         {{< /tab >}}
         {{< tab "Linux / macOS" >}}
+
 ```pwsh
 Deploy-Accelerator `
-  -inputs "/accelerator/config/inputs.yaml", "/accelerator/config/platform-landing-zone.tfvars" `
-  -starterAdditionalFiles "/accelerator/config/lib" `
-  -output "/accelerator/output"
+  -inputs "./accelerator/config/inputs.yaml", "./accelerator/config/platform-landing-zone.tfvars" `
+  -starterAdditionalFiles "./accelerator/config/lib" `
+  -output "./accelerator/output"
 ```
+
         {{< /tab >}}
         {{< /tabs >}}
 
@@ -136,18 +149,22 @@ Deploy-Accelerator `
 
         {{< tabs "4" >}}
         {{< tab "Windows" >}}
+
 ```pwsh
 Deploy-Accelerator `
   -inputs "c:\accelerator\config\inputs.yaml" `
   -output "c:\accelerator\output"
 ```
+
         {{< /tab >}}
         {{< tab "Linux / macOS" >}}
+
 ```pwsh
 Deploy-Accelerator `
-  -inputs "/accelerator/config/inputs.yaml" `
-  -output "/accelerator/output"
+  -inputs "./accelerator/config/inputs.yaml" `
+  -output "./accelerator/output"
 ```
+
         {{< /tab >}}
         {{< /tabs >}}
 
