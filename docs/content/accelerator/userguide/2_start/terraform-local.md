@@ -12,22 +12,14 @@ Follow these instructions to bootstrap a local file system folder ready to deplo
 If you are using the FSI or SLZ starter modules, you do not currently require the `tfvars` file, so you can exclude it.
     {{< /hint >}}
 
-    {{< tabs "1" >}}
-    {{< tab "Windows" >}}
-```pwsh
-New-Item -ItemType "file" c:\accelerator\config\inputs.yaml -Force
-New-Item -ItemType "file" c:\accelerator\config\platform-landing-zone.tfvars -Force  # Exclude this line if using FSI or SLZ starter modules
-New-Item -ItemType "directory" c:\accelerator\output
-```
-    {{< /tab >}}
-    {{< tab "Linux / macOS" >}}
-```pwsh
-New-Item -ItemType "file" /accelerator/config/inputs.yaml -Force
-New-Item -ItemType "file" /accelerator/config/platform-landing-zone.tfvars -Force  # Exclude this line if using FSI or SLZ starter modules
-New-Item -ItemType "directory" /accelerator/output
-```
-    {{< /tab >}}
-    {{< /tabs >}}
+    ```pwsh
+    New-Item -ItemType "file" "~/accelerator/config/inputs.yaml" -Force
+    New-Item -ItemType "directory" "~/accelerator/output"
+    New-Item -ItemType "file" "~/accelerator/config/platform-landing-zone.tfvars" -Force  # Exclude this line if using FSI or SLZ starter modules
+
+    ```
+
+1. Your folder structure should look like this:
 
     ```plaintext
     📂accelerator
@@ -47,7 +39,7 @@ New-Item -ItemType "directory" /accelerator/output
     {{< hint type=tip >}}
 The following inputs can also be supplied via environment variables. This may be useful for sensitive values you don't wish to persist to a file. The `Env Var Prefix` denotes the prefix the environment variable should have. The environment variable is formatting is `<PREFIX>_<variable_name>`, e.g. `$env:ALZ_iac_type = "terraform"` or `$env:TF_VAR_github_personal_access_token = "*****..."`.
     {{< /hint >}}
-    
+
     {{< hint type=tip >}}
 If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">}}) guidance, you should have these values already.
     {{< /hint >}}
@@ -91,71 +83,40 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
     {{< hint type=tip >}}
 Inputs can be split into multiple files if desired.
     {{< /hint >}}
-   
+
     * Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module without a `lib` folder:
 
-        {{< tabs "2" >}}
-        {{< tab "Windows" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\platform-landing-zone.tfvars" `
-  -output "c:\accelerator\output"
-```
-        {{< /tab >}}
-        {{< tab "Linux / macOS" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "/accelerator/config/inputs.yaml", "/accelerator/config/platform-landing-zone.tfvars" `
-  -output "/accelerator/output"
-```
-        {{< /tab >}}
-        {{< /tabs >}}
+        ```pwsh
+        Deploy-Accelerator `
+        -inputs "~/accelerator/config/inputs.yaml", "~/accelerator/config/platform-landing-zone.tfvars" `
+        -output "~/accelerator/output"
+
+        ```
 
     * Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module with a `lib` folder:
 
-        {{< tabs "3" >}}
-        {{< tab "Windows" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\platform-landing-zone.tfvars" `
-  -starterAdditionalFiles "c:\accelerator\config\lib" `
-  -output "c:\accelerator\output"
-```
-        {{< /tab >}}
-        {{< tab "Linux / macOS" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "/accelerator/config/inputs.yaml", "/accelerator/config/platform-landing-zone.tfvars" `
-  -starterAdditionalFiles "/accelerator/config/lib" `
-  -output "/accelerator/output"
-```
-        {{< /tab >}}
-        {{< /tabs >}}
+        ```pwsh
+        Deploy-Accelerator `
+        -inputs "~/accelerator/config/inputs.yaml", "~/accelerator/config/platform-landing-zone.tfvars" `
+        -starterAdditionalFiles "~/accelerator/config/lib" `
+        -output "~/accelerator/output"
+
+        ```
 
     * Run `Deploy-Accelerator` for the Sovereign Landing Zone or Financial Services Industry Landing Zone starter module:
 
-        {{< tabs "4" >}}
-        {{< tab "Windows" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "c:\accelerator\config\inputs.yaml" `
-  -output "c:\accelerator\output"
-```
-        {{< /tab >}}
-        {{< tab "Linux / macOS" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "/accelerator/config/inputs.yaml" `
-  -output "/accelerator/output"
-```
-        {{< /tab >}}
-        {{< /tabs >}}
+        ```pwsh
+        Deploy-Accelerator `
+        -inputs "~/accelerator/config/inputs.yaml" `
+        -output "~/accelerator/output"
+
+        ```
 
 1. You will see a Terraform `init` and `apply` happen.
 1. There will be a pause after the `plan` phase you allow you to validate what is going to be deployed.
 1. If you are happy with the plan, then hit enter.
 1. The Terraform will `apply` and your environment will be bootstrapped.
-1. You will find the output in the `/accelerator/output/local-output` folder if you didn't specify a different location for `target_directory`.
+1. You will find the output in the `~/accelerator/output/local-output` folder if you didn't specify a different location for `target_directory`.
 
 ## Next Steps
 

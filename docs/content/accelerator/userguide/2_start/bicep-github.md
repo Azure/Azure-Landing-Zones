@@ -8,20 +8,13 @@ Follow these instructions to bootstrap GitHub ready to deploy your platform land
 1. Inside the accelerator create two folders called `config` and `output`. You'll store your input file inside config and the output folder will be the place that the accelerator stores files while it works.
 1. Inside the `config` folder create a new file called `inputs.yaml`. You can use `json` if you prefer, but our examples here are `yaml`.
 
-    {{< tabs "2" >}}
-    {{< tab "Windows" >}}
-```pwsh
-New-Item -ItemType "file" c:\accelerator\config\inputs.yaml -Force
-New-Item -ItemType "directory" c:\accelerator\output
-```
-    {{< /tab >}}
-    {{< tab "Linux / macOS" >}}
-```pwsh
-New-Item -ItemType "file" /accelerator/config/inputs.yaml -Force
-New-Item -ItemType "directory" /accelerator/output
-```
-    {{< /tab >}}
-    {{< /tabs >}}
+    ```pwsh
+    New-Item -ItemType "file" "~/accelerator/config/inputs.yaml" -Force
+    New-Item -ItemType "directory" "~/accelerator/output"
+
+    ```
+
+1. Your folder structure should look like this:
 
     ```plaintext
     📂accelerator
@@ -74,21 +67,13 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
     ```pwsh
     Update-Module -Name ALZ
     ```
-    
+
 1. In your PowerShell Core (pwsh) terminal run the module:
 
-    {{< tabs "1" >}}
-    {{< tab "Windows" >}}
-```pwsh
-Deploy-Accelerator -inputs "c:\accelerator\config\inputs.yaml" -output "c:\accelerator\output"
-```
-    {{< /tab >}}
-    {{< tab "Linux / macOS" >}}
-```pwsh
-Deploy-Accelerator -inputs "/accelerator/config/inputs.yaml" -output "/accelerator/output"
-```
-    {{< /tab >}}
-    {{< /tabs >}}
+    ```pwsh
+    Deploy-Accelerator -inputs "~/accelerator/config/inputs.yaml" -output "~/accelerator/output"
+
+    ```
 
 1. You will see a Terraform `init` and `apply` happen.
 1. There will be a pause after the `plan` phase to allow you to validate what is going to be deployed.
