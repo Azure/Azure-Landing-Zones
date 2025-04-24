@@ -12,7 +12,7 @@ This upgrade guide covers four AVM pattern modules that are used to deploy the P
 With each release of the AVM pattern modules, it's possible that there will be changes that could impact your deployed resources. We do our best to ensure any changes are documented in the release notes. To avoid unexpected or unwanted changes we recommend that you configure your version constraints to pin to a specific module version.
 
 Upgrade process consists of the following steps:
-1. [Review the release notes](#review-the-release-notes)
+1. [Review the release notes](#1-review-the-release-notes)
 2. [Update the module version](#2-update-the-module-version)
 3. [Run terraform plan to see what changes will be made to your environment](#3-run-terraform-plan)
 
