@@ -1,6 +1,6 @@
 ## Staying up to date
 
-Deploying the latest version of the module is the recommended approach for staying up to date with the latest architectural changes to Azure landing zones. Looking at it from a governance perspective, this also ensures you have the latest recommended policies applied to your environment for improved compliance.
+Using the latest version of the ALZ Platform landing zone pattern modules is the recommended approach for staying up to date with the latest architectural changes. From a governance perspective, this also ensures you have the latest recommended policies applied to your environment.
 
 This upgrade guide covers four AVM pattern modules that are used to deploy the Platform landing zone. The modules are:
 - [hub_and_spoke_vnet](hub_and_spoke_vnet)
