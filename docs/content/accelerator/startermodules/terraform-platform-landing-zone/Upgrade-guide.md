@@ -9,7 +9,7 @@ This upgrade guide covers four AVM pattern modules that are used to deploy the P
 - [Connectivity with Virtual WAN](virtual_wan)
 
 
-With each release of the module, it's possible that your environment will change. We will do our best to ensure any changes are clearly documented in the release notes, or upgrade guides when publishing a new major version. To avoid unexpected or unwanted changes we recommend that you configure your version constraints to pin to a specific module version.
+With each release of the AVM pattern modules, it's possible that there will be changes that could impact your deployed resources. We do our best to ensure any changes are documented in the release notes. To avoid unexpected or unwanted changes we recommend that you configure your version constraints to pin to a specific module version.
 
 Upgrade process consists of the following steps:
 1. [Review the release notes](#review-the-release-notes)
