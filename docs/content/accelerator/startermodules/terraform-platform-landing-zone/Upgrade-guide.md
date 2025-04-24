@@ -17,7 +17,8 @@ Upgrade process consists of the following steps:
 3. [Run terraform plan to see what changes will be made to your environment](#3-run-terraform-plan)
 
 
- ## 1. Review the release notes
+## 1. Review the release notes
+
 The release notes will provide you with information on what has changed in the module, including any breaking changes, new features, and bug fixes. This will help you understand what to expect when upgrading to the latest version.
 
 ## 2. Update the module version
