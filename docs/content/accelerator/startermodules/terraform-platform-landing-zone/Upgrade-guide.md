@@ -49,7 +49,6 @@ module "hub_and_spoke_vnet" {
 
 To pin to a specific version of the module, you can use the following syntax:
 
-
 ```terraform
 module "virtual_wan" {
   source  = "Azure/avm-ptn-alz-connectivity-virtual-wan/azurerm"
