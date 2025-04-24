@@ -22,6 +22,7 @@ Upgrade process consists of the following steps:
 The release notes will provide you with information on what has changed in the module, including any breaking changes, new features, and bug fixes. This will help you understand what to expect when upgrading to the latest version.
 
 ## 2. Update the module version
+
 To ensure you are using the latest version of the module, you will need to update the version constraint in your Terraform configuration file. This will allow you to pin to a specific version of the module, or allow for automatic upgrades to the latest patch release.
 
 
