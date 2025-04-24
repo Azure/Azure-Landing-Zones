@@ -106,7 +106,6 @@ Follow the steps below to deploy the landing zone locally. If you want to hook i
 2. Modify the `version` field in Terraform module configuration to the desired version. Use version constraints to pin to a specific version or allow automatic upgrades to the latest patch release.
 3. Commit your changes to the new branch and update the pipeline to use the new branch.
 4. Run the pipeline to deploy the changes. The pipeline will automatically run `terraform plan` and `terraform apply` with the approval to deploy the changes to your environment.
-
 1. Review the plan and the changes in feature branch and ensure everything is working as expected, then merge the changes into the main branch.
 1. The pipeline will trigger from the `main` branch, and run a `plan`. You'll then need to approve the `apply`.
 
