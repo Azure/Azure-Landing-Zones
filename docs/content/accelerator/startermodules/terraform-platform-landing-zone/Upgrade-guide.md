@@ -81,7 +81,6 @@ module "management_groups" {
  source     = "Azure/avm-ptn-alz/azurerm"
  version     = "~> 0.16.0"
 }
- ```
 
 ## 3.Run Terraform Plan and Apply
 
