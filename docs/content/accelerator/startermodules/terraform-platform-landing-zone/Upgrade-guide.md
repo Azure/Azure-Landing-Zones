@@ -46,6 +46,7 @@ module "hub_and_spoke_vnet" {
 }
 ```
 ### Virtual_Wan Module
+
 To pin to a specific version of the module, you can use the following syntax:
 
 
