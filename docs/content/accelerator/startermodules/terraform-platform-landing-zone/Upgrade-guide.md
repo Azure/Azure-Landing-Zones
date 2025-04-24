@@ -70,7 +70,7 @@ module "virtual_wan" {
 ```terraform
 module "management_groups" {
   source  = "Azure/avm-ptn-alz/azurerm"
-    version = "<version>"
+  version = "<version>"
 }
 ```
 To allow automatic upgrades to the latest patch release, use the following version constraint syntax:
