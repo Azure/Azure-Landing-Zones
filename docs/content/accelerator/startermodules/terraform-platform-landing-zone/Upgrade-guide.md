@@ -73,6 +73,7 @@ module "management_groups" {
   version = "<version>"
 }
 ```
+
 To allow automatic upgrades to the latest patch release, use the following version constraint syntax:
 
 ```terraform
