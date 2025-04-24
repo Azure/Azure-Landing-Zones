@@ -85,6 +85,7 @@ module "management_groups" {
 ## 3.Run Terraform Plan and Apply
 
 ### Local file system
+
 Follow the steps below to deploy the landing zone locally. If you want to hook it up to your custom version control system, follow their documentation on how to do that.  
 
 The Terraform option outputs a `deploy-local.ps1` file that you can use to deploy the ALZ.
