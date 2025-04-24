@@ -3,10 +3,10 @@
 Using the latest version of the ALZ Platform landing zone pattern modules is the recommended approach for staying up to date with the latest architectural changes. From a governance perspective, this also ensures you have the latest recommended policies applied to your environment.
 
 This upgrade guide covers four AVM pattern modules that are used to deploy the Platform landing zone. The modules are:
-- [hub_and_spoke_vnet](hub_and_spoke_vnet)
-- [virtual_wan](virtual_wan)
-- [management_groups](management_groups)
-- [management_resources](management_resources)
+- [Management Groups and Policy](management_groups)
+- [Management Resources](management_resources)
+- [Connectivity with Hub and Spoke Virtual Network](hub_and_spoke_vnet)
+- [Connectivity with Virtual WAN](virtual_wan)
 
 
 With each release of the module, it's possible that your environment will change. We will do our best to ensure any changes are clearly documented in the release notes, or upgrade guides when publishing a new major version. To avoid unexpected or unwanted changes we recommend that you configure your version constraints to pin to a specific module version.
