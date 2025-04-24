@@ -114,7 +114,7 @@ Follow the steps below to deploy the landing zone locally. If you want to hook i
 
 1. In your Github repository, create a new branch to test the upgrade. This ensures your changes are isolated and can be tested without affecting the main branch.
 1. Modify the `version` field in Terraform module configuration to the desired version. Use version constraints to pin to a specific version or allow automatic upgrades to the latest patch release.
-3. Commit and Sync your changes to the new branch.
+1. Commit and push your changes to the new branch.
 4. Run the pipeline to deploy the changes. The pipeline will automatically run `terraform plan` and `terraform apply` with the approval to deploy the changes to your environment.
 5. Review the changes in feature branch and ensure everything is working as expected. then merge the changes into the main branch.
 6. Run the pipeline again to see the plan and deploy the changes to the Azure environment.
