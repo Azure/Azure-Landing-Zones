@@ -69,7 +69,7 @@ module "virtual_wan" {
     
 ```terraform
 module "management_groups" {
-    source     = "Azure/avm-ptn-alz/azurerm"
+  source  = "Azure/avm-ptn-alz/azurerm"
     version = "<version>"
 }
 ```
