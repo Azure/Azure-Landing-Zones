@@ -54,20 +54,6 @@ To pin to a specific version of the module, you can use the following syntax:
 }
 ```
 
-To allow automatic upgrades to the latest patch release of a minor version, use the following version constraint syntax:
-
-```json
-{
-  ...
-  "dependencies": [
-    {
-      "path": "platform/alz",
-      "ref": "~> 2025.02.0"
-    }
-  ]
-}
-```
-
 ### Management Groups and Policy Module
 
 The management group module declaration can be found in the [modules/management_groups/main.tf](https://github.com/Azure/alz-terraform-accelerator/blob/main/templates/platform_landing_zone/modules/management_groups/main.tf) file.
