@@ -21,6 +21,7 @@ Follow these instructions to bootstrap Azure DevOps ready to deploy your platfor
     ┣ 📂config
     ┃ ┗ 📜inputs.yaml
     ┗ 📂output
+      ┗ 📜.gitkeep
     ```
 
 1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from [inputs-azure-devops.yaml](https://raw.githubusercontent.com/Azure/alz-bicep/refs/heads/main/accelerator/examples/bootstrap/inputs-azure-devop.yaml) into that file.
