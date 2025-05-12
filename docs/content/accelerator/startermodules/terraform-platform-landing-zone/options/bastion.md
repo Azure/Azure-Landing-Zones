@@ -4,11 +4,11 @@ geekdocCollapseSection: true
 weight: 4
 ---
 
-You can choose to not deploy a Bastion Host. In order to do that, you need to remove the Bastion Host configuration. You can either comment out or remove the configuration entirely.
+You can choose to not deploy a Bastion Host. In order to do that, you need to update the Bastion Host configuration.
 
 The steps to follow are:
 
-1. Delete the following settings by searching for the keys and removing the line or block
+1. Make the following settings cvhanges by searching for the keys and updating ro removing the values
 
     | Setting Type | Parent block(s) | Key | Action | Count | Notes |
     | - | - | - | - | - | - |

@@ -4,11 +4,11 @@ geekdocCollapseSection: true
 weight: 5
 ---
 
-You can choose to not deploy any DNS related resources. In order to do that, they need to remove the DNS configuration and disable the DINE (deploy if not exists) policy. You can either comment out or remove the configuration entirely.
+You can choose to not deploy any DNS related resources. In order to do that, you need to update the DNS configuration and disable the DINE (deploy if not exists) policy.
 
 The steps to follow are:
 
-1. Delete the following settings by searching for the keys and removing the line or block
+1. Make the following settings cvhanges by searching for the keys and updating ro removing the values
 
     | Setting Type | Parent block(s) | Key | Action | Count | Notes |
     | - | - | - | - | - | - |
