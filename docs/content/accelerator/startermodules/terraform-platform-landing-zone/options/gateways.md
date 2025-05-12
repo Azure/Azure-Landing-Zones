@@ -28,4 +28,4 @@ The steps to follow are:
     | - | - | - | - | - | - |
     | line | `custom_replacements` > `names` | `<region>_virtual_network_gateway_vpn_name` | Delete (optional) | 1+ | `<region>` is the relevant region (e.g. `primary` or `secondary`) |
     | line | `custom_replacements` > `names` | `<region>_virtual_network_gateway_vpn_public_ip_name` | Delete (optional) | 1+ | `<region>` is the relevant region (e.g. `primary` or `secondary`) |
-    | line | `hub_and_spoke_vnet_virtual_networks` > `virtual_network_gateways` > `express_route` OR `virtual_wan_virtual_hubs` > `virtual_network_gateways` > `express_route` | `enabled` | Update setting to `false` | 1+ | There will be two instances for a multi-region deployment |
+    | line | `hub_and_spoke_vnet_virtual_networks` > `virtual_network_gateways` > `vpn` OR `virtual_wan_virtual_hubs` > `virtual_network_gateways` > `vpn` | `enabled` | Update setting to `false` | 1+ | There will be two instances for a multi-region deployment |
