@@ -8,7 +8,7 @@ You can choose to not deploy any DNS related resources. In order to do that, you
 
 The steps to follow are:
 
-1. Make the following settings cvhanges by searching for the keys and updating ro removing the values
+1. Make the following settings changes by searching for the keys and updating ro removing the values
 
     | Setting Type | Parent block(s) | Key | Action | Count | Notes |
     | - | - | - | - | - | - |
