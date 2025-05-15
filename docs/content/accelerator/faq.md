@@ -181,3 +181,19 @@ Deploy-Accelerator -inputs "~/config/inputs.json" -starterModuleOverrideFolderPa
 ```
 
 Alternatively, if you are also supplying a custom bootstrap module, you can specify the starter module repo url in the `json` config file in the bootstrap module.
+
+## Questions about GitHub
+
+### How do I use a GitHub Enterprise Cloud with data residency (*.ghe.com) hosted instance?
+
+In order to target your own domain, add the following settings to your bootstrap configuration file `inputs.yaml`:
+
+```yaml
+github_organization_domain_name: "<enterprise name>.ghe.com"
+```
+
+For example:
+
+```yaml
+github_organization_domain_name: "contoso.ghe.com"
+```
