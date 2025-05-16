@@ -21,6 +21,7 @@ Follow these instructions to bootstrap a local file system folder ready to deplo
     ┣ 📂config
     ┃ ┗ 📜inputs.yaml
     ┗ 📂output
+      ┗ 📜.gitkeep
     ```
 
 1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from [inputs-local.yaml](https://raw.githubusercontent.com/Azure/alz-bicep/refs/heads/main/accelerator/examples/bootstrap/inputs-local.yaml) into that file.
