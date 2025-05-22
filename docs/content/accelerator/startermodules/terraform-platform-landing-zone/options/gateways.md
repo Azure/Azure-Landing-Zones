@@ -10,22 +10,26 @@ You can choose to not deploy Virtual Network Gateways. In order to do that, you 
 
 The steps to follow are:
 
-1. Make the following settings changes by searching for the keys and updating or removing the values
+1. Update the following settings by searching for the keys and updating the value
 
     | Setting Type | Parent block(s) | Key | Action | Count | Notes |
     | - | - | - | - | - | - |
-    | line | `custom_replacements` > `names` | `<region>_virtual_network_gateway_express_route_name` | Delete (optional) | 1+ | `<region>` is the relevant region (e.g. `primary` or `secondary`) |
-    | line | `custom_replacements` > `names` | `<region>_virtual_network_gateway_express_route_public_ip_name` | Delete (optional) | 1+ | `<region>` is the relevant region (e.g. `primary` or `secondary`) |
-    | line | `hub_and_spoke_vnet_virtual_networks` > `virtual_network_gateways` > `express_route` OR `virtual_wan_virtual_hubs` > `virtual_network_gateways` > `express_route` | `enabled` | Update setting to `false` | 1+ | There will be two instances for a multi-region deployment |
+    | line | `custom_replacements` > `names` | `enabled` | Update setting to `<region>_virtual_network_gateway_express_route_enabled` | 1+ | `<region>` is the relevant region (e.g. `primary`) |
+
+    {{< hint type=warning >}}
+You should not remove the ExpressRoute Gateway names from the `custom_replacements` section as it will result in a templating error. Advanced Terraform users are welcome to tidy up the config and remove the names and related templates if there is no future plan to use an ExpressRoute Gateway.
+    {{< /hint >}}
 
 ## For VPN Virtual Network Gateways
 
 The steps to follow are:
 
-1. Make the following settings changes by searching for the keys and updating ro removing the values
+1. Update the following settings by searching for the keys and updating the value
 
     | Setting Type | Parent block(s) | Key | Action | Count | Notes |
     | - | - | - | - | - | - |
-    | line | `custom_replacements` > `names` | `<region>_virtual_network_gateway_vpn_name` | Delete (optional) | 1+ | `<region>` is the relevant region (e.g. `primary` or `secondary`) |
-    | line | `custom_replacements` > `names` | `<region>_virtual_network_gateway_vpn_public_ip_name` | Delete (optional) | 1+ | `<region>` is the relevant region (e.g. `primary` or `secondary`) |
-    | line | `hub_and_spoke_vnet_virtual_networks` > `virtual_network_gateways` > `vpn` OR `virtual_wan_virtual_hubs` > `virtual_network_gateways` > `vpn` | `enabled` | Update setting to `false` | 1+ | There will be two instances for a multi-region deployment |
+    | line | `custom_replacements` > `names` | `<region>_virtual_network_gateway_vpn_enabled` | Update setting to `false` | 1+ | `<region>` is the relevant region (e.g. `primary`) |
+
+    {{< hint type=warning >}}
+You should not remove the VPN Gateway names from the `custom_replacements` section as it will result in a templating error. Advanced Terraform users are welcome to tidy up the config and remove the names and related templates if there is no future plan to use a VPN Gateway.
+    {{< /hint >}}

@@ -8,11 +8,12 @@ You can choose to not deploy a Bastion Host. In order to do that, you need to up
 
 The steps to follow are:
 
-1. Make the following settings changes by searching for the keys and updating or removing the values
+1. Update the following settings by searching for the keys and updating the value
 
     | Setting Type | Parent block(s) | Key | Action | Count | Notes |
     | - | - | - | - | - | - |
-    | line | `custom_replacements` > `names` | `<region>_bastion_host_name` | Delete (optional) | 1+ | `<region>` is the relevant region (e.g. `primary` or `secondary`) |
-    | line | `custom_replacements` > `names` | `<region>_bastion_public_ip_name` | Delete (optional) | 1+ | `<region>` is the relevant region (e.g. `primary` or `secondary`) |
-    | line | `custom_replacements` > `names` | `<region>_bastion_subnet_address_prefix` | Delete (optional) | 1+ | `<region>` is the relevant region (e.g. `primary` or `secondary`) |
-    | line | `hub_and_spoke_vnet_virtual_networks` > `bastion` OR `virtual_wan_virtual_hubs` > `bastion` | `enabled` | Update setting to `false` | 1+ | There will be two instances for a multi-region deployment |
+    | line | `custom_replacements` > `names` | `<region>_bastion_enabled` | Update setting to `false` | 1+ | `<region>` is the relevant region (e.g. `primary`) |
+
+    {{< hint type=warning >}}
+You should not remove the Bastion Host names from the `custom_replacements` section as it will result in a templating error. Advanced Terraform users are welcome to tidy up the config and remove the names and related templates if there is no future plan to use a Bastion Host.
+    {{< /hint >}}
