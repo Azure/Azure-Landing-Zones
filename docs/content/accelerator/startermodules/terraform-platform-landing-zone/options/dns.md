@@ -8,18 +8,15 @@ You can choose to not deploy any DNS related resources. In order to do that, you
 
 The steps to follow are:
 
-1. Make the following settings changes by searching for the keys and updating or removing the values
+1. Update the following settings by searching for the keys and updating the value
 
     | Setting Type | Parent block(s) | Key | Action | Count | Notes |
     | - | - | - | - | - | - |
-    | line | `custom_replacements` > `names` | `dns_resource_group_name` | Delete (optional) | 1 | |
-    | line | `custom_replacements` > `names` | `<region>_private_dns_resolver_name` | Delete (optional) | 1+ | `<region>` is the relevant region (e.g. `primary` or `secondary`) |
-    | line | `custom_replacements` > `names` | `<region>_auto_registration_zone_name` | Delete (optional) | 1+ | `<region>` is the relevant region (e.g. `primary` or `secondary`) |
-    | line | `custom_replacements` > `names` | `<region>_private_dns_resolver_subnet_address_prefix` | Delete (optional) | 1+ | `<region>` is the relevant region (e.g. `primary` or `secondary`) |
-    | line | `management_group_settings` > `policy_default_values` | `private_dns_zone_subscription_id` | Delete | 1 | |
-    | line | `management_group_settings` > `policy_default_values` | `private_dns_zone_region` | Delete | 1 | |
-    | line | `management_group_settings` > `policy_default_values` | `private_dns_zone_resource_group_name` | Delete | 1 | |
-    | line | `hub_and_spoke_vnet_virtual_networks` > `private_dns_zones` OR `virtual_wan_virtual_hubs` > `private_dns_zones` | `enabled` | Update setting to `false` | 1+ | There will be two instances for a multi-region deployment |
+    | line | `custom_replacements` > `names` | `<region>_private_dns_zones_enabled` | Update setting to `false` | 1+ | `<region>` is the relevant region (e.g. `primary`) |
+
+    {{< hint type=warning >}}
+You should not remove the DNS names from the `custom_replacements` section as it will result in a templating error. Advanced Terraform users are welcome to tidy up the config and remove the names and related templates if there is no future plan to use Private DNS.
+    {{< /hint >}}
 
 1. Add the follow configuration to the `management_group_settings` > `policy_assignments_to_modify` block setting
 
