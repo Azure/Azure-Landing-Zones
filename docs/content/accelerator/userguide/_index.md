@@ -19,7 +19,7 @@ Now head to [Get Started](#get-started).
 
 For those users with very specific requirements we provide some advanced capabilities that allow you to override some of the defaults.
 
-See our [FAQ]({{< relref "faq" >}}) and [Advanced Scenarios]({{< relref "advancedscenarios" >}}) for more info.
+See our [FAQ]({{< relref "../faq" >}}) and [Advanced Scenarios]({{< relref "advancedscenarios" >}}) for more info.
 
 ## Get Started
 
