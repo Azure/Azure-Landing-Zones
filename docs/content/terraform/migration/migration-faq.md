@@ -28,3 +28,7 @@ In order to resolve this issue, you need to make a change to the Firewall Policy
 
 1. In Azure Portal, navigate to the Firewall Policy and go the Tags section. Add a tag and save the changes.
 2. Now run `terraform apply` again and the error should be resolved.
+
+## When updating my attributes I am unable to get the data collection rules to match
+
+This is fine, they will be updated in place with the latest version. You can ignore this change unless you have explicitly deviated from our default rules, in which case you will know about it be able to make the relevant changes.
