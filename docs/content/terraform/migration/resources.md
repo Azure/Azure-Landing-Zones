@@ -13,7 +13,7 @@ The migration process relies on Terraform state migration using there Terraform 
 
 The migration process follows a 3 stage approach:
 
-1. **Setup**: Identiify subscriptions and preapre the target module.
+1. **Setup**: identify subscriptions and prepare the target module.
 2. **Resource ID Update and Mapping**: Update the resource IDs in the Terraform module to match the new ALZ module and generate the import blocks.
 3. **Resource Attribute Update**: Update the resource attributes in the Terraform module to match the existing resources.
 
@@ -76,11 +76,11 @@ The migration process follows a 3 stage approach:
     Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Azure/terraform-state-importer/refs/heads/main/.config/alz.connectivity.virtual-wan.config.yaml" -OutFile "config.yaml"
     ```
 
-1. Open the config.yaml file and update the subscriuption IDs for you management and connectivity subscriptions, then save the file.
+1. Open the config.yaml file and update the subscription IDs for you management and connectivity subscriptions, then save the file.
 
     ```yaml
     subscriptionIDs:
-    # Connectivity Subscriptiopn ID
+    # Connectivity subscription ID
     - "00000000-0000-0000-0000-000000000000"
     # Management Subscription ID
     - "00000000-0000-0000-0000-000000000000"
@@ -130,6 +130,15 @@ You can build your own custom module leveraging our AVM modules at this stage if
 
 1. Open the `platform-landing-zone.auto.tfvars` file in your IDE. This file contains the variables that are used to configure the module. You will need to update the values in this file to match the Azure resources.
 
+1. Turn off the management group and policy resources in the `platform-landing-zone.auto.tfvars` file. This is because we are not migrating these resources at this time and you likely don't want to deploy them when you run your apply. You can do this by setting the `management_group_settings` `enabled` variable to `false`.
+
+    ```terraform
+    management_group_settings = {
+      enabled            = false
+      ...
+    }
+    ```
+
 1. Take a look at each issue in the `issues.csv` file, starting the issues of `Issue Type` `NoResourceID`. This includes all the resources that require an update to your Terraform module variables.
 
 1. For each issue, find the relevant setting in the `platform-landing-zone.auto.tfvars` file and update the value to match the Azure resource name. To make this easier, we have created two example files that have been updated to match the default settings in the CAF module.
@@ -157,7 +166,7 @@ You can build your own custom module leveraging our AVM modules at this stage if
         1. For the correct row, enter `Use` into the `Action` column. An import block will be generated for this resource ID.
         1. For each incorrect row, enter `Ignore` into the `Action` column.
 
-    1. `NoResourceID`: This is a Teraform resource that does not have a resource ID in the AVM module. Normally this is because it is a new resource that wasn't previously deployed by the CAF module, but in rare cases it may be that you are unable to update your Terraform module to match the existing resource ID.
+    1. `NoResourceID`: This is a Terraform resource that does not have a resource ID in the AVM module. Normally this is because it is a new resource that wasn't previously deployed by the CAF module, but in rare cases it may be that you are unable to update your Terraform module to match the existing resource ID.
 
         To resolve this issue you need to choose what to do.
 
@@ -191,9 +200,9 @@ You can build your own custom module leveraging our AVM modules at this stage if
 
 1. Great! You have now completed the first part of the migration process. You can now move on to the next step, which is to update the resource attributes in the Terraform module to match the existing resources.
 
-## Resource Attribute Update
+## Resource Attribute Updates
 
-We have now matched all of our resouce IDs, but there may be some resource attributes that don't match the existing resources. To find these, we will run a Terraform plan and look for any changes that are flagged.
+We have now matched all of our resource IDs, but there may be some resource attributes that don't match the existing resources. To find these, we will run a Terraform plan and look for any changes that are flagged.
 
 1. We will run the tool again to generate the plan file for us to examine.
 
@@ -205,7 +214,7 @@ We have now matched all of our resouce IDs, but there may be some resource attri
         --planAsTextOnly
     ```
 
-1. Open the `plan_updates.txt` file in your IDE and seach (<kbd>Ctrl</kbd>+<kbd>F</kbd>) for any changes that are flagged as `~` (tilde). These are the changes that will be made to the resources.
+1. Open the `plan_updates.txt` file in your IDE and search (<kbd>Ctrl</kbd>+<kbd>F</kbd>) for any changes that are flagged as `~` (tilde). These are the changes that will be made to the resources.
 
         {{< hint type=tip >}}
 The `plan_updates.txt` file contains only resources that are imported and then updated, which is the focus of this phase. However, the full plan is also available in the `plan.txt` file, if you prefer to see the full plan.
@@ -213,7 +222,7 @@ The `plan_updates.txt` file contains only resources that are imported and then u
 
 1. For each change, you will need to update the `platform-landing-zone.auto.tfvars` file to match the existing resource.
 
-    In some cases it will not be possible to update or the change is expected, so you can ignore it. That is fine and for you to determine which changes need rectifying. The example file we already reference provides example so the updates required for the standard CAF module.
+    In some cases it will not be possible to update or the change is expected, so you can ignore it. That is fine and it is up to you to determine which changes need rectifying and which don't. The example file we already reference provides examples of the updates required for the standard CAF module.
 
 1. Re-run the command to generate the plan file again and check for any changes that are still flagged as `~` (tilde) and repeat until you are happy with the plan.
 
