@@ -135,7 +135,7 @@ You can build your own custom module leveraging our AVM modules at this stage if
 1. For each issue, find the relevant setting in the `platform-landing-zone.auto.tfvars` file and update the value to match the Azure resource name. To make this easier, we have created two example files that have been updated to match the default settings in the CAF module.
 
     - [hub-and-spoke.auto.tfvars](https://raw.githubusercontent.com/Azure/azure-landing-zones/refs/heads/main/docs/static/examples/tf/migration/platform-landing-zone.hub-and-spoke.auto.tfvars)
-    - [virtual-wan.auto.tfvars](https://raw.githubusercontent.com/Azure/terraform-state-importer/refs/heads/main/.config/virtual-wan.auto.tfvars)
+    - [virtual-wan.auto.tfvars](https://raw.githubusercontent.com/Azure/azure-landing-zones/refs/heads/main/docs/static/examples/tf/migration/platform-landing-zone.virtual-wan.auto.tfvars)
 
     You can cope the contents of these files into your `platform-landing-zone.auto.tfvars` file and look at the diff in VS Code as a starting point. If you customized the names of your resources, you will still need to update the values in the `platform-landing-zone.auto.tfvars` file to match your Azure resource names.
 
@@ -267,6 +267,6 @@ If you are using a VCS and you should not attempt to run the apply locally, as y
         {{< /hint >}}
 
 
-1. If you see any errors, you can refer to our [FAQ]({{< relref "faq" >}}) for help, but in most cases running the pipeline again will resolve any issues.
+1. If you see any errors, you can refer to our [FAQ]({{< relref "migration-faq" >}}) for help, but in most cases running the pipeline again will resolve any issues.
 
 1. Great! You have now completed the migration process and your management and connectivity resources are now managed by the AVM modules.
