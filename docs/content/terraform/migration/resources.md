@@ -205,7 +205,11 @@ We have now matched all of our resouce IDs, but there may be some resource attri
         --planAsTextOnly
     ```
 
-1. Open the `plan.txt` file in your IDE and seach (<kbd>Ctrl</kbd>+<kbd>F</kbd>) for any changes that are flagged as `~` (tilde). These are the changes that will be made to the resources.
+1. Open the `plan_updates.txt` file in your IDE and seach (<kbd>Ctrl</kbd>+<kbd>F</kbd>) for any changes that are flagged as `~` (tilde). These are the changes that will be made to the resources.
+
+        {{< hint type=tip >}}
+The `plan_updates.txt` file contains only resources that are imported and then updated, which is the focus of this phase. However, the full plan is also available in the `plan.txt` file, if you prefer to see the full plan.
+        {{< /hint >}}
 
 1. For each change, you will need to update the `platform-landing-zone.auto.tfvars` file to match the existing resource.
 
