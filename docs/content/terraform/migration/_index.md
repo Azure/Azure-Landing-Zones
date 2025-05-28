@@ -25,5 +25,5 @@ First of all you need to determine what you already have deployed in your enviro
 
 Take a look at you CAF Enterprise Scale deployment and determine which of the above components you have deployed. You can then follow the appropriate migration path below.
 
-1. [Management and Connectivity resources](#management-and-connectivity-resources)
-1. [Management groups and policy](#management-groups-and-policy)
+1. [Management and Connectivity resources]({{< relref "resources" >}})
+1. [Management groups and policy]({{< relref "managementgroups" >}})
