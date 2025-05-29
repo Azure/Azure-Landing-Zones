@@ -9,7 +9,7 @@ A full platform landing zone deployment with hub and spoke Virtual Network conne
 The single region option is here for completeness, we recommend always having at least 2 regions to support resiliency.
 {{< /hint >}}
 
-* Example platform landing zone configuration file: [full-single-region-nva/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-single-region-nva/virtual-wan.tfvars)
+* Example platform landing zone configuration file: [full-single-region-nva/hub-and-spoke-vnet.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-single-region-nva/hub-and-spoke-vnet.tfvars)
 
 ## Resources
 
