@@ -21,11 +21,18 @@ The steps to follow are:
 1. Copy and paste the following inside the `management_group_settings` > `policy_assignments_to_modify`
 
     {{< hint type=warning >}}
-If you have updated the `connectivity` management group ID, then you need to update the management group ID in this block setting to match. For example, replace `connectivity` with `contoso-connectivity`.
+If you have updated the `connectivity` or `landingzones` management group ID, then you need to update the management group ID in this block setting to match. For example, replace `connectivity` with `contoso-connectivity`.
     {{< /hint >}}
 
     ```terraform
     connectivity = {
+      policy_assignments = {
+        Enable-DDoS-VNET = {
+          enforcement_mode = "DoNotEnforce"
+        }
+      }
+    }
+    landingzones = {
       policy_assignments = {
         Enable-DDoS-VNET = {
           enforcement_mode = "DoNotEnforce"
