@@ -275,7 +275,7 @@ The `plan_updates.txt` file contains only resources that are imported and then u
 If you are using a VCS and you should not attempt to run the apply locally, as you would need to make your storage account public and apply permissions for your user account to it. Otherwise you will end up with an error or a local state file that cannot easily be used moving forward.
         {{< /hint >}}
 
-1. We recommdend that you now run a second plan and apply, as we have seen some edge cases where the plan with import does not yield the expected results and the second plan will correct them.
+1. We recommend that you now run a second plan and apply, as we have seen some edge cases where the plan with import does not yield the expected results and the second plan will correct them.
 
 1. If you see any errors, you can refer to our [FAQ]({{< relref "migration-faq" >}}) for help, but in most cases running the pipeline again will resolve any issues.
 
