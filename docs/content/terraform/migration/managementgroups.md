@@ -67,7 +67,7 @@ The migration process follows a 3 stage approach:
 1. Create a config yaml file, starting with one of our ALZ examples. You can find the examples in the [terraform-state-importer](https://github.com/Azure/terraform-state-importer/tree/main/.config) repository.
 
     ```powershell
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Azure/terraform-state-importer/refs/heads/main/.config\alz.management-groups.config.yaml" -OutFile "config.yaml"
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Azure/terraform-state-importer/refs/heads/main/.config/alz.management-groups.config.yaml" -OutFile "config.yaml"
     ```
 
 1. Open the config.yaml file and update the management group ID for your top level management group, then save the file.
