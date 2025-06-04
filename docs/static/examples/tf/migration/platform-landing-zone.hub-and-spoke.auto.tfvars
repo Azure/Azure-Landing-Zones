@@ -406,16 +406,22 @@ hub_and_spoke_vnet_virtual_networks = {
       }
     }
     private_dns_zones = {
-      enabled                        = "$${primary_private_dns_zones_enabled}"
-      resource_group_name            = "$${dns_resource_group_name}"
-      is_primary                     = true
-      private_dns_zone_network_link_name_template = "a4225384-b567-4381-9ca4-13f5e2e5ab6c-7bd2265d-49b8-5a49-bdc7-d60c6c199e94"
+      enabled = "$${primary_private_dns_zones_enabled}"
+      dns_zones = {
+        resource_group_name = "$${dns_resource_group_name}"
+        private_link_private_dns_zones_regex_filter = {
+          enabled = false
+        }
+        private_dns_zone_network_link_name_template = "a4225384-b567-4381-9ca4-13f5e2e5ab6c-7bd2265d-49b8-5a49-bdc7-d60c6c199e94"
+      }
       auto_registration_zone_enabled = "$${primary_private_dns_auto_registration_zone_enabled}"
       auto_registration_zone_name    = "$${primary_auto_registration_zone_name}"
-      subnet_address_prefix          = "$${primary_private_dns_resolver_subnet_address_prefix}"
-      private_dns_resolver = {
-        enabled = "$${primary_private_dns_resolver_enabled}"
-        name    = "$${primary_private_dns_resolver_name}"
+    }
+    private_dns_resolver = {
+      enabled               = "$${primary_private_dns_resolver_enabled}"
+      subnet_address_prefix = "$${primary_private_dns_resolver_subnet_address_prefix}"
+      dns_resolver = {
+        name = "$${primary_private_dns_resolver_name}"
       }
     }
     bastion = {
@@ -506,14 +512,21 @@ hub_and_spoke_vnet_virtual_networks = {
       }
     }
     private_dns_zones = {
-      enabled                        = "$${secondary_private_dns_zones_enabled}"
-      resource_group_name            = "$${dns_resource_group_name}"
-      is_primary                     = false
-      private_dns_zone_network_link_name_template = "a4225384-b567-4381-9ca4-13f5e2e5ab6c-d34ee379-bfcf-5718-a489-c24d2a32fe90"
+      enabled = "$${secondary_private_dns_zones_enabled}"
+      dns_zones = {
+        resource_group_name = "$${dns_resource_group_name}"
+        private_link_private_dns_zones_regex_filter = {
+          enabled = true
+        }
+        private_dns_zone_network_link_name_template = "a4225384-b567-4381-9ca4-13f5e2e5ab6c-d34ee379-bfcf-5718-a489-c24d2a32fe90"
+      }
       auto_registration_zone_enabled = "$${secondary_private_dns_auto_registration_zone_enabled}"
       auto_registration_zone_name    = "$${secondary_auto_registration_zone_name}"
-      subnet_address_prefix          = "$${secondary_private_dns_resolver_subnet_address_prefix}"
-      private_dns_resolver = {
+    }
+    private_dns_resolver = {
+      enabled               = "$${secondary_private_dns_resolver_enabled}"
+      subnet_address_prefix = "$${secondary_private_dns_resolver_subnet_address_prefix}"
+      dns_resolver = {
         name = "$${secondary_private_dns_resolver_name}"
       }
     }

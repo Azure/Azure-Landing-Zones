@@ -1,7 +1,7 @@
 /*
 --- Built-in Replacements ---
 This file contains built-in replacements to avoid repeating the same hard-coded values.
-Replacements are denoted by the dollar-dollar curly braces token (e.g. $${starter_location_01}). The following details each built-in replacements that you can use:
+Replacements are denoted by the dollar-dollar curly braces token (e.g. $${starter_location_01}). The following details each built-in replacemnets that you can use:
 `starter_location_01`: This the primary an Azure location sourced from the `starter_locations` variable. This can be used to set the location of resources.
 `starter_location_02` to `starter_location_10`: These are the secondary Azure locations sourced from the `starter_locations` variable. This can be used to set the location of resources.
 `starter_location_01_availability_zones` to `starter_location_10_availability_zones`: These are the availability zones for the Azure locations sourced from the `starter_locations` variable. This can be used to set the availability zones of resources.
@@ -119,7 +119,7 @@ custom_replacements = {
   */
   resource_group_identifiers = {
     management_resource_group_id           = "/subscriptions/$${subscription_id_management}/resourcegroups/$${management_resource_group_name}"
-    ddos_protection_plan_resource_group_id = "/subscriptions/$${subscription_id_connectivity}/resourcegroups/$${ddos_resource_group_name}"
+    ddos_protection_plan_resource_group_id = "/subscriptions/$${subscription_id_connectivity}/resourceGroups/$${ddos_resource_group_name}"
   }
 
   /*
@@ -188,7 +188,7 @@ You can further configure management groups and policy by supplying a `lib` fold
 */
 management_group_settings = {
   enabled            = false
-  location           = "$${starter_location_01}"
+  location           = "eastus"
   parent_resource_id = "$${root_parent_management_group_id}"
   policy_default_values = {
     ama_change_tracking_data_collection_rule_id = "$${ama_change_tracking_data_collection_rule_id}"
@@ -205,19 +205,19 @@ management_group_settings = {
   subscription_placement = {
     identity = {
       subscription_id       = "$${subscription_id_identity}"
-      management_group_name = "identity"
+      management_group_name = "alz-identity"
     }
     connectivity = {
       subscription_id       = "$${subscription_id_connectivity}"
-      management_group_name = "connectivity"
+      management_group_name = "alz-connectivity"
     }
     management = {
       subscription_id       = "$${subscription_id_management}"
-      management_group_name = "management"
+      management_group_name = "alz-management"
     }
   }
   policy_assignments_to_modify = {
-    alz2 = {
+    alz = {
       policy_assignments = {
         Deploy-MDFC-Config-H224 = {
           parameters = {
@@ -368,15 +368,21 @@ virtual_wan_virtual_hubs = {
       }
     }
     private_dns_zones = {
-      enabled                        = "$${primary_private_dns_zones_enabled}"
-      resource_group_name            = "$${dns_resource_group_name}"
-      is_primary                     = true
+      enabled = "$${primary_private_dns_zones_enabled}"
+      dns_zones = {
+        resource_group_name = "$${dns_resource_group_name}"
+        private_link_private_dns_zones_regex_filter = {
+          enabled = true
+        }
+      }
       auto_registration_zone_enabled = "$${primary_private_dns_auto_registration_zone_enabled}"
       auto_registration_zone_name    = "$${primary_auto_registration_zone_name}"
-      subnet_address_prefix          = "$${primary_private_dns_resolver_subnet_address_prefix}"
-      private_dns_resolver = {
-        enabled = "$${primary_private_dns_resolver_enabled}"
-        name    = "$${primary_private_dns_resolver_name}"
+    }
+    private_dns_resolver = {
+      enabled               = "$${primary_private_dns_resolver_enabled}"
+      subnet_address_prefix = "$${primary_private_dns_resolver_subnet_address_prefix}"
+      dns_resolver = {
+        name = "$${primary_private_dns_resolver_name}"
       }
     }
     bastion = {
@@ -434,15 +440,21 @@ virtual_wan_virtual_hubs = {
       }
     }
     private_dns_zones = {
-      enabled                        = "$${secondary_private_dns_zones_enabled}"
-      resource_group_name            = "$${dns_resource_group_name}"
-      is_primary                     = false
+      enabled = "$${secondary_private_dns_zones_enabled}"
+      dns_zones = {
+        resource_group_name = "$${dns_resource_group_name}"
+        private_link_private_dns_zones_regex_filter = {
+          enabled = false
+        }
+      }
       auto_registration_zone_enabled = "$${secondary_private_dns_auto_registration_zone_enabled}"
       auto_registration_zone_name    = "$${secondary_auto_registration_zone_name}"
-      subnet_address_prefix          = "$${secondary_private_dns_resolver_subnet_address_prefix}"
-      private_dns_resolver = {
-        enabled = "$${secondary_private_dns_resolver_enabled}"
-        name    = "$${secondary_private_dns_resolver_name}"
+    }
+    private_dns_resolver = {
+      enabled               = "$${secondary_private_dns_resolver_enabled}"
+      subnet_address_prefix = "$${secondary_private_dns_resolver_subnet_address_prefix}"
+      dns_resolver = {
+        name = "$${secondary_private_dns_resolver_name}"
       }
     }
     bastion = {
