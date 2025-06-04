@@ -7,7 +7,7 @@ weight: 5
 
 This document provides step by step guidance for migrating from the CAF Enterprise Scale module connectivity and management resources to the Azure Verified Modules for Platform Landing Zones (ALZ) module.
 
-The migration process relies on Terraform state migration using there Terraform [moved](https://developer.hashicorp.com/terraform/language/moved) block.
+The migration process relies on Terraform state migration using the Terraform [moved](https://developer.hashicorp.com/terraform/language/moved) block.
 
 ## Introduction
 
@@ -139,14 +139,14 @@ You can build your own custom module leveraging our AVM modules at this stage if
     }
     ```
 
-1. Take a look at each issue in the `issues.csv` file, starting the issues of `Issue Type` `NoResourceID`. This includes all the resources that require an update to your Terraform module variables.
+1. Take a look at each issue in the `issues.csv` file, starting with the issues of `Issue Type` `NoResourceID`. This includes all the resources that require an update to your Terraform module variables.
 
 1. For each issue, find the relevant setting in the `platform-landing-zone.auto.tfvars` file and update the value to match the Azure resource name. To make this easier, we have created two example files that have been updated to match the default settings in the CAF module.
 
     - [hub-and-spoke.auto.tfvars](https://raw.githubusercontent.com/Azure/azure-landing-zones/refs/heads/main/docs/static/examples/tf/migration/platform-landing-zone.hub-and-spoke.auto.tfvars)
     - [virtual-wan.auto.tfvars](https://raw.githubusercontent.com/Azure/azure-landing-zones/refs/heads/main/docs/static/examples/tf/migration/platform-landing-zone.virtual-wan.auto.tfvars)
 
-    You can cope the contents of these files into your `platform-landing-zone.auto.tfvars` file and look at the diff in VS Code as a starting point. If you customized the names of your resources, you will still need to update the values in the `platform-landing-zone.auto.tfvars` file to match your Azure resource names.
+    You can copy the contents of these files into your `platform-landing-zone.auto.tfvars` file and look at the diff in VS Code as a starting point. If you customized the names of your resources, you will still need to update the values in the `platform-landing-zone.auto.tfvars` file to match your Azure resource names.
 
 1. Once you have updated every resource name to match, then you can run the command again to get the final set of issues.
 
@@ -180,9 +180,9 @@ You can build your own custom module leveraging our AVM modules at this stage if
 
     1. `UnusedResourceID`: This is an resource that is not used in the AVM module.
 
-        Any resources that are actually used will have been handled in the `NoResourceID` section. For the rest, you need to confirm you are aware they won't be managed by Terraform.
+        Any resources that are actually used will have been handled in the `NoResourceID` section. For the rest, you need to confirm you are aware they won't be managed by Terraform or tht you want to destroy them.
 
-        1. For each resource, enter `Ignore` into the `Action` column if it doesn't already have `Replace` in there.
+        1. For each resource, enter `Ignore` or `Destroy` into the `Action` column if it doesn't already have `Replace` in there.
 
 1. Save the `issues.csv` file as `resolved-issues.csv` and close the file.
 
