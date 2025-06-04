@@ -142,7 +142,7 @@ You can build your own custom module leveraging our AVM modules at this stage if
 
 1. In some cases, you will need to update the `lib` folder in order to match the configuration. Again, we have provided an example of the changes required to match the standard CAF module settings. It can be found here: [lib](https://github.com/Azure/Azure-Landing-Zones/tree/docs-migration-management-groups/docs/static/examples/tf/migration/lib).
 
-1. You may also need to update your `terraform.tf` file in order to match role definition IDs. Add the `role_definitions_use_supplied_names_enabled = true` settng to the `alz` `provider` block:
+1. You may also need to update your `terraform.tf` file in order to match role definition IDs. Add the `role_definitions_use_supplied_names_enabled = true` setting to the `alz` `provider` block:
 
     ```terraform
     provider "alz" {
