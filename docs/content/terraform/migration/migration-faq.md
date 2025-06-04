@@ -35,7 +35,7 @@ This is fine, they will be updated in place with the latest version. You can ign
 
 ## The Firewall Policy DNS settings are not correctly set
 
-There is currently a bug that causes the Firewall Policy DNS settings for servers to be missed from the plan during the import apply stage. This is only relevant when you have the Private DNS Resolver enbaled. The cause of this issue is unknown, but you will see that on a second apply Terraform will correctly plan to set the servers. We recommend that you run a second `terraform apply` after the first one to ensure that the DNS servers are correctly set. The second apply plan will look like this:
+There is currently a bug that causes the Firewall Policy DNS settings for servers to be missed from the plan during the import apply stage. This is only relevant when you have the Private DNS Resolver enabled. The cause of this issue is unknown, but you will see that on a second apply Terraform will correctly plan to set the servers. We recommend that you run a second `terraform apply` after the first one to ensure that the DNS servers are correctly set. The second apply plan will look like this:
 
 ```text
  # module.virtual_wan[0].module.firewall_policy["primary"].azurerm_firewall_policy.this will be updated in-place
