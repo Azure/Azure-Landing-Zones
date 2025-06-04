@@ -188,7 +188,7 @@ You can build your own custom module leveraging our AVM modules at this stage if
 
     1. `UnusedResourceID`: This is an resource that is not used in the AVM module.
 
-        Any resources that are actually used will have been handled in the `NoResourceID` section. For the rest, you need to confirm you are aware they won't be managed by Terraform or tht you want to destroy them.
+        Any resources that are actually used will have been handled in the `NoResourceID` section. For the rest, you need to confirm you are aware they won't be managed by Terraform or that you want to destroy them.
 
         1. You will see a lot of items of type `microsoft.authorization/roleassignments`. These are the role assignments created for policy remediation. These all need to be set to `Destroy` as there is no way we can map them and they will cause a conflict if not removed and recreated.
 
