@@ -40,7 +40,7 @@ custom_replacements = {
     # Resource names
     log_analytics_workspace_name            = "alz-la"
     ddos_protection_plan_name               = "alz-ddos-uksouth"
-    ama_user_assigned_managed_identity_name = "uami-management-ama-$${starter_location_01}"
+    ama_user_assigned_managed_identity_name = "alz-uami"
     dcr_change_tracking_name                = "alz-dcr-changetracking-prod"
     dcr_defender_sql_name                   = "alz-dcr-defendersql-prod"
     dcr_vm_insights_name                    = "alz-dcr-vm-insights"
@@ -54,7 +54,7 @@ custom_replacements = {
     primary_virtual_network_gateway_vpn_enabled           = true
     primary_private_dns_zones_enabled                     = true
     primary_private_dns_auto_registration_zone_enabled    = true
-    primary_private_dns_resolver_enabled                  = true # This setting currently has no effect, but will be implemented in a future release. To turn off the private DNS resolver, set the `primary_private_dns_zones_enabled` setting to `false`.
+    primary_private_dns_resolver_enabled                  = true
     primary_bastion_enabled                               = true
     primary_sidecar_virtual_network_enabled               = true
 
@@ -64,7 +64,7 @@ custom_replacements = {
     secondary_virtual_network_gateway_vpn_enabled           = true
     secondary_private_dns_zones_enabled                     = true
     secondary_private_dns_auto_registration_zone_enabled    = true
-    secondary_private_dns_resolver_enabled                  = true # This setting currently has no effect, but will be implemented in a future release. To turn off the private DNS resolver, set the `secondary_private_dns_zones_enabled` setting to `false`.
+    secondary_private_dns_resolver_enabled                  = true
     secondary_bastion_enabled                               = true
     secondary_sidecar_virtual_network_enabled               = true
 
@@ -119,7 +119,7 @@ custom_replacements = {
   */
   resource_group_identifiers = {
     management_resource_group_id           = "/subscriptions/$${subscription_id_management}/resourcegroups/$${management_resource_group_name}"
-    ddos_protection_plan_resource_group_id = "/subscriptions/$${subscription_id_connectivity}/resourcegroups/$${ddos_resource_group_name}"
+    ddos_protection_plan_resource_group_id = "/subscriptions/$${subscription_id_connectivity}/resourceGroups/$${ddos_resource_group_name}"
   }
 
   /*
@@ -205,19 +205,19 @@ management_group_settings = {
   subscription_placement = {
     identity = {
       subscription_id       = "$${subscription_id_identity}"
-      management_group_name = "identity"
+      management_group_name = "alz-identity"
     }
     connectivity = {
       subscription_id       = "$${subscription_id_connectivity}"
-      management_group_name = "connectivity"
+      management_group_name = "alz-connectivity"
     }
     management = {
       subscription_id       = "$${subscription_id_management}"
-      management_group_name = "management"
+      management_group_name = "alz-management"
     }
   }
   policy_assignments_to_modify = {
-    alz2 = {
+    alz = {
       policy_assignments = {
         Deploy-MDFC-Config-H224 = {
           parameters = {
@@ -368,15 +368,21 @@ virtual_wan_virtual_hubs = {
       }
     }
     private_dns_zones = {
-      enabled                        = "$${primary_private_dns_zones_enabled}"
-      resource_group_name            = "$${dns_resource_group_name}"
-      is_primary                     = true
+      enabled = "$${primary_private_dns_zones_enabled}"
+      dns_zones = {
+        resource_group_name = "$${dns_resource_group_name}"
+        private_link_private_dns_zones_regex_filter = {
+          enabled = false
+        }
+      }
       auto_registration_zone_enabled = "$${primary_private_dns_auto_registration_zone_enabled}"
       auto_registration_zone_name    = "$${primary_auto_registration_zone_name}"
-      subnet_address_prefix          = "$${primary_private_dns_resolver_subnet_address_prefix}"
-      private_dns_resolver = {
-        enabled = "$${primary_private_dns_resolver_enabled}"
-        name    = "$${primary_private_dns_resolver_name}"
+    }
+    private_dns_resolver = {
+      enabled               = "$${primary_private_dns_resolver_enabled}"
+      subnet_address_prefix = "$${primary_private_dns_resolver_subnet_address_prefix}"
+      dns_resolver = {
+        name = "$${primary_private_dns_resolver_name}"
       }
     }
     bastion = {
@@ -434,15 +440,21 @@ virtual_wan_virtual_hubs = {
       }
     }
     private_dns_zones = {
-      enabled                        = "$${secondary_private_dns_zones_enabled}"
-      resource_group_name            = "$${dns_resource_group_name}"
-      is_primary                     = false
+      enabled = "$${secondary_private_dns_zones_enabled}"
+      dns_zones = {
+        resource_group_name = "$${dns_resource_group_name}"
+        private_link_private_dns_zones_regex_filter = {
+          enabled = true
+        }
+      }
       auto_registration_zone_enabled = "$${secondary_private_dns_auto_registration_zone_enabled}"
       auto_registration_zone_name    = "$${secondary_auto_registration_zone_name}"
-      subnet_address_prefix          = "$${secondary_private_dns_resolver_subnet_address_prefix}"
-      private_dns_resolver = {
-        enabled = "$${secondary_private_dns_resolver_enabled}"
-        name    = "$${secondary_private_dns_resolver_name}"
+    }
+    private_dns_resolver = {
+      enabled               = "$${secondary_private_dns_resolver_enabled}"
+      subnet_address_prefix = "$${secondary_private_dns_resolver_subnet_address_prefix}"
+      dns_resolver = {
+        name = "$${secondary_private_dns_resolver_name}"
       }
     }
     bastion = {
