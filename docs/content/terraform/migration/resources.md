@@ -196,7 +196,7 @@ You can build your own custom module leveraging our AVM modules at this stage if
         --issuesCsv "~/resolved-issues.csv"
     ```
 
-1. This time the tool will generate a file called `imports.tf` in the `~/alz-migration-terraform-module` folder.
+1. This time the tool will generate a files called `imports.tf` and `destroy.tf` in the `~/alz-migration-terraform-module` folder.
 
 1. Great! You have now completed the first part of the migration process. You can now move on to the next step, which is to update the resource attributes in the Terraform module to match the existing resources.
 
@@ -275,7 +275,10 @@ The `plan_updates.txt` file contains only resources that are imported and then u
 If you are using a VCS and you should not attempt to run the apply locally, as you would need to make your storage account public and apply permissions for your user account to it. Otherwise you will end up with an error or a local state file that cannot easily be used moving forward.
         {{< /hint >}}
 
+1. We recommdend that you now run a second plan and apply, as we have seen some edge cases where the plan with import does not yield the expected results and the second plan will correct them.
 
 1. If you see any errors, you can refer to our [FAQ]({{< relref "migration-faq" >}}) for help, but in most cases running the pipeline again will resolve any issues.
 
 1. Great! You have now completed the migration process and your management and connectivity resources are now managed by the AVM modules.
+
+1. We recommend that you remove the `imports.tf` file and `destroy.tf` file from your Terraform module, as these are not needed anymore. Create another branch and PR to complete this.

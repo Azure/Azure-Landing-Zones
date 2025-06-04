@@ -40,7 +40,7 @@ custom_replacements = {
     # Resource names
     log_analytics_workspace_name            = "alz-la"
     ddos_protection_plan_name               = "alz-ddos-uksouth"
-    ama_user_assigned_managed_identity_name = "uami-management-ama-$${starter_location_01}"
+    ama_user_assigned_managed_identity_name = "alz-uami"
     dcr_change_tracking_name                = "alz-dcr-changetracking-prod"
     dcr_defender_sql_name                   = "alz-dcr-defendersql-prod"
     dcr_vm_insights_name                    = "alz-dcr-vm-insights"
@@ -54,7 +54,7 @@ custom_replacements = {
     primary_virtual_network_gateway_vpn_enabled           = true
     primary_private_dns_zones_enabled                     = true
     primary_private_dns_auto_registration_zone_enabled    = true
-    primary_private_dns_resolver_enabled                  = true # This setting currently has no effect, but will be implemented in a future release. To turn off the private DNS resolver, set the `primary_private_dns_zones_enabled` setting to `false`.
+    primary_private_dns_resolver_enabled                  = true
     primary_bastion_enabled                               = true
     primary_sidecar_virtual_network_enabled               = true
 
@@ -64,7 +64,7 @@ custom_replacements = {
     secondary_virtual_network_gateway_vpn_enabled           = true
     secondary_private_dns_zones_enabled                     = true
     secondary_private_dns_auto_registration_zone_enabled    = true
-    secondary_private_dns_resolver_enabled                  = true # This setting currently has no effect, but will be implemented in a future release. To turn off the private DNS resolver, set the `secondary_private_dns_zones_enabled` setting to `false`.
+    secondary_private_dns_resolver_enabled                  = true
     secondary_bastion_enabled                               = true
     secondary_sidecar_virtual_network_enabled               = true
 
