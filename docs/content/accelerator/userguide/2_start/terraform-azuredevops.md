@@ -27,6 +27,7 @@ If you are using the FSI or SLZ starter modules, you do not currently require th
     ┃ ┃ 📜inputs.yaml
     ┃ ┗ 📜platform-landing-zone.tfvars
     ┗ 📂output
+      ┗ 📜.gitkeep
     ```
 
 1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from the relevant input file for your chosen starter module:
