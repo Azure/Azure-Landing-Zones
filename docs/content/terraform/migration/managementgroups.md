@@ -184,15 +184,15 @@ You can build your own custom module leveraging our AVM modules at this stage if
             1. Find the matching resource ID in the `UnusedResourceID` section and enter `Replace` into the `Action` column.
             1. Take note of the `Issue ID` and enter it into the `Action ID` column of the `NoResourceID` row.`
 
-            This will allow Terraform to create the resource again and you will be responsible for deleting the old resource (more on this later).
+            This will allow Terraform to create the resource again and the old resource will be destroyed.
 
     1. `UnusedResourceID`: This is an resource that is not used in the AVM module.
 
         Any resources that are actually used will have been handled in the `NoResourceID` section. For the rest, you need to confirm you are aware they won't be managed by Terraform or that you want to destroy them.
 
-        1. You will see a lot of items of type `microsoft.authorization/roleassignments`. These are the role assignments created for policy remediation. These all need to be set to `Destroy` as there is no way we can map them and they will cause a conflict if not removed and recreated.
+        1. You will see a lot of issues of type `microsoft.authorization/roleassignments`. These are the role assignments created for policy remediation. These all need to be set to `Destroy` as there is no way we can map them and they will cause a conflict if not removed and recreated.
 
-        1. For each reamining resource, enter `Ignore` or `Destroy` into the `Action` column if it doesn't already have `Replace` in there.
+        1. For each remaining resource, enter `Ignore` or `Destroy` into the `Action` column if it doesn't already have `Replace` in there.
 
 1. Save the `issues.csv` file as `resolved-issues.csv` and close the file.
 
@@ -232,7 +232,7 @@ The `plan_updates.txt` file contains only resources that are imported and then u
 
 1. For each change, you will need to update the `platform-landing-zone.auto.tfvars` file to match the existing resource.
 
-    In some cases it will not be possible to update or the change is expected, so you can ignore it. There will be many cases where azapi resources have changes to `replace_triggers_external_values`, `retry`, `timeouts`, and `outputs` atributes, which is expected and can be safely ignored. It is up to you to determine which changes need rectifying and which don't. The example file we already reference provides examples of the updates required for the standard CAF module.
+    In some cases it will not be possible to update or the change is expected, so you can ignore it. There will be many cases where azapi resources have changes to `replace_triggers_external_values`, `retry`, `timeouts`, and `outputs` attributes, which is expected and can be safely ignored. It is up to you to determine which changes need rectifying and which don't. The example file we already reference provides examples of the updates required for the standard CAF module.
 
 1. Re-run the command to generate the plan file again and check for any changes that are still flagged as `~` (tilde) and repeat until you are happy with the plan.
 

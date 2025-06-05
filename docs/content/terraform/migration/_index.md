@@ -11,8 +11,8 @@ This section provides step by step guidance for migrating from the [CAF Enterpri
 
 There are two main parts to the migration process:
 
-1. **Connectivity and Management Resources**: We recommend that migrate the state of the connectivity and management resources to the new ALZ modules. We provide tooling to assist with this process.
-1. **Management Groups and Policy**: We recommend that you deploy a new management group hierarchy and policy assignments using the new ALZ core module rather than attempting state migration.
+1. **Connectivity and Management Resources**: We provide guidance and tooling to migrate the state of the connectivity and management resources to the ALZ modules.
+1. **Management Groups and Policy**: We provide guidance and tooling to migrate the state of the management group hierarchy and policy assignments to the ALZ modules.
 
 ## Migration Process
 
@@ -23,7 +23,7 @@ First of all you need to determine what you already have deployed in your enviro
 - Connectivity resources with Hub and Spoke Virtual Networks (migration path 1)
 - Management groups and policy (migration path 2)
 
-Take a look at you CAF Enterprise Scale deployment and determine which of the above components you have deployed. You can then follow the appropriate migration path below.
+Take a look at your CAF Enterprise Scale deployment and determine which of the above components you have deployed. You can then follow the appropriate migration guide(s) below. If you have both, then start with management and connectivity first and then move onto management groups and policy.
 
-1. [Management and Connectivity resources]({{< relref "resources" >}})
-1. [Management groups and policy]({{< relref "managementgroups" >}})
+1. [Management and Connectivity Resources]({{< relref "resources" >}})
+1. [Management Groups and Policy]({{< relref "managementgroups" >}})
