@@ -23,7 +23,7 @@ First of all you need to determine what you already have deployed in your enviro
 - Connectivity resources with Hub and Spoke Virtual Networks (migration path 1)
 - Management groups and policy (migration path 2)
 
-Take a look at you CAF Enterprise Scale deployment and determine which of the above components you have deployed. You can then follow the appropriate migration guide(s) below. If you have both, then start with management and connectivity first and then move onto management groups and policy.
+Take a look at your CAF Enterprise Scale deployment and determine which of the above components you have deployed. You can then follow the appropriate migration guide(s) below. If you have both, then start with management and connectivity first and then move onto management groups and policy.
 
 1. [Management and Connectivity Resources]({{< relref "resources" >}})
 1. [Management Groups and Policy]({{< relref "managementgroups" >}})
