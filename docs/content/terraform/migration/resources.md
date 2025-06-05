@@ -176,11 +176,11 @@ You can build your own custom module leveraging our AVM modules at this stage if
             1. Find the matching resource ID in the `UnusedResourceID` section and enter `Replace` into the `Action` column.
             1. Take note of the `Issue ID` and enter it into the `Action ID` column of the `NoResourceID` row.`
 
-            This will allow Terraform to create the resource again and you will be responsible for deleting the old resource (more on this later).
+            This will allow Terraform to create the resource again and the old resource will be destroyed.
 
     1. `UnusedResourceID`: This is an resource that is not used in the AVM module.
 
-        Any resources that are actually used will have been handled in the `NoResourceID` section. For the rest, you need to confirm you are aware they won't be managed by Terraform or tht you want to destroy them.
+        Any resources that are actually used will have been handled in the `NoResourceID` section. For the rest, you need to confirm you are aware they won't be managed by Terraform or that you want to destroy them.
 
         1. For each resource, enter `Ignore` or `Destroy` into the `Action` column if it doesn't already have `Replace` in there.
 
