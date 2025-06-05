@@ -5,6 +5,10 @@ geekdocCollapseSection: true
 weight: 20
 ---
 
+{{< hint type="info" title="Public Preview" >}}
+This guidance and tooling is currently in **Public Preview** and is subject to change. We will announce it publicly and remove this message once our testing is complete.
+{{< /hint >}}
+
 This document contains frequently asked questions about the migration from CAF Enterprise Scale to Azure Verified Modules for Platform Landing Zones (ALZ).
 
 ## When applying Terraform, I get the error "The resource operation completed with terminal provisioning state 'Failed'." for the Firewall Policy
