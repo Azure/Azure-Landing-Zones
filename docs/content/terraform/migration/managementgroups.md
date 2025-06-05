@@ -5,6 +5,10 @@ geekdocCollapseSection: true
 weight: 10
 ---
 
+{{< hint type="info" title="Public Preview" >}}
+This guidance and tooling is currently in **Public Preview** and is subject to change. We will announce it publicly and remove this message once our testing is complete.
+{{< /hint >}}
+
 This document provides step by step guidance for migrating from the CAF Enterprise Scale module management groups and policy to the Azure Verified Modules for Platform Landing Zones (ALZ) module.
 
 The migration process relies on Terraform state migration using the Terraform [moved](https://developer.hashicorp.com/terraform/language/moved) block.
@@ -245,6 +249,10 @@ The `plan_updates.txt` file contains only resources that are imported and then u
     ```
 
 ## Final Steps
+
+{{< hint type="danger" title="Danger - No Rollback from Terraform Apply" >}}
+When you run the `terraform apply`, resources may be mutated, created, and destroyed. As such, **there is no guarantee that you will be able to roll back** to your original module state file after you run an apply. Therefore it is your responsibility to carefully review the plan to ensure there are no changes that you are not expecting.
+{{< /hint >}}
 
 1. You should now have a fully updated Terraform module that matches the existing resources in Azure and has import blocks ready to go.
 
