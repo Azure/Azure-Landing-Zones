@@ -341,7 +341,7 @@ virtual_wan_virtual_hubs = {
       resource_group = "$${connectivity_hub_vwan_resource_group_name}"
       location       = "$${starter_location_01}"
       address_prefix = "$${primary_hub_address_space}"
-      sku_name     = "Standard"
+      sku            = "Standard"
     }
     firewall = {
       enabled  = "$${primary_firewall_enabled}"
@@ -414,6 +414,7 @@ virtual_wan_virtual_hubs = {
       resource_group = "$${connectivity_hub_vwan_resource_group_name}"
       location       = "$${starter_location_02}"
       address_prefix = "$${secondary_hub_address_space}"
+      sku            = "Standard"
     }
     firewall = {
       enabled  = "$${secondary_firewall_enabled}"
