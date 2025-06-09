@@ -18,18 +18,61 @@ The steps to follow are:
 You should not remove the DNS names from the `custom_replacements` section as it will result in a templating error. Advanced Terraform users are welcome to tidy up the config and remove the names and related templates if there is no future plan to use Private DNS.
     {{< /hint >}}
 
-1. Add the follow configuration to the `management_group_settings` > `policy_assignments_to_modify` block setting
+1. Locate the `lib` folder in your output directory. This folder is created when you run the accelerator and contains the necessary files for customizing the platform landing zone. The `lib` folder structure should look like this:
 
-    {{< hint type=warning >}}
-If you have updated the `corp` management group ID, then you need to update the management group ID in this block setting to match. For example, replace `corp` with `contoso-corp`.
-    {{< /hint >}}
-
-    ```terraform
-    corp = {
-      policy_assignments = {
-        Deploy-Private-DNS-Zones = {
-          enforcement_mode = "DoNotEnforce"
-        }
-      }
-    }
+    ```plaintext
+    ┣ 📂lib
+    ┃ ┣ 📜alz_library_metadata.json
+    ┃ ┣ 📂architecture_definitions
+    ┃ ┃ ┗ 📜alz_custom.alz_architecture_definition.yaml
+    ┃ ┗ 📂archetype_overrides
+    ┃   ┃ 📜connectivity_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜corp_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜decommissioned_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜identity_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜management_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜landing_zones_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜platform_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜root_custom.alz_archetype_override.yaml
+    ┃   ┗ 📜sandboxes_custom.alz_archetype_override.yaml
     ```
+
+1. Open the `corp_custom.alz_architecture_definition.yaml` file to remove the policy assignment.
+
+    The default file looks like this:
+
+    ```yaml
+    # Example of how to add items to the lists below
+    #
+    # policy_assignments_to_remove
+    # - example_policy_assignment_1
+    # - example_policy_assignment_2
+    base_archetype: corp
+    name: corp_custom
+    policy_assignments_to_add: []
+    policy_assignments_to_remove: []
+    policy_definitions_to_add: []
+    policy_definitions_to_remove: []
+    policy_set_definitions_to_add: []
+    policy_set_definitions_to_remove: []
+    role_definitions_to_add: []
+    role_definitions_to_remove: []
+    ```
+
+1. Add the `Deploy-Private-DNS-Zones` to the `policy_assignments_to_remove` list:
+
+    ```yaml
+    base_archetype: corp
+    name: corp_custom
+    policy_assignments_to_add: []
+    policy_assignments_to_remove:
+      - Deploy-Private-DNS-Zones
+    policy_definitions_to_add: []
+    policy_definitions_to_remove: []
+    policy_set_definitions_to_add: []
+    policy_set_definitions_to_remove: []
+    role_definitions_to_add: []
+    role_definitions_to_remove: []
+    ```
+
+1. Now run a Terraform plan and apply to deploy the changes. The Private DNS zones and Private DNS resolver will not be deployed and the  policy assignment will be removed.
