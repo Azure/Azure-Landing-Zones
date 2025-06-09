@@ -1,5 +1,5 @@
 ---
-title: 5 - Turn off Private DNS zones and Private DNS resolver
+title: 5 - Turn off Private DNS zones
 geekdocCollapseSection: true
 weight: 5
 ---
@@ -18,61 +18,44 @@ The steps to follow are:
 You should not remove the DNS names from the `custom_replacements` section as it will result in a templating error. Advanced Terraform users are welcome to tidy up the config and remove the names and related templates if there is no future plan to use Private DNS.
     {{< /hint >}}
 
-1. Locate the `lib` folder in your output directory. This folder is created when you run the accelerator and contains the necessary files for customizing the platform landing zone. The `lib` folder structure should look like this:
+1. Locate the `lib` folder in your `config` directory. This folder was created in the initial steps of phase 2. The `lib` folder structure should look like this:
 
     ```plaintext
-    ┣ 📂lib
-    ┃ ┣ 📜alz_library_metadata.json
-    ┃ ┣ 📂architecture_definitions
-    ┃ ┃ ┗ 📜alz_custom.alz_architecture_definition.yaml
-    ┃ ┗ 📂archetype_overrides
-    ┃   ┃ 📜connectivity_custom.alz_archetype_override.yaml
-    ┃   ┃ 📜corp_custom.alz_archetype_override.yaml
-    ┃   ┃ 📜decommissioned_custom.alz_archetype_override.yaml
-    ┃   ┃ 📜identity_custom.alz_archetype_override.yaml
-    ┃   ┃ 📜management_custom.alz_archetype_override.yaml
-    ┃   ┃ 📜landing_zones_custom.alz_archetype_override.yaml
-    ┃   ┃ 📜platform_custom.alz_archetype_override.yaml
-    ┃   ┃ 📜root_custom.alz_archetype_override.yaml
-    ┃   ┗ 📜sandboxes_custom.alz_archetype_override.yaml
+    📂lib
+    ┣ 📜alz_library_metadata.json
+    ┣ 📂architecture_definitions
+    ┃ ┗ 📜alz_custom.alz_architecture_definition.yaml
+    ┗ 📂archetype_overrides
+      ┃ 📜connectivity_custom.alz_archetype_override.yaml
+      ┃ 📜corp_custom.alz_archetype_override.yaml
+      ┃ 📜decommissioned_custom.alz_archetype_override.yaml
+      ┃ 📜identity_custom.alz_archetype_override.yaml
+      ┃ 📜management_custom.alz_archetype_override.yaml
+      ┃ 📜landing_zones_custom.alz_archetype_override.yaml
+      ┃ 📜platform_custom.alz_archetype_override.yaml
+      ┃ 📜root_custom.alz_archetype_override.yaml
+      ┗ 📜sandboxes_custom.alz_archetype_override.yaml
     ```
 
-1. Open the `corp_custom.alz_architecture_definition.yaml` file to remove the policy assignment.
+1. Open the `corp_custom.alz_archetype_override.yaml` file and uncomment the AMA policy assignments in the `policy_assignments_to_remove` list.
 
-    The default file looks like this:
+    The file should look like this:
 
     ```yaml
-    # Example of how to add items to the lists below
-    #
-    # policy_assignments_to_remove
-    # - example_policy_assignment_1
-    # - example_policy_assignment_2
     base_archetype: corp
     name: corp_custom
     policy_assignments_to_add: []
     policy_assignments_to_remove: []
     policy_definitions_to_add: []
-    policy_definitions_to_remove: []
+    policy_definitions_to_remove: [
+    # To remove the private DNS zones policy for private endpoints
+      Deploy-Private-DNS-Zones,
+    ]
     policy_set_definitions_to_add: []
     policy_set_definitions_to_remove: []
     role_definitions_to_add: []
     role_definitions_to_remove: []
+
     ```
 
-1. Add the `Deploy-Private-DNS-Zones` to the `policy_assignments_to_remove` list:
-
-    ```yaml
-    base_archetype: corp
-    name: corp_custom
-    policy_assignments_to_add: []
-    policy_assignments_to_remove:
-      - Deploy-Private-DNS-Zones
-    policy_definitions_to_add: []
-    policy_definitions_to_remove: []
-    policy_set_definitions_to_add: []
-    policy_set_definitions_to_remove: []
-    role_definitions_to_add: []
-    role_definitions_to_remove: []
-    ```
-
-1. Now run a Terraform plan and apply to deploy the changes. The Private DNS zones and Private DNS resolver will not be deployed and the  policy assignment will be removed.
+1. Make sure to save the file after making the changes.

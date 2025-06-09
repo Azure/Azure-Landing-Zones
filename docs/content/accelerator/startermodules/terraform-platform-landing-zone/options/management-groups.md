@@ -18,7 +18,7 @@ There are 2 high level steps required to customize the management group names an
 
 Follow these steps to customize the management group names and IDs:
 
-1. Locate the `lib` folder in your output directory. This folder is created when you run the accelerator and contains the necessary files for customizing the platform landing zone.
+1. Locate the `lib` folder in your `config` directory. This folder was created in the initial steps of phase 2. The `lib` folder structure should look like this:
 
     ```plaintext
     ┣ 📂lib
@@ -52,75 +52,75 @@ When updating the management group `id`, you also need to update any child manag
     {{< highlight yaml "linenos=table" >}}
     name: alz_custom
     management_groups:
-      - id: alz
-        display_name: Azure Landing Zones
+      - id: contoso-alz
+        display_name: Contoso
         archetypes:
           - root_custom
         exists: false
         parent_id: null
 
-      - id: platform
-        display_name: Platform
+      - id: contoso-platform
+        display_name: Contoso Platform
         archetypes:
           - platform_custom
         exists: false
-        parent_id: alz
+        parent_id: contoso-alz
 
-      - id: landing_zones
-        display_name: Landing Zones
+      - id: contoso-landingzones
+        display_name: Contoso Landing Zones
         archetypes:
           - landing_zones_custom
         exists: false
-        parent_id: alz
+        parent_id: contoso-alz
 
-      - id: corp
-        display_name: Corp
+      - id: contoso-corp
+        display_name: Contoso Corp
         archetypes:
           - corp_custom
         exists: false
-        parent_id: landing_zones
+        parent_id: contoso-landingzones
 
-      - id: online
-        display_name: Online
+      - id: contoso-online
+        display_name: Contoso Online
         archetypes:
           - online_custom
         exists: false
-        parent_id: landing_zones
+        parent_id: contoso-landingzones
 
       - id: sandbox
-        display_name: Sandbox
+        display_name: Contoso Sandbox
         archetypes:
           - sandbox_custom
         exists: false
         parent_id: alz
 
-      - id: management
-        display_name: Management
+      - id: contoso-management
+        display_name: Contoso Management
         archetypes:
           - management_custom
         exists: false
-        parent_id: platform
+        parent_id: contoso-platform
 
-      - id: connectivity
-        display_name: Connectivity
+      - id: contoso-connectivity
+        display_name: Contoso Connectivity
         archetypes:
           - connectivity_custom
         exists: false
-        parent_id: platform
+        parent_id: contoso-platform
 
-      - id: identity
-        display_name: Identity
+      - id: contoso-identity
+        display_name: Contoso Identity
         archetypes:
           - identity_custom
         exists: false
-        parent_id: platform
+        parent_id: contoso-platform
 
-      - id: decommissioned
-        display_name: Decommissioned
+      - id: contoso-decommissioned
+        display_name: Contoso Decommissioned
         archetypes:
           - decommissioned_custom
         exists: false
-        parent_id: alz
+        parent_id: contoso-alz
   {{< /highlight >}}
 
 1. If you updated the `connectivity`, `management` or `identity` management group IDs, then you'll also need to update the `management_group_settings` > `subscription_placement` block setting in the `platform-landing-zone.tfvars` file to match the management group IDs you changed them to.
@@ -156,7 +156,7 @@ If you have made any other changes to the `policy_assignments_to_modify` block s
 
     {{< highlight terraform "linenos=table" >}}
     policy_assignments_to_modify = {
-      contoso-root = {
+      contoso-alz = {
         policy_assignments = {
           Deploy-MDFC-Config-H224 = {
             parameters = {
@@ -181,3 +181,5 @@ If you have made any other changes to the `policy_assignments_to_modify` block s
       }
     }
     {{< / highlight >}}
+
+1. Make sure to save the file after making the changes.

@@ -29,6 +29,25 @@ If you are using the FSI or SLZ starter modules, you do not currently require th
     ┗ 📂output
     ```
 
+1. If you are using the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module, you must create a `lib` folder inside the `config` folder to store any customizations to the management groups and policies. This is not required for the FSI or SLZ starter modules.
+
+    ```pwsh
+    $tempFolderName = "~/accelerator/temp"
+    New-Item -ItemType "directory" $tempFolderName
+    $tempFolder = Resolve-Path -Path $tempFolderName
+    git clone -n --depth=1 --filter=tree:0 "https://github.com/Azure/alz-terraform-accelerator" "$tempFolder"
+    cd $tempFolder
+
+    $libFolderPath = "templates/platform_landing_zone/lib"
+    git sparse-checkout set --no-cone $libFolderPath
+    git checkout
+
+    cd ~
+    Copy-Item -Path "$tempFolder/$libFolderPath" -Destination "~/accelerator/config" -Recurse -Force
+    Remove-Item -Path $tempFolder -Recurse -Force
+    
+    ```
+
 1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from the relevant input file for your chosen starter module:
     1. Azure Verified Modules for Platform Landing Zone (ALZ) - [inputs-github.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/bootstrap/inputs-github.yaml)
     1. Financial Services Industry Landing Zone - [inputs-github.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/microsoft_cloud_for_industry/financial_services_landing_zone/examples/bootstrap/inputs-github.yaml)
@@ -90,16 +109,7 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
 Inputs can be split into multiple files if desired.
     {{< /hint >}}
 
-    * Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module without a `lib` folder:
-
-        ```pwsh
-        Deploy-Accelerator `
-        -inputs "~/accelerator/config/inputs.yaml", "~/accelerator/config/platform-landing-zone.tfvars" `
-        -output "~/accelerator/output"
-
-        ```
-
-    * Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module with a `lib` folder:
+    * Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module:
 
         ```pwsh
         Deploy-Accelerator `
