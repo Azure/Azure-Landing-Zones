@@ -12,41 +12,34 @@ If you update the management group IDs, you also need to update the `platform-la
 
 There are 2 high level steps required to customize the management group names and IDs:
 
-1. (Required) Create the `lib` folder under the standard accelerator file structure and provide a modified `alz.alz_architecture_definition.json` file.
 1. (Optional) Update the platform landing zone configuration file `platform-landing-zone.tfvars` to reflect any changes to management group IDs
-    * (Optional) Update the `management_group_settings` > `subscription_placement` block setting to match any management group IDs you changed.
-    * (Optional) Update the `policy_assignments_to_modify` block setting to match any management group IDs you changed.
+    - (Optional) Update the `management_group_settings` > `subscription_placement` block setting to match any management group IDs you changed.
+    - (Optional) Update the `policy_assignments_to_modify` block setting to match any management group IDs you changed.
 
 Follow these steps to customize the management group names and IDs:
 
-1. Run the following script to create the `lib` folder and the `alz.alz_architecture_definition.json` under the standard accelerator file structure:
-
-    ```pwsh
-    $filePath = "~/accelerator/config/lib/architecture_definitions/alz.alz_architecture_definition.json"
-    New-Item -ItemType "file" $filePath -Force
-    (Invoke-WebRequest "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/refs/heads/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json").Content | Out-File $filePath -Force
-
-    ```
-
-    {{< hint type=warning >}}
-The `lib` folder must be named `lib`, any other name will not work
-    {{< /hint >}}
-
-    The `lib` folder should now contain the following structure (we are showing it nested under the standard accelerator file structure here):
+1. Locate the `lib` folder in your `config` directory. This folder was created in the initial steps of phase 2. The `lib` folder structure should look like this:
 
     ```plaintext
-    📂accelerator
-    ┣ 📂config
-    ┃ ┣ 📂lib
-    ┃ ┃ ┗ 📂architecture_definitions
-    ┃ ┃   ┗ 📜alz.alz_architecture_definition.json
-    ┃ ┃ 📜inputs.yaml
-    ┃ ┗ 📜platform-landing-zone.tfvars
-    ┗ 📂output
+    ┣ 📂lib
+    ┃ ┣ 📜alz_library_metadata.json
+    ┃ ┣ 📂architecture_definitions
+    ┃ ┃ ┗ 📜alz_custom.alz_architecture_definition.yaml
+    ┃ ┗ 📂archetype_overrides
+    ┃   ┃ 📜connectivity_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜corp_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜decommissioned_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜identity_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜management_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜landing_zones_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜platform_custom.alz_archetype_override.yaml
+    ┃   ┃ 📜root_custom.alz_archetype_override.yaml
+    ┃   ┗ 📜sandboxes_custom.alz_archetype_override.yaml
     ```
-1. The `alz.alz_architecture_definition.json` file content should have been copied from [here](https://github.com/Azure/Azure-Landing-Zones-Library/blob/main/platform/alz/architecture_definitions/alz.alz_architecture_definition.json). If the script did not work for you, copy the content from the link and create the file manually.
 
-1. Edit the `alz.alz_architecture_definition.json` file to update the management group names and IDs.
+1. The `alz_custom.alz_architecture_definition.json` file contains the management group hierarchy.
+
+1. Edit the `alz_custom.alz_architecture_definition.json` file to update the management group names and IDs.
 
     For example to prefix all the management group display names with `Contoso` and update the management group IDs to have the `contoso-` prefix they can update the file to look like this:
 
@@ -54,104 +47,81 @@ The `lib` folder must be named `lib`, any other name will not work
 When updating the management group `id`, you also need to update any child management groups that refer to it by the `parent_id`
     {{< /hint >}}
 
-    {{< highlight terraform "linenos=table" >}}
-    {
-      "$schema": "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/main/schemas/architecture_definition.json",
-      "name": "alz",
-      "management_groups": [
-        {
-          "archetypes": [
-            "root"
-          ],
-          "display_name": "Contoso",
-          "exists": false,
-          "id": "contoso-root",
-          "parent_id": null
-        },
-        {
-          "archetypes": [
-            "platform"
-          ],
-          "display_name": "Contoso Platform",
-          "exists": false,
-          "id": "contoso-platform",
-          "parent_id": "contoso-root"
-        },
-        {
-          "archetypes": [
-            "landing_zones"
-          ],
-          "display_name": "Contoso Landing zones",
-          "exists": false,
-          "id": "contoso-landingzones",
-          "parent_id": "contoso-root"
-        },
-        {
-          "archetypes": [
-            "corp"
-          ],
-          "display_name": "Contoso Corp",
-          "exists": false,
-          "id": "contoso-corp",
-          "parent_id": "contoso-landingzones"
-        },
-        {
-          "archetypes": [
-            "online"
-          ],
-          "display_name": "Contoso Online",
-          "exists": false,
-          "id": "contoso-online",
-          "parent_id": "contoso-landingzones"
-        },
-        {
-          "archetypes": [
-            "sandbox"
-          ],
-          "display_name": "Contoso Sandbox",
-          "exists": false,
-          "id": "contoso-sandbox",
-          "parent_id": "contoso-root"
-        },
-        {
-          "archetypes": [
-            "management"
-          ],
-          "display_name": "Contoso Management",
-          "exists": false,
-          "id": "contoso-management",
-          "parent_id": "contoso-platform"
-        },
-        {
-          "archetypes": [
-            "connectivity"
-          ],
-          "display_name": "Contoso Connectivity",
-          "exists": false,
-          "id": "contoso-connectivity",
-          "parent_id": "contoso-platform"
-        },
-        {
-          "archetypes": [
-            "identity"
-          ],
-          "display_name": "Contoso Identity",
-          "exists": false,
-          "id": "contoso-identity",
-          "parent_id": "contoso-platform"
-        },
-        {
-          "archetypes": [
-            "decommissioned"
-          ],
-          "display_name": "Contoso Decommissioned",
-          "exists": false,
-          "id": "contoso-decommissioned",
-          "parent_id": "contoso-root"
-        }
-      ]
-    }
-    {{< / highlight >}}
+    The default `alz_custom.alz_architecture_definition.yaml` file looks like this:
+
+    {{< highlight yaml "linenos=table" >}}
+    name: alz_custom
+    management_groups:
+      - id: contoso-alz
+        display_name: Contoso
+        archetypes:
+          - root_custom
+        exists: false
+        parent_id: null
+
+      - id: contoso-platform
+        display_name: Contoso Platform
+        archetypes:
+          - platform_custom
+        exists: false
+        parent_id: contoso-alz
+
+      - id: contoso-landingzones
+        display_name: Contoso Landing Zones
+        archetypes:
+          - landing_zones_custom
+        exists: false
+        parent_id: contoso-alz
+
+      - id: contoso-corp
+        display_name: Contoso Corp
+        archetypes:
+          - corp_custom
+        exists: false
+        parent_id: contoso-landingzones
+
+      - id: contoso-online
+        display_name: Contoso Online
+        archetypes:
+          - online_custom
+        exists: false
+        parent_id: contoso-landingzones
+
+      - id: sandbox
+        display_name: Contoso Sandbox
+        archetypes:
+          - sandbox_custom
+        exists: false
+        parent_id: alz
+
+      - id: contoso-management
+        display_name: Contoso Management
+        archetypes:
+          - management_custom
+        exists: false
+        parent_id: contoso-platform
+
+      - id: contoso-connectivity
+        display_name: Contoso Connectivity
+        archetypes:
+          - connectivity_custom
+        exists: false
+        parent_id: contoso-platform
+
+      - id: contoso-identity
+        display_name: Contoso Identity
+        archetypes:
+          - identity_custom
+        exists: false
+        parent_id: contoso-platform
+
+      - id: contoso-decommissioned
+        display_name: Contoso Decommissioned
+        archetypes:
+          - decommissioned_custom
+        exists: false
+        parent_id: contoso-alz
+  {{< /highlight >}}
 
 1. If you updated the `connectivity`, `management` or `identity` management group IDs, then you'll also need to update the `management_group_settings` > `subscription_placement` block setting in the `platform-landing-zone.tfvars` file to match the management group IDs you changed them to.
 
@@ -186,7 +156,7 @@ If you have made any other changes to the `policy_assignments_to_modify` block s
 
     {{< highlight terraform "linenos=table" >}}
     policy_assignments_to_modify = {
-      contoso-root = {
+      contoso-alz = {
         policy_assignments = {
           Deploy-MDFC-Config-H224 = {
             parameters = {
@@ -212,4 +182,4 @@ If you have made any other changes to the `policy_assignments_to_modify` block s
     }
     {{< / highlight >}}
 
-1. Now, when deploying the accelerator you need to supply the lib folder as an argument with `-starterAdditionalFiles`.
+1. Make sure to save the file after making the changes.
