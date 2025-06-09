@@ -124,4 +124,4 @@ The Azure Monitoring Agent (AMA) is enabled by default. If you want to turn it o
     role_definitions_to_remove: []
     ```
 
-1. Now run a Terraform plan and apply to deploy the changes. The DDOS protection plan will not be deployed and the policy assignment will be removed.
+1. Now run a Terraform plan and apply to deploy the changes. The AMA resources not be deployed and the policy assignments will be removed.
