@@ -47,7 +47,7 @@ Follow these steps to customize the management group names and IDs:
 When updating the management group `id`, you also need to update any child management groups that refer to it by the `parent_id`
     {{< /hint >}}
 
-    The default `alz_custom.alz_architecture_definition.yaml` file looks like this:
+    The `alz_custom.alz_architecture_definition.yaml` file would look like this after making the changes in this example:
 
     {{< highlight yaml "linenos=table" >}}
     name: alz_custom
@@ -87,12 +87,12 @@ When updating the management group `id`, you also need to update any child manag
         exists: false
         parent_id: contoso-landingzones
 
-      - id: sandbox
+      - id: contoso-sandbox
         display_name: Contoso Sandbox
         archetypes:
           - sandbox_custom
         exists: false
-        parent_id: alz
+        parent_id: contoso-alz
 
       - id: contoso-management
         display_name: Contoso Management
