@@ -87,12 +87,12 @@ When updating the management group `id`, you also need to update any child manag
         exists: false
         parent_id: contoso-landingzones
 
-      - id: sandbox
+      - id: contoso-sandbox
         display_name: Contoso Sandbox
         archetypes:
           - sandbox_custom
         exists: false
-        parent_id: alz
+        parent_id: contoso-alz
 
       - id: contoso-management
         display_name: Contoso Management
