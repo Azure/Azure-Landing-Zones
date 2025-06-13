@@ -29,7 +29,7 @@ While we try very hard to avoid breaking changes, there are times when a feature
 - Release link: [v7.4.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v7.4.0)
 - Release diff: [v7.3.2...v7.4.0](https://github.com/Azure/alz-terraform-accelerator/compare/v7.3.2...v7.4.0)
 
-This release introduces the Azure Firewall Management IP and Associated subnet by default per our Cloud Adoption Framework (CAF) guidance. This will be on by default for new customers. However, this would be a breaking change for existing users, since it it is not possible to add a management IP to a an existing Azure Firewall at this time. The setting would result in a plan to destroy and recreate the Azure Firewalll, which may want to be planned for a future maintenance window.
+This release introduces the Azure Firewall Management IP and Associated subnet by default per our Cloud Adoption Framework (CAF) guidance. This will be on by default for new customers. However, this would be a breaking change for existing users, since it is not possible to add a management IP to an existing Azure Firewall at this time. The setting would result in a plan to destroy and recreate the Azure Firewall, which may want to be planned for a future maintenance window.
 
 In order to support backwards compatibility we have introduced the `<region>-firewall_management_ip_enabled` setting in the configuration file. This setting is `true` by default, but can be set to `false` to avoid the management IP being created and avoid the Azure Firewall being destroyed and recreated.
 
