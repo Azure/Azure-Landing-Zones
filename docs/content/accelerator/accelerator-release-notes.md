@@ -70,7 +70,7 @@ If you do want to bring your `lib` folder into line with the YAML standard, you 
 - Release link: [v7.2.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v7.2.0)
 - Release diff: [v7.1.0...v7.2.0](https://github.com/Azure/alz-terraform-accelerator/compare/v7.1.0...v7.2.0)
 
-This release fixes an issue where Virtual WAN network connections were not being created for the sidercar virtual network when private DNS zones were disabled. As part of the fix the default name for these links had to be updated to match the actual use case. This will result in a plan that attempts to destroy and recreate the virtual network connections. In order to avoid this we introduced a setting called `virtual_network_connection_name` to allow overriding the name the retain the legacy name and avoid them being recreated. We have include this as a commented out setting in the configuration files for ease of use.
+This release fixes an issue where Virtual WAN network connections were not being created for the sidecar virtual network when private DNS zones were disabled. As part of the fix the default name for these links had to be updated to match the actual use case. This will result in a plan that attempts to destroy and recreate the virtual network connections. In order to avoid this we introduced a setting called `virtual_network_connection_name` to allow overriding the name the retain the legacy name and avoid them being recreated. We have include this as a commented out setting in the configuration files for ease of use.
 
 In order to use the legacy name, uncomment the `virtual_network_connection_name` setting in configuration file when performing your diff.
 
