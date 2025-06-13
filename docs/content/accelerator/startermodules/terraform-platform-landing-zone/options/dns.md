@@ -4,7 +4,7 @@ geekdocCollapseSection: true
 weight: 5
 ---
 
-You can choose to not deploy any DNS related resources. In order to do that, you need to update the DNS configuration and disable the DINE (deploy if not exists) policy.
+You can choose to not deploy the private DNS zone resources. In order to do that, you need to update the DNS configuration and disable the DINE (deploy if not exists) policy.
 
 The steps to follow are:
 
