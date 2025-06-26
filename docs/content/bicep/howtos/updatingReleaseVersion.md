@@ -9,7 +9,6 @@ We recommend updating to the latest minor or patch version of the ALZ Bicep modu
 
 However, if you’re part of a smaller team or organization, you may choose to skip some minor releases and instead adopt only the latest major version when you're ready to incorporate the broader changes. Additionally, we publish quarterly policy updates, and some customers choose to align their release version updates with that cadence to stay current with platform governance standards. Just be aware that skipping versions may require additional review of release notes and complexity to ensure compatibility with your existing configurations.
 
-{{< hint type=note >}}
 {{< hint type=important >}}
 Before you begin, read the [ALZ Bicep release notes](https://github.com/Azure/ALZ-Bicep/releases) to understand any breaking changes or new features that could impact your deployment—especially if upgrading to a new **major** version.
 {{< /hint >}}
