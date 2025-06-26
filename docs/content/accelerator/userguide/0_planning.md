@@ -19,7 +19,7 @@ Learn about the Azure landing zones architecture and the accelerator.
 You should understand these terms before you start:
 
 * Infrastructure as Code (IaC): Infrastructure as Code (IaC) is the process of managing and provisioning computing infrastructure through machine-readable definition files, rather than through physical hardware configuration or interactive configuration tools. This is a key component of the accelerator.
-* Platform Landing Zone: Understand the scope of the Platform Landing Zone [here](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/).
+* Platform Landing Zone: Understand the scope of the Platform Landing Zone [here](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
 * Bootstrap or Bootstrap Module: The IaC module that sets up the version control system, continuous delivery pipeline, required Azure resources, etc. The bootstrap happens before the Platform Landing Zone is deployed.
 * Starter or Starter Module: This is a pre-configured IaC module that can be used to deploy a specific platform landing zone configuration.
 * Accelerator PowerShell Module: The PowerShell module that is used to deploy the bootstrap. Find it here: [https://www.powershellgallery.com/packages/ALZ](https://www.powershellgallery.com/packages/ALZ).
@@ -30,9 +30,9 @@ You should have a good understanding of the following technologies and concepts:
 
 * Terraform Workflow: Understand the standard write, init, plan and apply workflow. [Learning path](https://aka.ms/tf/fundamentals)
 * Terraform HCL (HashiCorp Configuration Language): Understand the basics of HCL. [Learning path](https://aka.ms/tf/labs)
-* DevOps: Understand the fundamentals of DevOps. [Learning path](https://learn.microsoft.com/en-us/training/modules/introduction-to-devops/)
-* Continuous Integration and Delivery: Understand the basics of CI/CD. [Learning path](https://learn.microsoft.com/en-us/training/modules/explain-devops-continous-delivery-quality/)
-* git version control: Understand the fundamentals of git. [Learning path](https://learn.microsoft.com/en-us/training/modules/intro-to-git/)
+* DevOps: Understand the fundamentals of DevOps. [Learning path](https://learn.microsoft.com/training/modules/introduction-to-devops/)
+* Continuous Integration and Delivery: Understand the basics of CI/CD. [Learning path](https://learn.microsoft.com/training/modules/explain-devops-continous-delivery-quality/)
+* git version control: Understand the fundamentals of git. [Learning path](https://learn.microsoft.com/training/modules/intro-to-git/)
 
 ## 2 - Download the checklist
 
@@ -74,7 +74,7 @@ Fill out the `Infrastructure as Code` value with either `bicep` or `terraform`.
 
 ### Decision 2 - Choose a version control system
 
-We currently support bootstrapping of Azure DevOps or GitHub. H
+We currently support bootstrapping of Azure DevOps or GitHub.
 
 Hopefully you've already chosen one of these for your organization, but if not you can go off and do some research now before continuing.
 
@@ -103,7 +103,7 @@ Fill out the `Starter module` value with either `complete`, `platform_landing_zo
 
 ### Decision 4 - Choose a region for the bootstrap resources
 
-The bootstrap resources are deployed to a single region. Choose the Azure region where you would like the deploy them.
+The bootstrap resources are deployed to a single region. Choose the Azure region where you would like to deploy them.
 
 The bootstrap resources include:
 
@@ -124,7 +124,7 @@ Fill out the `Platform landing zone region(s)` value with the Azure region(s) yo
 
 ### Decision 6 - Choose a parent management group
 
-The parent management group is the management group that will contain the management groups created by the bootstrap. The parent management group must exist before the bootstrap is run. 
+The parent management group is the management group that will contain the management groups created by the bootstrap. The parent management group must exist before the bootstrap is run.
 
 We recommend using `Tenant Root Group`, the platform landing zone management group hierarchy will be build underneath the chosen parent management group. The only changes to the parent management group will be permissions, no policies are applied at that level.
 
@@ -136,7 +136,7 @@ Fill out the `Parent management group id` value with the management group you ha
 
 ### Decision 7 - Choose the platform subscriptions
 
-We strongly encourage and only support using 3 subscription model with separate Management, Connectivity and Identity platform subscriptions. 
+We strongly encourage and only support using 3 subscription model with separate Management, Connectivity and Identity platform subscriptions.
 
 {{< hint type=note >}}
 A single subscription model is technically possible, but only recommended for sandbox testing purposes.
@@ -158,7 +158,7 @@ Fill out the `Bootstrap subscription id` value with the subscription ID you have
 
 ### Decision 9 - Choose the bootstrap resource naming
 
-Choose a `service name` and `environment name` that will be used to derive the bootstrap resource names. 
+Choose a `service name` and `environment name` that will be used to derive the bootstrap resource names.
 
 {{< hint type=tip >}}
 If you must use an alternative naming convention, they can be overridden by follow the instructions found [HERE]({{< relref "../faq">}})
@@ -171,7 +171,7 @@ Fill out the `Service name` and `Environment name` values with the names you hav
 We offer 3 agent / runner and networking options for the bootstrap. The options and related settings are listed here:
 
 * Private networking with self-hosted agents / runners
-  * Azure DevOps: 
+  * Azure DevOps:
     * `use_private_networking` = `true`
     * `use_self_hosted_agents` = `true`
   * GitHub:
@@ -198,7 +198,7 @@ Self-hosted agents / runners are required for private networking, so that settin
 
 Fill out the `Use private networking`, `Use self-hosted agents`, and / or `Use self-hosted runners` values with the settings you have chosen.
 
-### Decision 11 Choose / validate your version control system specific settings
+### Decision 11 - Choose / validate your version control system specific settings
 
 Review the remaining settings in the `Accelerator - Bootstrap` tab of the `checklist.xlsx` file and fill out any remaining settings relevant to the chosen version control system.
 

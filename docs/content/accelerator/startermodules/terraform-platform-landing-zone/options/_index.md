@@ -6,11 +6,11 @@ weight: 2
 
 This section provides detailed instructions for updating your configuration to implement each option.
 
-If you are familiar with Terraform tfvars file structure, you can skip the next section that explains how to update the configuration file and go directly to the [Options](#options) you want to implement.
+If you are familiar with Terraform `tfvars` file structure, you can skip the next section that explains how to update the configuration file and go directly to the [Options](#options) you want to implement.
 
 ## Platform configuration file updates
 
-Most of the options require you to update the platform configuration file. The platform configuration file is a HCL (tfvars) file that contains the configuration settings for the platform landing zone. 
+Most of the options require you to update the platform configuration file. The platform configuration file is a HCL (tfvars) file that contains the configuration settings for the platform landing zone.
 
 There are two types of settings in the platform configuration file that you may need to update. For the sake of simplicity we will refer to these as `line` and `block` settings.
 
@@ -92,3 +92,4 @@ The available options are:
 1. [Turn off Azure Monitoring Agent]({{< relref "ama">}})
 1. [Deploy Azure Monitoring Baseline Alerts (AMBA)]({{< relref "amba">}})
 1. [Turn off Defender Plans]({{< relref "defender">}})
+1. [Implement Zero Trust Networking]({{< relref "zero-trust">}})

@@ -57,7 +57,7 @@ agent_container_zone_support: false
 
 ```text
 ╷
-│ Error: creating Container Group (Subscription: "0d754f66-65b4-4f64-97f5-221f0174ad48"
+│ Error: creating Container Group (Subscription: "**754f66-****-4f64-****-221f0174ad4**"
 │ Resource Group Name: "rg-alz-r14c67r424-agents-swedencentral-001"
 │ Container Group Name: "aci-alz-r14c67r424-swedencentral-002"): polling after ContainerGroupsCreateOrUpdate: polling failed: the Azure API returned the following error:
 │
@@ -79,5 +79,40 @@ agent_container_zone_support: false
 │   on ../../modules/azure/container_instances.tf line 1, in resource "azurerm_container_group" "alz":
 │    1: resource "azurerm_container_group" "alz" {
 │
+╵
+```
+
+## Error: Failed to delete resource - when destroying the platform landing zone on the module.management_groups.module.management_groups.azapi_resource.subscription_(platform subscription) resource
+
+If you are trying to destroy your platform landing zone and you see three errors like the below, it is because you don't have permissions on the management group that it is trying to move the subscriptions to.
+
+This is the default management group, in most cases `Tenant Root Group`. If you didn't use `Tenant Root Group` as your root parent management group for the deployment, you will recall that you had to move the platform subscriptions under the management group you defined. The bootstrap only applied permissions to that management group and therefore has no permissions on your default management group.
+
+You have two options to resolve this:
+
+1. Manually move the subscriptions back to the default management group or your chosen root management group before destroying the platform landing zone.
+2. Change the default management group for your tenant to the management group you used for the platform landing zone.
+
+```text
+╷
+│ Error: Failed to delete resource
+│ 
+│ deleting Resource: (ResourceId
+│ "/providers/Microsoft.Management/managementGroups/levelup-identity/subscriptions/**754f66-****-4f64-****-221f0174ad4**"
+│ / Api Version "2023-04-01"): DELETE
+│ https://management.azure.com/providers/Microsoft.Management/managementGroups/levelup-identity/subscriptions/**754f66-****-4f64-****-221f0174ad4**
+│ --------------------------------------------------------------------------------
+│ RESPONSE 400: 400 Bad Request
+│ ERROR CODE: BadRequest
+│ --------------------------------------------------------------------------------
+│ {
+│   "error": {
+│     "code": "BadRequest",
+│     "message": "Permission to write and delete on resources of type 'Microsoft.Authorization/roleAssignments' is required on the subscription or its ancestors.",
+│     "details": "Subscription ID: '/subscriptions/**754f66-****-4f64-****-221f0174ad4**'"
+│   }
+│ }
+│ --------------------------------------------------------------------------------
+│ 
 ╵
 ```

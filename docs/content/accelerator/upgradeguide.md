@@ -3,6 +3,10 @@ title: Upgrade Guide
 weight: 20
 ---
 
+{{< hint type=tip >}}
+If you are looking for guidance to update the Azure Verified Modules for Platform Landing Zone (ALZ) modules, head to our upgrade guidance [here]({{< relref "startermodules/terraform-platform-landing-zone/upgrade-guide" >}}).
+{{< /hint >}}
+
 Although the accelerator is designed to be a one-time run, we have some rudimentary support for automatically upgrading to newer versions of the accelerator.
 
 This upgrade path is specifically for customers using the accelerator who haven't updated the repositories it deploys. If you have updated the repositories post initial bootstrap, you will need to take an alternative approach to upgrading.

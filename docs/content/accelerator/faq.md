@@ -13,18 +13,18 @@ If you have a question not listed here, please raise an [Issue](https://github.c
 
 ### How do I use my own naming convention for the resources that are deployed?
 
-You can add any hidden variables to your inputs file, including the `resource_names` map. This map is used to set the names of the resources that are deployed. You can find the default values in the `variables.hidden.tf` file in the bootstrap module:
+You can add any hidden variables to your inputs file, including the `resource_names` map. This map is used to set the names of the resources that are deployed. You can find the default values in the `variables.tf` file in the bootstrap module:
 
-* Azure DevOps: [variables.hidden.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/2b3aa805fd03fa5afa4de970ca11899a9a66d2a6/alz/azuredevops/variables.hidden.tf#L79)
-* GitHub: [variables.hidden.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/2b3aa805fd03fa5afa4de970ca11899a9a66d2a6/alz/github/variables.hidden.tf#L13)
-* Local: [variables.hidden.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/2b3aa805fd03fa5afa4de970ca11899a9a66d2a6/alz/local/variables.hidden.tf#L25)
+* Azure DevOps: [variables.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/6382aeaa184b9743dfbf13bcb4bad5ad0fcd714a/alz/azuredevops/variables.tf#L258)
+* GitHub: [variables.hidden.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/6382aeaa184b9743dfbf13bcb4bad5ad0fcd714a/alz/github/variables.tf#L215)
+* Local: [variables.hidden.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/6382aeaa184b9743dfbf13bcb4bad5ad0fcd714a/alz/local/variables.tf#L152)
 
 For example adding this to the end of your bootstrap config file and updating to your naming standard:
 
 ```yaml
 # Extra Inputs
 resource_names:
-  resource_group_state: "rg-{{service_name}}-{{environment_name}}-state-{{azure_location}}-{{postfix_number}}-test"
+  resource_group_state: "rg-my-custom-name" # Example of an updated resource name
   resource_group_identity: "rg-{{service_name}}-{{environment_name}}-identity-{{azure_location}}-{{postfix_number}}"
   resource_group_agents: "rg-{{service_name}}-{{environment_name}}-agents-{{azure_location}}-{{postfix_number}}"
   resource_group_network: "rg-{{service_name}}-{{environment_name}}-network-{{azure_location}}-{{postfix_number}}"
@@ -60,19 +60,46 @@ resource_names:
   container_registry_private_endpoint: "pe-{{service_name}}-{{environment_name}}-{{azure_location}}-acr-{{postfix_number}}"
   container_image_name: "azure-devops-agent"
 ```
-## Questions about bootstrap clean up
 
-### I was just testing or I made a mistake, how do I remove the bootstrap environment and start again?
+## Questions about clean up
 
-After the Terraform apply has been completed there is an opportunity to remove the environment it just created. Follow these steps to run a `terraform destroy`.
+### How do I remove the bootstrap environment and start again?
 
-1. If you already ran the CD pipeline / action in phase 3 to deploy the ALZ, then you will need to run the pipeline / action again, but this time select the `destroy` option. This will delete the landing zone resources. If you don't do this, those resource will be left orphaned and you will have to clean them up manually.
+After the Terraform apply has been completed there is an opportunity to remove the environment it just created. Follow these steps to teardown the boostrap environment.
+
+1. If you already ran the CD pipeline / action in phase 3 to deploy the ALZ, then review the [How do I remove the landing zones]({{< relref "#how-do-i-remove-the-landing-zones-and-start-again">}}) guidance.
 1. Wait for the destroy run to complete before moving to the next step, you will need to approve it if you configured approvals.
-1. Now run `Deploy-Accelerator` with the `-destroy` flag. E.g. `Deploy-Accelerator -inputs "~/config/inputs.json" -output "./my-folder" -destroy`.
-1. The module will run and ask if you want to use the existing variables, enter `use` to use them.
-1. You can confirm the destroy by typing `yes` when prompted.
-1. To fully clean up, you should now delete the folder that was created for the accelerator. E.g. `./my-folder`.
+1. Now run `Deploy-Accelerator` with the `-destroy` flag, for example:
+
+    ```pwsh
+    Deploy-Accelerator `
+      -inputs "~/accelerator/config/inputs.yaml", "~/accelerator/config/platform-landing-zone.tfvars" `
+      -output "~/accelerator/output" `
+      -destroy
+
+    ```
+
+1. You can confirm the destroy by hitting enter when prompted.
+1. To fully clean up, you should now delete the folder that was created for the accelerator.
 1. You'll now be able to run the `Deploy-Accelerator` command again to start fresh.
+
+### How do I remove the landing zones and start again?
+
+{{< hint type=note >}}
+The following guidance is for Terraform, if you're using Bicep and wish to destroy your landing zone, please refer to the [destroy-landing-zone.ps1](https://github.com/Azure/ALZ-Bicep/blob/main/accelerator/scripts/destroy-landing-zone.ps1) script.
+{{< /hint >}}
+
+#### Azure DevOps or GitHub
+
+1. Run the CD pipeline / action in phase 3, but this time select the `destroy` option. This will delete the landing zone resources; you will need to approve it if you configured approvals.
+
+#### Local
+
+1. Navigate to the directory shown in the `module_output_directory_path` output from the bootstrap.
+1. Run `./scripts/deploy-local.ps1 -destroy`.
+1. A plan will run and then you’ll be prompted to check it and run the deploy.
+1. Type yes and hit enter to run the deploy.
+1. The ALZ will now be destroyed, this may take some time.
 
 ## Questions about changing variables
 
@@ -94,14 +121,14 @@ Follow the steps in the [Upgrade Guide]({{< relref "upgradeguide" >}}) to upgrad
 
 ## Questions about Multiple landing zone deployments
 
-### I want to deploy multiple landing zones, but the PowerShell command keeps trying to overrwrite my existing environment
+### I want to deploy multiple landing zones, but the PowerShell command keeps trying to overwrite my existing environment
 
 After bootstrapping, the PowerShell leaves the folder structure intact, including the Terraform state file. This is by design, so you have an opportunity to amend or destroy the environment.
 
 If you want to deploy to a separate environment, the simplest approach is to specify a separate folder for each deployment using the `-output` parameter. For example:
 
-- Deployment 1: `Deploy-Accelerator -inputs "~/config/inputs1.json" -output "./deployment1"`
-- Deployment 2: `Deploy-Accelerator -inputs "~/config/inputs2.json" -output "./deployment2"`
+* Deployment 1: `Deploy-Accelerator -inputs "~/config/inputs1.json" -output "./deployment1"`
+* Deployment 2: `Deploy-Accelerator -inputs "~/config/inputs2.json" -output "./deployment2"`
 
 You can then deploy as many times as you like without interferring with a previous deployment.
 
@@ -114,7 +141,7 @@ Yes, you can skip the approval of the Terraform plan by using the `-autoApprove`
 For example:
 
 ```powershell
-Deploy-Accelerator -inputs "~/config/inputs.json" -autoApprove
+Deploy-Accelerator -inputs "~/config/inputs.json" -output "./deployment1" -autoApprove
 ```
 
 ## Questions about adding more subscriptions post initial deployment
@@ -154,3 +181,19 @@ Deploy-Accelerator -inputs "~/config/inputs.json" -starterModuleOverrideFolderPa
 ```
 
 Alternatively, if you are also supplying a custom bootstrap module, you can specify the starter module repo url in the `json` config file in the bootstrap module.
+
+## Questions about GitHub
+
+### How do I use a GitHub Enterprise Cloud with data residency (*.ghe.com) hosted instance?
+
+In order to target your own domain, add the following settings to your bootstrap configuration file `inputs.yaml`:
+
+```yaml
+github_organization_domain_name: "<enterprise name>.ghe.com"
+```
+
+For example:
+
+```yaml
+github_organization_domain_name: "contoso.ghe.com"
+```

@@ -10,7 +10,7 @@ Skip this if using a User account as recommended.
 ### Create Service Principal
 
 1. Navigate to the [Azure Portal](https://portal.azure.com) and sign in to your tenant.
-1. Search for `Azure Active Directory` and open it.
+1. Search for `Entra ID` and open it.
 1. Copy the `Tenant ID` field and save it somewhere safe, making a note it is the `ARM_TENANT_ID`.
 1. Click `App registrations` in the left navigation.
 1. Click `+ New registration`.

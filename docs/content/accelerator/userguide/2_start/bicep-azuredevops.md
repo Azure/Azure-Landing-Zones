@@ -8,20 +8,13 @@ Follow these instructions to bootstrap Azure DevOps ready to deploy your platfor
 1. Inside the accelerator create two folders called `config` and `output`. You'll store your input file inside config and the output folder will be the place that the accelerator stores files while it works.
 1. Inside the `config` folder create a new file called `inputs.yaml`. You can use `json` if you prefer, but our examples here are `yaml`.
 
-    {{< tabs "1" >}}
-    {{< tab "Windows" >}}
-```pwsh
-New-Item -ItemType "file" c:\accelerator\config\inputs.yaml -Force
-New-Item -ItemType "directory" c:\accelerator\output
-```
-    {{< /tab >}}
-    {{< tab "Linux / macOS" >}}
-```pwsh
-New-Item -ItemType "file" /accelerator/config/inputs.yaml -Force
-New-Item -ItemType "directory" /accelerator/output
-```
-    {{< /tab >}}
-    {{< /tabs >}}
+    ```pwsh
+    New-Item -ItemType "file" "~/accelerator/config/inputs.yaml" -Force
+    New-Item -ItemType "directory" "~/accelerator/output"
+
+    ```
+
+1. Your folder structure should look like this:
 
     ```plaintext
     📂accelerator
@@ -62,30 +55,29 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
     | `environment_name` | `TF_VAR` | `mgmt` | This is used to build up the names of your Azure and Azure DevOps resources, for example `rg-alz-<environment_name>-uksouth-001`. We recommend using `mgmt` for this. |
     | `postfix_number` | `TF_VAR` |  `1` | This is used to build up the names of your Azure and Azure DevOps resources, for example `rg-alz-mgmt-uksouth-<postfix_number>`. We recommend using `1` for this. |
     | `azure_devops_use_organisation_legacy_url` | `TF_VAR` | `false` | If you have not migrated to the modern url (still using `https://<organization_name>.visualstudio.com`) for your Azure DevOps organisation, then set this to `true`. |
-    | `azure_devops_create_project` | `TF_VAR` | `true` | If you have an existing project you want to use rather than creating a new one, select `true`. We recommend creating a new project to ensure it is isolated by a strong security boundary. |
+    | `azure_devops_create_project` | `TF_VAR` | `true` | If you have an existing project you want to use rather than creating a new one, select `false`. We recommend creating a new project to ensure it is isolated by a strong security boundary. |
     | `azure_devops_project_name` | `TF_VAR` | `<azure-devops-project-name>` | Replace `<azure-devops-project-name>` with the name of the Azure DevOps project to create or the name of an existing project if you set `azure_devops_create_project` to `false`. |
     | `use_self_hosted_agents` | `TF_VAR` | `true` | This controls if you want to deploy self-hosted agents. This will default to `true`. |
     | `use_private_networking` | `TF_VAR` | `true` | This controls whether private networking is deployed for your self-hosted agents and storage account. This only applies if you have `use_self_hosted_agents` set to `true`. This defaults to `true`. |
     | `allow_storage_access_from_my_ip` | `TF_VAR` | `false` | This is not relevant to Bicep and we'll remove the need to specify it later, leave it set to `false`. |
-    | `apply_approvers` | `TF_VAR` | `<email-address>` | This is a list of service principal names (SPN) of people you wish to be in the group that approves apply of the Azure landing zone module. This is an array of strings like `["abc@xyz.com", "def@xyz.com", "ghi@xyz.com"]`. You may need to check what the SPN is prior to filling this out as it can vary based on identity provider. Use empty array `[]` to disable approvals. Note if supplying via the user interface, use a comma separated string like `abc@xyz.com,def@xyz.com,ghi@xyz.com`. |
+    | `apply_approvers` | `TF_VAR` | `<email-address>` | This is a list of service principal names (SPN) of people you wish to be in the group that approves apply of the Azure landing zone module. This is an array of strings like `["abc@xyz.com", "def@xyz.com", "ghi@xyz.com"]`. You may need to check what the SPN is prior to filling this out as it can vary based on identity provider. Use empty array `[]` to disable approvals. |
     | `create_branch_policies` | `TF_VAR` | `true` | This controls whether to create branch policies for the repository. This defaults to `true`. |
 
 1. Now head over to your chosen starter module documentation to get the specific inputs for that module. Come back here when you are done.
     - [Bicep Complete Starter Module]({{< relref "../../startermodules/bicepcomplete" >}})
+1. Verify that you are logged in to Azure CLI or have the Service Principal credentials set as env vars. You should have completed this in the [Prerequisites]({{< relref "../1_prerequisites" >}}) phase.
+1. Ensure you are running the latest version of the ALZ PowerShell module by running:
+
+    ```pwsh
+    Update-Module -Name ALZ
+    ```
+
 1. In your PowerShell Core (pwsh) terminal run the module:
 
-    {{< tabs "2" >}}
-    {{< tab "Windows" >}}
-```pwsh
-Deploy-Accelerator -inputs "c:\accelerator\config\inputs.yaml" -output "c:\accelerator\output"
-```
-    {{< /tab >}}
-    {{< tab "Linux / macOS" >}}
-```pwsh
-Deploy-Accelerator -inputs "/accelerator/config/inputs.yaml" -output "/accelerator/output"
-```
-    {{< /tab >}}
-    {{< /tabs >}}
+    ```pwsh
+    Deploy-Accelerator -inputs "~/accelerator/config/inputs.yaml" -output "~/accelerator/output"
+
+    ```
 
 1. You will see a Terraform `init` and `apply` happen.
 1. There will be a pause after the `plan` phase you allow you to validate what is going to be deployed.

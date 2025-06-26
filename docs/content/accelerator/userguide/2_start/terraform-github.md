@@ -12,22 +12,14 @@ Follow these instructions to bootstrap GitHub ready to deploy your platform land
 If you are using the FSI or SLZ starter modules, you do not currently require the `tfvars` file, so you can exclude it.
     {{< /hint >}}
 
-    {{< tabs "1" >}}
-    {{< tab "Windows" >}}
-```pwsh
-New-Item -ItemType "file" c:\accelerator\config\inputs.yaml -Force
-New-Item -ItemType "file" c:\accelerator\config\platform-landing-zone.tfvars -Force  # Exclude this line if using FSI or SLZ starter modules
-New-Item -ItemType "directory" c:\accelerator\output
-```
-    {{< /tab >}}
-    {{< tab "Linux / macOS" >}}
-```pwsh
-New-Item -ItemType "file" /accelerator/config/inputs.yaml -Force
-New-Item -ItemType "file" /accelerator/config/platform-landing-zone.tfvars -Force  # Exclude this line if using FSI or SLZ starter modules
-New-Item -ItemType "directory" /accelerator/output
-```
-    {{< /tab >}}
-    {{< /tabs >}}
+    ```pwsh
+    New-Item -ItemType "file" "~/accelerator/config/inputs.yaml" -Force
+    New-Item -ItemType "directory" "~/accelerator/output"
+    New-Item -ItemType "file" "~/accelerator/config/platform-landing-zone.tfvars" -Force  # Exclude this line if using FSI or SLZ starter modules
+
+    ```
+
+1. Your folder structure should look like this:
 
     ```plaintext
     📂accelerator
@@ -35,6 +27,25 @@ New-Item -ItemType "directory" /accelerator/output
     ┃ ┃ 📜inputs.yaml
     ┃ ┗ 📜platform-landing-zone.tfvars
     ┗ 📂output
+    ```
+
+1. If you are using the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module, you must create a `lib` folder inside the `config` folder to store any customizations to the management groups and policies. This is not required for the FSI or SLZ starter modules.
+
+    ```pwsh
+    $tempFolderName = "~/accelerator/temp"
+    New-Item -ItemType "directory" $tempFolderName
+    $tempFolder = Resolve-Path -Path $tempFolderName
+    git clone -n --depth=1 --filter=tree:0 "https://github.com/Azure/alz-terraform-accelerator" "$tempFolder"
+    cd $tempFolder
+
+    $libFolderPath = "templates/platform_landing_zone/lib"
+    git sparse-checkout set --no-cone $libFolderPath
+    git checkout
+
+    cd ~
+    Copy-Item -Path "$tempFolder/$libFolderPath" -Destination "~/accelerator/config" -Recurse -Force
+    Remove-Item -Path $tempFolder -Recurse -Force
+    
     ```
 
 1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from the relevant input file for your chosen starter module:
@@ -47,7 +58,7 @@ New-Item -ItemType "directory" /accelerator/output
     {{< hint type=tip >}}
 The following inputs can also be supplied via environment variables. This may be useful for sensitive values you don't wish to persist to a file. The `Env Var Prefix` denotes the prefix the environment variable should have. The environment variable is formatting is `<PREFIX>_<variable_name>`, e.g. `$env:ALZ_iac_type = "terraform"` or `$env:TF_VAR_github_personal_access_token = "*****..."`.
     {{< /hint >}}
-    
+
     {{< hint type=tip >}}
 If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">}}) guidance, you should have these values already.
     {{< /hint >}}
@@ -74,7 +85,7 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
     | `use_self_hosted_agents` | `TF_VAR` | `true` | This controls if you want to deploy self-hosted agents. This will default to `true`. |
     | `use_private_networking` | `TF_VAR` | `true` | This controls whether private networking is deployed for your self-hosted agents and storage account. This only applies if you have `use_self_hosted_agents` set to `true`. This defaults to `true`. |
     | `allow_storage_access_from_my_ip` | `TF_VAR` | `false` | This controls whether to allow access to the storage account from your IP address. This is only needed for trouble shooting. This only applies if you have `use_private_networking` set to `true`. This defaults to `false`. |
-    | `apply_approvers` | `TF_VAR` | `<email-address>` | This is a list of service principal names (SPN) of people you wish to be in the group that approves apply of the Azure landing zone module. This is an array of strings like `["abc@xyz.com", "def@xyz.com", "ghi@xyz.com"]`. You may need to check what the SPN is prior to filling this out as it can vary based on identity provider. Use empty array `[]` to disable approvals. Note if supplying via the user interface, use a comma separated string like `abc@xyz.com,def@xyz.com,ghi@xyz.com`. |
+    | `apply_approvers` | `TF_VAR` | `<username-or-email-address>` | This is a list of usernames or email addresses of people you wish to be in the group that approves apply of the Azure landing zone module. This is an array of strings like ["user1", "user2", "user3"] or ["abc@xyz.com", "def@xyz.com", "ghi@xyz.com"]. You may need to check what the username or email of each user is prior to filling this out as it can vary based on how they have setup their GitHub account. Using username is the preferred option since it has to be set, whereas email needs to be configured and must be public. Use empty array [] to disable approvals. |
     | `create_branch_policies` | `TF_VAR` | `true` | This controls whether to create branch policies for the repository. This defaults to `true`. |
     | `architecture_definition_name` | `TF_VAR` | N/A | This is the name of the architecture definition to use when applying the ALZ archetypes via the architecture definition template. This is only relevant to some starter modules, such as the `sovereign_landing_zone` starter module. This defaults to `null`. |
 
@@ -85,70 +96,37 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
     - [Terraform Financial Services Industry Landing Zone Starter Module]({{< relref "../../startermodules/terraformfsi" >}}): Management groups, policies, hub networking for the Financial Services Industry Landing Zone.
     - [Terraform Sovereign Landing Zone Starter Module]({{< relref "../../startermodules/terraformsovereign" >}}): Management groups, policies, hub networking for the Sovereign Landing Zone.
 
+1. Verify that you are logged in to Azure CLI or have the Service Principal credentials set as env vars. You should have completed this in the [Prerequisites]({{< relref "../1_prerequisites" >}}) phase.
+1. Ensure you are running the latest version of the ALZ PowerShell module by running:
+
+    ```pwsh
+    Update-Module -Name ALZ
+    ```
+
 1. In your PowerShell Core (pwsh) terminal run the module:
 
     {{< hint type=tip >}}
 Inputs can be split into multiple files if desired.
     {{< /hint >}}
-   
-    * Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module without a `lib` folder:
 
-        {{< tabs "2" >}}
-        {{< tab "Windows" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\platform-landing-zone.tfvars" `
-  -output "c:\accelerator\output"
-```
-        {{< /tab >}}
-        {{< tab "Linux / macOS" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "/accelerator/config/inputs.yaml", "/accelerator/config/platform-landing-zone.tfvars" `
-  -output "/accelerator/output"
-```
-        {{< /tab >}}
-        {{< /tabs >}}
+    * Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module:
 
-    * Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module with a `lib` folder:
+        ```pwsh
+        Deploy-Accelerator `
+        -inputs "~/accelerator/config/inputs.yaml", "~/accelerator/config/platform-landing-zone.tfvars" `
+        -starterAdditionalFiles "~/accelerator/config/lib" `
+        -output "~/accelerator/output"
 
-        {{< tabs "3" >}}
-        {{< tab "Windows" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "c:\accelerator\config\inputs.yaml", "c:\accelerator\config\platform-landing-zone.tfvars" `
-  -starterAdditionalFiles "c:\accelerator\config\lib" `
-  -output "c:\accelerator\output"
-```
-        {{< /tab >}}
-        {{< tab "Linux / macOS" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "/accelerator/config/inputs.yaml", "/accelerator/config/platform-landing-zone.tfvars" `
-  -starterAdditionalFiles "/accelerator/config/lib" `
-  -output "/accelerator/output"
-```
-        {{< /tab >}}
-        {{< /tabs >}}
+        ```
 
     * Run `Deploy-Accelerator` for the Sovereign Landing Zone or Financial Services Industry Landing Zone starter module:
 
-        {{< tabs "4" >}}
-        {{< tab "Windows" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "c:\accelerator\config\inputs.yaml" `
-  -output "c:\accelerator\output"
-```
-        {{< /tab >}}
-        {{< tab "Linux / macOS" >}}
-```pwsh
-Deploy-Accelerator `
-  -inputs "/accelerator/config/inputs.yaml" `
-  -output "/accelerator/output"
-```
-        {{< /tab >}}
-        {{< /tabs >}}
+        ```pwsh
+        Deploy-Accelerator `
+        -inputs "~/accelerator/config/inputs.yaml" `
+        -output "~/accelerator/output"
+
+        ```
 
 1. You will see a Terraform `init` and `apply` happen.
 1. There will be a pause after the `plan` phase you allow you to validate what is going to be deployed.

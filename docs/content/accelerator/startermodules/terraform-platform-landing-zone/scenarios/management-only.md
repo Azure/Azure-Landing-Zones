@@ -5,7 +5,7 @@ weight: 5
 
 A platform landing zone deployment without any connectivity resources.
 
-* Example Platform landing zone configuration file: [management_only/management.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/management_only/management.tfvars)
+* Example Platform landing zone configuration file: [management_only/management.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/management-only/management.tfvars)
 
 ## Resources
 

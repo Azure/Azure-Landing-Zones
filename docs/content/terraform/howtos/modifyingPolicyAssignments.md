@@ -37,7 +37,7 @@ module "alz" {
 
         # Modifying a policy parameter...
         parameters = {
-          effect = jsonencode({Value = "Audit"})
+          effect = jsonencode({value = "Audit"})
         }
 
         # How to use resource selectors

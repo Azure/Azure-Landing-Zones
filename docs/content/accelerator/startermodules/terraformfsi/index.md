@@ -8,7 +8,7 @@ resources:
 ---
 
 The `financial_services_landing_zone` starter module provides full customization of the Financial Services Industry Landing Zone (FSILZ) using the `inputs.yaml` file. The `inputs.yaml` file provides the ability to enable and disable modules, configure module inputs and outputs, and configure module resources.
-A custom `inputs.yaml` file can be passed to the `inputs` argument of the ALZ PowerShell Module. This allows you to firstly design your Azure Landing Zone, and then deploy it.
+A custom `inputs.yaml` file can be passed to the `inputs` argument of the ALZ PowerShell Module(version [4.1.5](https://www.powershellgallery.com/packages/ALZ/4.1.5) should be used). This allows you to firstly design your Azure Landing Zone, and then deploy it.
 
 The default `inputs.yaml` file will need to be modified based on the documentation below.
 
@@ -29,46 +29,31 @@ The following table describes the inputs for the `financial_services_landing_zon
 | `bastion_outbound_ssh_rdp_ports` |  | List | `["22", "3389"]` | List of outbound remote access ports to enable on the Azure Bastion NSG if `deploy_bastion` is also `true`. |
 | `custom_subnets` |  | Map | See `inputs.yaml` for default object. | Map of subnets and their configurations to create within the hub network. |
 | `customer` |  | String | `"Country/Region"` | Customer name to use when branding the compliance dashboard. |
-| `customer_policy_sets` |  | Map | See the Custom Compliance section below for details. | Map of customer specified policy initiatives to apply alongside the Financial Services Industry Landing Zone |
-| `default_postfix` | Required | String |  | Postfix value to append to all resources. |
+| `optional_postfix` | Required | String |  | Postfix value to append to all resources. |
 | `default_prefix` | | String | | Prefix value to append to all resources. |
+| `default_security_groups` |  | List |  | Array of default security groups. Defaults to an empty array. |
 | `deploy_bastion` |  | Boolean | `true` | Set to `true` to deploy Azure Bastion within the hub network. |
+| `deploy_bootstrap` |  | Boolean | `true` | Set to `true` to deploy bootstrap module. |
+| `deploy_dashboard` |  | Boolean | `true` | Set to `true` to deploy dashboard module. |
 | `deploy_ddos_protection` |  | Boolean | `true` | Set to `true` to deploy Azure DDoS Protection within the hub network. |
 | `deploy_hub_network` |  | Boolean | `true` | Set to `true` to deploy the hub network. |
 | `deploy_log_analytics_workspace` |  | Boolean | `true` | Set to `true` to deploy Azure Log Analytics Workspace. |
+| `deploy_platform` |  | Boolean | `true` | Set to `true` to deploy platform module. |
 | `enable_firewall` |  | Boolean | `true` | Set to `true` to deploy Azure Firewall within the hub network. |
 | `enable_telemetry` |  | Boolean | `true` | Set to `false` to opt out of telemetry tracking. We use telemetry data to understand usage rates to help prioritize future development efforts. |
 | `express_route_gateway_config` |  | Map | `{name: "noconfigEr"}` | Leave as default to not deploy an ExpressRoute Gateway. See the Network Connectivity section below for details. |
 | `hub_network_address_prefix` |  | CIDR | "10.20.0.0/16" | This is the CIDR to use for the hub network. |
-| `landing_zone_management_group_children` |  | Map |  | See the Customize Application Landing Zones section below for details. |
+| `landing_zone_management_group_children` |  | Map |  | See the Customize Application Platform/Landing Zones section below for details. |
 | `log_analytics_workspace_retention_in_days` |  | Numeric | 365 | Number of days to retain logs in the Log Analytics Workspace. |
-| `ms_defender_for_cloud_email_security_contact` |  | Email | `security_contact@replaceme.com` | Email address to use for Microsoft Defender for Cloud. |
-| `policy_assignment_enforcement_mode` |  | String | `Default` | The enforcement mode to use for the Financial Services Industry Baseline Policy initiatives. |
+| `log_analytics_workspace_resource_id` |  | String |  | The resource ID of the Log Analytics workspace to use for the deployment. |
+| `management_group_configuration` |  | Object |  | See the Customize Management Group Configuration section below for details. |
+| `ms_defender_for_cloud_email_security_contact` |  | List | `security_contact@replaceme.com` | Email address to use for Microsoft Defender for Cloud. |
+| `platform_management_group_children` |  | Map |  | See the Customize Application Platform/Landing Zones section below for details. |
 | `policy_effect` |  | String | `Deny` | The effect to use for the Financial Services Industry Baseline Policy initiatives, when policies support multiple effects. |
 | `policy_exemptions` |  | Map | See the Custom Compliance section below for details. | Map of customer specified policy exemptions to use alongside the Financial Services Industry Landing Zone. |
-| `subscription_billing_scope` | Required | String |  | Only required if you have not provided existing subscription IDs for management, connectivity, and identity. |
 | `tags` |  | Map | See the Custom Tagging section below for details. | Set of tags to apply to all resources deployed. |
 | `use_premium_firewall` |  | Boolean | `true` | Set to `true` to deploy Premium SKU of the Azure Firewall if `enable_firewall` is also `true`. |
 | `vpn_gateway_config` |  | Map | `{name: "noconfigEr"}` | Leave as default to not deploy an VPN Gateway. See the Network Connectivity section below for details. |
-
-## Custom Compliance
-
-### Custom Policy Sets
-
-An example of the format for the `customer_policy_sets` map is as follows:
-
-```yaml
-customer_policy_sets: {
-  assignment1: {
-    policySetDefinitionId: "/providers/Microsoft.Authorization/policySetDefinitions/d5264498-16f4-418a-b659-fa7ef418175f",
-    policySetAssignmentName: "FedRAMPHigh",
-    policySetAssignmentDisplayName: "FedRAMP High",
-    policySetAssignmentDescription: "FedRAMP High",
-    policySetManagementGroupAssignmentScope: "/providers/Microsoft.management/managementGroups/<MG-ID-SCOPE>",
-    policyParameterFilePath: "../modules/compliance/policy_parameters/policySetParameterSampleFile.json"
-  }
-}
-```
 
 ### Policy Exemptions
 
@@ -87,7 +72,83 @@ policy_exemptions: {
 }
 ```
 
-## Customize Application Landing Zones
+## Customize Management Group Configuration
+
+### Default Management Group Configuration
+
+NOTE - management_group_configuration archetypes array can be used for including non-ALZ archetypes.
+ALZ archetypes can be toggled using input variable apply_alz_archetypes_via_architecture_definition_template.
+
+All archetypes(ALZ/FSI) can be found [here](https://github.com/Azure/Azure-Landing-Zones-Library/blob/main/platform/fsi/README.md).
+
+The default format for the `management_group_configuration` map is as follows:
+
+```yaml
+management_group_configuration: {
+  root: {
+    id: "${default_prefix}${optional_postfix}",
+    display_name: "FSI Landing Zone",
+    archetypes: ["fsi_root", "tr_01_logging", "re_01_zonal_residency", "so_04_cmk", "so_01_data_residency"]
+  },
+  platform: {
+    id: "${default_prefix}-platform${optional_postfix}",
+    display_name: "Platform",
+    archetypes: []
+  },
+  landingzones: {
+    id: "${default_prefix}-landingzones${optional_postfix}",
+    display_name: "Landing Zones",
+    archetypes: []
+  },
+  decommissioned: {
+    id: "${default_prefix}-decommissioned${optional_postfix}",
+    display_name: "Decommissioned",
+    archetypes: []
+  },
+  sandbox: {
+    id: "${default_prefix}-sandbox${optional_postfix}",
+    display_name: "Sandbox",
+    archetypes: []
+  },
+  management: {
+    id: "${default_prefix}-platform-management${optional_postfix}",
+    display_name: "Management",
+    archetypes: []
+  },
+  connectivity: {
+    id: "${default_prefix}-platform-connectivity${optional_postfix}",
+    display_name: "Connectivity",
+    archetypes: []
+  },
+  identity: {
+    id: "${default_prefix}-platform-identity${optional_postfix}",
+    display_name: "Identity",
+    archetypes: []
+  },
+  corp: {
+    id: "${default_prefix}-landingzones-corp${optional_postfix}",
+    display_name: "Corp",
+    archetypes: []
+  },
+  online: {
+    id: "${default_prefix}-landingzones-online${optional_postfix}",
+    display_name: "Online",
+    archetypes: []
+  },
+  confidential_corp: {
+    id: "${default_prefix}-landingzones-confidential-corp${optional_postfix}",
+    display_name: "Confidential Corp",
+    archetypes: ["confidential"]
+  },
+  confidential_online: {
+    id: "${default_prefix}-landingzones-confidential-online${optional_postfix}",
+    display_name: "Confidential Online",
+    archetypes: ["confidential"]
+  }
+}
+```
+
+## Customize Application Platform/Landing Zones
 
 ### Landing Zone Management Group Children
 
@@ -96,8 +157,23 @@ An example of the format for the `landing_zone_management_group_children` map is
 ```yaml
 landing_zone_management_group_children: {
   child1: {
-    id: "child1",
-    displayName: "Landing zone child one"
+      id: "${default_prefix}-landingzones-child1${optional_postfix}",
+      display_name: "Landing zone child one",
+      archetypes: []
+  }
+}
+```
+
+### Platform Management Group Children
+
+An example of the format for the `platform_management_group_children` map is as follows:
+
+```yaml
+platform_management_group_children: {
+    security: {
+      id: "${default_prefix}-platform-security${optional_postfix}",
+      display_name: "Security",
+      archetypes: ["confidential"]
   }
 }
 ```
@@ -178,17 +254,26 @@ Any updates should be made to the inputs file(e.g., inputs-local-terraform-finan
 
 There is no validation done to ensure subnets fall within the hub network CIDR or that subnets do not overlap. These issues will be uncovered during apply.
 
-### Unable to Build Authorizer for Resource Manager API
+### Unable to update the bastion subnet
 
-It is necessary to rerun `az login` after creating subscriptions for terraform to pick up that they exist.
+Workaround:
 
-### Unable to Update Address Prefixes
+1. Set deploy_bastion= false in inputs file
+2. Run deployAccelerator command
+3. Run .\scripts\deploy-local.ps1
+4. Set deploy_bastion= true in inputs file, update AzureBastionSubnet address_prefix
+5. Run deployAccelerator command
+6. Run .\scripts\deploy-local.ps1
 
-Updating the address prefix on either the hub network or subnets is not supported at this time.
+### Unable to update the firewall subnet
 
-### Unable to Change Top Level or Sub Level Management Group Names
+Work around:
 
-Modifying the Top Level or Sub Level Management Group name is not supported at this time.
+1. Set deploy_bastion= false and enable_firewall = false in inputs file
+2. Run deployAccelerator command
+3. Run .\scripts\deploy-local.ps1
+4. Set deploy_bastion= true and enable_firewall = true in inputs file, update AzureFirewallSubnet address_prefix
+5. Run deployAccelerator command
 
 ### Tags are Not Applied to All Resources
 
@@ -197,6 +282,60 @@ Certain resources are not receiving the default tags. This will be addressed in 
 ### Default Compliance Score is not 100%
 
 Certain resources will show as being out of compliance by default. This will be addressed in a future release.
+
+## Notes about Policy Remediations
+
+1. Policy Definition [migrateToMdeTvm](/providers/Microsoft.Authorization/policyDefinitions/766e621d-ba95-4e43-a6f2-e945db3d7888) will be excluded from remediation as customers must [enable MDFC](https://learn.microsoft.com/en-us/azure/defender-for-cloud/connect-azure-subscription?WT.mc_id=Portal-HubsExtension) on their subscriptions for this policy and then run remediation via Azure portal.
+
+2. Log analytics polices deploy-diag-logscat, deploy-azactivity-log, and tr-01-logging(included with FSI) will be skipped for remediation until customer has set the log_analytics_workspace_resource_id(output after successful deployment of LZ) input and re-run deploy-accelerator/deploy-local.ps1.
+
+3. Updating assignment policies or management group configuration will trigger recreation of azapi policy remediation resources -
+Because customers have the option to include custom policies with built-in policy set definitions, and remediations require the policyReferenceId for policy definitions in policy sets, the policyReferenceId must be queried dynamically and due to Terraform's limitations on creating resources in a for_each, remediations will get recreated as the result of a workaround for allowing this dynamic query.
+Remediation tasks will only be created if a policy is not in compliance.
+
+There is an experimental feature that would allow the dynamic creation of resources in a for_each, but work on this is on-going.
+
+## Notes running on non-global admin service principal
+
+To deploy with lowered permissions using a service principal with "Owner" role assignment at the tenant root management group, set the following environment variable in powershell:
+
+```powershell
+$env:AZAPI_RETRY_GET_AFTER_PUT_MAX_TIME="30m"
+```
+
+## Notes on required permissions for optional security group creation
+
+The following permissions are needed for [security group creation](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group#api-permissions)
+
+Security group creation can be disabled by setting input `management_security_groups = []`. Also, security groups in management_security_groups are case-sensitive.
+
+## Instructions for using custom policies and updating parameter values for ALZ or FSI policies
+
+Custom policies can be added to the `lib` directory in the root of the starter module. Here is an example in the [AVM terraform-azurerm-avm-ptn-alz](https://github.com/Azure/terraform-azurerm-avm-ptn-alz/tree/main/examples/policy-assignment-modification-with-custom-lib/lib) repo.
+
+NOTE - Customers can also include custom [policy set definition](https://github.com/Azure/Azure-Landing-Zones-Library/blob/main/platform/fsi/policy_set_definitions/SO-01-Data-Residency.alz_policy_set_definition.json) and [policy definition](https://github.com/Azure/Azure-Landing-Zones-Library/blob/main/platform/alz/policy_definitions/Append-AppService-latestTLS.alz_policy_definition.json) ARM templates into the `lib` directory.
+File names must contain the same format as in the given examples.
+
+Customers can also update policy parameter values for ALZ or FSI policies by including an updated copy of the policy file in the `lib` directory. The new file will overwrite the existing policy file in the module. The new file must contain the same format as the original policy file.
+
+## Instructions updating policy default values
+
+In the starter module locals.tf, customers can update the fsi_policy_default_values for any of the parameters set in this [example](https://github.com/Azure/terraform-azurerm-avm-ptn-alz/blob/main/examples/management/main.tf#L43C4-L50).
+
+```terraform
+fsi_policy_default_values = {
+  fsi_policy_effect                            = jsonencode({ value = var.policy_effect })
+  allowed_locations_for_confidential_computing = jsonencode({ value = var.allowed_locations_for_confidential_computing })
+  allowed_locations                            = jsonencode({ value = var.allowed_locations })
+  ddos_protection_plan_id                      = jsonencode({ value = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/placeholder/providers/Microsoft.Network/ddosProtectionPlans/placeholder" })
+  ddos_protection_plan_effect                  = jsonencode({ value = var.deploy_ddos_protection ? "Audit" : "Disabled" })
+  email_security_contact                       = jsonencode({ value = var.ms_defender_for_cloud_email_security_contact })
+  ama_user_assigned_managed_identity_id        = jsonencode({ value = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/placeholder/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${local.uami_name}" })
+  ama_user_assigned_managed_identity_name      = jsonencode({ value = local.uami_name })
+  log_analytics_workspace_id                   = jsonencode({ value = var.log_analytics_workspace_resource_id })
+  tr_01_log_analytics_workspace_id             = jsonencode({ value = var.log_analytics_workspace_resource_id })
+}
+```
 
 ## Further details on the Financial Services Industry Landing Zone Starter Module
 
@@ -256,133 +395,6 @@ The `public-ip` module is used to deploy a Azure Public IP resoures for offering
 
 The `networksecuritygroup` module is used to deploy a default NSG for the Azure Bastion subnet to restrict ingress and egress network access. For more information on the module itself see [here](https://github.com/Azure/terraform-azurerm-avm-res-network-networksecuritygroup).
 
-### Exemptions
-
-#### 1. Customer might change Policy assignments at Management Groups level
-
-Please follow the below example to change the Policy Assignments (example: Data Residency being moved to Root level)
-
-In deployment workspace, navigate to:
-bootstrap\{version}\modules\template_architecture_definition\templates\fsi.alz_architecture_definition.json.tftpl
-
-Update fsi.alz_architecture_definition.json.tftpl file with preferred archetype management group assignments, e.g., to add so_01_data_residency to the “Financial Services Industry Landing Zone” management group, make the following change:
-
-Before update:
-
-```json
-{
-  "name": "${architecture_definition_name}",
-  "management_groups": [
-    {
-      "archetypes": [${root_archetypes}, "fsi_root", "tr_01_logging", "re_01_zonal_residency", "so_04_cmk"],
-      "display_name": "FSI Landing Zone",
-      "exists": false,
-      "id": "${root_management_group_id}",
-      "parent_id": null
-    },
-  ]
-  ...
-}
-```
-
-After update:
-
-```json
-{
-  "name": "${architecture_definition_name}",
-  "management_groups": [
-    {
-      "archetypes": [${root_archetypes}, "fsi_root", "tr_01_logging", "re_01_zonal_residency", "so_04_cmk", "so_01_data_residency"],
-      "display_name": "FSI Landing Zone",
-      "exists": false,
-      "id": "${root_management_group_id}",
-      "parent_id": null
-    },
-  ]
-  ...
-}
-```
-
-Run Deploy-Accelerator command from phase 2 and then continue with phase 3
-
-#### 2. Instructions for setting Policy Assignment parameter values
-
-Please follow the below example to change the Policy Assignment parameter values (e.g., DDOS Protection Plan ID needs to be updated)
-
-Please Note: Policy Assignment parameter values are only applicable for DDOS Protection Plan & Log Analytics Workspace
-
-In the "management_groups" module located in file:
-
-starter\{version}\microsoft_cloud_for_industry\financial_services_landing_zone\locals.tf
-
-Users should go into locals.tf file & update the values for ddosProtectionPlanId & logAnalyticsWorkspaceId.
-
-Code needing update:
-
-```terraform
-  fsi_policy_default_values = {
-    policyEffect                             = jsonencode({ value = var.policy_effect })
-    allowedLocationsForConfidentialComputing = jsonencode({ value = var.allowed_locations_for_confidential_computing })
-    allowedLocations                         = jsonencode({ value = var.allowed_locations })
-    ddosProtectionPlanId                     = jsonencode({ value = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/placeholder/providers/Microsoft.Network/ddosProtectionPlans/placeholder" })
-    ddosProtectionPlanEffect                 = jsonencode({ value = var.deploy_ddos_protection ? "Audit" : "Disabled" })
-    emailSecurityContact                     = jsonencode({ value = var.ms_defender_for_cloud_email_security_contact })
-    logAnalyticsWorkspaceId                  = jsonencode({ value = "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/placeholder/providers/Microsoft.OperationalInsights/workspaces/placeholder-la" })
-  }
-```
-
-Below is an example of where to locate the DDOS Protection Plan & Log Analytics Workspace IDs from the Financial Services Industry starter module terrafrom output. The output will be displayed after the deployment has completed:
-
-```text
-Apply complete! Resources: 862 added, 0 changed, 0 destroyed.
-
-Outputs:
-
-dashboard_info = <<EOT
-Now your compliance dashboard is ready for you to get insights. If you want to learn more, please click the following link.
-
-https://portal.azure.com/#@mcfsdev2.onmicrosoft.com/dashboard/arm/subscriptions/93885fa7-00a2-4778-b3b9-beb9101be8bf/resourceGroups/sd53-rg-dashboards-eastus/providers/Microsoft.Portal/dashboards/sd53-financial-services-industry-dashboard-eastus
-
-
-EOT
-management_group_info = <<EOT
-If you want to learn more about your management group, please click the following link.
-
-https://portal.azure.com/#view/Microsoft_Azure_Resources/ManagmentGroupDrilldownMenuBlade/~/overview/tenantId/7ee5fd88-0678-40e2-8af3-2b3c606a90ed/mgId/sd53/mgDisplayName/FSI%20Landing%20Zone/mgCanAddOrMoveSubscription~/true/mgParentAccessLevel/Owner/defaultMenuItemId/overview/drillDownMode~/true
-
-
-EOT
-resource_ids = {
-  "ddos_protection_plan" = "/subscriptions/a18a9c28-c2a3-4c1a-920c-ab4c457a2644/resourceGroups/sd53-rg-hub-network-eastus/providers/Microsoft.Network/ddosProtectionPlans/sd53-ddos-plan"
-  "log_analytics_workspace" = "/subscriptions/93885fa7-00a2-4778-b3b9-beb9101be8bf/resourceGroups/sd53-rg-logging-eastus/providers/Microsoft.OperationalInsights/workspaces/sd53-log-analytics-eastus"
-}
-subscription_ids = {
-  "connectivity" = "a18a9c28-c2a3-4c1a-920c-ab4c457a2644"
-  "identity" = "e2306443-e276-4b50-be14-cf7dacf30a23"
-  "management" = "93885fa7-00a2-4778-b3b9-beb9101be8bf"
-}
-```
-
-After the update, Run Deploy-Accelerator command from phase 2 and then continue with phase 3
-
-#### 3. Users might observe a conflict between confidential computing and data residency for Allowed Locations
-
- Financial Services Industry uses policy exemptions for the confidential computing policies for policy definition reference IDs "AllowedLocationsForResourceGroups" and "AllowedLocations" to mitigate these potential conflicts.
-
-#### 4. Updating the Landing Zone
-
- Update the inputs file or any other changes
-
- Run Deploy-Accelerator command from phase 2 and then continue with phase 3
-
-Exceptions:
-
-If a user toggles the Networking resources, such as Deploy Hub Network, the TF will attempt to destroy all the Networking resources. Users needs to manually go and destroy them as terraform will fail to do so.
-
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
-
-[example_powershell_inputs_azure_devops_terraform_financial_services_industry_landing_zone]: examples/powershell-inputs/inputs-azure-devops-terraform-financial-services-landing-zone.yaml "Example - PowerShell Inputs - Devops - Terraform - Financial Services Industry Landing Zone"
-[example_powershell_inputs_github_terraform_financial_services_industry_landing_zone]:               examples/powershell-inputs/inputs-github-terraform-financial-services-landing-zone.yaml "Example - PowerShell Inputs - Local - Terraform - Financial Services Industry Landing Zone"
-[example_powershell_inputs_local_terraform_financial_services_industry_landing_zone]:               examples/powershell-inputs/inputs-local-terraform-financial-services-landing-zone.yaml "Example - PowerShell Inputs - Local - Terraform - Financial Services Industry Landing Zone"

@@ -21,67 +21,80 @@ The Azure Monitoring Agent (AMA) is enabled by default. If you want to turn it o
     | block | `management_resource_settings` | `user_assigned_managed_identities` | Delete | 1 | |
     | block | `management_resource_settings` | `data_collection_rules` | Delete |  1 | |
 
-1. Copy and paste the following inside the `management_group_settings` > `policy_assignments_to_modify` block on a new line after the first curly brace `{`:
-    
-    {{< highlight terraform "linenos=table" >}}
-    root = {
-      policy_assignments = {
-        Deploy-MDEndpointsAMA = {
-          enforcement_mode = "DoNotEnforce"
-        }
-      }
-    }
-    landing_zones = {
-      policy_assignments = {
-        Deploy-MDFC-DefSQL-AMA = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-VM-ChangeTrack = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-VM-Monitoring = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-vmArc-ChangeTrack = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-vmHybr-Monitoring = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-VMSS-ChangeTrack = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-VMSS-Monitoring = {
-          enforcement_mode = "DoNotEnforce"
-        }
-      }
-    }
-    platform = {
-      policy_assignments = {
-        DenyAction-DeleteUAMIAMA = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-MDFC-DefSQL-AMA = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-VM-ChangeTrack = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-VM-Monitoring = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-vmArc-ChangeTrack = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-vmHybr-Monitoring = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-VMSS-ChangeTrack = {
-          enforcement_mode = "DoNotEnforce"
-        }
-        Deploy-VMSS-Monitoring = {
-          enforcement_mode = "DoNotEnforce"
-        }
-      }
-    }
-    {{< / highlight >}}
+1. Locate the `lib` folder in your `config` directory. This folder was created in the initial steps of phase 2. The `lib` folder structure should look like this:
+
+    ```plaintext
+    📂lib
+    ┣ 📜alz_library_metadata.json
+    ┣ 📂architecture_definitions
+    ┃ ┗ 📜alz_custom.alz_architecture_definition.yaml
+    ┗ 📂archetype_overrides
+      ┃ 📜connectivity_custom.alz_archetype_override.yaml
+      ┃ 📜corp_custom.alz_archetype_override.yaml
+      ┃ 📜decommissioned_custom.alz_archetype_override.yaml
+      ┃ 📜identity_custom.alz_archetype_override.yaml
+      ┃ 📜management_custom.alz_archetype_override.yaml
+      ┃ 📜landing_zones_custom.alz_archetype_override.yaml
+      ┃ 📜platform_custom.alz_archetype_override.yaml
+      ┃ 📜root_custom.alz_archetype_override.yaml
+      ┗ 📜sandboxes_custom.alz_archetype_override.yaml
+    ```
+
+1. Open the `landing_zones_custom.alz_archetype_override.yaml` file and uncomment the AMA policy assignments in the `policy_assignments_to_remove` list.
+
+    The file should look like this:
+
+    ```yaml
+    base_archetype: landing_zones
+    name: landing_zones_custom
+    policy_assignments_to_add: []
+    policy_assignments_to_remove: [
+    # To remove AMA policies, uncomment the following lines:
+      Deploy-MDFC-DefSQL-AMA,
+      Deploy-VM-ChangeTrack,
+      Deploy-VM-Monitoring,
+      Deploy-vmArc-ChangeTrack,
+      Deploy-vmHybr-Monitoring,
+      Deploy-VMSS-ChangeTrack,
+      Deploy-VMSS-Monitoring,
+    # To remove the DDOS modify policy, uncomment the following line:
+      # Enable-DDoS-VNET,
+    ]
+    policy_definitions_to_add: []
+    policy_definitions_to_remove: []
+    policy_set_definitions_to_add: []
+    policy_set_definitions_to_remove: []
+    role_definitions_to_add: []
+    role_definitions_to_remove: []
+
+    ```
+
+1. Open the `platform_custom.alz_archetype_override.yaml` file and uncomment the AMA policy assignments in the `policy_assignments_to_remove` list.
+
+    The file should look like this:
+
+    ```yaml
+    base_archetype: platform
+    name: platform_custom
+    policy_assignments_to_add: []
+    policy_assignments_to_remove: [
+    # To disable AMA policies, uncomment the following lines:
+      DenyAction-DeleteUAMIAMA,
+      Deploy-MDFC-DefSQL-AMA,
+      Deploy-VM-ChangeTrack,
+      Deploy-VM-Monitoring,
+      Deploy-vmArc-ChangeTrack,
+      Deploy-vmHybr-Monitoring,
+      Deploy-VMSS-ChangeTrack,
+      Deploy-VMSS-Monitoring,
+    ]
+    policy_definitions_to_add: []
+    policy_definitions_to_remove: []
+    policy_set_definitions_to_add: []
+    policy_set_definitions_to_remove: []
+    role_definitions_to_add: []
+    role_definitions_to_remove: []
+
+    ```
+
+1. Make sure to save both files after making the changes.
