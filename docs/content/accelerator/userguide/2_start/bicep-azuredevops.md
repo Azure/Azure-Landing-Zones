@@ -76,7 +76,7 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
 
     ```pwsh
     Deploy-Accelerator -inputs "~/accelerator/config/inputs.yaml" -output "~/accelerator/output"
-    
+
     ```
 
 1. You will see a Terraform `init` and `apply` happen.
