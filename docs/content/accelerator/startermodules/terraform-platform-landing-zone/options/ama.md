@@ -4,22 +4,11 @@ geekdocCollapseSection: true
 weight: 11
 ---
 
-The Azure Monitoring Agent (AMA) is enabled by default. If you want to turn it off, you can follow these steps:
+The Azure Monitoring Agent (AMA) is enabled by default. If you want to turn it off, you can follow these steps to remove the policy assignments:
 
-1. Remove the following settings by searching for the keys and removing the line or block
-
-    | Setting Type | Parent block(s) | Key | Action | Count | Notes |
-    | - | - | - | - | - | - |
-    | line | `custom_replacements` > `names` | `ama_user_assigned_managed_identity_name` | Delete | 1 | |
-    | line | `custom_replacements` > `names` | `dcr_change_tracking_name` | Delete | 1 | |
-    | line | `custom_replacements` > `names` | `dcr_defender_sql_name` | Delete | 1 | |
-    | line | `custom_replacements` > `names` | `dcr_vm_insights_name` | Delete | 1 | |
-    | line | `custom_replacements` > `resource_identifiers`<br/>`management_group_settings` > `policy_default_values` | `ama_change_tracking_data_collection_rule_id` | Delete | 2 | There are two instances of this key, delete both lines |
-    | line | `custom_replacements` > `resource_identifiers`<br/>`management_group_settings` > `policy_default_values` | `ama_mdfc_sql_data_collection_rule_id` | Delete | 2 | There are two instances of this key, delete both lines |
-    | line | `custom_replacements` > `resource_identifiers`<br/>`management_group_settings` > `policy_default_values` | `ama_vm_insights_data_collection_rule_id` | Delete | 2 | There are two instances of this key, delete both lines |
-    | line | `custom_replacements` > `resource_identifiers`<br/>`management_group_settings` > `policy_default_values` | `ama_user_assigned_managed_identity_id` | Delete | 2 | There are two instances of this key, delete both lines |
-    | block | `management_resource_settings` | `user_assigned_managed_identities` | Delete | 1 | |
-    | block | `management_resource_settings` | `data_collection_rules` | Delete |  1 | |
+{{< hint type=info >}}
+This option removes the policy assignments, but we are still deploying the identity and data collections rules associated with Azure Monitoring Agent. This is to make it easier to enable it in the future. If you really don't want to deploy those resources, it is possible to remove them from the configuration by reviewing he documentation for the [Management Resources Module](https://registry.terraform.io/modules/Azure/avm-ptn-alz-management/azurerm/latest?tab=inputs).
+{{< /hint >}}
 
 1. Locate the `lib` folder in your `config` directory. This folder was created in the initial steps of phase 2. The `lib` folder structure should look like this:
 
