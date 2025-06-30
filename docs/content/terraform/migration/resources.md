@@ -147,10 +147,10 @@ You can build your own custom module leveraging our AVM modules at this stage if
 
 1. For each issue, find the relevant setting in the `platform-landing-zone.auto.tfvars` file and update the value to match the Azure resource name. To make this easier, we have created two example files that have been updated to match the default settings in the CAF module.
 
-    - [hub-and-spoke.auto.tfvars](https://raw.githubusercontent.com/Azure/azure-landing-zones/refs/heads/main/docs/static/examples/tf/migration/platform-landing-zone.hub-and-spoke.auto.tfvars)
-    - [virtual-wan.auto.tfvars](https://raw.githubusercontent.com/Azure/azure-landing-zones/refs/heads/main/docs/static/examples/tf/migration/platform-landing-zone.virtual-wan.auto.tfvars)
+    - [hub-and-spoke.auto.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/migration/hub-and-spoke-vnet.tfvars)
+    - [virtual-wan.auto.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/migration/virtual-wan.tfvars)
 
-    You can copy the contents of these files into your `platform-landing-zone.auto.tfvars` file and look at the diff in VS Code as a starting point. If you customized the names of your resources, you will still need to update the values in the `platform-landing-zone.auto.tfvars` file to match your Azure resource names.
+    These files have comments next to important settings the start with `# MIGRATION:`. You should review each of these as you are very likely to need to update these settings in your own `platform-landing-zone.auto.tfvars` file.
 
 1. Once you have updated every resource name to match, then you can run the command again to get the final set of issues.
 
