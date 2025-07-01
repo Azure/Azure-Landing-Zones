@@ -27,6 +27,7 @@ If you are using the FSI or SLZ starter modules, you do not currently require th
     ┃ ┃ 📜inputs.yaml
     ┃ ┗ 📜platform-landing-zone.tfvars
     ┗ 📂output
+      ┗ 📜.gitkeep
     ```
 
 1. If you are using the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module, you must create a `lib` folder inside the `config` folder to store any customizations to the management groups and policies. This is not required for the FSI or SLZ starter modules.
