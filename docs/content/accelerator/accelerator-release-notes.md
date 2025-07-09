@@ -21,6 +21,25 @@ While we try very hard to avoid breaking changes, there are times when a feature
 
 ## Release Notes
 
+
+### [Terraform Starter Module - v8.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v8.0.0)
+
+- Release date: 2025-06-20
+- Release link: [v8.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v8.0.0)
+- Release diff: [v7.4.0...v8.0.0](https://github.com/Azure/alz-terraform-accelerator/compare/v7.4.0...v8.0.0
+
+This release introduces various fixes, all of which are backwards compatible.
+
+There is one change that requires action by users, which is why we decided to flag this as a major release as we wanted to highlight this change.
+
+ExpressRoute Gateway is rolling out a new feature called HOBO (hosted on behalf of) public ip. This feature means that the ExpressRoute Gateway will use a public IP address that is hosted on behalf of the customer, rather than requiring the customer to provide their own public IP address. At this time, there is no way for us to know which regions and subscriptions the feature has been rolled out to. As such we have introduce a new setting called `<region>_virtual_network_gateway_express_route_hobo_public_ip_enabled`. This setting is `true` by default as we believe this will suit most customers moving forward as this feature rolls out.
+
+For existing customers, they will need to set this to `false` unless they have followed the manual migration process to upgrade their ExpressRoute Gateway to use the HOBO public IP. If a customer does not set this to `false`, they will likely see errors and idempotency issues.
+
+For new customers in a region where the feature rolled out, they will need to ensure the setting is `true`. If they do not, they will see idempotency issues and errors when deploying / updating the ExpressRoute Gateway.
+
+The product group has not yet announced this feature, but it has already started rolling out to customers and is impacting Terraform customers in particular. Versions of this module prior to v8.0.0 were unable to support the HOBO public IP feature as it is not supported by the azurerm provider. In this release we have migrated virtual network gateways to azapi in order to support this feature.
+
 ---
 
 ### [Terraform Starter Module - v7.4.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v7.4.0)
