@@ -5,10 +5,6 @@ geekdocCollapseSection: true
 weight: 10
 ---
 
-{{< hint type="info" title="Public Preview" >}}
-This guidance and tooling is currently in **Public Preview** and is subject to change. We will announce it publicly and remove this message once our testing is complete.
-{{< /hint >}}
-
 This document provides step by step guidance for migrating from the CAF Enterprise Scale module management groups and policy to the Azure Verified Modules for Platform Landing Zones (ALZ) module.
 
 The migration process relies on Terraform state migration using the Terraform [moved](https://developer.hashicorp.com/terraform/language/moved) block.
