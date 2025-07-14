@@ -21,6 +21,7 @@ Follow these instructions to bootstrap GitHub ready to deploy your platform land
     ┣ 📂config
     ┃ ┗ 📜inputs.yaml
     ┗ 📂output
+      ┗ 📜.gitkeep
     ```
 
 1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from [inputs-github.yaml](https://raw.githubusercontent.com/Azure/alz-bicep/refs/heads/main/accelerator/examples/bootstrap/inputs-github.yaml) into that file.
