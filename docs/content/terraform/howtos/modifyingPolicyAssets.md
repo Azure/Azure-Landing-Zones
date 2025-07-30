@@ -46,7 +46,7 @@ Then you create a `<myassignment>.alz_policy_assignment.json` (or YAML) file in 
 {{< hint type=note >}}
 The resource id of the eventually deployed asset will not be known at the time of the file creation.
 Luckily, alzlib and the ALZ provider will index assets by their name only.
-When creating references between assets, you must specify a sane resource id, however the only segment that is used is the final one: e.g. in the example reference `/providers/Microsoft.Management/managementGroups/placeholder/Microsoft.Authorization/policyDefinitions/mydefinition` - the `mydefinition` segment is used to lookup the asset.
+When creating references between assets, you must specify a sane resource id, however the only segment that is used is the final one: e.g. in the example reference `/providers/Microsoft.Management/managementGroups/placeholder/providers/Microsoft.Authorization/policyDefinitions/mydefinition` - the `mydefinition` segment is used to lookup the asset.
 {{< /hint >}}
 
 ## Step two - Create an override archetype
