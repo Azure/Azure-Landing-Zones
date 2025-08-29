@@ -7,7 +7,7 @@ weight: 5
 
 This document provides step by step guidance for migrating from the CAF Enterprise Scale module connectivity and management resources to the Azure Verified Modules for Platform Landing Zones (ALZ) module.
 
-The migration process relies on Terraform state migration using the Terraform [moved](https://developer.hashicorp.com/terraform/language/moved) block.
+The migration process relies on Terraform state migration using the Terraform [import](https://developer.hashicorp.com/terraform/language/import) block.
 
 ## Introduction
 
@@ -286,3 +286,4 @@ If you are using a VCS and you should not attempt to run the apply locally, as y
 1. Great! You have now completed the migration process and your management and connectivity resources are now managed by the AVM modules.
 
 1. We recommend that you remove the `imports.tf` file and `destroy.tf` file from your Terraform module, as these are not needed anymore. Create another branch and PR to complete this.
+
