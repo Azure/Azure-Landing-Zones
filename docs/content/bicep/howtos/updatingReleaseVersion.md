@@ -17,6 +17,8 @@ Before you begin, read the [ALZ Bicep release notes](https://github.com/Azure/AL
 
 In your cloned **primary** repository (not the `templates` repository, if `use_separate_repository_for_templates` was set to `true` during Accelerator bootstrapping), navigate to the root directory and open the `parameters.json` file.
 
+> **NOTE:** If using branch protection on the main branch (recommended), make sure you create a new branch first and change your working branch to this new branch. Example of a branch name could be `feat-release-v0.22.3`
+
 ## Step Two – Set the New Release Version
 
 In the `parameters.json` file, locate the `RELEASE_VERSION` parameter and update it to the desired version from the [Azure Landing Zones Bicep releases](https://github.com/Azure/ALZ-Bicep/releases).
@@ -64,7 +66,7 @@ This PR allows your team to:
 
 Use clear commit messages and PR titles like:
 
-`chore: update ALZ Bicep release version to v0.22.3chore: update ALZ Bicep release version to v0.22.3`
+`chore: update ALZ Bicep release version to v0.22.3`
 
 Once reviewed and approved, the PR can be safely merged.
 
