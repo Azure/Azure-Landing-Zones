@@ -21,8 +21,9 @@ We recommend setting up 3 subscriptions for Azure landing zones. These are manag
 - Management: This is used to deploy the bootstrap and management resources, such as log analytics and automation accounts.
 - Identity: This is used to deploy the identity resources, such as Azure AD and Microsoft Entra Domain Services (formerly Azure AD DS) .
 - Connectivity: This is used to deploy the hub networking resources, such as virtual networks and firewalls.
+- Security: This is used to deploy Sentinel and other security related resources.
 
-You can read more about the management, identity and connectivity subscriptions in the [Landing Zone docs](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/deploy-landing-zones-with-terraform).
+You can read more about the management, identity, connectivity, and security subscriptions in the [Landing Zone docs](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/deploy-landing-zones-with-terraform).
 
 To create the subscriptions you will need access to a billing agreement. The following links detail the permissions required for each type of agreement:
 
