@@ -25,13 +25,15 @@ While we try very hard to avoid breaking changes, there are times when a feature
 
 - Release date: 2025-09-12
 - Release link: [v9.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v9.0.0)
-- Release diff: [v8.1.1...v9.0.0](https://github.com/Azure/alz-terraform-accelerator/compare/v8.1.1...v9.0.0
+- Release diff: [v8.1.1...v9.0.0](https://github.com/Azure/alz-terraform-accelerator/compare/v8.1.1...v9.0.0)
 
-This release introduces the Security management group and platform subscription.
+This release introduces the Security management group and platform subscription. It also includes the H2 FY25 policy refresh.
 
-This is on by default, but the code is backwards compatible.
+Read more about the Security management group in this [blog post](https://techcommunity.microsoft.com/blog/azuregovernanceandmanagementblog/a-new-platform-management-group--subscription-for-security-in-azure-landing-zone/4433287).
 
-In order for a customer to not deploy the Security management group, they need to:
+Read more about the H2 FY25 policy refresh [here](https://github.com/Azure/Enterprise-Scale/wiki/Whats-new#-policy-refresh-h2-fy25).
+
+The Security management group is on by default. In order to not deploy the Security management group, you need to:
 
 - Remove it from the [architecture definition file](https://github.com/Azure/alz-terraform-accelerator/blob/main/templates/platform_landing_zone/lib/architecture_definitions/alz_custom.alz_architecture_definition.yaml)
 - Remove it from the [subscription placements in the platform landing zone configuration file](https://github.com/Azure/alz-terraform-accelerator/blob/b4115bfe9e6606a06def329f9e0574bc80747c83/templates/platform_landing_zone/examples/full-multi-region/hub-and-spoke-vnet.tfvars#L226)
