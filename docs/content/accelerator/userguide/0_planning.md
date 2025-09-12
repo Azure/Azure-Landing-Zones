@@ -136,23 +136,23 @@ Fill out the `Parent management group id` value with the management group you ha
 
 ### Decision 7 - Choose the platform subscriptions
 
-We strongly encourage and only support using 3 subscription model with separate Management, Connectivity and Identity platform subscriptions.
+We strongly encourage and only support using 4 platform subscription with separate Management, Connectivity, Identity, and Security platform subscriptions.
 
 {{< hint type=note >}}
 A single subscription model is technically possible, but only recommended for sandbox testing purposes.
 {{< /hint >}}
 
-You may wish to follow the steps in the [phase 1 prerequisites]({{< relref "1_prerequisites/platform-subscriptions">}}) to create the 3 subscriptions and add the subscription IDs to the checklist now.
+You may wish to follow the steps in the [phase 1 prerequisites]({{< relref "1_prerequisites/platform-subscriptions">}}) to create the 4 platform subscriptions and add the subscription IDs to the checklist now.
 
-Fill out the `Management subscription id`, `Connectivity subscription id`, and `Identity subscription id` values with the subscription IDs you have chosen.
+Fill out the `Management subscription id`, `Connectivity subscription id`, `Identity subscription id`, and `Security subscription id` values with the subscription IDs you have chosen.
 
 ### Decision 8 - Choose the bootstrap subscription
 
-The customer can choose to use a 3 or 4 subscription model. The 4 subscription model is where the bootstrap resources are deployed to a 4th subscription. Should they wish to do that, you can follow the advice found [HERE]({{< relref "advancedscenarios">}}).
+The customer can choose to use a 4 or 5 subscription model. The 5 subscription model is where the bootstrap resources are deployed to a 5th subscription. Should they wish to do that, you can follow the advice found [HERE]({{< relref "advancedscenarios">}}).
 
-In either case, you should make a choice of where to place the bootstrap resources. We recommend using the Management platform subscription if they don't need the 4 subscription model.
+In either case, you should make a choice of where to place the bootstrap resources. We recommend using the Management platform subscription if you don't need the 5 subscription model.
 
-The customer can target this subscription explicitly by setting the `bootstrap_subscription_id` variable in the bootstrap configuration file or ensure they are connected to it via az cli.
+The customer can target this subscription explicitly by setting the `bootstrap_subscription_id` variable in the bootstrap configuration file or ensure you are connected to it via az cli.
 
 Fill out the `Bootstrap subscription id` value with the subscription ID you have chosen.
 
