@@ -27,7 +27,7 @@ provider "alz" {
 }
 {{< / highlight >}}
 
-1. Now the AMBA library is available, you can now add the [AMBA archetypes](https://github.com/Azure/Azure-Landing-Zones-Library/tree/main/platform/amba#archetypes) that we wish to deploy, in the `alz.alz_architecture_definition.yaml` file. For example, to deploy the `root` AMBA archetype, it would look like:
+2. The AMBA library is now available and you can deploy the [AMBA archetypes](https://github.com/Azure/Azure-Landing-Zones-Library/tree/main/platform/amba#archetypes) that suit your organization, in the `alz.alz_architecture_definition.yaml` file. For example, to deploy the `root` AMBA archetype, it would look like:
 
 {{< highlight yaml "linenos=table" >}}
 name: alz_custom
@@ -41,7 +41,7 @@ management_groups:
     parent_id: null
 {{< / highlight >}}
 
-1. Now the archetypes have been assigned to the management group hierarchy, there are a couple of pre-requisites that include creating a managed identity to query Resource Graph for some alerts and a resource group to store the alert/monitoring assets. Start by locating the `platform-landing-zone.auto.tfvars` >`custom_replacements` > `names` block setting and add the following code:
+3. Before deployment, there are a couple of pre-requisites that need to be completed, they include creating a managed identity in order query Resource Graph for alerts and a resource group to store the alert/monitoring assets. Start by locating the `platform-landing-zone.auto.tfvars` >`custom_replacements` > `names` block setting and add the following code:
 
 {{< highlight terraform "linenos=table" >}}
 custom_replacements = {
@@ -52,7 +52,7 @@ custom_replacements = {
 }
 {{< / highlight >}}
 
-Then in the `main.management.tf` file, paste the following:
+4. Then in the `main.management.tf` file, paste the following:
 
 {{< highlight terraform "linenos=table" >}}
 locals {
@@ -74,7 +74,11 @@ module "amba" {
 
 This module creates a resource group and managed identity and it pulls the names from the `custom_replacements` > `names` block.
 
-1. Finally, you need to amend the policy default values that share common parameters like the managed identity, resource group and any other customizations. To achieve this, locate the `platform-landing-zone.auto.tfvars` > `management_group_settings` > `policy_default_values` and append the following code: 
+5. Finally, you need to amend the policy default values that share common parameters like the managed identity, resource group and any other customizations. To achieve this, locate the `platform-landing-zone.auto.tfvars` > `management_group_settings` > `policy_default_values` and append the following code: 
+
+{{< hint type=tip >}}
+Ensure you amend the `amba_alz_action_group_email` option if you want to receive email notifications.
+{{< /hint >}}
 
 {{< highlight terraform "linenos=table" >}}
 management_group_settings = {
@@ -103,4 +107,4 @@ management_group_settings = {
 }
 {{< / highlight >}}
 
-The policy default value options and the policies they're used in can be found in the [Azure Landing Zone AMBA Library](https://github.com/Azure/Azure-Landing-Zones-Library/blob/dae3d4cbcb32520f74bdeba144a95a6486517130/platform/amba/alz_policy_default_values.json)
+The options for the policy default values and the policies they're used for, can be found in the [Azure Landing Zone AMBA Library](https://github.com/Azure/Azure-Landing-Zones-Library/blob/dae3d4cbcb32520f74bdeba144a95a6486517130/platform/amba/alz_policy_default_values.json).
