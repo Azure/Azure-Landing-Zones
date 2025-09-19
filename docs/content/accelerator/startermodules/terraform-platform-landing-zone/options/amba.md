@@ -41,7 +41,7 @@ management_groups:
     parent_id: null
 {{< / highlight >}}
 
-3. Before deployment, there are a couple of pre-requisites that need to be completed, they include creating a managed identity in order query Resource Graph for alerts and a resource group to store the alert/monitoring assets. Start by locating the `platform-landing-zone.auto.tfvars` >`custom_replacements` > `names` block setting and add the following code:
+3. Before deployment, there are a couple of pre-requisites that need to be completed, they include creating a managed identity in order to query Resource Graph for alerts and a resource group to store the alert/monitoring assets. Start by locating the `platform-landing-zone.auto.tfvars` >`custom_replacements` > `names` block setting and add the following code:
 
 {{< highlight terraform "linenos=table" >}}
 custom_replacements = {
