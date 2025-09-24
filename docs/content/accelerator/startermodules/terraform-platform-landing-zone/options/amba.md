@@ -54,9 +54,15 @@ custom_replacements = {
 
 4. Then in the `main.management.tf` file, paste the following:
 
+{{< hint type=tip >}}
+The bootstrap process generates a YAML file by default, but JSON format is also supported. Make sure to use the appropriate decoding function and file extension to correctly parse the architecture definition files.
+{{< /hint >}}
+
 {{< highlight terraform "linenos=table" >}}
 locals {
   root_management_group_name = yamldecode(file("${path.root}/lib/architecture_definitions/alz.alz_architecture_definition.yaml")).management_groups[0].id
+
+  # root_management_group_name = jsondecode(file("${path.root}/lib/architecture_definitions/alz.alz_architecture_definition.json")).management_groups[0].id
 }
 
 module "amba" {
