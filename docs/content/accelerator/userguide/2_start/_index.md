@@ -29,7 +29,7 @@ Version    Name                                Repository           Description
 
 ## 2 - Learn about the configuration
 
-You are now ready to run the bootstrap and setup your environment. 
+You are now ready to run the bootstrap and setup your environment.
 
 {{< hint type=tip >}}
 If you want to use custom names for your bootstrap resources or automate the bootstrap, please refer to our [FAQs]({{< relref "../../faq" >}}) section.
@@ -56,7 +56,7 @@ Some of this configuration is also fed into the starter module to avoid duplicat
 ### Platform Landing Zone Configuration File
 
 {{< hint type=note >}}
-This file is currently only required for the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module. Bicep, Terraform SLZ and Terraform FSI users can skip this section.
+This file is currently only required for the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module. Bicep users can skip this section.
 {{< /hint >}}
 
 This is the `tfvars` file in HCL format that determines which resources are deployed and what type of hub networking connectivity is deployed.
@@ -68,7 +68,7 @@ We provide examples of this file for each scenario. These can be found in the [S
 ### Platform Landing Zone Library (lib) Folder
 
 {{< hint type=note >}}
-This folder is currently only required for the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module. Bicep, Terraform SLZ and Terraform FSI users can skip this section.
+This folder is currently only required for the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module. Bicep users can skip this section.
 {{< /hint >}}
 
 This is a folder of configuration files used to customize the management groups and associated policies. This library and its usage is documented alongside the `avm-ptn-alz` module. However, we cover a common customization use case in our [Options]({{< relref "../../startermodules/terraform-platform-landing-zone/options">}}) documentation.

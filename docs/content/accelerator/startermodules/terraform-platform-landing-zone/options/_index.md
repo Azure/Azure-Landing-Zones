@@ -93,3 +93,4 @@ The available options are:
 1. [Deploy Azure Monitoring Baseline Alerts (AMBA)]({{< relref "amba">}})
 1. [Turn off Defender Plans]({{< relref "defender">}})
 1. [Implement Zero Trust Networking]({{< relref "zero-trust">}})
+1. [Implement Sovereign Landing Zone (SLZ) controls]({{< relref "slz">}})
