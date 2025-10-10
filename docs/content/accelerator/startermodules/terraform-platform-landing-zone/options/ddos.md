@@ -18,24 +18,7 @@ The steps to follow are:
     | - | - | - | - | - | - |
     | line | `custom_replacements` > `names` | `ddos_protection_plan_enabled` | Update setting to `false` | 1 | |
 
-1. Locate the `lib` folder in your `config` directory. This folder was created in the initial steps of phase 2. The `lib` folder structure should look like this:
-
-    ```plaintext
-    📂lib
-    ┣ 📜alz_library_metadata.json
-    ┣ 📂architecture_definitions
-    ┃ ┗ 📜alz_custom.alz_architecture_definition.yaml
-    ┗ 📂archetype_overrides
-      ┃ 📜connectivity_custom.alz_archetype_override.yaml
-      ┃ 📜corp_custom.alz_archetype_override.yaml
-      ┃ 📜decommissioned_custom.alz_archetype_override.yaml
-      ┃ 📜identity_custom.alz_archetype_override.yaml
-      ┃ 📜management_custom.alz_archetype_override.yaml
-      ┃ 📜landing_zones_custom.alz_archetype_override.yaml
-      ┃ 📜platform_custom.alz_archetype_override.yaml
-      ┃ 📜root_custom.alz_archetype_override.yaml
-      ┗ 📜sandboxes_custom.alz_archetype_override.yaml
-    ```
+1. Locate the `lib` folder in your `config` directory. This folder was created in the initial steps of phase 2.
 
 1. Open the `landing_zones_custom.alz_archetype_override.yaml` file and uncomment the AMA policy assignments in the `policy_assignments_to_remove` list.
 
