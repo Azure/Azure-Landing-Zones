@@ -12,5 +12,3 @@ Each starter module expects different inputs and the following pages detail thos
 
 - [Bicep Complete Starter Module]({{< relref "bicepcomplete" >}}): Management groups, policies and hub networking.
 - [Terraform Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "terraform-platform-landing-zone" >}}): Management groups, policies, hub networking with fully custom configuration.
-- [Terraform FSI Starter Module]({{< relref "terraformfsi" >}}): Management groups, policies, hub networking and financial services industry (FSI) specific configurations.
-- [Terraform Sovereign Starter Module]({{< relref "terraformsovereign" >}}): Management groups, policies, hub networking and sovereign cloud specific configurations.

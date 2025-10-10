@@ -8,14 +8,10 @@ Follow these instructions to bootstrap GitHub ready to deploy your platform land
 1. Inside the accelerator create two folders called `config` and `output`. You'll store you input file inside config and the output folder will be the place that the accelerator stores files while it works.
 1. Inside the `config` folder create a new files called `inputs.yaml` and `platform-landing-zone.tfvars`.
 
-    {{< hint type=note >}}
-If you are using the FSI or SLZ starter modules, you do not currently require the `tfvars` file, so you can exclude it.
-    {{< /hint >}}
-
     ```pwsh
     New-Item -ItemType "file" "~/accelerator/config/inputs.yaml" -Force
     New-Item -ItemType "directory" "~/accelerator/output"
-    New-Item -ItemType "file" "~/accelerator/config/platform-landing-zone.tfvars" -Force  # Exclude this line if using FSI or SLZ starter modules
+    New-Item -ItemType "file" "~/accelerator/config/platform-landing-zone.tfvars" -Force
 
     ```
 
@@ -29,7 +25,7 @@ If you are using the FSI or SLZ starter modules, you do not currently require th
     ┗ 📂output
     ```
 
-1. If you are using the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module, you must create a `lib` folder inside the `config` folder to store any customizations to the management groups and policies. This is not required for the FSI or SLZ starter modules.
+1. If you are using the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module, you must create a `lib` folder inside the `config` folder to store any customizations to the management groups and policies.
 
     ```pwsh
     $tempFolderName = "~/accelerator/temp"
@@ -50,8 +46,6 @@ If you are using the FSI or SLZ starter modules, you do not currently require th
 
 1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from the relevant input file for your chosen starter module:
     1. Azure Verified Modules for Platform Landing Zone (ALZ) - [inputs-github.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/bootstrap/inputs-github.yaml)
-    1. Financial Services Industry Landing Zone - [inputs-github.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/microsoft_cloud_for_industry/financial_services_landing_zone/examples/bootstrap/inputs-github.yaml)
-    1. Sovereign Landing Zone - [inputs-github.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/microsoft_cloud_for_industry/sovereign_landing_zone/examples/bootstrap/inputs-github.yaml)
 
 1. Check through the file and update each input as required. It is mandatory to update items with placeholders surrounded by angle brackets `<>`:
 
@@ -85,14 +79,11 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
     | `allow_storage_access_from_my_ip` | `TF_VAR` | `false` | This controls whether to allow access to the storage account from your IP address. This is only needed for trouble shooting. This only applies if you have `use_private_networking` set to `true`. This defaults to `false`. |
     | `apply_approvers` | `TF_VAR` | `<username-or-email-address>` | This is a list of usernames or email addresses of people you wish to be in the group that approves apply of the Azure landing zone module. This is an array of strings like ["user1", "user2", "user3"] or ["abc@xyz.com", "def@xyz.com", "ghi@xyz.com"]. You may need to check what the username or email of each user is prior to filling this out as it can vary based on how they have setup their GitHub account. Using username is the preferred option since it has to be set, whereas email needs to be configured and must be public. Use empty array [] to disable approvals. |
     | `create_branch_policies` | `TF_VAR` | `true` | This controls whether to create branch policies for the repository. This defaults to `true`. |
-    | `architecture_definition_name` | `TF_VAR` | N/A | This is the name of the architecture definition to use when applying the ALZ archetypes via the architecture definition template. This is only relevant to some starter modules, such as the `sovereign_landing_zone` starter module. This defaults to `null`. |
 
-1. Open your `platform-landing-zone.tfvars` file or keep your `inputs.yaml` file open for SLZ and FSI starter modules in Visual Studio Code (or your preferred editor)
+1. Open your `platform-landing-zone.tfvars` file in Visual Studio Code (or your preferred editor)
 
 1. Now head over to your chosen starter module documentation to get the specific inputs for that module.
     - [Terraform Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../../startermodules/terraform-platform-landing-zone" >}}): Management groups, policies, Multi Region hub networking with fully custom configuration.
-    - [Terraform Financial Services Industry Landing Zone Starter Module]({{< relref "../../startermodules/terraformfsi" >}}): Management groups, policies, hub networking for the Financial Services Industry Landing Zone.
-    - [Terraform Sovereign Landing Zone Starter Module]({{< relref "../../startermodules/terraformsovereign" >}}): Management groups, policies, hub networking for the Sovereign Landing Zone.
 
 1. Verify that you are logged in to Azure CLI or have the Service Principal credentials set as env vars. You should have completed this in the [Prerequisites]({{< relref "../1_prerequisites" >}}) phase.
 1. Ensure you are running the latest version of the ALZ PowerShell module by running:
@@ -113,15 +104,6 @@ Inputs can be split into multiple files if desired.
         Deploy-Accelerator `
         -inputs "~/accelerator/config/inputs.yaml", "~/accelerator/config/platform-landing-zone.tfvars" `
         -starterAdditionalFiles "~/accelerator/config/lib" `
-        -output "~/accelerator/output"
-
-        ```
-
-    * Run `Deploy-Accelerator` for the Sovereign Landing Zone or Financial Services Industry Landing Zone starter module:
-
-        ```pwsh
-        Deploy-Accelerator `
-        -inputs "~/accelerator/config/inputs.yaml" `
         -output "~/accelerator/output"
 
         ```
