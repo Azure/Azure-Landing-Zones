@@ -1,6 +1,6 @@
 ---
 title: Modifying the Management Group Hierarchy
-weight: 10
+weight: 6
 ---
 
 {{< hint type=important >}}

@@ -1,6 +1,6 @@
 ---
 title: Modifying Policy Assignments
-weight: 10
+weight: 5
 ---
 
 To modify a policy assignment, use the [`policy_assignments_to_modify`](https://github.com/Azure/terraform-azurerm-avm-ptn-alz?tab=readme-ov-file#-policy_assignments_to_modify) variable.

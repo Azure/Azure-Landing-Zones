@@ -1,6 +1,6 @@
 ---
 title: Using a custom library
-weight: 1
+weight: 7
 ---
 
 You will need a custom library if you want to do any of the following:

@@ -1,6 +1,6 @@
 ---
 title: Using a self-hosted ALZ Library
-weight: 20
+weight: 6
 ---
 
 the [Azure Landing Zones Library](https://github.com/Azure/Azure-Landing-Zones-Library) is a collection of assets that can be used to deploy Azure Landing Zones of different flavours.
