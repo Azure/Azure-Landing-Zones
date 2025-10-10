@@ -7,7 +7,7 @@ weight: 15
 The Sovereign Landing Zone (SLZ) is a compliance-focused implementation designed for regulated industries that demand high data sovereignty. It incorporates specific controls and configurations to meet stringent regulatory requirements. The SLZ policies can be reviewd here:
 
 - [Sovereignty Baseline - Global Policies](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/c1cbff38-87c0-4b9f-9f70-035c7a3b5523.html)
-  - Applied at th root management group level
+  - Applied at the root management group level
 - [Sovereignty Baseline - Confidential Policies](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/03de05a4-c324-4ccd-882f-a814ea8ab9ea.html)
   - Applied at the Confidential Corp and Confidential Online management group levels
 
