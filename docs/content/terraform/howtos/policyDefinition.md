@@ -1,5 +1,5 @@
 ---
-title: Creating or Removing a Policy Definition
+title: Developing Policy Definitions
 weight: 2
 ---
 
@@ -18,15 +18,15 @@ This section is only for creating custom policy definitions. If you want to assi
 
 1. Navigate to your custom library directory (typically `lib` in your repository root).
 
-2. Create a new file following the naming pattern `<mydefinition>.alz_policy_definition.json` or `<mydefinition>.alz_policy_definition.yaml`.
+2. Create a new file following the naming pattern `<mydefinition>.alz_policy_definition.json` or `<mydefinition>.alz_policy_definition.yaml`. It's recommend that the filename matches the `name` field in the policy definition, e.g. `My-Custom-Policy.alz_policy_definition.json`. Each asset must have a unique name so it can be indexed by the provider.
 
 {{< hint type=tip >}}
-We recommend that the filename matches the `name` field in the policy definition, e.g. `My-Custom-Policy.alz_policy_definition.json`. Each asset must have a unique name so it can be indexed by the provider.
+Familiarize yourself with the idiomatic [library structure](https://azure.github.io/Azure-Landing-Zones-Library/#library-structure) and review existing policy definitions in the [ALZ Library](https://github.com/Azure/Azure-Landing-Zones-Library/tree/main/platform/alz/policy_definitions) for reference.
 {{< /hint >}}
 
 3. Define your policy using the standard Azure Policy definition format. Here is an example policy definition in JSON format:
 
-    ```json
+{{< highlight json "linenos=table" >}}
     {
       "name": "My-Custom-Policy",
       "type": "Microsoft.Authorization/policyDefinitions",
@@ -56,11 +56,7 @@ We recommend that the filename matches the `name` field in the policy definition
         }
       }
     }
-    ```
-
-{{< hint type=tip >}}
-Familiarize yourself with the idiomatic [library structure](https://azure.github.io/Azure-Landing-Zones-Library/#library-structure) and review existing policy definitions in the [ALZ Library](https://github.com/Azure/Azure-Landing-Zones-Library/tree/main/platform/alz/policy_definitions) for reference.
-{{< /hint >}}
+{{< / highlight >}}
 
 ## Create an Override Archetype
 
