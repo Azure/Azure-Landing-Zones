@@ -13,26 +13,27 @@ The Sovereign Landing Zone (SLZ) is a compliance-focused implementation designed
 
 The steps to follow are:
 
-1. Locate the `lib` folder in your `config` directory. This folder was created in the initial steps of phase 2.
+1. Copy the SLZ `lib` files over the top of your existing `lib` folder. This will add the necessary configuration files to enable the SLZ management groups and policies.
 
-1. Open the `architecture_definitions\alz_custom.alz_architecture_definition.yaml` file. Uncomment the two management groups for `Confidential Corp` and `Confidential Online` by removing the `#` characters at the start of the lines. Save the file.
+    ```pwsh
+    $tempFolderName = "~/accelerator/temp"
+    New-Item -ItemType "directory" $tempFolderName
+    $tempFolder = Resolve-Path -Path $tempFolderName
+    git clone -n --depth=1 --filter=tree:0 "https://github.com/Azure/alz-terraform-accelerator" "$tempFolder"
+    cd $tempFolder
 
-2. Open the `archetype_definitions\root_custom.alz_archetype_override.yaml` file. Uncomment the two policy assignment blocks for the SLZ policies by removing the `#` characters at the start of the lines. Save the file.
+    $libFolderPath = "templates/platform_landing_zone/examples/slz/lib"
+    git sparse-checkout set --no-cone $libFolderPath
+    git checkout
 
-    The file should look like this:
+    cd ~
+    Copy-Item -Path "$tempFolder/$libFolderPath" -Destination "~/accelerator/config" -Recurse -Force
+    Remove-Item -Path $tempFolder -Recurse -Force
 
-    ```yaml
-    base_archetype: root
-    name: root_custom
-    policy_assignments_to_add: [
-    # To enable Sovereign Landing Zone, uncomment the following line:
-    "Enforce-Sovereign-Global"
-    ]
-    policy_assignments_to_remove: []
-    policy_definitions_to_add: []
-    policy_definitions_to_remove: []
-    policy_set_definitions_to_add: []
-    policy_set_definitions_to_remove: []
-    role_definitions_to_add: []
-    role_definitions_to_remove: []
     ```
+
+1. Open your `platform-landing-zone.tfvars` file in Visual Studio Code (or your preferred editor) and update the following inputs:
+
+    | Setting Type | Parent block(s) | Key | Action | Count | Notes |
+    | - | - | - | - | - | - |
+    | block | `management_group_settings` > `policy_default_values` | `allowed_locations` | Uncomment the block and add any extra locations you want to allow into the array | 1 | |
