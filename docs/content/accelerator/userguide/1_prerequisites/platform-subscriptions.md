@@ -16,7 +16,7 @@ If a parent management group other than Tenant Root Group is chosen, then you mu
 
 ## 2 - Azure Subscriptions
 
-We recommend setting up 3 subscriptions for Azure landing zones. These are management, identity and connectivity. See our [advanced scenarios]({{< relref "advancedscenarios" >}}) section for alternatives.
+We recommend setting up 4 subscriptions for Azure landing zones. These are management, identity, connectivity, and security. See our [advanced scenarios]({{< relref "advancedscenarios" >}}) section for alternatives.
 
 - Management: This is used to deploy the bootstrap and management resources, such as log analytics and automation accounts.
 - Identity: This is used to deploy the identity resources, such as Azure AD and Microsoft Entra Domain Services (formerly Azure AD DS) .
