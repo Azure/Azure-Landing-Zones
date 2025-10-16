@@ -43,7 +43,6 @@ This file has several tabs, described here:
 * Accelerator - Bootstrap: This tab details the settings required for the bootstrap configuration
 * Accelerator - Bicep: This tab details the settings required for the Bicep configuration
 * Accelerator - Terraform - ALZ: This tab details the settings required for the Azure Verified Modules for Platform Landing Zone (ALZ) configuration
-* Accelerator - Terraform - SLZ: This tab details the settings required for the Sovereign Landing Zone configuration
 
 {{< hint type=tip >}}
 As an advanced user, you can go right ahead and fill in the configuration file directly, you don't have to use the spreadsheet.
@@ -95,11 +94,10 @@ Below is a table describing the available starter modules, along with guidance o
 | Starter Module | Setting | Description | Recommendation |
 |--|--|----|---|
 | [Bicep - Complete]({{< relref "../startermodules/bicepcomplete">}}) | `complete` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Bicep |
-| [Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../startermodules/terraform-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for any customer that does not want SLZ or FSI |
-| [Terraform - Sovereign Landing Zone]({{< relref "../startermodules/terraformsovereign" >}}) | `sovereign_landing_zone` | Compliance-focused implementation for regulated industries demanding high data sovereignty. | Select for government and regulated industry environments. |
-| [Terraform - Financial Services Industry Landing Zone]({{< relref "../startermodules/terraformfsi" >}}) | `financial_services_landing_zone` | Compliance-focused implementation for the financial services industry. | Select for financial service industry environments. |
+| [Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../startermodules/terraform-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for every customer |
 
-Fill out the `Starter module` value with either `complete`, `platform_landing_zone`, `sovereign_landing_zone`, or `financial_services_landing_zone`.
+Fill out the `Starter module` value with either `complete` or`platform_landing_zone`
+.
 
 ### Decision 4 - Choose a region for the bootstrap resources
 
