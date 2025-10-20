@@ -16,33 +16,33 @@ If you choose to use a `free` organization account the accelerator bootstrap wil
 
 ## GitHub Personal Access Token (PAT)
 
-{{< hint type=note >}}
-The following instructions refer to `classic` personal access tokens. You can also use `fine-grained` access tokens which are still in beta to provide more granular permissions. These docs will be updated to reflect this in the future.
-{{< /hint >}}
-
 This first PAT is referred to as `token-1`.
 
 1. Navigate to [github.com](https://github.com).
 1. Click on your user icon in the top right and select `Settings`.
 1. Scroll down and click on `Developer Settings` in the left navigation.
-1. Click `Personal access tokens` in the left navigation and select `Tokens (classic)`.
-1. Click `Generate new token` at the top and select `Generate new token (classic)`.
-1. Enter `Azure Landing Zone Terraform Accelerator` in the `Note` field.
+1. Click `Personal access tokens` in the left navigation and select `Fine-grained tokens`.
+1. Click `Generate new token` at the top.
+1. Enter `Azure Landing Zone Terraform Accelerator` in the `Token name` field.
+1. Alter the `Resource owner` drop down and select your organization.
 1. Alter the `Expiration` drop down and select `Custom`.
 1. Choose tomorrows date in the date picker.
-1. Check the following scopes:
-    1. `repo`
-    1. `workflow`
-    1. `admin:org`
-    1. `user`: `read:user`
-    1. `user`: `user:email`
-    1. `delete_repo`
+1. Alter the `Repository access` radio button and select `All repositories`.
+1. Add the following `Repository` permissions:
+    1. `Actions`: `Read and write`
+    1. `Administration`: `Read and write`
+    1. `Contents`: `Read and write`
+    1. `Environments`: `Read and write`
+    1. `Secrets`: `Read and write`
+    1. `Variables`: `Read and write`
+    1. `Workflows`: `Read and write`
+1. Add the following `Organization` permissions:
+    1. `Members`: `Read and write`
+    1. `Self-hosted runners`: `Read and write`  Only required if you plan to use Runner Groups at the organization level.
 1. Click `Generate token`.
 1. Copy the token and save it somewhere safe.
-1. If your organization uses single sign on, then click the `Configure SSO` link next to your new PAT.
-1. Select your organization and click `Authorize`, then follow the prompts to allow SSO.
 
-If you are using self-hosted runners, you will need to create a second PAT that we'll refer to as `token-2` for them. You can do this by following the steps above with the following differences:
+If you are using self-hosted runners, you will need to create a second PAT that we'll refer to as `token-2` for them. You can do this by following these steps:
 
 1. Select `No expiration` for the `Expiration` field.
 
@@ -50,6 +50,24 @@ If you are using self-hosted runners, you will need to create a second PAT that 
 You may want to set a shorter expiration date for security reasons. In either case, you will need to have a process in place to extend expiration the token before it expires.
     {{< /hint >}}
 
-1. The scope required depends on the type of organization you are using:
-    1. If you are using a Free organization or an Enterprise organization without a runner group, select only the `repo` scope.
-    1. If you are using an Enterprise organization and a runner group, select the `admin:org` scope for classic tokens (or `organization_self_hosted_runners:write` for fine-grained tokens).
+1. Navigate to [github.com](https://github.com).
+1. Click on your user icon in the top right and select `Settings`.
+1. Scroll down and click on `Developer Settings` in the left navigation.
+1. Click `Personal access tokens` in the left navigation and select `Fine-grained tokens`.
+1. Click `Generate new token` at the top.
+1. Enter `Azure Landing Zone Terraform Accelerator Runner Registration` in the `Token name` field.
+1. Alter the `Resource owner` drop down and select your organization.
+1. Alter the `Expiration` drop down and select `No Expiration`.
+    {{< hint type=note >}}
+You can of course set an expiration date if you prefer, but you'll need to ensure you have a process in place to renew it before it expires.
+    {{< /hint >}}
+1. Alter the `Repository access` radio button and select `All repositories`.
+    {{< hint type=note >}}
+You can should this post bootstrap deployment to limit access to only the repository where you will be using self-hosted runner. We'll remind you to do this in the next steps after the bootstrap is complete.
+    {{< /hint >}}
+1. Add the following `Repository` permissions:
+    1. `Administration`: `Read and write`
+1. Add the following `Organization` permissions:
+    1. `Self-hosted runners`: `Read and write`  Only required if you plan to use Runner Groups at the organization level.
+1. Click `Generate token`.
+1. Copy the token and save it somewhere safe.

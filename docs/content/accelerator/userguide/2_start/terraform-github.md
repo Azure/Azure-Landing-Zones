@@ -112,6 +112,7 @@ Inputs can be split into multiple files if desired.
 1. There will be a pause after the `plan` phase you allow you to validate what is going to be deployed.
 1. If you are happy with the plan, then hit enter.
 1. The Terraform will `apply` and your environment will be bootstrapped.
+1. You can now update your `Azure Landing Zone Terraform Accelerator Runner Registration` GitHub PAT (`token-2`) to restrict it to the main repository created by the bootstrap.
 
 ## Next Steps
 
