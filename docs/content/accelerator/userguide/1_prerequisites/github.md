@@ -57,8 +57,10 @@ You may want to set a shorter expiration date for security reasons. In either ca
 1. Click `Generate new token` at the top.
 1. Enter `Azure Landing Zone Terraform Accelerator Runner Registration` in the `Token name` field.
 1. Alter the `Resource owner` drop down and select your organization.
-1. Alter the `Expiration` drop down and select `Custom`.
-1. Choose tomorrows date in the date picker.
+1. Alter the `Expiration` drop down and select `No Expiration`.
+    {{< hint type=note >}}
+You can of course set an expiration date if you prefer, but you'll need to ensure you have a process in place to renew it before it expires.
+    {{< /hint >}}
 1. Alter the `Repository access` radio button and select `All repositories`.
     {{< hint type=note >}}
 You can should this post bootstrap deployment to limit access to only the repository where you will be using self-hosted runner. We'll remind you to do this in the next steps after the bootstrap is complete.
