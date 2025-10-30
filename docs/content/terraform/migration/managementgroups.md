@@ -140,7 +140,7 @@ You can build your own custom module leveraging our AVM modules at this stage if
 
     You should have already taken the important settings from these files while migrating your connectivity resources, but it is worth reviewing the comments starting with `# MIGRATION:` in these files as they highlight important settings that you may need to update in your own `platform-landing-zone.auto.tfvars` file.
 
-1. In some cases, you will need to update the `lib` folder in order to match the configuration. Again, we have provided an example of the changes required to match the standard CAF module settings. It can be found here: [lib](https://github.com/Azure/Azure-Landing-Zones/tree/docs-migration-management-groups/docs/static/examples/tf/migration/lib).
+1. In some cases, you will need to update the `lib` folder in order to match the configuration. Again, we have provided an example of the changes required to match the standard CAF module settings. It can be found here: [lib](https://github.com/Azure/alz-terraform-accelerator/tree/main/templates/platform_landing_zone/examples/migration/lib).
 
 1. You may also need to update your `terraform.tf` file in order to match role definition IDs. Add the `role_definitions_use_supplied_names_enabled = true` setting to the `alz` `provider` block:
 
@@ -296,4 +296,5 @@ If you are using a VCS and you should not attempt to run the apply locally, as y
 1. Great! You have now completed the migration process and your management and connectivity resources are now managed by the AVM modules.
 
 1. We recommend that you remove the `imports.tf` file and `destroy.tf` file from your Terraform module, as these are not needed anymore. Create another branch and PR to complete this.
+
 
