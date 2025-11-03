@@ -21,6 +21,24 @@ While we try very hard to avoid breaking changes, there are times when a feature
 
 ## Release Notes
 
+### [Terraform Starter Module - v12.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v12.0.0)
+
+- Release date: 2025-11-03
+- Release link: [v12.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v9.0.0)
+- Release diff: [v11.0.0...v12.0.0](https://github.com/Azure/alz-terraform-accelerator/compare/v11.0.0...v12.0.0)
+
+This release introduces explicit variable definitions for the majority on configuration options. This is to improve the user experience. This will provide better auto-completion and avoid issues with multi-region connectivity and complex configurations.
+
+There is no impact on state and upgrading the module will not result in any changes or destruction of existing resources. All planned changes are to migrate state or for updated versions of connectivity modules.
+
+There have been significant change to the variable interface. We have updated the example configuration files to reflect the changes. The best way to see the changes is to diff v11.0.0 with v12.0.0 for your scenario. Changes include:
+
+- Flattening of hub and spoke network variables, moving some from nested objects to top level variables.
+- Removal of region specific replacements, these are now automatically handled by the connectivity modules. Zones can still be overridden if desired.
+- Migration of Virtual WAN configuration to dedicated variable objects.
+
+We don't plan any further significant changes to the module interface for the foreseeable future. Any further changes will be additive and non-breaking.
+
 ### [Terraform Starter Module - v9.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v9.0.0)
 
 - Release date: 2025-09-12
