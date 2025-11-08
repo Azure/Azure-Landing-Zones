@@ -84,6 +84,8 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
 
     ```pwsh
     Update-Module -Name ALZ
+    # or install Azure Landing Zones Powershell Module
+    # Install-Module -Name ALZ
     ```
 
 1. In your PowerShell Core (pwsh) terminal run the module:
