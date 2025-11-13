@@ -13,7 +13,18 @@ resources:
 
 Welcome to the Azure Landing Zones Accelerators for Bicep and Terraform!
 
-The Azure landing zones [Terraform](https://github.com/Azure/alz-terraform-accelerator/tree/main/templates/platform_landing_zone) and [Bicep](https://github.com/Azure/ALZ-Bicep) modules provide an opinionated approach for deploying and managing the core platform capabilities of [Azure landing zones architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture) using Bicep or Terraform.
+The Azure landing zones [Terraform](https://github.com/Azure/alz-terraform-accelerator/tree/main/templates/platform_landing_zone) and Bicep modules provide an opinionated approach for deploying and managing the core platform capabilities of [Azure landing zones architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture) using Bicep or Terraform.
+
+## Bicep Framework Options
+
+The accelerator supports two Bicep frameworks to meet different deployment needs:
+
+- **Bicep (New Framework)**: Uses the [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) built on Azure Verified Modules for enhanced modularity and maintainability
+- **Bicep Classic**: Uses the traditional [ALZ-Bicep](https://github.com/Azure/ALZ-Bicep) framework for existing deployments and organizations preferring the established approach
+
+{{< hint type=tip >}}
+New deployments should use the **Bicep (New Framework)** as it leverages Azure Verified Modules and provides improved maintainability and modularity. Existing deployments can continue using **Bicep Classic** without any changes.
+{{< /hint >}}
 
 This accelerator provides an opinionated approach for configuring and securing those modules in a continuous delivery environment. It has end to end automation for bootstrapping the modules.
 

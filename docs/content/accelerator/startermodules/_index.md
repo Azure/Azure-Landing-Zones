@@ -10,5 +10,12 @@ These are called starter modules because the expectation is you'll update these 
 
 Each starter module expects different inputs and the following pages detail those inputs. You'll be prompted for these inputs when you run the Accelerator PowerShell module.
 
-- [Bicep Complete Starter Module]({{< relref "bicepcomplete" >}}): Management groups, policies and hub networking.
-- [Terraform Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "terraform-platform-landing-zone" >}}): Management groups, policies, hub networking with fully custom configuration.
+## Bicep Starter Modules
+
+- **[Bicep Complete Starter Module]({{< relref "bicepcomplete" >}})**: Overview and comparison of both Bicep frameworks
+  - **[Bicep AVM - Complete]({{< relref "bicep-avm" >}})**: New framework using Azure Verified Modules (iac_type: `bicep`)
+  - **[Bicep Classic - Complete]({{< relref "bicep-classic" >}})**: Traditional framework (iac_type: `bicep-classic`)
+
+## Terraform Starter Modules
+
+- **[Terraform Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "terraform-platform-landing-zone" >}})**: Management groups, policies, hub networking with fully custom configuration.

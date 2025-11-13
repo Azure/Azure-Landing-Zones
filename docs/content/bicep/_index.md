@@ -4,21 +4,60 @@ geekdocCollapseSection: true
 weight: 20
 ---
 
-This section provides guidance for performing common tasks once you have deployed the [ALZ Bicep Accelerator]({{< relref "accelerator" >}}) and is currently specific to the [ALZ-Bicep modules](https://github.com/Azure/ALZ-Bicep).
+This section provides guidance for performing common tasks with the **new Bicep framework** using Azure Verified Modules from the [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) repository.
+
+{{< hint type=tip >}}
+This documentation is for the **new Bicep framework** (`iac_type: bicep`) built on Azure Verified Modules. For the traditional framework, see [Bicep Classic]({{< relref "../bicep-classic" >}}).
+{{< /hint >}}
+
+## Framework Overview
+
+- **Repository**: [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator)
+- **Foundation**: Built on Azure Verified Modules (AVM)
+- **Benefits**: Enhanced modularity, better maintainability, and alignment with Microsoft's latest best practices
+- **Use Case**: Recommended for new Azure Landing Zone deployments
+- **IAC Type**: `bicep`
+
+## Key Features
+
+The new Bicep framework leverages Azure Verified Modules to provide:
+
+- **Enhanced Modularity**: Better separation of concerns and reusable components
+- **Improved Maintainability**: Cleaner code structure and easier updates
+- **Latest Best Practices**: Alignment with Microsoft's current recommendations
+- **Future-Proof Architecture**: Built to evolve with Azure platform capabilities
 
 ## Getting Started
 
-If you're new to Bicep or to the ALZ Accelerator, consider starting with:
+If you're new to the new Bicep framework:
 
-- [Overview of ALZ-Bicep modules](https://github.com/Azure/ALZ-Bicep)
-- [Deploying the Accelerator framework]
-- [Customizing parameters and structure for your environment]
+- [alz-bicep-accelerator Repository](https://github.com/Azure/alz-bicep-accelerator) - Main repository with AVM-based modules
+- [Azure Verified Modules](https://aka.ms/avm) - Learn about the underlying module framework
+- [Deploying with the Accelerator]({{< relref "accelerator/userguide" >}}) - Using the PowerShell accelerator
 
-## Azure Verified Modules (AVM) Transition
+## When to Choose This Framework
 
-The documentation will be updated as the **Bicep Azure Verified Modules (AVM) for Platform Landing Zone (ALZ)** moves into public preview.
+Choose the new Bicep framework if you:
 
-{{< hint type=tip >}}
-If you're interested in early guidance or background on this initiative, refer to the official blog post:
-[An Update on Bicep Azure Verified Modules for Platform Landing Zone (ALZ)](https://techcommunity.microsoft.com/blog/AzureToolsBlog/an-update-on-bicep-azure-verified-modules-for-platform-landing-zone-alz/4407626).
-{{< /hint >}}
+- Are starting a new Azure Landing Zone deployment
+- Want to leverage the latest Azure best practices
+- Prefer enhanced modularity and maintainability
+- Want to future-proof your infrastructure code
+
+## Migration from Bicep Classic
+
+If you have an existing Bicep Classic deployment:
+
+- Continue using [Bicep Classic]({{< relref "../bicep-classic" >}}) for existing deployments
+- Migration guidance will be provided in future releases
+- Consider the new framework for new environment deployments
+
+## Framework Comparison
+
+| Factor | Bicep (New Framework) | [Bicep Classic]({{< relref "../bicep-classic" >}}) |
+|--------|----------------------|---------------|
+| **Best For** | New deployments | Existing deployments |
+| **Architecture** | Azure Verified Modules | Traditional ALZ modules |
+| **Modularity** | High | Moderate |
+| **Maintenance** | Latest best practices | Established patterns |
+| **Repository** | alz-bicep-accelerator | ALZ-Bicep |

@@ -69,7 +69,16 @@ Each decision number maps to a decision number in the `checklist.xlsx` file.
 
 The accelerator supports both Bicep and Terraform. You need to choose one of these to use for the bootstrap process.
 
-Fill out the `Infrastructure as Code` value with either `bicep` or `terraform`.
+**For Bicep users**, you have two framework options:
+
+* **bicep**: Use this for new deployments with the Azure Verified Modules framework ([alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator))
+* **bicep-classic**: Use this for existing deployments or when preferring the traditional framework ([ALZ-Bicep](https://github.com/Azure/ALZ-Bicep))
+
+Fill out the `Infrastructure as Code` value with either `bicep`, `bicep-classic`, or `terraform`.
+
+{{< hint type=tip >}}
+**Recommendation for new deployments**: Choose `bicep` to leverage the latest Azure Verified Modules framework for better modularity and maintainability.
+{{< /hint >}}
 
 ### Decision 2 - Choose a version control system
 
@@ -93,11 +102,11 @@ Below is a table describing the available starter modules, along with guidance o
 
 | Starter Module | Setting | Description | Recommendation |
 |--|--|----|---|
-| [Bicep - Complete]({{< relref "../startermodules/bicepcomplete">}}) | `complete` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Bicep |
-| [Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../startermodules/terraform-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for every customer |
+| [Bicep - Platform Landing Zone]({{< relref "../startermodules/bicep-platform-landing-zone">}}) | `complete` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. Uses the alz-bicep-accelerator framework. | Use this for new Bicep deployments (iac_type: `bicep`) |
+| [Bicep Classic - Platform Landing Zone]({{< relref "../startermodules/bicep-classic-platform-landing-zone">}}) | `complete` | Multi-region implementation using traditional ALZ-Bicep modules. | Use this for existing Bicep deployments (iac_type: `bicep-classic`) |
+| [Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../startermodules/terraform-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Terraform deployments |
 
-Fill out the `Starter module` value with either `complete` or`platform_landing_zone`
-.
+Fill out the `Starter module` value with either `complete` or `platform_landing_zone`.
 
 ### Decision 4 - Choose a region for the bootstrap resources
 

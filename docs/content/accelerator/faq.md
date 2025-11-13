@@ -197,3 +197,25 @@ For example:
 ```yaml
 github_organization_domain_name: "contoso.ghe.com"
 ```
+
+## Questions about Bicep Framework Options
+
+### What's the difference between `bicep` and `bicep-classic` framework options?
+
+The accelerator now supports two Bicep framework options:
+
+* **`bicep`** (New Framework): Uses the [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) built on Azure Verified Modules (AVM)
+  * **Benefits**: Enhanced modularity, better maintainability, alignment with Microsoft's latest best practices
+  * **Recommended for**: New Azure Landing Zone deployments
+  * **Architecture**: Leverages Azure Verified Modules for a more modular approach
+
+* **`bicep-classic`** (Classic Framework): Uses the traditional [ALZ-Bicep](https://github.com/Azure/ALZ-Bicep) modules
+  * **Benefits**: Proven stability and compatibility with existing deployments
+  * **Recommended for**: Existing ALZ-Bicep deployments or organizations preferring the established approach
+  * **Architecture**: Traditional ALZ-Bicep module structure
+
+### Which Bicep framework should I choose?
+
+* **For new deployments**: Choose `bicep` to leverage the latest Azure Verified Modules framework
+* **For existing deployments**: Continue using `bicep-classic` to maintain compatibility
+* **For migration scenarios**: We will be releasing brown field migration guidance in the future

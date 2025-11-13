@@ -13,13 +13,42 @@ To find the individual release notes for each component of the accelerator, plea
 - [ALZ PowerShell Module](https://github.com/Azure/ALZ-PowerShell-Module/releases)
 - [Accelerator Bootstrap Modules](https://github.com/Azure/accelerator-bootstrap-modules/releases)
 - [Terraform Starter Modules](https://github.com/Azure/alz-terraform-accelerator/releases)
-- [Bicep Starter Modules](https://github.com/Azure/ALZ-Bicep/releases)
+- [Bicep Starter Modules (New Framework)](https://github.com/Azure/alz-bicep-accelerator/releases)
+- [Bicep Starter Modules (Classic Framework)](https://github.com/Azure/ALZ-Bicep/releases)
 
 ## Breaking changes
 
 While we try very hard to avoid breaking changes, there are times when a feature request, product launch, or Cloud Adoption Framework guidance necessitates us updating the accelerator in a way that may require updates to configuration while updating your code base.
 
 ## Release Notes
+
+### ALZ Accelerator - Bicep Framework Options Support
+
+- Release date: 2025-11-19
+- Impact: **Non-breaking change** - Additive functionality only
+
+The ALZ Accelerator now supports two Bicep framework options to meet different deployment needs:
+
+**New Framework Support (`iac_type: bicep`)**:
+
+- Introduces support for [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) built on Azure Verified Modules
+- Provides enhanced modularity and maintainability
+- Recommended for new Azure Landing Zone deployments
+
+**Classic Framework Continuation (`iac_type: bicep-classic`)**:
+
+- Continues support for 1 year for the traditional [ALZ-Bicep](https://github.com/Azure/ALZ-Bicep) framework
+- Maintains backward compatibility for existing deployments
+- No changes required for current Bicep users
+
+**Updates included**:
+
+- Enhanced PowerShell module with new IAC type options
+- Updated bootstrap configuration to support both frameworks
+- Comprehensive documentation updates
+- New user guidance for framework selection
+
+**User Impact**: Existing users can continue using their current configurations without changes. New users can choose the framework that best fits their needs.
 
 ### [Terraform Starter Module - v12.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v12.0.0)
 
