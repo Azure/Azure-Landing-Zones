@@ -50,6 +50,10 @@ This will result in the bootstrap resources being deployed in the new subscripti
           subscription_id       = "$${subscription_id_management}"
           management_group_name = "management"
         }
+        security = {
+          subscription_id       = "$${subscription_id_security}"
+          management_group_name = "security"
+        }
         bootstrap = {
           subscription_id       = "<bootstrap-subscription-id>" # Add your bootstrap subscription id here
           management_group_name = "management"
