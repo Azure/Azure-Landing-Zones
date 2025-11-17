@@ -57,7 +57,7 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
 1. Ensure you are running the latest version of the ALZ PowerShell module by running:
 
     ```pwsh
-    Update-Module -Name ALZ
+    Update-PSResource -Name ALZ
     ```
 
 1. In your PowerShell Core (pwsh) terminal run the module:

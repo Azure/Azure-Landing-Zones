@@ -16,7 +16,7 @@ The ALZ PowerShell module is used to run the bootstrap phase. It is available on
 Double check you are running in a PowerShell Core terminal. Run `$psversiontable` to check.
     {{< /hint >}}
 
-2. Check if you already have the ALZ module installed  by running `Get-InstalledModule -Name ALZ`. You'll see something like this if it is already installed:
+2. Check if you already have the ALZ module installed  by running `Get-InstalledPSResource -Name ALZ`. You'll see something like this if it is already installed:
 
 ```powershell
 Version    Name                                Repository           Description
@@ -24,8 +24,8 @@ Version    Name                                Repository           Description
 1.0.0      ALZ                                 PSGallery            Azure Landing Zones Powershell Module
 ```
 
-3. If the module is already installed, run `Update-Module -Name ALZ` to ensure you have the latest version.
-4. If the module is not installed, run `Install-Module -Name ALZ`.
+3. If the module is already installed, run `Update-PSResource -Name ALZ` to ensure you have the latest version.
+4. If the module is not installed, run `Install-PSResource -Name ALZ`.
 
 ## 2 - Learn about the configuration
 
