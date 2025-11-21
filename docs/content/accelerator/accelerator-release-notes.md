@@ -58,6 +58,8 @@ Follow these steps to generate the `moved` blocks and add them to your configura
 1. Now wait for the CI pipeline to run again. This time when you examine the plan you should not see any unexpected resource destruction and recreation.
 1. Once you are satisfied with the plan, you can merge your pull request and trigger the CD pipeline as normal.
 
+#### New Features
+
 This release introduces support for private link private DNS zone resolution policy to forward to internet if not resolved. This setting is off by default to maintain backwards compatibility.
 
 Example configuration to set forwarding policy using the `virtual_network_link_overrides_by_zone` for two zones on all virtual network links:
