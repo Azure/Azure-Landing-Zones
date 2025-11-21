@@ -27,7 +27,6 @@ While we try very hard to avoid breaking changes, there are times when a feature
 - Release link: [v13.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v13.0.0)
 - Release diff: [v12.1.0...v13.0.0](https://github.com/Azure/alz-terraform-accelerator/compare/v12.1.0...v13.0.0)
 
-
 #### Breaking Changes
 
 The private link private DNS resolver pattern module went through a significant refactor to improve the user experience and provide better support for advanced scenarios. This resulted in some breaking changes to the interface.
@@ -53,7 +52,7 @@ Follow these steps to generate the `moved` blocks and add them to your configura
 1. Create a pull request to your main branch, but do not merge it yet
 1. Wait for the CI pipeline to run and navigate to the plan stage and step
 1. Look for the output called `private_link_private_dns_zone_virtual_network_link_moved_blocks` and copy all the moved blocks from that variable.
-1. Create a new file called `moved.tf` in the root of your repo and past the moved blocks into that file.
+1. Create a new file called `moved.tf` in the root of your repo and paste the moved blocks into that file.
 1. Run `terraform fmt` to format the file correctly.
 1. Commit and push the new `moved.tf` file to your branch.
 1. Now wait for the CI pipeline to run again. This time when you examine the plan you should not see any unexpected resource destruction and recreation.
