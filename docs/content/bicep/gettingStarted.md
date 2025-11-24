@@ -243,8 +243,6 @@ The Bicep templates automatically create role assignments for:
 - Policy assignments at their assignment scope
 - Resources referenced in policy parameters that have the `assignPermissions` metadata
 
-However, some policies require additional role assignments that are not automatically created. Review the [Additional Role Assignments]({{< relref "howtos/additionalRoleAssignments" >}}) guide for specific scenarios.
-
 ## Working with Parameter Files
 
 The alz-bicep-accelerator repository uses `.bicepparam` files for managing parameters. These files provide a strongly-typed way to supply parameters to your Bicep templates.

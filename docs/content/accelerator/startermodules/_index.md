@@ -12,9 +12,8 @@ Each starter module expects different inputs and the following pages detail thos
 
 ## Bicep Starter Modules
 
-- **[Bicep Complete Starter Module]({{< relref "bicepcomplete" >}})**: Overview and comparison of both Bicep frameworks
-  - **[Bicep AVM - Complete]({{< relref "bicep-avm" >}})**: New framework using Azure Verified Modules (iac_type: `bicep`)
-  - **[Bicep Classic - Complete]({{< relref "bicep-classic" >}})**: Traditional framework (iac_type: `bicep-classic`)
+- **[Bicep AVM - Platform Landing Zone]({{< relref "bicep-platform-landing-zone" >}})**: New framework using Azure Verified Modules (iac_type: `bicep`)
+- **[Bicep Classic - Platform Landing Zone]({{< relref "bicep-classic-platform-landing-zone" >}})**: Traditional framework (iac_type: `bicep-classic`)
 
 ## Terraform Starter Modules
 
