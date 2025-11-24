@@ -20,12 +20,12 @@ Follow these steps to ensure you have a working environment:
 
 1. Update the latest PowerShell Core / 7.X (`pwsh`) version.
 2. Open a PS (PowerShell 5.1) terminal. You may need to be an administrator to do this.
-3. Run `Uninstall-Module -Name ALZ`, then run `Get-InstalledModule -Name ALZ`
+3. Run `Uninstall-PSResource -Name ALZ`, then run `Get-InstalledPSResource -Name ALZ`
 4. If the previous command shows a version of the module is still installed, then repeat the previous step until you no longer see an installed version.
 5. Open a `pwsh` (PowerShell 7.X) terminal.
-6. Run `Uninstall-Module -Name ALZ`, then run `Get-InstalledModule -Name ALZ`
+6. Run `Uninstall-PSResource -Name ALZ`, then run `Get-InstalledPSResource -Name ALZ`
 7. If the previous command shows a version of the module is still installed, then repeat the previous step until you no longer see an installed version.
-8. Run `Install-Module -Name ALZ`
+8. Run `Install-PSResource -Name ALZ`
 
 You should now be able to successfully run the `Deploy-Accelerator` command and continue.
 
@@ -96,7 +96,7 @@ You have two options to resolve this:
 ```text
 ╷
 │ Error: Failed to delete resource
-│ 
+│
 │ deleting Resource: (ResourceId
 │ "/providers/Microsoft.Management/managementGroups/levelup-identity/subscriptions/**754f66-****-4f64-****-221f0174ad4**"
 │ / Api Version "2023-04-01"): DELETE
@@ -113,6 +113,6 @@ You have two options to resolve this:
 │   }
 │ }
 │ --------------------------------------------------------------------------------
-│ 
+│
 ╵
 ```

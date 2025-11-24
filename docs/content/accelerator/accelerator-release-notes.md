@@ -24,7 +24,7 @@ While we try very hard to avoid breaking changes, there are times when a feature
 
 ### ALZ Accelerator - Bicep Framework Options Support
 
-- Release date: 2025-11-19
+- Release date: 2025-11-24
 - Impact: **Non-breaking change** - Additive functionality only
 
 The ALZ Accelerator now supports two Bicep framework options to meet different deployment needs:
@@ -41,19 +41,78 @@ The ALZ Accelerator now supports two Bicep framework options to meet different d
 - Maintains backward compatibility for existing deployments
 - No changes required for current Bicep users
 
-**Updates included**:
-
-- Enhanced PowerShell module with new IAC type options
-- Updated bootstrap configuration to support both frameworks
-- Comprehensive documentation updates
-- New user guidance for framework selection
-
 **User Impact**: Existing users can continue using their current configurations without changes. New users can choose the framework that best fits their needs.
+
+---
+
+### [Terraform Starter Module - v13.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v13.0.0)
+
+- Release date: 2025-11-21
+- Release link: [v13.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v13.0.0)
+- Release diff: [v12.1.0...v13.0.0](https://github.com/Azure/alz-terraform-accelerator/compare/v12.1.0...v13.0.0)
+
+---
+
+#### Breaking Changes
+
+The private link private DNS resolver pattern module went through a significant refactor to improve the user experience and provide better support for advanced scenarios. This resulted in some breaking changes to the interface.
+
+There is also impact on Terraform state. Where possible we have included `moved` blocks to automatically migrate state. However, in some scenarios where customization outside of the standard accelerator examples has been done, you may need to add your own `moved` blocks to ensure state is migrated correctly.
+
+You will know you need to do this if your Terraform plan indicates that resources will be destroyed and recreated. Please review the plan carefully before applying.
+
+If you are in that scenario, then we have provided a way to generate the necessary `moved` blocks.
+
+We have added a temporary output called `private_link_private_dns_zone_virtual_network_link_moved_blocks` that will output the necessary `moved` blocks for your configuration. However it is turned off by default to avoid noise in the output.
+
+Follow these steps to generate the `moved` blocks and add them to your configuration:
+
+1. Follow your normal process, to clone the repo and create a branch
+1. In your `platform_landing_zone.auto.tfvars`, scroll to the very bottom and uncomment the following line:
+
+    ```terraform
+    # private_link_private_dns_zone_virtual_network_link_moved_blocks_enabled = true
+    ```
+
+1. Commit and push your changes to your branch
+1. Create a pull request to your main branch, but do not merge it yet
+1. Wait for the CI pipeline to run and navigate to the plan stage and step
+1. Look for the output called `private_link_private_dns_zone_virtual_network_link_moved_blocks` and copy all the moved blocks from that variable.
+1. Create a new file called `moved.tf` in the root of your repo and paste the moved blocks into that file.
+1. Run `terraform fmt` to format the file correctly.
+1. Commit and push the new `moved.tf` file to your branch.
+1. Now wait for the CI pipeline to run again. This time when you examine the plan you should not see any unexpected resource destruction and recreation.
+1. Once you are satisfied with the plan, you can merge your pull request and trigger the CD pipeline as normal.
+
+#### New Features
+
+This release introduces support for private link private DNS zone resolution policy to forward to internet if not resolved. This setting is off by default to maintain backwards compatibility.
+
+Example configuration to set forwarding policy using the `virtual_network_link_overrides_by_zone` for two zones on all virtual network links:
+
+```terraform
+private_dns_zones = {
+  parent_id = "$${dns_resource_group_id}"
+  virtual_network_link_overrides_by_zone = {
+    azure_storage_blob = {
+      resolution_policy = "NxDomainRedirect"
+    }
+    azure_api_management = {
+      resolution_policy = "NxDomainRedirect"
+    }
+  }
+  private_link_private_dns_zones_regex_filter = {
+    enabled = false
+  }
+  auto_registration_zone_enabled = "$${primary_private_dns_auto_registration_zone_enabled}"
+  auto_registration_zone_name    = "$${primary_auto_registration_zone_name}"
+}
+```
 
 ### [Terraform Starter Module - v12.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v12.0.0)
 
 - Release date: 2025-11-03
-- Release link: [v12.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v9.0.0)
+- Release link: [v12.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v12.0.0)
 - Release diff: [v11.0.0...v12.0.0](https://github.com/Azure/alz-terraform-accelerator/compare/v11.0.0...v12.0.0)
 
 This release introduces explicit variable definitions for the majority on configuration options. This is to improve the user experience. This will provide better auto-completion and avoid issues with multi-region connectivity and complex configurations.

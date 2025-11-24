@@ -11,7 +11,7 @@ resources:
     title: Overview
 ---
 
-Welcome to the Azure Landing Zones Accelerators for Bicep and Terraform!
+Welcome to the Azure Landing Zones IaC Accelerator for Bicep and Terraform!
 
 The Azure landing zones [Terraform](https://github.com/Azure/alz-terraform-accelerator/tree/main/templates/platform_landing_zone) and Bicep modules provide an opinionated approach for deploying and managing the core platform capabilities of [Azure landing zones architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture) using Bicep or Terraform.
 
