@@ -13,7 +13,7 @@ To find the individual release notes for each component of the accelerator, plea
 - [ALZ PowerShell Module](https://github.com/Azure/ALZ-PowerShell-Module/releases)
 - [Accelerator Bootstrap Modules](https://github.com/Azure/accelerator-bootstrap-modules/releases)
 - [Terraform Starter Modules](https://github.com/Azure/alz-terraform-accelerator/releases)
-- [Bicep Starter Modules (New Framework)](https://github.com/Azure/alz-bicep-accelerator/releases)
+- [Bicep Starter Modules (New AVM Framework)](https://github.com/Azure/alz-bicep-accelerator/releases)
 - [Bicep Starter Modules (Classic Framework)](https://github.com/Azure/ALZ-Bicep/releases)
 
 ## Breaking changes
