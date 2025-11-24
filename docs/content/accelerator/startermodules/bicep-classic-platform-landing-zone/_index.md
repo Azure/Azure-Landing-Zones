@@ -6,7 +6,7 @@ weight: 5
 The `complete` starter module for the Bicep Classic framework uses the traditional [ALZ-Bicep](https://github.com/Azure/ALZ-Bicep) modules.
 
 {{< hint type=note >}}
-This documentation is specific to the **Bicep Classic** framework (`iac_type: bicep-classic`). For the new Azure Verified Modules framework, see [Bicep AVM - Complete]({{< relref "../bicep-avm" >}}).
+This documentation is specific to the **Bicep Classic** framework (`iac_type: bicep-classic`). For the new Azure Verified Modules framework, see [Bicep AVM - Complete]({{< relref "../bicep-platform-landing-zone" >}}).
 {{< /hint >}}
 
 ## Framework Overview

@@ -6,7 +6,7 @@ weight: 5
 The `complete` starter module for the new Bicep framework uses Azure Verified Modules from the [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) repository.
 
 {{< hint type=tip >}}
-This is the **new Bicep framework** (`iac_type: bicep`) built on Azure Verified Modules. For the traditional framework, see [Bicep Classic - Complete]({{< relref "../bicep-classic" >}}).
+This is the **new Bicep framework** (`iac_type: bicep`) built on Azure Verified Modules. For the traditional framework, see [Bicep Classic - Complete]({{< relref "../bicep-classic-platform-landing-zone" >}}).
 {{< /hint >}}
 
 ## Framework Overview
@@ -32,7 +32,7 @@ The framework includes the following core modules:
 
 * **Core Governance**: Management group structure and policy assignments
 * **Core Logging**: Centralized logging and monitoring setup
-* **Networking Options**: 
+* **Networking Options**:
   * Hub networking for traditional hub-spoke architectures
   * Virtual WAN for modern connectivity patterns
 
