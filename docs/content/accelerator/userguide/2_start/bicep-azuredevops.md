@@ -1,8 +1,12 @@
 ---
-title: Azure DevOps with Bicep
+title: Azure DevOps with Classic Bicep
 ---
 
-Follow these instructions to bootstrap Azure DevOps ready to deploy your platform landing zone with Bicep.
+Follow these instructions to bootstrap Azure DevOps ready to deploy your platform landing zone with Classic Bicep.
+
+{{< hint type=note >}}
+This documentation is specific to **Classic Bicep** (`iac_type: bicep`). For the new Azure Verified Modules framework, see [Azure DevOps with Bicep AVM]({{< relref "bicep-avm-azuredevops" >}}).
+{{< /hint >}}
 
 1. Create a new folder on your local drive called `accelerator`.
 1. Inside the accelerator create two folders called `config` and `output`. You'll store your input file inside config and the output folder will be the place that the accelerator stores files while it works.
@@ -62,7 +66,7 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
     | `create_branch_policies` | `TF_VAR` | `true` | This controls whether to create branch policies for the repository. This defaults to `true`. |
 
 1. Now head over to your chosen starter module documentation to get the specific inputs for that module. Come back here when you are done.
-    - [Bicep Complete Starter Module]({{< relref "../../startermodules/bicepcomplete" >}})
+    - [Bicep Starter Modules]({{< relref "../../startermodules" >}})
 1. Verify that you are logged in to Azure CLI or have the Service Principal credentials set as env vars. You should have completed this in the [Prerequisites]({{< relref "../1_prerequisites" >}}) phase.
 1. Ensure you are running the latest version of the ALZ PowerShell module by running:
 
