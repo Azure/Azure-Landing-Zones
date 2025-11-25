@@ -103,42 +103,7 @@ Visit the [alz-bicep-accelerator releases](https://github.com/Azure/alz-bicep-ac
 - **Breaking Changes** - Updates that require manual intervention
 - **Migration Guides** - Step-by-step instructions for major version updates
 
-#### Create a Change Checklist
-
-Document the changes you need to make:
-
-```markdown
-## Update Checklist for Version X.Y.Z
-
-### Breaking Changes
-- [ ] Update policy assignment "XYZ" - renamed to "ABC"
-- [ ] Add new required parameter "logAnalyticsWorkspaceId" to policy "123"
-- [ ] Remove deprecated policy "OldPolicy" from exclusion list
-
-### New Policies Requiring Configuration
-- [ ] Policy "NewSecurityPolicy" requires:
-  - Parameter: securityContactEmail = "security@contoso.com"
-  - Role: Security Admin on root MG
-
-### Deprecated Policies
-- [ ] Remove "Deploy-ASC-SecurityContacts" (replaced by "Deploy-MDFC-Config")
-```
-
-### Step 2: Backup Current Configuration
-
-Before updating, backup your current library and parameter files:
-
-```powershell
-# Create a backup of the lib directory
-Copy-Item -Path "C:\Path\To\templates\core\governance\lib" -Destination "C:\Path\To\templates\core\governance\lib_backup" -Recurse
-
-# Create a backup of parameter files
-Get-ChildItem -Path "C:\Path\To\templates\core\governance\mgmt-groups" -Filter "*.bicepparam" -Recurse | ForEach-Object {
-    Copy-Item -Path $_.FullName -Destination "$($_.FullName).backup"
-}
-```
-
-### Step 3: Update the Library Metadata
+### Step 2: Update the Library Metadata
 
 Edit `templates/core/governance/tooling/alz_library_metadata.json` and update the `ref` field to the desired version:
 
@@ -153,7 +118,7 @@ Edit `templates/core/governance/tooling/alz_library_metadata.json` and update th
 }
 ```
 
-### Step 4: Clear the Existing ALZ Library
+### Step 3: Clear the Existing ALZ Library
 
 Remove the current ALZ library directory (the alzlibtool will regenerate it):
 
@@ -169,7 +134,7 @@ Remove-Item -Path ".\alz" -Recurse -Force
 Only delete the `alz/` directory. Do **not** delete the `customer/` directory if you have custom policies.
 {{< /hint >}}
 
-### Step 5: Regenerate the ALZ Library
+### Step 4: Regenerate the ALZ Library
 
 Use the `alzlibtool.exe` to regenerate the library from the Azure Landing Zones Library repository:
 
@@ -200,7 +165,7 @@ The tool will:
 1. Generate policy definitions, policy set definitions, role definitions, and policy assignments
 1. Organize files by management group scope
 
-### Step 6: Update Bicep Module References
+### Step 5: Update Bicep Module References
 
 After regenerating the library, run the `Update-AlzLibraryReferences.ps1` script to update the `loadJsonContent()` references in all management group `main.bicep` files:
 
@@ -232,7 +197,7 @@ The script will:
 .\Update-AlzLibraryReferences.ps1 -AlzLibraryRoot "C:\Custom\Path\lib\alz"
 ```
 
-### Step 7: Review Changes
+### Step 6: Review Changes
 
 Review the changes made to your Bicep files:
 
@@ -251,7 +216,7 @@ Pay attention to:
 - **Removed or renamed policies** that may affect your configuration
 - **New policy set definitions** (initiatives) that bundle multiple policies
 
-### Step 8: Update Parameter Overrides
+### Step 7: Update Parameter Overrides
 
 If new policy assignments require parameters (like Log Analytics workspace IDs), update your `.bicepparam` files:
 
@@ -270,7 +235,7 @@ param parPolicyAssignmentParameterOverrides = {
 }
 ```
 
-### Step 9: Commit Changes and Create Pull Request
+### Step 8: Commit Changes and Create Pull Request
 
 Commit your changes to a feature branch and create a pull request:
 
@@ -287,7 +252,7 @@ git push origin feature/update-alz-library
 
 Create a pull request in your repository (GitHub or Azure DevOps).
 
-### Step 10: Automated CI Validation
+### Step 9: Automated CI Validation
 
 The ALZ accelerator includes automated CI/CD pipelines that will automatically run when you create a pull request:
 
@@ -330,7 +295,7 @@ The What-If analysis uses standard Azure deployments with the `-WhatIf` paramete
 # Stages: Validate, WhatIf
 ```
 
-### Step 11: Review and Merge Pull Request
+### Step 10: Review and Merge Pull Request
 
 Once the CI pipeline passes:
 
@@ -340,7 +305,7 @@ Once the CI pipeline passes:
 4. **Get approval** from team members if required
 5. **Merge the pull request** to the main branch
 
-### Step 12: Automated CD Deployment with Deployment Stacks
+### Step 11: Automated CD Deployment with Deployment Stacks
 
 After merging to main, the Continuous Delivery (CD) pipeline automatically deploys using **Azure Deployment Stacks**:
 
@@ -370,48 +335,6 @@ Unlike classic Bicep deployments, deployment stacks automatically remove resourc
 
 This is a major improvement over ALZ Bicep Classic, where you had to manually remove deprecated policy assignments before deploying updates.
 {{< /hint >}}
-
-**For GitHub Actions:**
-
-```yaml
-# Workflow: 02 Azure Landing Zones Continuous Delivery
-# Triggered on: Push to main branch or manual workflow dispatch
-# Permissions: id-token (write), contents (read)
-# Deployment Method: Azure Deployment Stacks
-```
-
-**For Azure DevOps Pipelines:**
-
-```yaml
-# Pipeline: ALZ-Bicep-CD
-# Triggered on: Merge to main branch or manual run
-# Stages: WhatIf (optional), Deploy (with Deployment Stacks)
-```
-
-**Manual Workflow Dispatch Options:**
-
-Both GitHub Actions and Azure DevOps support manual workflow/pipeline runs with options:
-
-- `skip_what_if` - Skip the what-if check and deploy immediately
-- Individual deployment toggles - Deploy only specific management groups or components
-
-### Step 13: Monitor Deployment
-
-Monitor the CD pipeline deployment:
-
-```powershell
-# Check deployment stack status
-Get-AzManagementGroupDeploymentStack -ManagementGroupId "alz" -Name "<deployment-name>"
-
-# View deployment stack resources
-Get-AzManagementGroupDeploymentStackResource -ManagementGroupId "alz" -StackName "<deployment-name>"
-
-# Check policy compliance
-Get-AzPolicyState -ManagementGroupName "alz" |
-  Where-Object { $_.ComplianceState -eq "NonCompliant" } |
-  Group-Object PolicyDefinitionName |
-  Select-Object Name, Count
-```
 
 Verify:
 
@@ -489,46 +412,6 @@ param intRootConfig = {
   ]
 }
 ```
-
-## Troubleshooting
-
-### alzlibtool.exe Not Found
-
-Download the latest `alzlibtool.exe` from the [Azure Landing Zones Library releases](https://github.com/Azure/Azure-Landing-Zones-Library/releases) and place it in the `tooling` directory.
-
-### Script Execution Errors
-
-Ensure you're using PowerShell 7.0 or later:
-
-```powershell
-$PSVersionTable.PSVersion
-```
-
-If using an older version, download [PowerShell 7+](https://github.com/PowerShell/PowerShell/releases).
-
-### Policy Assignment Parameters Missing
-
-If a new policy assignment requires parameters that aren't set, you'll see deployment errors. Check the policy assignment JSON file for required parameters and add them to `parPolicyAssignmentParameterOverrides`.
-
-### Changes Not Applied
-
-If the update script doesn't detect changes:
-
-1. Ensure the ALZ library was regenerated correctly
-2. Check that JSON files exist in the expected library paths
-3. Run with `-WhatIf` to see what would be changed
-4. Verify the script has write permissions to the Bicep files
-
-## Best Practices
-
-1. **Review Release Notes**: Always read the release notes before updating
-2. **Backup Before Updating**: Keep backups of your configuration
-3. **Test First**: Deploy to non-production environments first
-4. **Update Regularly**: Stay current with security and compliance updates
-5. **Document Customizations**: Keep track of why you've excluded or modified policies
-6. **Use Git**: Track changes using version control
-7. **Separate Custom Policies**: Keep custom policies in the `customer/` directory
-8. **Validate After Update**: Always run validation commands before deploying
 
 ## Related Documentation
 

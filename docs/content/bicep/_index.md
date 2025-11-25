@@ -133,23 +133,6 @@ When updating your Azure Landing Zone (e.g., updating the ALZ library version):
 
 1. **Update templates** - Modify Bicep files or parameter files
 2. **Commit and PR** - Create pull request with changes
-3. **CI validation** - What-if analysis shows what will change
+3. **CI validation** - What-if analysis shows what will change (currently uses standard deployments; will transition to deployment stacks once what-if support is added)
 4. **Merge and deploy** - CD pipeline creates/updates deployment stack
-5. **Automatic cleanup** - Stack removes deprecated resources automatically
-
-## How do I deploy?
-
-For most customers, we recommend you use the [Accelerator]({{< relref "accelerator" >}}).
-This uses the templates and modules above in a pre-defined configuration and opinionated approach.
-There are still customization options available, but the [Accelerator]({{< relref "accelerator" >}}) is designed to get you up and running quickly - as a bonus it also includes CI/CD pipelines with automated deployment stacks!
-
-## I'm an advanced user, how do I get started?
-
-We recognize that this is a significant change, and we want to make it as easy as possible for you to get started.
-We have created this documentation site to centralize the integration documentation for the new modular approach.
-
-In here you will find guidance on how to use the Bicep templates from the [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) repository with Azure Verified Modules to build your very own Azure Landing Zone.
-To proceed, you should be comfortable creating Bicep configurations and using Bicep modules.
-If you are not, we recommend that you take a look at the [Accelerator]({{< relref "accelerator" >}}) as it offers a simplified experience.
-
-Move on to the [getting started]({{< relref "gettingStarted" >}}) section to get started with the new approach.
+5. **Automatic cleanup** - Stack automatically removes deprecated resources that are no longer defined in templates
