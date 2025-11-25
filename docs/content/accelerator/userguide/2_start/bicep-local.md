@@ -1,8 +1,12 @@
 ---
-title: Local File System with Bicep
+title: Local File System with Classic Bicep
 ---
 
-Follow these instructions to bootstrap a local file system folder ready to deploy your platform landing zone with Bicep.
+Follow these instructions to bootstrap a local file system folder ready to deploy your platform landing zone with Classic Bicep.
+
+{{< hint type=note >}}
+This documentation is specific to **Classic Bicep** (`iac_type: bicep`). For the new Azure Verified Modules framework, see [Local File System with Bicep AVM]({{< relref "bicep-avm-local" >}}).
+{{< /hint >}}
 
 1. Create a new folder on your local drive called `accelerator`.
 1. Inside the accelerator create two folders called `config` and `output`. You'll store you input file inside config and the output folder will be the place that the accelerator stores files while it works.

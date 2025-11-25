@@ -1,5 +1,5 @@
 ---
-title: Bicep AVM - Complete
+title: Bicep AVM - Azure Verified Modules for Platform Landing Zone (ALZ)
 weight: 5
 ---
 

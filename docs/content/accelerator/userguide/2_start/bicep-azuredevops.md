@@ -1,8 +1,12 @@
 ---
-title: Azure DevOps with Bicep
+title: Azure DevOps with Classic Bicep
 ---
 
-Follow these instructions to bootstrap Azure DevOps ready to deploy your platform landing zone with Bicep.
+Follow these instructions to bootstrap Azure DevOps ready to deploy your platform landing zone with Classic Bicep.
+
+{{< hint type=note >}}
+This documentation is specific to **Classic Bicep** (`iac_type: bicep`). For the new Azure Verified Modules framework, see [Azure DevOps with Bicep AVM]({{< relref "bicep-avm-azuredevops" >}}).
+{{< /hint >}}
 
 1. Create a new folder on your local drive called `accelerator`.
 1. Inside the accelerator create two folders called `config` and `output`. You'll store your input file inside config and the output folder will be the place that the accelerator stores files while it works.

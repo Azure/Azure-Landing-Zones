@@ -7,177 +7,81 @@ Keeping your Azure Landing Zone deployment up to date is important for security,
 
 ## Understanding Updates
 
-The alz-bicep-accelerator repository is regularly updated with:
+The Bicep AVM framework differs from Classic Bicep in how modules are managed. During bootstrap, the entire `templates` directory with all Azure Verified Modules is pushed to your repository. This means:
 
-- **New Azure Verified Modules (AVM) versions**: Updated module references with bug fixes and new features
-- **New policy definitions**: Microsoft regularly releases new Azure Policy definitions
-- **Policy assignment updates**: Changes to default policy assignments and parameters
-- **Template improvements**: Enhancements to the Bicep templates themselves
-- **Security patches**: Critical security updates
+- **You control module updates**: Update AVM modules in your templates directory as new versions are released
+- **No on-demand pulling**: Unlike Classic Bicep which pulls modules from specific release versions on demand, you manage the module versions directly
+- **Direct AVM updates**: Monitor [Azure Verified Modules](https://aka.ms/avm) releases and update module references in your templates as needed
+- **Template enhancements**: Improvements to the alz-bicep-accelerator framework itself
 
-## Before You Update
+### Module Issues and Support
 
-Before updating your deployment, complete these steps:
+If you encounter issues:
 
-### 1. Review Release Notes
-
-Check the [alz-bicep-accelerator releases](https://github.com/Azure/alz-bicep-accelerator/releases) page for:
-
-- Breaking changes that may impact your deployment
-- New features and capabilities
-- Required parameter changes
-- Deprecated resources or configurations
-
-### 2. Backup Your Configuration
-
-Document or backup your current:
-
-- Parameter files (`.bicepparam`)
-- Custom policy definitions
-- Custom role assignments
-- Management group structure
-- Any template modifications
-
-### 3. Test in Non-Production
-
-Always test updates in a non-production environment first:
-
-1. Deploy the updated templates to a test tenant or management group
-2. Validate policy compliance
-3. Check for any breaking changes
-4. Verify role assignments and permissions
+- **Framework issues**: Submit to [alz-bicep-accelerator issues](https://github.com/Azure/alz-bicep-accelerator/issues) for problems with the ALZ framework
+- **Module issues**: Submit to [bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) for issues with underlying AVM modules themselves
 
 ## Update Process
 
-### Step 1: Update Your Repository
+Since the templates directory is included in your repository during bootstrap, you can update AVM modules independently:
 
-If you're using Git to track your deployment:
+1. **Check for new module versions**: Monitor the [Azure Verified Modules](https://aka.ms/avm) releases
+2. **Update module references**: Modify the module references in your Bicep templates to use newer versions
+3. **Test the changes**: Validate and test in non-production before deploying to production
+4. **Use CI/CD pipelines**: The provided GitHub Actions workflows and Azure DevOps pipelines handle deployment and validation automatically
 
-```bash
-# Pull the latest changes from the upstream repository
-git fetch upstream
-git merge upstream/main
+### Step 1: Update Module Versions
 
-# Or if you forked the repository
-git pull origin main
+Update the AVM module references in your templates directory:
+
+```bicep
+// Example: Update module version in your template
+module hubNetwork 'br/public:avm/res/network/virtual-network:0.2.0' = {
+  // Update to newer version
+  // 'br/public:avm/res/network/virtual-network:0.3.0'
+  name: 'hubNetworkDeployment'
+  params: {
+    // parameters
+  }
+}
 ```
 
-If you're not using Git, download the latest release:
+Check the [AVM module documentation](https://aka.ms/avm) for:
 
-```bash
-# Download the latest release
-Invoke-WebRequest -Uri "https://github.com/Azure/alz-bicep-accelerator/archive/refs/heads/main.zip" -OutFile "alz-bicep-accelerator.zip"
-
-# Extract the files
-Expand-Archive -Path "alz-bicep-accelerator.zip" -DestinationPath "."
-```
+- Version compatibility
+- Breaking changes
+- New features and parameters
+- Bug fixes
 
 ### Step 2: Review Template Changes
 
-Compare the updated templates with your current deployment:
-
-```bash
-# Using Git to see what changed
-git diff HEAD~1 HEAD -- templates/
-
-# Or manually compare files
-code --diff old-templates/main.bicep new-templates/main.bicep
-```
-
-Pay special attention to:
+Review any changes you're making to your templates to ensure compatibility:
 
 - Changes in parameter names or types
 - New required parameters
 - Deprecated or removed resources
 - Changes in module versions
 
-### Step 3: Update Your Parameter Files
+### Step 3: Validate and Deploy with CI/CD
 
-Update your `.bicepparam` files to match any new or changed parameters:
+The bootstrap process includes CI/CD pipelines (GitHub Actions or Azure DevOps) that handle validation and deployment automatically:
 
-```bicep
-// Example: New parameter in updated template
-param newLogRetentionDays int = 90
+**GitHub Actions**: Workflows validate templates and deploy changes when you push to your repository
 
-// Example: Renamed parameter
-param logAnalyticsWorkspaceId string  // Previously: workspaceId
-```
+**Azure DevOps**: Pipelines automatically validate and deploy updates through your defined stages
 
-### Step 4: Validate Templates
+The pipelines will:
 
-Before deploying, validate your templates:
+1. Validate Bicep templates for syntax and errors
+2. Run deployment previews (what-if analysis)
+3. Deploy to target environments based on your approval gates
+4. Verify deployment success
 
-```bash
-# Validate management group deployment
-az deployment tenant validate \
-  --location <location> \
-  --template-file templates/core/governance/mgmt-groups/main.bicep \
-  --parameters templates/core/governance/mgmt-groups/main.bicepparam
+Simply commit your template changes and push to trigger the automated validation and deployment process.
 
-# Validate policy assignments
-az deployment mg validate \
-  --location <location> \
-  --management-group-id <root-mg-id> \
-  --template-file templates/core/governance/policyAssignments.bicep \
-  --parameters templates/core/governance/policyAssignments.bicepparam
-```
+## Verify Deployment
 
-### Step 5: Deploy Updates
-
-Deploy the updated templates in the same order as the initial deployment:
-
-#### 1. Management Groups
-
-```bash
-az deployment tenant create \
-  --location <location> \
-  --template-file templates/core/governance/mgmt-groups/main.bicep \
-  --parameters templates/core/governance/mgmt-groups/main.bicepparam
-```
-
-#### 2. Policy Definitions
-
-```bash
-az deployment mg create \
-  --location <location> \
-  --management-group-id <root-mg-id> \
-  --template-file templates/core/governance/lib/alz/policyDefinitions.bicep \
-  --parameters templates/core/governance/lib/alz/policyDefinitions.bicepparam
-```
-
-#### 3. Policy Assignments
-
-```bash
-az deployment mg create \
-  --location <location> \
-  --management-group-id <root-mg-id> \
-  --template-file templates/core/governance/policyAssignments.bicep \
-  --parameters templates/core/governance/policyAssignments.bicepparam
-```
-
-#### 4. Management Infrastructure
-
-```bash
-az deployment sub create \
-  --location <location> \
-  --subscription <management-subscription-id> \
-  --template-file templates/core/logging/main.bicep \
-  --parameters templates/core/logging/main.bicepparam
-```
-
-#### 5. Networking
-
-```bash
-az deployment sub create \
-  --location <location> \
-  --subscription <connectivity-subscription-id> \
-  --template-file templates/networking/hubnetworking/main.bicep \
-  --parameters templates/networking/hubnetworking/main.bicepparam
-```
-
-### Step 6: Verify Deployment
-
-After deployment, verify:
+After updates are deployed through CI/CD:
 
 1. **Policy Compliance**: Check Azure Policy compliance in the portal
 2. **Resources**: Verify all expected resources are deployed
@@ -187,133 +91,101 @@ After deployment, verify:
 
 ## Handling Breaking Changes
 
-If the update includes breaking changes:
-
-### Parameter Removals or Renames
-
-Update your parameter files to use the new parameter names:
-
-```bicep
-// Old parameter file
-param workspaceId string = '/subscriptions/.../workspaces/my-workspace'
-
-// New parameter file
-param logAnalyticsWorkspaceId string = '/subscriptions/.../workspaces/my-workspace'
-```
-
-### Resource Replacements
-
-Some updates may require resource recreation:
-
-1. **Review impact**: Understand what will be replaced
-2. **Plan downtime**: Schedule updates during maintenance windows
-3. **Backup data**: Export any data that needs preservation
-4. **Update references**: Update any resources that reference the old resource
+When updating AVM modules, you may encounter breaking changes:
 
 ### Module Version Updates
 
 When AVM modules are updated:
 
-1. Review the [AVM module changelog](https://aka.ms/avm)
-2. Check for breaking changes in the module
-3. Update module references in your templates
-4. Test thoroughly before production deployment
+1. Review the [AVM module changelog](https://aka.ms/avm) for the specific module
+2. Check for breaking changes in parameters, outputs, or behavior
+3. Update module references in your templates to the new version
+4. Update any parameter values that have changed
+5. Test thoroughly in non-production before deploying to production
 
-## Automated Updates with CI/CD
+### Parameter Changes
 
-If you're using CI/CD pipelines:
+If a module update includes parameter changes:
 
-### GitHub Actions Example
+```bicep
+// Old module version
+module network 'br/public:avm/res/network/virtual-network:0.1.0' = {
+  params: {
+    vnetName: 'hub-vnet'  // Old parameter name
+  }
+}
 
-```yaml
-name: Update ALZ Deployment
-
-on:
-  schedule:
-    - cron: '0 0 * * 0'  # Weekly on Sunday
-  workflow_dispatch:  # Manual trigger
-
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Validate Templates
-        run: |
-          az deployment tenant validate \
-            --location eastus \
-            --template-file templates/core/governance/mgmt-groups/main.bicep \
-            --parameters templates/core/governance/mgmt-groups/main.bicepparam
-
-      - name: Deploy Updates
-        run: |
-          az deployment tenant create \
-            --location eastus \
-            --template-file templates/core/governance/mgmt-groups/main.bicep \
-            --parameters templates/core/governance/mgmt-groups/main.bicepparam
+// New module version
+module network 'br/public:avm/res/network/virtual-network:0.2.0' = {
+  params: {
+    name: 'hub-vnet'  // New parameter name
+  }
+}
 ```
 
-### Azure DevOps Pipeline Example
+### Resource Replacements
 
-```yaml
-trigger:
-  branches:
-    include:
-      - main
+Some module updates may require resource recreation:
 
-pool:
-  vmImage: 'ubuntu-latest'
+1. **Review impact**: Check what resources will be replaced using `az deployment what-if`
+2. **Plan downtime**: Schedule updates during maintenance windows if needed
+3. **Backup data**: Export any data that needs preservation
+4. **Update references**: Update any resources that reference the replaced resource
 
-steps:
-  - task: AzureCLI@2
-    displayName: 'Validate Templates'
-    inputs:
-      azureSubscription: 'Azure Service Connection'
-      scriptType: 'bash'
-      scriptLocation: 'inlineScript'
-      inlineScript: |
-        az deployment tenant validate \
-          --location eastus \
-          --template-file templates/core/governance/mgmt-groups/main.bicep \
-          --parameters templates/core/governance/mgmt-groups/main.bicepparam
+## CI/CD Pipeline Updates
 
-  - task: AzureCLI@2
-    displayName: 'Deploy Updates'
-    inputs:
-      azureSubscription: 'Azure Service Connection'
-      scriptType: 'bash'
-      scriptLocation: 'inlineScript'
-      inlineScript: |
-        az deployment tenant create \
-          --location eastus \
-          --template-file templates/core/governance/mgmt-groups/main.bicep \
-          --parameters templates/core/governance/mgmt-groups/main.bicepparam
-```
+The bootstrap process provides CI/CD pipelines that automatically handle deployment validation and execution. The pipelines are included in your repository:
+
+### GitHub Actions
+
+The `.github/workflows` directory contains workflows that:
+
+- Validate Bicep template syntax
+- Run `az deployment what-if` to preview changes
+- Deploy to Azure based on branch and approval gates
+- Provide deployment status and logs
+
+When you push changes to your repository, the workflows automatically trigger validation and deployment.
+
+### Azure DevOps Pipelines
+
+The Azure DevOps pipelines in your repository:
+
+- Validate templates before deployment
+- Execute what-if analysis
+- Deploy through defined stages (e.g., dev → test → prod)
+- Include approval gates for production deployments
+
+The pipelines handle all validation and deployment logic, so you can focus on updating your templates.
 
 ## Best Practices
 
-1. **Stay Current**: Regularly check for updates, at least monthly
-2. **Use Semantic Versioning**: Tag your deployments with version numbers
-3. **Maintain Change Log**: Document what was updated and when
-4. **Automated Testing**: Implement automated validation in your CI/CD pipeline
-5. **Rollback Plan**: Have a plan to revert changes if issues occur
-6. **Communicate Changes**: Notify stakeholders before major updates
-7. **Monitor After Updates**: Watch for issues in the hours following an update
+1. **Monitor AVM Releases**: Regularly check [Azure Verified Modules](https://aka.ms/avm) for updates to modules you're using
+2. **Test Module Updates**: Always test new module versions in non-production environments first
+3. **Use Semantic Versioning**: Pin specific module versions in your templates for consistency
+4. **Review Changelogs**: Check module changelogs for breaking changes before updating
+5. **Leverage CI/CD**: Let the provided pipelines handle validation and deployment
+6. **Maintain Documentation**: Document which module versions you're using and why
+7. **Monitor After Updates**: Watch for issues after deploying module updates
 
 ## Troubleshooting Updates
 
 ### Deployment Fails After Update
 
-1. Check validation output for specific errors
-2. Review template changes for breaking changes
-3. Verify parameter values are correct
+1. Check the CI/CD pipeline logs for specific errors
+2. Review module changes for breaking changes
+3. Verify parameter values match the new module version requirements
 4. Check Azure Activity Log for detailed error messages
+5. Run `az deployment what-if` to preview changes before deploying
+
+### Module-Specific Issues
+
+If you believe an issue is with an underlying AVM module (not the ALZ framework):
+
+1. Identify the specific AVM module causing the issue
+2. Check the module's repository in [bicep-registry-modules](https://github.com/Azure/bicep-registry-modules)
+3. Review existing issues for the module
+4. Submit a new issue to the bicep-registry-modules repository for the module owner to address
 
 ### Policy Compliance Issues
 
@@ -324,7 +196,7 @@ steps:
 
 ### Resource Conflicts
 
-1. Check for resources that already exist
+1. Check for resources that already exist with the same name
 2. Review resource naming conventions
 3. Verify deployment scopes are correct
 4. Check for locks on existing resources
@@ -333,7 +205,6 @@ steps:
 
 If you encounter issues during updates:
 
-- Review the [alz-bicep-accelerator issues](https://github.com/Azure/alz-bicep-accelerator/issues)
-- Check the [Azure Landing Zones documentation](https://aka.ms/alz)
-- Ask questions in the [Azure Landing Zones discussions](https://github.com/Azure/Enterprise-Scale/discussions)
-- Contact Microsoft Support for critical issues
+- **General Guidance and Framework Issues**: Check the [Azure Landing Zones documentation](https://aka.ms/alz)
+- **Module Issues**: Submit to [bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) for the specific module
+- **General Guidance**: Check the [Azure Landing Zones documentation](https://aka.ms/alz)
