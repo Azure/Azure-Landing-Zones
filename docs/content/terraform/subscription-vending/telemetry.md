@@ -30,8 +30,8 @@ module "sub_vending" {
 ## Telemetry details
 
 Telemetry is comprised of an empty ARM deployment per created subscription.
-Each deployment contains a unique id (known as the PID) that is used to identity the particular module that is in use.
-A [bit field][bit_field] is also used to identity module features that are in use.
+Each deployment contains a unique id (known as the PID) that is used to identify the particular module that is in use.
+A [bit field][bit_field] is also used to identify module features that are in use.
 
 ### ARM deployment naming
 
