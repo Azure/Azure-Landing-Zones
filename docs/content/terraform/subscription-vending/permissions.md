@@ -52,7 +52,7 @@ See the [documentation](https://learn.microsoft.com/azure/virtual-network/virtua
 #### Azure vWAN hub virtual network connection
 
 The identity assigned to the AzAPI provider must also have the following permissions on hub networks to create virtual network connections.
-We recommend that you create a custom tole in order to maintain the least privilege principle.
+We recommend that you create a custom role in order to maintain the least privilege principle.
 
 > TBC
 
