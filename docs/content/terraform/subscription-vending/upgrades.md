@@ -29,7 +29,7 @@ If you would like multiple vnets in the same subscription using v1 of the module
 
 ## Upgrading from v2.x to v3.x
 
-v3 of the module makes changes the the `role_assignments` variable, changing the format of the variable from a list of objects `list(object({...}))` to a map of objects `map(object({...}))`.
+v3 of the module makes changes to the `role_assignments` variable, changing the format of the variable from a list of objects `list(object({...}))` to a map of objects `map(object({...}))`.
 This change fixes [#153](https://github.com/Azure/terraform-azurerm-avm-ptn-alz-sub-vending/issues/153).
 
 > **Due to the map key changing, all role assignments will be deleted and re-created.**
