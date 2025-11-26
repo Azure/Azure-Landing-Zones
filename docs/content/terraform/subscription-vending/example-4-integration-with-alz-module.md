@@ -22,7 +22,7 @@ If the avm-ptn-alz-sub-vending module is not able to meet your requirements, the
 ```mermaid
 C4Component
   title Dependencies between ALZ core module and avm-ptn-alz-sub-vending
-  Container(SystemAlz, "ALZ core module (caf-enterprise-scale)", "Module to deploy the ALZ platfom.")
+  Container(SystemAlz, "ALZ core module (caf-enterprise-scale)", "Module to deploy the ALZ platform.")
   Container(SystemLzVending, "Subscription vending module (avm-ptn-alz-sub-vending)", "Module to deploy landing zone subscriptions.")
 
   Rel(SystemAlz, SystemLzVending, "Supplies platform resource ids to", "data")
