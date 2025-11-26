@@ -1,5 +1,9 @@
-<!-- markdownlint-disable MD041 -->
-It may be desireable to use this module to deploy resources into an existing subscription. This example shows how to do that by supplying the subscription ID as a module input.
+---
+title: "Example 5: Use with Existing Subscriptions"
+weight: 45
+---
+
+It may be desirable to use this module to deploy resources into an existing subscription. This example shows how to do that by supplying the subscription ID as a module input.
 
 In this example we deploy a virtual network to an existing landing zone subscription and manage the management group association.
 
@@ -9,8 +13,8 @@ The use of the AzAPI provider means we do not need a distinct provider declarati
 The identity used by the AzAPI provider must have permissions to create the resources in the LZ subscription.
 
 ```terraform
-module "lz_vending" {
-  source  = "Azure/lz-vending/azurerm"
+module "sub_vending" {
+  source  = "Azure/avm-ptn-alz-sub-vending/azure"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
   location = "northeurope"
@@ -34,4 +38,4 @@ module "lz_vending" {
 }
 ```
 
-Back to [Examples](Examples)
+Back to [Examples](examples)

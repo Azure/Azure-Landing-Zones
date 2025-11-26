@@ -1,6 +1,9 @@
-<!-- markdownlint-disable MD041 -->
-In this page we go through the rationale for deploying some resources with the [AzAPI][github_azapi] Terraform provider,
-rather than the more common [AzureRM][github_azurerm] provider from Hashicorp.
+---
+title: About
+weight: 20
+---
+
+In this page we go through the rationale for deploying some resources with the [AzAPI][github_azapi] Terraform provider, rather than the more common [AzureRM][github_azurerm] provider from Hashicorp.
 
 ## A bit about AzureRM
 

@@ -1,25 +1,29 @@
-<!-- markdownlint-disable MD041 -->
+---
+title: "Example 4: Integration with ALZ Module"
+weight: 44
+---
+
 This module has been designed to integrate well with the [ALZ Terraform module](https://aka.ms/alz/tf).
 The below example steps through a sample configuration.
 
 ## ALZ module
 
-In the below sample, `strict_subscription_association` is set to `false`. This means that the ALZ module is not authoritative for each subscription that is a member of a management group that it created. The result is that the lz-vending module can add subscriptions to these management groups and the ALZ module will not attempt to remove them.
+In the below sample, `strict_subscription_association` is set to `false`. This means that the ALZ module is not authoritative for each subscription that is a member of a management group that it created. The result is that the avm-ptn-alz-sub-vending module can add subscriptions to these management groups and the ALZ module will not attempt to remove them.
 
 ### Avoiding circular dependencies
 
-We recommend that you only create dependencies between the ALZ module and the lz-vending module in one direction.
-Typically this would be that the lz-vending module depends on the ALZ module, for example to supply the resource IDs for the vWAN hubs or the hub virtual networks.
+We recommend that you only create dependencies between the ALZ module and the avm-ptn-alz-sub-vending module in one direction.
+Typically this would be that the avm-ptn-alz-sub-vending module depends on the ALZ module, for example to supply the resource IDs for the vWAN hubs or the hub virtual networks.
 
 Creating a dependency in the other direction, for example to supply the resource IDs for the virtual networks to the ALZ module (for the `spoke_network_resource_ids` value in the hub network configuration), can lead to circular dependencies.
-Instead we recommend using the lz-vending module to create the central resources, e.g. peerings.
-If the lz-vending module is not able to meet your requirements, then please open a [feature request](https://github.com/Azure/terraform-azurerm-lz-vending/issues/new/choose).
+Instead we recommend using the avm-ptn-alz-sub-vending module to create the central resources, e.g. peerings.
+If the avm-ptn-alz-sub-vending module is not able to meet your requirements, then please open a [feature request](https://github.com/Azure/terraform-azurerm-avm-ptn-alz-sub-vending/issues/new/choose).
 
 ```mermaid
 C4Component
-  title Dependencies between ALZ core module and lz-vending
+  title Dependencies between ALZ core module and avm-ptn-alz-sub-vending
   Container(SystemAlz, "ALZ core module (caf-enterprise-scale)", "Module to deploy the ALZ platfom.")
-  Container(SystemLzVending, "Subscription vending module (lz-vending)", "Module to deploy landing zone subscriptions.")
+  Container(SystemLzVending, "Subscription vending module (avm-ptn-alz-sub-vending)", "Module to deploy landing zone subscriptions.")
 
   Rel(SystemAlz, SystemLzVending, "Supplies platform resource ids to", "data")
 
@@ -256,14 +260,14 @@ locals {
 }
 ```
 
-## lz-vending module
+## avm-ptn-alz-sub-vending module
 
 Here we create a single landing zone using the outputs from the ALZ module.
 Note use of the local in `hub_network_resource_id`.
 
 ```terraform
-module "lz_vending" {
-  source  = "Azure/lz-vending/azurerm"
+module "sub_vending" {
+  source  = "Azure/avm-ptn-alz-sub-vending/azure"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
   location = "northeurope"
@@ -295,4 +299,4 @@ module "lz_vending" {
 }
 ```
 
-Back to [Examples](Examples)
+Back to [Examples](examples)

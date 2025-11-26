@@ -1,4 +1,8 @@
-<!-- markdownlint-disable MD041 -->
+---
+title: Upgrades
+weight: 60
+---
+
 This module uses [Semantic Versioning (SemVer)](https://semver.org/s) versioning.
 
 Given a version number `MAJOR.MINOR.PATCH`, we increment the:
@@ -15,18 +19,18 @@ If you are using the Terraform registry, you can update the version number for t
 For a new `MAJOR` release, you will see breaking changes.
 We will publish guidance in the release notes on GitHub.
 
-See the [release notes](https://github.com/Azure/terraform-azurerm-lz-vending/releases) for more information.
+See the [release notes](https://github.com/Azure/terraform-azurerm-avm-ptn-alz-sub-vending/releases) for more information.
 
 ## Upgrading from v1.x to v2.x
 
 v2 of the module makes large-scale changes to the virtual networking capabilities of the module.
 We therefore recommend that you keep any existing instances of the module at v1, and use v2 going forward for new instances.
-If you would like multiple vnets in the same subscription using v1 of the module you can use the pattern [described here](https://github.com/Azure/terraform-azurerm-lz-vending/issues/97#issuecomment-1240712419)
+If you would like multiple vnets in the same subscription using v1 of the module you can use the pattern [described here](https://github.com/Azure/terraform-azurerm-avm-ptn-alz-sub-vending/issues/97#issuecomment-1240712419)
 
 ## Upgrading from v2.x to v3.x
 
 v3 of the module makes changes the the `role_assignments` variable, changing the format of the variable from a list of objects `list(object({...}))` to a map of objects `map(object({...}))`.
-This change fixes [#153](https://github.com/Azure/terraform-azurerm-lz-vending/issues/153).
+This change fixes [#153](https://github.com/Azure/terraform-azurerm-avm-ptn-alz-sub-vending/issues/153).
 
 > **Due to the map key changing, all role assignments will be deleted and re-created.**
 
@@ -41,7 +45,7 @@ This does mean a small change is required, you must specify a map key. This can 
 ### v2.x `role_assignments` syntax
 
 ```terraform
-module "lz_vending" {
+module "sub_vending" {
   source  = "..."
   version = "..."
 
@@ -60,7 +64,7 @@ module "lz_vending" {
 ### v3.x `role_assignments` syntax
 
 ```terraform
-module "lz_vending" {
+module "sub_vending" {
   source  = "..."
   version = "..."
 
@@ -106,7 +110,7 @@ resource_groups = {
 
 ## Virtual WAN
 
-When joining virtual networks to a Virtual WAN hub, the behaviour with routing intent has changed.
+When joining virtual networks to a Virtual WAN hub, the behavior with routing intent has changed.
 Previously the AzAPI provider allowed us to use `ignore_body_properties` to dynamically ignore parts of the resource body
 With AzAPI v2 this is no longer possible, so we have to use the `lifecycle` block to ignore changes.
 However, as ignore changes is not able to be user configurable, we have had to split the virtual hub connections into two separate resources.
@@ -154,23 +158,23 @@ Add Terraform moved blocks for your resource group and resource group locks as s
 ```hcl
 # VNET
 moved {
-  from = module.lz_vending.module.virtualnetwork[0].azapi_resource.rg["<resource-group-name-value>"]
-  to   = module.lz_vending.module.resourcegroup["<resource-groups-map-key-name>"].azapi_resource.rg
+  from = module.sub_vending.module.virtualnetwork[0].azapi_resource.rg["<resource-group-name-value>"]
+  to   = module.sub_vending.module.resourcegroup["<resource-groups-map-key-name>"].azapi_resource.rg
 }
 # VNET LOCK
 moved {
-  from = module.lz_vending.module.virtualnetwork[0].azapi_resource.rg_lock["<resource-group-lock-name-value>"]
-  to   = module.lz_vending.module.resourcegroup["<resource-groups-map-key-name>"].azapi_resource.rg_lock[0]
+  from = module.sub_vending.module.virtualnetwork[0].azapi_resource.rg_lock["<resource-group-lock-name-value>"]
+  to   = module.sub_vending.module.resourcegroup["<resource-groups-map-key-name>"].azapi_resource.rg_lock[0]
 }
 # UMI
 moved {
-  from = module.lz_vending.module.usermanagedidentity["<user-managed-identity-map-key-name>"].azapi_resource.rg[0]
-  to   = module.lz_vending.module.resourcegroup["<resource-groups-map-key-name>"].azapi_resource.rg
+  from = module.sub_vending.module.usermanagedidentity["<user-managed-identity-map-key-name>"].azapi_resource.rg[0]
+  to   = module.sub_vending.module.resourcegroup["<resource-groups-map-key-name>"].azapi_resource.rg
 }
 # UMI LOCK
 moved {
-  from = module.lz_vending.module.usermanagedidentity["<user-managed-identity-map-key-name>"].azapi_resource.rg_lock[0]
-  to   = module.lz_vending.module.resourcegroup["<resource-groups-map-key-name>"].azapi_resource.rg_lock[0]
+  from = module.sub_vending.module.usermanagedidentity["<user-managed-identity-map-key-name>"].azapi_resource.rg_lock[0]
+  to   = module.sub_vending.module.resourcegroup["<resource-groups-map-key-name>"].azapi_resource.rg_lock[0]
 }
 ```
 

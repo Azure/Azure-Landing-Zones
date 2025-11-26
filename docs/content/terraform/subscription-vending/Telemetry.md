@@ -1,4 +1,8 @@
-<!-- markdownlint-disable MD041 -->
+---
+title: Telemetry
+weight: 50
+---
+
 Microsoft can identify the deployments of this module with the deployed Azure resources.
 Microsoft can correlate these resources used to support the deployments.
 Microsoft collects this information to provide the best experiences with their products and to operate their business.
@@ -13,8 +17,8 @@ If you would like to disable this tracking, then simply set this value to true a
 For example, to disable telemetry tracking, you can add this variable to the module declaration:
 
 ```terraform
-module "lz-vending" {
-  source  = "Azure/lz-vending/azurerm"
+module "sub_vending" {
+  source  = "Azure/avm-ptn-alz-sub-vending/azure"
   version = "..."
 
   # ... other module variables

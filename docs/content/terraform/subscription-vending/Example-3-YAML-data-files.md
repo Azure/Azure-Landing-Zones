@@ -1,4 +1,8 @@
-<!-- markdownlint-disable MD041 -->
+---
+title: "Example 3: YAML Data Files"
+weight: 43
+---
+
 Due to the flexibility provided by Terraform, we can use YAML or JSON files to define the module's input.
 Together with `for_each`, this provides a way of scaling the module to multiple landing zones.
 
@@ -52,8 +56,8 @@ Finally, we use a for_each on the module:
 ```terraform
 # The landing zone module will be called once per landing_zone_*.yaml file
 # in the data directory.
-module "lz_vending" {
-  source   = "Azure/lz-vending/azurerm"
+module "sub_vending" {
+  source   = "Azure/avm-ptn-alz-sub-vending/azure"
   version  = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
   for_each = local.landing_zone_data_map
 
@@ -82,6 +86,6 @@ module "lz_vending" {
 }
 ```
 
-We have provided a working example of this in the [testdata/TestIntegrationWithYaml](https://github.com/Azure/terraform-azurerm-lz-vending/tree/main/testdata/TestIntegrationWithYaml) directory.
+We have provided a working example of this in the [testdata/TestIntegrationWithYaml](https://github.com/Azure/terraform-azurerm-avm-ptn-alz-sub-vending/tree/main/testdata/TestIntegrationWithYaml) directory.
 
-Back to [Examples](Examples)
+Back to [Examples](examples)

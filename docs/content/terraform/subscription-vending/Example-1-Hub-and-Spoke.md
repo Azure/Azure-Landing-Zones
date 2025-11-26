@@ -1,4 +1,8 @@
-<!-- markdownlint-disable MD041 -->
+---
+title: "Example 1: Hub and Spoke"
+weight: 41
+---
+
 Here is a simple example of deploying a landing zone with a hub & spoke peering to a hub network:
 
 ```terraform
@@ -14,8 +18,8 @@ resource "azurerm_virtual_network" "example" {
   address_space       = ["192.168.0.0/23"]
 }
 
-module "lz_vending" {
-  source  = "Azure/lz-vending/azurerm"
+module "sub_vending" {
+  source  = "Azure/avm-ptn-alz-sub-vending/azure"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
   location = "northeurope"
@@ -43,4 +47,4 @@ module "lz_vending" {
 }
 ```
 
-Back to [Examples](Examples)
+Back to [Examples](examples)

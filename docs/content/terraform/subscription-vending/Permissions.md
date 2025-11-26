@@ -1,4 +1,8 @@
-<!-- markdownlint-disable MD041 -->
+---
+title: Permissions
+weight: 15
+---
+
 ## Permissions required
 
 This module now uses a single provider - `AzAPI`.

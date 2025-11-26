@@ -1,4 +1,8 @@
-<!-- markdownlint-disable MD041 -->
+---
+title: "Example 2: Virtual WAN"
+weight: 42
+---
+
 Here is a simple example of deploying a landing zone with a Virtual WAN connection:
 
 ```terraform
@@ -21,8 +25,8 @@ resource "azurerm_virtual_hub" "example" {
   address_prefix      = "10.0.0.0/23"
 }
 
-module "lz_vending" {
-  source  = "Azure/lz-vending/azurerm"
+module "sub_vending" {
+  source  = "Azure/avm-ptn-alz-sub-vending/azure"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
   location = each.value.location
@@ -50,4 +54,4 @@ module "lz_vending" {
 }
 ```
 
-Back to [Examples](Examples)
+Back to [Examples](examples)

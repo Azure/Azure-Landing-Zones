@@ -1,4 +1,8 @@
-<!-- markdownlint-disable MD041 -->
+---
+title: Provider Configuration
+weight: 16
+---
+
 Prior to v5.0, this module used both the [AzureRM][azurerm_provider] and the [AzAPI][azapi_provider] providers.
 After v5.0 the module has been refactored to use only the AzAPI provider.
 This was done because of the design of the AzureRM v4.0 provider and its mandatory requirement to be supplied with a subscription id at init time.
