@@ -29,7 +29,7 @@ module "sub_vending" {
   source  = "Azure/avm-ptn-alz-sub-vending/azure"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
-  location = each.value.location
+  location = "West Europe"
 
   # subscription variables
   subscription_alias_enabled = true
