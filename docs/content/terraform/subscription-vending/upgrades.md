@@ -3,7 +3,7 @@ title: Upgrades
 weight: 60
 ---
 
-This module uses [Semantic Versioning (SemVer)](https://semver.org/s) versioning.
+This module uses [Semantic Versioning (SemVer)](https://semver.org/) versioning.
 
 Given a version number `MAJOR.MINOR.PATCH`, we increment the:
 
