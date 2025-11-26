@@ -36,7 +36,7 @@ module "sub_vending" {
   subscription_billing_scope = "/providers/Microsoft.Billing/billingAccounts/1234567/enrollmentAccounts/123456"
   subscription_display_name  = "mylz"
   subscription_alias_name    = "mylz"
-  subscription_workload      = Production
+  subscription_workload      = "Production"
 
   network_watcher_resource_group_enabled = true
 
