@@ -1,18 +1,21 @@
 ---
-title: Local File System with Terraform
-weight: 60
+title: (Deprecated) Local File System with Classic Bicep
+weight: 130
 ---
 
-Follow these instructions to bootstrap a local file system folder ready to deploy your platform landing zone with Terraform.
+Follow these instructions to bootstrap a local file system folder ready to deploy your platform landing zone with Classic Bicep.
 
-1. Create a new folder on you local drive called `accelerator`.
+{{< hint type=warning >}}
+STOP! This documentation is specific to **Classic Bicep** (`iac_type: bicep-classic`). If you are using the accelerator for the first time, you should be using the Azure Verified Modules for Platform Landing Zone, see [Local File System with Bicep AVM]({{< relref "bicep-local" >}}).
+{{< /hint >}}
+
+1. Create a new folder on your local drive called `accelerator`.
 1. Inside the accelerator create two folders called `config` and `output`. You'll store you input file inside config and the output folder will be the place that the accelerator stores files while it works.
-1. Inside the `config` folder create a new files called `inputs.yaml` and `platform-landing-zone.tfvars`.
+1. Inside the `config` folder create a new file called `inputs.yaml`. You can use `json` if you prefer, but our examples here are `yaml`.
 
     ```pwsh
     New-Item -ItemType "file" "~/accelerator/config/inputs.yaml" -Force
     New-Item -ItemType "directory" "~/accelerator/output"
-    New-Item -ItemType "file" "~/accelerator/config/platform-landing-zone.tfvars" -Force
 
     ```
 
@@ -21,33 +24,11 @@ Follow these instructions to bootstrap a local file system folder ready to deplo
     ```plaintext
     📂accelerator
     ┣ 📂config
-    ┃ ┃ 📜inputs.yaml
-    ┃ ┗ 📜platform-landing-zone.tfvars
+    ┃ ┗ 📜inputs.yaml
     ┗ 📂output
     ```
 
-1. If you are using the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module, you must create a `lib` folder inside the `config` folder to store any customizations to the management groups and policies.
-
-    ```pwsh
-    $tempFolderName = "~/accelerator/temp"
-    New-Item -ItemType "directory" $tempFolderName
-    $tempFolder = Resolve-Path -Path $tempFolderName
-    git clone -n --depth=1 --filter=tree:0 "https://github.com/Azure/alz-terraform-accelerator" "$tempFolder"
-    cd $tempFolder
-
-    $libFolderPath = "templates/platform_landing_zone/lib"
-    git sparse-checkout set --no-cone $libFolderPath
-    git checkout
-
-    cd ~
-    Copy-Item -Path "$tempFolder/$libFolderPath" -Destination "~/accelerator/config" -Recurse -Force
-    Remove-Item -Path $tempFolder -Recurse -Force
-
-    ```
-
-1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from the relevant input file for your chosen starter module:
-    1. Azure Verified Modules for Platform Landing Zone (ALZ) - [inputs-local.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/bootstrap/inputs-local.yaml)
-
+1. Open your `inputs.yaml` file in Visual Studio Code (or your preferred editor) and copy the content from [inputs-local.yaml](https://raw.githubusercontent.com/Azure/alz-bicep/refs/heads/main/accelerator/examples/bootstrap/inputs-local.yaml) into that file.
 1. Check through the file and update each input as required. It is mandatory to update items with placeholders surrounded by angle brackets `<>`:
 
     {{< hint type=tip >}}
@@ -60,9 +41,8 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
 
     | Input | Env Var Prefix | Placeholder | Description |
     | - | - | -- | --- |
-    | `iac_type` | `ALZ` | `terraform` | This is the choice of `bicep` or `terraform`. Keep this as `terraform` for this example. |
-    | `bootstrap_module_name` | `ALZ` | `alz_local` | This is the choice of Version Control System. Keep this as `alz_local` for this example. |
-    | `starter_module_name` | `ALZ` | `platform_landing_zone` | This is the choice of [Starter Modules]({{< relref "../../startermodules" >}}), which is the baseline configuration you want for your Azure landing zone. Choose `platform_landing_zone` for this example. |
+    | `iac_type` | `ALZ` | `bicep-classic` | This is the choice of `bicep`, `bicep-classic`, or `terraform`. Keep this as `bicep-classic` for this example. | | `bootstrap_module_name` | `ALZ` | `alz_local` | This is the choice of Version Control System. Keep this as `alz_local` for this example. |
+    | `starter_module_name` | `ALZ` | `complete` | This is the choice of [Starter Modules][wiki_starter_modules], which is the baseline configuration you want for your Azure landing zone. Keep this as `complete` for this example. |
     | `bootstrap_location` | `TF_VAR` | `<region>` | Replace `<region>` with the Azure region where you would like to deploy the bootstrap resources in Azure. This field expects the `name` of the region, such as `uksouth`. You can find a full list of names by running `az account list-locations -o table`. |
     | `starter_locations` | `TF_VAR` | `[<region-1>,<region-2>]` | Replace `<region-1>` and `<region-2>` with the Azure regions where you would like to deploy the starter module resources in Azure. This field expects the `name` of the regions in and array, such as `["uksouth", "ukwest"]`. You can find a full list of names by running `az account list-locations -o table`. |
     | `root_parent_management_group_id` | `TF_VAR` | `""` | This is the id of the management group that will be the parent of the management group structure created by the accelerator. If you are using the `Tenant Root Group` management group, you leave this as an empty string `""` or supply the tenant id. |
@@ -73,13 +53,10 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
     | `service_name` | `TF_VAR` | `alz` | This is used to build up the names of your Azure and Azure DevOps resources, for example `rg-<service_name>-mgmt-uksouth-001`. We recommend using `alz` for this. |
     | `environment_name` | `TF_VAR` | `mgmt` | This is used to build up the names of your Azure and Azure DevOps resources, for example `rg-alz-<environment_name>-uksouth-001`. We recommend using `mgmt` for this. |
     | `postfix_number` | `TF_VAR` | `1` | This is used to build up the names of your Azure and Azure DevOps resources, for example `rg-alz-mgmt-uksouth-<postfix_number>`. We recommend using `1` for this. |
-    | `grant_permissions_to_current_user` | `TF_VAR` | `true` | This determines whether the bootstrap will grant the current user permissions to the management group structure and stroage account created by the accelerator. This defaults to `true` so that the starter module can be immediately deployed from the local file system. Set this to `false` if you itend to wire up CI/CD with your own provider. |
+    | `grant_permissions_to_current_user` | `TF_VAR` | `true` | This determines whether the bootstrap will grant the current user permissions to the management group structure created by the accelerator. This defaults to `true` so that the starter module can be immediately deployed from the local file system. Set this to `false` if you itend to wire up CI/CD with your own provider. |
 
-1. Open your `platform-landing-zone.tfvars` file in Visual Studio Code (or your preferred editor)
-
-1. Now head over to your chosen starter module documentation to get the specific inputs for that module.
-    - [Terraform Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../../startermodules/terraform-platform-landing-zone" >}}): Management groups, policies, Multi Region hub networking with fully custom configuration.
-
+1. Now head over to your chosen starter module documentation to get the specific inputs for that module. Come back here when you are done.
+    - [Bicep Complete Starter Module][wiki_starter_module_bicep_complete]
 1. Verify that you are logged in to Azure CLI or have the Service Principal credentials set as env vars. You should have completed this in the [Prerequisites]({{< relref "../1_prerequisites" >}}) phase.
 1. Ensure you are running the latest version of the ALZ PowerShell module by running:
 
@@ -89,25 +66,16 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
 
 1. In your PowerShell Core (pwsh) terminal run the module:
 
-    {{< hint type=tip >}}
-Inputs can be split into multiple files if desired.
-    {{< /hint >}}
+    ```pwsh
+    Deploy-Accelerator -inputs "~/accelerator/config/inputs.yaml" -output "~/accelerator/output"
 
-    * Run `Deploy-Accelerator` for the Azure Verified Modules for Platform Landing Zone (ALZ) starter module:
-
-        ```pwsh
-        Deploy-Accelerator `
-        -inputs "~/accelerator/config/inputs.yaml", "~/accelerator/config/platform-landing-zone.tfvars" `
-        -starterAdditionalFiles "~/accelerator/config/lib" `
-        -output "~/accelerator/output"
-
-        ```
+    ```
 
 1. You will see a Terraform `init` and `apply` happen.
 1. There will be a pause after the `plan` phase you allow you to validate what is going to be deployed.
 1. If you are happy with the plan, then hit enter.
 1. The Terraform will `apply` and your environment will be bootstrapped.
-1. You will find the output in the `~/accelerator/output/local-output` folder if you didn't specify a different location for `target_directory`.
+1. You will find the output in the `~/accelerator/output/local-output` folder if you didn't specifiy a different location for `target_directory`.
 
 ## Next Steps
 

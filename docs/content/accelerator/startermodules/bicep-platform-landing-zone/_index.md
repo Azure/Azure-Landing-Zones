@@ -49,11 +49,11 @@ The following table describes the inputs required for the `complete` starter mod
 
 ## Example Configuration Files
 
-Example configurations for the new Bicep AVM framework will be available in the [alz-bicep-accelerator repository](https://github.com/Azure/alz-bicep-accelerator) documentation.
+Example configurations for the Bicep AVM framework are available in the [alz-bicep-accelerator repository](https://github.com/Azure/alz-bicep-accelerator) documentation.
 
 ## Getting Started
 
-To use the new Bicep AVM framework:
+To use the Bicep Azure Verified Modules for Platform Landing Zone (ALZ):
 
 1. Set your `iac_type` to `bicep` in your configuration file
 2. Refer to the [alz-bicep-accelerator documentation](https://github.com/Azure/alz-bicep-accelerator) for detailed examples
