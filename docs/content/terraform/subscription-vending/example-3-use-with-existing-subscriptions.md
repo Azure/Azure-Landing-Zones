@@ -1,5 +1,5 @@
 ---
-title: "Example 5: Use with Existing Subscriptions"
+title: "Example 3: Use with Existing Subscriptions"
 weight: 45
 ---
 
