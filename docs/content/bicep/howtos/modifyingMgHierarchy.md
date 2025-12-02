@@ -93,9 +93,28 @@ For example, if you change the int-root ID from `alz` to `myorg`, update all chi
 param platformConfig = {
   // ...
   managementGroupParentId: 'myorg'  // Changed from 'alz'
+  managementGroupIntermediateRootName: 'myorg'  // Changed from 'alz'
   // ...
 }
 ```
+
+{{< hint type=important >}}
+**Critical**: If you change the int-root management group ID, you must update **both** `managementGroupParentId` AND `managementGroupIntermediateRootName` in ALL child management group parameter files. The `managementGroupIntermediateRootName` property is used to dynamically update policy definition references throughout the hierarchy. Missing this update will cause policy assignment failures.
+
+For example, if changing int-root from `alz` to `myorg`, update these properties in:
+
+- `platform/main.bicepparam`
+- `landingzones/main.bicepparam`
+- `sandbox/main.bicepparam`
+- `decommissioned/main.bicepparam`
+- `platform/platform-connectivity/main.bicepparam`
+- `platform/platform-identity/main.bicepparam`
+- `platform/platform-management/main.bicepparam`
+- `platform/platform-security/main.bicepparam`
+- `landingzones/landingzones-corp/main.bicepparam`
+- `landingzones/landingzones-online/main.bicepparam`
+
+{{< /hint >}}
 
 ## Changing the Parent Management Group
 
