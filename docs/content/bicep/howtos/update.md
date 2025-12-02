@@ -11,8 +11,7 @@ The Bicep AVM framework differs from Classic Bicep in how modules are managed. D
 
 - **You control module updates**: Update AVM modules in your templates directory as new versions are released
 - **No on-demand pulling**: Unlike Classic Bicep which pulls modules from specific release versions on demand, you manage the module versions directly
-- **Direct AVM updates**: Monitor [Azure Verified Modules](https://aka.ms/avm) releases and update module references in your templates as needed
-- **Template enhancements**: Improvements to the alz-bicep-accelerator framework itself
+- **Direct AVM updates**: Monitor [Azure Verified Modules](https://aka.ms/avm) releases and update module references in your templates as needed for new features or fixes
 
 ### Module Issues and Support
 

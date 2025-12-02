@@ -3,7 +3,7 @@ title: Modifying Policy Assignments
 weight: 10
 ---
 
-To modify a policy assignment, you will need to update the `parPolicyAssignmentParameterOverrides` object in the appropriate management group's `.bicepparam` file under `templates/core/governance/mgmt-groups/`.
+To modify a ALZ provided policy assignment (reside in `templates/core/governance/lib/alz`), you will need to update the `parPolicyAssignmentParameterOverrides` object in the appropriate management group's `.bicepparam` file under `templates/core/governance/mgmt-groups/`.
 
 Policy assignments are loaded from JSON files in the `lib/alz` directory, and you can override specific parameters without modifying the JSON files directly.
 
@@ -30,7 +30,7 @@ param parPolicyAssignmentParameterOverrides = {
 
 ## Disabling a Policy Assignment
 
-To disable a policy assignment without removing it, add it to the `managementGroupDoNotEnforcePolicyAssignments` array:
+To change the Enforcement mode of a policy assignment to DoNoteEnforce, but still assign the policy, add it to the `managementGroupDoNotEnforcePolicyAssignments` array:
 
 **platform/main.bicepparam:**
 
@@ -43,7 +43,7 @@ param platformConfig = {
 }
 ```
 
-Alternatively, you can exclude a policy assignment entirely using `managementGroupExcludedPolicyAssignments`:
+Alternatively, you can exclude a policy assignment entirely from the deployment using `managementGroupExcludedPolicyAssignments`:
 
 ```bicep-params
 param platformConfig = {
@@ -89,10 +89,6 @@ param parPolicyAssignmentParameterOverrides = {
 }
 ```
 
-## Adding Non-Compliance Messages
-
-Non-compliance messages are part of the policy assignment JSON files in the `lib/alz` directory. To add or modify non-compliance messages, you would need to modify those JSON files or add custom policy assignments.
-
 ## Adding Custom Policy Assignments
 
 You can add completely custom policy assignments using the `customerPolicyAssignments` array:
@@ -122,6 +118,9 @@ param landingzonesConfig = {
           }
         ]
       }
+    }
+    {
+        'loadJsonContent('../../lib/alz/CustomNaming.alz_policy_assignment.json'')'
     }
   ]
 }
@@ -185,6 +184,20 @@ param platformConfig = {
 }
 ```
 
+If you plan to keep the policy enabled, make sure you provide the DDoS protection plan resource ID via the `Enable-DDoS-VNET` override:
+
+```bicep-params
+param parPolicyAssignmentParameterOverrides = {
+  'Enable-DDoS-VNET': {
+    parameters: {
+      ddosProtectionPlanId: {
+        value: '/subscriptions/<subscription-id>/resourceGroups/<rg-name>/providers/Microsoft.Network/ddosProtectionPlans/<plan-name>'
+      }
+    }
+  }
+}
+```
+
 ### Private DNS Zones
 
 If you don't use private endpoints, disable the `Deploy-Private-DNS-Zones` policy assignment at the `landingzones-corp` management group:
@@ -197,6 +210,20 @@ param landingzonesCorpConfig = {
   managementGroupExcludedPolicyAssignments: [
     'Deploy-Private-DNS-Zones'
   ]
+}
+```
+
+When you keep this policy enabled, provide the resource group that hosts your private DNS zones:
+
+```bicep-params
+param parPolicyAssignmentParameterOverrides = {
+  'Deploy-Private-DNS-Zones': {
+    parameters: {
+      privateDnsZoneResourceGroupId: {
+        value: '/subscriptions/<subscription-id>/resourceGroups/<rg-name>'
+      }
+    }
+  }
 }
 ```
 
@@ -218,6 +245,8 @@ param landingzonesConfig = {
   ]
 }
 ```
+
+If you keep these assignments active, make sure the required Log Analytics workspace and Data Collection Rules are available, and override parameters such as `logAnalytics` or `dcrResourceId` as needed in `parPolicyAssignmentParameterOverrides`.
 
 ## Best Practices
 

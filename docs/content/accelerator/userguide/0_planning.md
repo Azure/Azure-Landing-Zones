@@ -103,7 +103,7 @@ Below is a table describing the available starter modules, along with guidance o
 | Starter Module | Setting | Description | Recommendation |
 |--|--|----|---|
 | [Bicep - Platform Landing Zone]({{< relref "../startermodules/bicep-platform-landing-zone">}}) | `complete` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. Uses the alz-bicep-accelerator framework. | Use this for new Bicep deployments (iac_type: `bicep`) |
-| [Bicep Classic - Platform Landing Zone]({{< relref "../startermodules/bicep-classic-platform-landing-zone">}}) | `complete` | Multi-region implementation using traditional ALZ-Bicep modules. | Use this for existing Bicep deployments (iac_type: `bicep-classic`) |
+| [Bicep Classic - Complete]({{< relref "../startermodules/bicep-classic-complete">}}) | `complete` | Multi-region implementation using traditional ALZ-Bicep modules. | Use this for existing Bicep deployments (iac_type: `bicep-classic`) |
 | [Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../startermodules/terraform-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Terraform deployments |
 
 Fill out the `Starter module` value with either `complete` or `platform_landing_zone`.

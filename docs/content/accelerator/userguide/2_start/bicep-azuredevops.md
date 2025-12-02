@@ -28,7 +28,7 @@ Follow these instructions to bootstrap Azure DevOps ready to deploy your platfor
 1. Check through the file and update each input as required. It is mandatory to update items with placeholders surrounded by angle brackets `<>`:
 
     {{< hint type=tip >}}
-The following inputs can also be supplied via environment variables. This may be useful for sensitive values you don't wish to persist to a file. The `Env Var Prefix` denotes the prefix the environment variable should have. The environment variable is formatting is `<PREFIX>_<variable_name>`, e.g. `$env:ALZ_iac_type = "bicep"` or `$env:TF_VAR_azure_devops_personal_access_token = "*****..."`.
+The following inputs can also be supplied via environment variables. This may be useful for sensitive values you don't wish to persist to a file. The `Env Var Prefix` denotes the prefix the environment variable should have. The environment variable formatting is `<PREFIX>_<variable_name>`, e.g. `$env:ALZ_iac_type = "bicep"` (other valid values are `bicep-classic` and `terraform`) or `$env:TF_VAR_azure_devops_personal_access_token = "*****..."`.
     {{< /hint >}}
 
     {{< hint type=tip >}}
@@ -37,7 +37,7 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
 
     | Input | Env Var Prefix | Placeholder | Description |
     | - | - | -- | --- |
-    | `iac_type` | `ALZ` | `bicep` | This is the choice of Infrastructure as Code framework. Keep this as `bicep` for this example. |
+    | `iac_type` | `ALZ` | `bicep` | This selects the Infrastructure as Code framework. Valid values are `bicep`, `bicep-classic`, or `terraform`. Keep this as `bicep` for this example. |
     | `bootstrap_module_name` | `ALZ` | `alz_azuredevops` | This is the choice of Version Control System. Keep this as `alz_azuredevops` for this example. |
     | `starter_module_name` | `ALZ` | `platform_landing_zone` | This is the choice of [Starter Modules]({{< relref "../../startermodules" >}}), which is the baseline configuration you want for your Azure landing zone. Keep this as `platform_landing_zone` for this example. |
     | `bootstrap_location` | `TF_VAR` | `<region-1>` | Replace `<region-1>` with the Azure region where you would like to deploy the bootstrap resources in Azure. This field expects the `name` of the region, such as `uksouth`. You can find a full list of names by running `az account list-locations -o table`. |

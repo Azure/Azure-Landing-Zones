@@ -6,7 +6,7 @@ weight: 5
 The `complete` starter module for the new Bicep framework uses Azure Verified Modules from the [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) repository.
 
 {{< hint type=tip >}}
-This is the **new Bicep framework** (`iac_type: bicep`) built on Azure Verified Modules. For the traditional framework, see [Bicep Classic - Complete]({{< relref "../bicep-classic-platform-landing-zone" >}}).
+This is the **new Bicep framework** (`iac_type: bicep`) built on Azure Verified Modules. For the traditional framework, see [Bicep Classic - Complete]({{< relref "../bicep-classic-complete" >}}).
 {{< /hint >}}
 
 ## Framework Overview
@@ -34,7 +34,7 @@ The framework includes the following core modules:
 * **Core Logging**: Centralized logging and monitoring setup
 * **Networking Options**:
   * Hub networking for traditional hub-spoke architectures
-  * Virtual WAN for modern connectivity patterns
+  * Virtual WAN for integrated and automated hub and spoke configuration and connectivity
 
 ## Configuration Inputs
 
@@ -42,32 +42,31 @@ The following table describes the inputs required for the `complete` starter mod
 
 | Input | Placeholder | Description |
 | - | -- | --- |
-| `Prefix` | `landing-zone` | This is the defaut prefix for names of resources and management groups. |
-| `Environment` | `live` | The environment name for the landing zone. This can be any lower case string. (e.g. `live` or `canary`)  |
-| `networkType` | `hubNetworking` | The type of network configuration to deploy. Currently only `hubNetworking`, `hubNetworkingMultiRegion`, `vwanConnectivity,` `vwanConnectivityMultiRegion` or `none` are supported. |
-| `SecurityContact` | `<email-address>` | The email address of the security contact for the landing zone. |
+| `networkType` | `hubNetworking` | The type of network configuration to deploy. Currently only `hubNetworking`, `vwanConnectivity,` or `none` are supported. |
+| `bootstrap_module_version` | `<version>` | The specific release version of the Acccelerator Bootstrap modules to target. We recommend using "Latest" |
+| starter_module_version | `<version>` | The specific release version of the ALZ Bicep Accelerator modules to target. We recommend using "Latest" |
 
 ## Example Configuration Files
 
-Example configurations for the Bicep AVM framework are available in the [alz-bicep-accelerator repository](https://github.com/Azure/alz-bicep-accelerator) documentation.
-
-## Getting Started
-
-To use the Bicep Azure Verified Modules for Platform Landing Zone (ALZ):
-
-1. Set your `iac_type` to `bicep` in your configuration file
-2. Refer to the [alz-bicep-accelerator documentation](https://github.com/Azure/alz-bicep-accelerator) for detailed examples
-3. Customize the inputs according to your requirements
-4. Follow the [User Guide]({{< relref "../../userguide" >}}) for deployment steps
+* [inputs-azure-devops.yaml][example_powershell_inputs_azure_devops_bicep_platform_landing_zone]
+* [inputs-github.yaml][example_powershell_inputs_github_bicep_platform_landing_zone]
+* [inputs-local.yaml][example_powershell_inputs_local_bicep_platform_landing_zone]
 
 ## Migration from Classic
 
 If you're considering migrating from the classic framework:
 
 * **New Deployments**: Start with the new framework for enhanced capabilities
-* **Existing Deployments**: Continue with the classic framework for stability
-* **Migration Planning**: Evaluate your specific requirements and timeline
+* **Existing Deployments**: Continue with the classic framework for stability for now
 
 {{< hint type=note >}}
 Migration guidance will be provided as the new framework reaches general availability.
 {{< /hint >}}
+
+ [//]: # (************************)
+ [//]: # (INSERT LINK LABELS BELOW)
+ [//]: # (************************)
+
+[example_powershell_inputs_azure_devops_bicep_platform_landing_zone]: https://raw.githubusercontent.com/Azure/alz-bicep-accelerator/refs/heads/main/examples/inputs-azure-devops.yaml "Example - PowerShell Inputs - Azure DevOps - Bicep - Platform Landing Zone"
+[example_powershell_inputs_github_bicep_platform_landing_zone]:  https://raw.githubusercontent.com/Azure/alz-bicep-accelerator/refs/heads/main/examples/inputs-github.yaml "Example - PowerShell Inputs - GitHub - Bicep - Platform Landing Zone"
+[example_powershell_inputs_local_bicep_platform_landing_zone]:  https://raw.githubusercontent.com/Azure/alz-bicep-accelerator/refs/heads/main/examples/inputs-local.yaml "Example - PowerShell Inputs - Local - Bicep - Platform Landing Zone"

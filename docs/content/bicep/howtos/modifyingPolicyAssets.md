@@ -61,9 +61,9 @@ The `ref` field specifies the version of the [Azure Landing Zones Library](https
 
 Before updating the ALZ library, ensure you have:
 
-- **alzlibtool.exe** - Located in `templates/core/governance/tooling/`
+- **alzlibtool.exe** - Can be downloaded from the [alzlib](https://github.com/Azure/alzlib/releases) repository releases page
 - **PowerShell 7.0 or later** - Required for the update script
-- **Git** (optional) - To review changes before committing
+- **Git** - To review changes before committing
 
 ## Update Process
 
@@ -98,10 +98,8 @@ Visit the [Azure Landing Zones Library releases](https://github.com/Azure/Azure-
 
 Visit the [alz-bicep-accelerator releases](https://github.com/Azure/alz-bicep-accelerator/releases) page and review:
 
-- **Template Changes** - Changes to `.bicep` or `.bicepparam` structure
-- **Parameter Schema Updates** - New or modified parameter requirements
+- **New Features** - New capabilities that may affect your deployment
 - **Breaking Changes** - Updates that require manual intervention
-- **Migration Guides** - Step-by-step instructions for major version updates
 
 ### Step 2: Update the Library Metadata
 
