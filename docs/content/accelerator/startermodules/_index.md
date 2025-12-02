@@ -13,7 +13,6 @@ Each starter module expects different inputs and the following pages detail thos
 ## Bicep Starter Modules
 
 - **[Bicep Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "bicep-platform-landing-zone" >}})**: Latest framework using Azure Verified Modules (iac_type: `bicep`)
-- **[Bicep Classic - Platform Landing Zone]({{< relref "bicep-classic-platform-landing-zone" >}})**: Traditional framework (iac_type: `bicep-classic`)
 
 ## Terraform Starter Modules
 
