@@ -37,8 +37,8 @@ Add-Content -Path .gitignore -Value ".alzlib"
 
 If you want to do any of the following, you will need a custom library:
 
-- [Modify the management group hierarchy]({{< relref "modifyingMgHierarchy" >}}) (including re-naming management groups)
-- [Modifying policy assets (archetypes)]({{< relref "modifyingPolicyAssets" >}})
+- [Modify the management group hierarchy]({{< relref "howtos/modifyingMgHierarchy" >}}) (including re-naming management groups)
+- [Modifying policy assets (archetypes)]({{< relref "howtos/modifyingPolicyAssets" >}})
 
 Please follow the [custom library]({{< relref "customLibrary" >}}) guide if you need to create a custom library.
 

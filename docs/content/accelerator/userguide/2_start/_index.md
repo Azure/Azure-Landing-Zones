@@ -87,13 +87,21 @@ The detailed documentation for the library and it's usage can be found here:
 
 ## 3 - Choose your Infrastructure as Code tool and Version Control System
 
-### Bicep
+### Bicep AVM
 
 Click through to the relevant page for detailed instructions:
 
-* [Azure DevOps with Bicep]({{< relref "bicep-azuredevops" >}})
-* [GitHub with Bicep]({{< relref "bicep-github" >}})
-* [Local File System]({{< relref "bicep-local" >}})
+* [Azure DevOps with Bicep AVM]({{< relref "bicep-azuredevops" >}})
+* [GitHub with Bicep AVM]({{< relref "bicep-github" >}})
+* [Local File System with Bicep AVM]({{< relref "bicep-local" >}})
+
+### Bicep Classic
+
+Use these guides if you are continuing with the traditional ALZ Bicep modules:
+
+* [Azure DevOps with Classic Bicep]({{< relref "bicep-classic-azuredevops" >}})
+* [GitHub with Classic Bicep]({{< relref "bicep-classic-github" >}})
+* [Local File System with Classic Bicep]({{< relref "bicep-classic-local" >}})
 
 ### Terraform
 

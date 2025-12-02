@@ -13,7 +13,8 @@ To find the individual release notes for each component of the accelerator, plea
 - [ALZ PowerShell Module](https://github.com/Azure/ALZ-PowerShell-Module/releases)
 - [Accelerator Bootstrap Modules](https://github.com/Azure/accelerator-bootstrap-modules/releases)
 - [Terraform Starter Modules](https://github.com/Azure/alz-terraform-accelerator/releases)
-- [Bicep Starter Modules](https://github.com/Azure/ALZ-Bicep/releases)
+- [Bicep Starter Modules (Latest AVM Framework)](https://github.com/Azure/alz-bicep-accelerator/releases)
+- [Bicep Starter Modules (Classic Framework)](https://github.com/Azure/ALZ-Bicep/releases)
 
 ## Breaking changes
 
@@ -21,11 +22,36 @@ While we try very hard to avoid breaking changes, there are times when a feature
 
 ## Release Notes
 
+### ALZ Accelerator - Bicep Framework Options Support
+
+- Release date: 2025-11-24
+- Impact: **Non-breaking change** - Additive functionality only
+
+The ALZ Accelerator now supports two Bicep framework options to meet different deployment needs:
+
+**New Framework Support (`iac_type: bicep`)**:
+
+- Introduces support for [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) built on Azure Verified Modules
+- Provides enhanced modularity and maintainability
+- Recommended for new Azure Landing Zone deployments
+
+**Classic Framework Continuation (`iac_type: bicep-classic`)**:
+
+- Continues support for 1 year for the traditional [ALZ-Bicep](https://github.com/Azure/ALZ-Bicep) framework
+- Maintains backward compatibility for existing deployments
+- No changes required for current Bicep users
+
+**User Impact**: Existing users can continue using their current configurations without changes. New users can choose the framework that best fits their needs.
+
+---
+
 ### [Terraform Starter Module - v13.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v13.0.0)
 
 - Release date: 2025-11-21
 - Release link: [v13.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v13.0.0)
 - Release diff: [v12.1.0...v13.0.0](https://github.com/Azure/alz-terraform-accelerator/compare/v12.1.0...v13.0.0)
+
+---
 
 #### Breaking Changes
 

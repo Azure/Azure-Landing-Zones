@@ -1,5 +1,6 @@
 ---
 title: Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)
+weight: 15
 geekdocCollapseSection: true
 ---
 
@@ -15,7 +16,7 @@ This documentation covers the following:
 * [Microsoft Defender for Cloud security contact email address]({{< relref "#microsoft-defender-for-cloud-security-contact-email-address" >}}): The email address used by Microsoft Defender for Cloud to send security alerts to the security contact at your organization
 * [Options]({{< relref "options">}}): Common customization tasks and how to perform them are documented here
 * [Platform landing zone configuration file]({{< relref "configuration">}}): Comprehensive documentation of the available input variables
-* [Azure Verified Modules Reference]({{< relref "module-index">}}): A reference list and explanation of the Azure Verified Modules used in this starter module 
+* [Azure Verified Modules Reference]({{< relref "module-index">}}): A reference list and explanation of the Azure Verified Modules used in this starter module
 
 Follow these steps to populate and configure your platform landing zone configuration file:
 
