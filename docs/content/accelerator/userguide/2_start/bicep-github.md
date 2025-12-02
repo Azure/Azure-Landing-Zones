@@ -36,7 +36,7 @@ If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">
 
     | Input | Env Var Prefix | Placeholder | Description |
     | - | - | -- | --- |
-    | `iac_type` | `ALZ` | `bicep` | This is the choice of `bicep` or `terraform`. Keep this as `bicep` for this example. |
+    | `iac_type` | `ALZ` | `bicep-classic` | This is the choice of `bicep-classic` or `terraform`. Keep this as `bicep-classic` for this example. |
     | `bootstrap_module_name` | `ALZ` | `alz_github` | This is the choice of Version Control System. Keep this as `alz_github` for this example. |
     | `starter_module_name` | `ALZ` | `complete` | This is the choice of [Starter Modules][wiki_starter_modules], which is the baseline configuration you want for your Azure landing zone. Keep this as `complete` for this example. |
     | `bootstrap_location` | `TF_VAR` | `<region>` | Replace `<region>` with the Azure region where you would like to deploy the bootstrap resources in Azure. This field expects the `name` of the region, such as `uksouth`. You can find a full list of names by running `az account list-locations -o table`. |
