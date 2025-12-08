@@ -39,7 +39,7 @@ Follow these instructions to bootstrap ready to deploy your platform landing zon
         2 = "full-multi-region/virtual-wan"
         3 = "full-multi-region-nva/hub-and-spoke-vnet"
         4 = "full-multi-region-nva/virtual-wan"
-        5 = "management-only/management.tfvars"
+        5 = "management-only/management"
         6 = "full-single-region/hub-and-spoke-vnet"
         7 = "full-single-region/virtual-wan"
         8 = "full-single-region-nva/hub-and-spoke-vnet"
