@@ -17,7 +17,6 @@ Follow these instructions to bootstrap ready to deploy your platform landing zon
 
     ```pwsh
     New-Item -ItemType "directory" "$targetFolder/output"
-    New-Item -ItemType "file" "$targetFolder/config/platform-landing-zone.tfvars" -Force
 
     $tempFolderName = "$targetFolder/temp"
     New-Item -ItemType "directory" $tempFolderName
