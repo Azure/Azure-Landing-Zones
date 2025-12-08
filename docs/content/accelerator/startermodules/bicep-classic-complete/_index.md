@@ -23,7 +23,7 @@ The following table describes the inputs required for the `complete` starter mod
 
 | Input | Placeholder | Description |
 | - | -- | --- |
-| `Prefix` | `landing-zone` | This is the defaut prefix for names of resources and management groups. |
+| `Prefix` | `landing-zone` | This is the default prefix for names of resources and management groups. |
 | `Environment` | `live` | The environment name for the landing zone. This can be any lower case string. (e.g. `live` or `canary`)  |
 | `networkType` | `hubNetworking` | The type of network configuration to deploy. Currently only `hubNetworking`, `hubNetworkingMultiRegion`, `vwanConnectivity,` `vwanConnectivityMultiRegion` or `none` are supported. |
 | `SecurityContact` | `<email-address>` | The email address of the security contact for the landing zone. |
@@ -43,7 +43,7 @@ To use the Bicep Classic framework:
 1. Set your `iac_type` to `bicep-classic` in your configuration file
 2. Use the example configuration files above as a starting point
 3. Customize the inputs according to your requirements
-4. Follow the [User Guide]({{< relref "../../userguide" >}}) for deployment steps
+4. Bootstrap and deploy with the accelerator
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)

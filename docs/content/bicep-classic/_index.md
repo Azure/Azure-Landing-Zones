@@ -24,7 +24,7 @@ If you're working with the Bicep Classic framework:
 
 - [ALZ-Bicep Repository](https://github.com/Azure/ALZ-Bicep) - Main repository with modules and documentation
 - [ALZ-Bicep Release Notes](https://github.com/Azure/ALZ-Bicep/releases) - Latest updates and changes
-- [Deploying with the Accelerator]({{< relref "../accelerator/userguide" >}}) - Using the PowerShell accelerator
+- [Deploying with the Accelerator]({{< relref "../accelerator" >}}) - Using the PowerShell accelerator
 
 ## Common Tasks
 

@@ -1,7 +1,7 @@
 ---
 title: Release Notes
 description: Release notes for the Accelerator Terraform Platform Landing Zone Starter Module
-weight: 30
+weight: 200
 ---
 
 This page contains the release notes for the ALZ IaC Accelerator.
@@ -187,10 +187,7 @@ In order to support backwards compatibility we have introduced the `<region>-fir
 
 This release introduces a default `lib` folder with predefined override and architecture files. This was introduced to improve the [Options]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options" >}}) that involve the need to turn of policies, such as AMA, DNS, and DDOS. Previously these options advised setting the policy to `DoNotEnforce`, however we found that in some cases that still result in failed deployments of spokes, due to the policy faulting even though it wasn't enforced. As such, that safest approach it to not assign the policy at all. We introduced the default `lib` archetype overrides to simplify this process for those not familiar with the modules.
 
-- We introduced a new step to the accelerator to always setup a `lib` folder. This can be found in Phase 2, Step 5 of the [User Guide]({{< relref "accelerator/userguide" >}}) for all three VCS options.
-    - [Azure DevOps]({{< relref "accelerator/userguide/2_start/terraform-azuredevops" >}})
-    - [GitHub]({{< relref "accelerator/userguide/2_start/terraform-github" >}})
-    - [Local]({{< relref "accelerator/userguide/2_start/terraform-local" >}})
+- We introduced a new step to the accelerator to always setup a `lib` folder. This can be found in Phase 2 of the [User Guide]({{< relref "accelerator/2_bootstrap" >}}) for all three VCS options.
 - Updated the [Options]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options" >}}) to reference this `lib` folder and explain what needs to be uncommented in the archetype overrides:
     - [Customize Management Group Ids and Names]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options/management-groups" >}})
     - [Turn off DDoS Protection Plan]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options/ddos" >}})
