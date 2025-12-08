@@ -1,24 +1,24 @@
 ---
 title: Phase 1 - Prerequisites
 geekdocCollapseSection: true
-weight: 5
+weight: 20
 ---
 
-Phase 1 of the accelerator is to setup your prerequisites. Follow the steps below to do that.
+Set up the prerequisites by following the steps below.
 
 ## 1 - Tools and Internet Access
 
-You'll need to install the following tools before getting started.
+Install the following tools before getting started.
 
 - PowerShell 7.4 (or newer): [Follow the instructions for your operating system](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
 - Azure CLI 2.55.0 (or newer): [Follow the instructions for your operating system](https://learn.microsoft.com/cli/azure/install-azure-cli)
 * Git (any supported version): [Follow the instructions for your operating system](https://git-scm.com/downloads).
 
 {{< hint type=note >}}
-In all cases, ensure that the tools are available from a PowerShell core (pwsh) terminal. You may need to add them to your environment path if they are not.
+Ensure all tools are available from a PowerShell Core (pwsh) terminal. Add them to your environment path if needed.
 {{< /hint >}}
 
-You will also need open access to the internet to download tools, terraform providers and connect to Azure and your Version Control System.
+You also need internet access to download tools, Terraform providers, and connect to Azure and your VCS.
 
 We **DO NOT** explicitly support:
 
@@ -35,7 +35,7 @@ Follow the instructions in the [Platform Subscriptions and Permissions]({{< relr
 
 ## 3 - Version Control Systems
 
-You'll need to decide if you are using GitHub, Azure DevOps or the Local File System and follow these steps:
+Choose GitHub, Azure DevOps, or Local File System and follow the relevant steps:
 
 ### Azure DevOps
 
@@ -47,8 +47,8 @@ Follow the instructions in the [GitHub]({{< relref "github" >}}) section.
 
 ### Local File System
 
-You just need to ensure that you have a folder on your local file system that you can use to store the files, which your current session has access to.
+Ensure you have a folder accessible from your current session.
 
 ## Next Steps
 
-Now head to [Phase 2]({{< relref "2_start" >}}).
+Now head to [Phase 2]({{< relref "2_bootstrap" >}}).

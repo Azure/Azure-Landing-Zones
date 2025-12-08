@@ -21,7 +21,7 @@ This documentation covers the following:
 Follow these steps to populate and configure your platform landing zone configuration file:
 
 {{< hint type=tip >}}
-If you followed our [phase 0 planning and decisions]({{< relref "../../userguide/0_planning">}}) guidance, you should have these choices already.
+If you followed our [phase 0 planning and decisions]({{< relref "../../0_planning">}}) guidance, you should have these choices already.
 {{< /hint >}}
 
 ## 1 - Scenarios
@@ -62,4 +62,4 @@ The advanced configuration settings can be found in the [Platform landing zone c
 
 ## Next Steps
 
-Now head back to [Phase 2]({{< relref "../../userguide/2_start" >}}) to continue your deployment.
+Now head back to [Phase 2]({{< relref "../../2_bootstrap" >}}) to continue your deployment.

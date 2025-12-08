@@ -1,10 +1,10 @@
 ---
 title: Phase 0 - Planning
 geekdocCollapseSection: true
-weight: 1
+weight: 10
 ---
 
-Phase 0 of the accelerator is to plan your deployment. Follow the steps below to do that.
+Plan your deployment by following the steps below.
 
 {{< hint type=note >}}
 This phase is optional. You can skip it and go straight to [Phase 1]({{< relref "1_prerequisites" >}}) if you already know what you want to deploy.
@@ -18,10 +18,10 @@ Learn about the Azure landing zones architecture and the accelerator.
 
 You should understand these terms before you start:
 
-* Infrastructure as Code (IaC): Infrastructure as Code (IaC) is the process of managing and provisioning computing infrastructure through machine-readable definition files, rather than through physical hardware configuration or interactive configuration tools. This is a key component of the accelerator.
-* Platform Landing Zone: Understand the scope of the Platform Landing Zone [here](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
-* Bootstrap or Bootstrap Module: The IaC module that sets up the version control system, continuous delivery pipeline, required Azure resources, etc. The bootstrap happens before the Platform Landing Zone is deployed.
-* Starter or Starter Module: This is a pre-configured IaC module that can be used to deploy a specific platform landing zone configuration.
+* Infrastructure as Code (IaC): Managing and provisioning infrastructure through machine-readable definition files rather than manual configuration.
+* Platform Landing Zone: See [Azure landing zone documentation](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
+* Bootstrap or Bootstrap Module: The IaC module that sets up version control, CI/CD pipelines, and required Azure resources before deploying the Platform Landing Zone.
+* Starter or Starter Module: A pre-configured IaC module for deploying platform landing zone configurations.
 * Accelerator PowerShell Module: The PowerShell module that is used to deploy the bootstrap. Find it here: [https://www.powershellgallery.com/packages/ALZ](https://www.powershellgallery.com/packages/ALZ).
 
 ### Technical Knowledge
@@ -42,7 +42,7 @@ This file has several tabs, described here:
 
 * Accelerator - Bootstrap: This tab details the settings required for the bootstrap configuration
 * Accelerator - Bicep: This tab details the settings required for the Bicep configuration
-* Accelerator - Terraform - ALZ: This tab details the settings required for the Azure Verified Modules for Platform Landing Zone (ALZ) configuration
+* Accelerator - Terraform: This tab details the settings required for the Azure Verified Modules for Platform Landing Zone (ALZ) configuration
 
 {{< hint type=tip >}}
 As an advanced user, you can go right ahead and fill in the configuration file directly, you don't have to use the spreadsheet.
@@ -82,11 +82,7 @@ Fill out the `Infrastructure as Code` value with either `bicep`, `bicep-classic`
 
 ### Decision 2 - Choose a version control system
 
-We currently support bootstrapping of Azure DevOps or GitHub.
-
-Hopefully you've already chosen one of these for your organization, but if not you can go off and do some research now before continuing.
-
-If you are using another version control system, then we also offer an option to output to the local file system. You can run directly from there, or take those files and implement your own CI/CD pipeline.
+We support Azure DevOps and GitHub. For other version control systems, use the local file system option and implement your own CI/CD pipeline.
 
 Choose either:
 
@@ -102,9 +98,9 @@ Below is a table describing the available starter modules, along with guidance o
 
 | Starter Module | Setting | Description | Recommendation |
 |--|--|----|---|
-| [Bicep - Platform Landing Zone]({{< relref "../startermodules/bicep-platform-landing-zone">}}) | `complete` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. Uses the alz-bicep-accelerator framework. | Use this for new Bicep deployments (iac_type: `bicep`) |
-| [Bicep Classic - Complete]({{< relref "../startermodules/bicep-classic-complete">}}) | `complete` | Multi-region implementation using traditional ALZ-Bicep modules. | Use this for existing Bicep deployments (iac_type: `bicep-classic`) |
-| [Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "../startermodules/terraform-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Terraform deployments |
+| [Bicep - Platform Landing Zone]({{< relref "startermodules/bicep-platform-landing-zone">}}) | `complete` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. Uses the alz-bicep-accelerator framework. | Use this for new Bicep deployments (iac_type: `bicep`) |
+| [Bicep Classic - Complete]({{< relref "startermodules/bicep-classic-complete">}}) | `complete` | Multi-region implementation using traditional ALZ-Bicep modules. | Use this for existing Bicep deployments (iac_type: `bicep-classic`) |
+| [Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "startermodules/terraform-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Terraform deployments |
 
 Fill out the `Starter module` value with either `complete` or `platform_landing_zone`.
 
@@ -123,17 +119,15 @@ Fill out the `Bootstrap region` value with the Azure region you have chosen.
 
 ### Decision 5 - Choose region(s) for the platform landing zone resources
 
-The platform landing zone resources are deployed to one or more regions. Choose the Azure region(s) where you would like the deploy them.
-
-Hopefully you have already chosen your initial regions by now and this may be guided by your data sovereignty or latency requirements.
+Choose the Azure region(s) for platform landing zone resources based on your data sovereignty or latency requirements.
 
 Fill out the `Platform landing zone region(s)` value with the Azure region(s) you have chosen.
 
 ### Decision 6 - Choose a parent management group
 
-The parent management group is the management group that will contain the management groups created by the bootstrap. The parent management group must exist before the bootstrap is run.
+The parent management group will contain the management groups created by the bootstrap and must already exist.
 
-We recommend using `Tenant Root Group`, the platform landing zone management group hierarchy will be build underneath the chosen parent management group. The only changes to the parent management group will be permissions, no policies are applied at that level.
+We recommend `Tenant Root Group`. The platform landing zone hierarchy builds underneath it, with only permission changes applied at that level (no policies).
 
 {{< hint type=warning >}}
 If a parent management group other than Tenant Root Group is chosen, then move the 3 platform subscriptions into the management group before proceeding.
@@ -143,7 +137,7 @@ Fill out the `Parent management group id` value with the management group you ha
 
 ### Decision 7 - Choose the platform subscriptions
 
-We strongly encourage and only support using 4 platform subscription with separate Management, Connectivity, Identity, and Security platform subscriptions.
+We require 4 platform subscriptions: Management, Connectivity, Identity, and Security.
 
 {{< hint type=note >}}
 A single subscription model is technically possible, but only recommended for sandbox testing purposes.
@@ -155,20 +149,18 @@ Fill out the `Management subscription id`, `Connectivity subscription id`, `Iden
 
 ### Decision 8 - Choose the bootstrap subscription
 
-The customer can choose to use a 4 or 5 subscription model. The 5 subscription model is where the bootstrap resources are deployed to a 5th subscription. Should they wish to do that, you can follow the advice found [HERE]({{< relref "advancedscenarios">}}).
+You can use a 4 or 5 subscription model. For 5 subscriptions (separate bootstrap subscription), see [advanced scenarios]({{< relref "advancedscenarios">}}).
 
-In either case, you should make a choice of where to place the bootstrap resources. We recommend using the Management platform subscription if you don't need the 5 subscription model.
-
-The customer can target this subscription explicitly by setting the `bootstrap_subscription_id` variable in the bootstrap configuration file or ensure you are connected to it via az cli.
+We recommend using the Management subscription for bootstrap resources. Set `bootstrap_subscription_id` in the config file or connect via az cli.
 
 Fill out the `Bootstrap subscription id` value with the subscription ID you have chosen.
 
 ### Decision 9 - Choose the bootstrap resource naming
 
-Choose a `service name` and `environment name` that will be used to derive the bootstrap resource names.
+Choose a `service name` and `environment name` to derive bootstrap resource names.
 
 {{< hint type=tip >}}
-If you must use an alternative naming convention, they can be overridden by follow the instructions found [HERE]({{< relref "../faq">}})
+To override the naming convention, see the [FAQ]({{< relref "faq">}}).
 {{< /hint >}}
 
 Fill out the `Service name` and `Environment name` values with the names you have chosen.
@@ -225,7 +217,7 @@ Fill out the `Accelerator - Terraform - ALZ` tab of the `checklist.xlsx` file wi
 
 The Azure Verified Modules for Platform Landing Zone (ALZ) starter module supports a number of scenarios as a starting point.
 
-The scenarios can be found in the [SCENARIOS]({{< relref "../startermodules/terraform-platform-landing-zone/scenarios" >}}) section.
+The scenarios can be found in the [SCENARIOS]({{< relref "startermodules/terraform-platform-landing-zone/scenarios" >}}) section.
 
 Choose a scenario that best fits your requirements.
 
@@ -235,7 +227,7 @@ Fill out the `Scenario` section with the scenario you have chosen.
 
 The Azure Verified Modules for Platform Landing Zone (ALZ) starter module supports a number of options that can be applied to a scenario.
 
-The options can be found in the [OPTIONS]({{< relref "../startermodules/terraform-platform-landing-zone/options" >}}) section.
+The options can be found in the [OPTIONS]({{< relref "startermodules/terraform-platform-landing-zone/options" >}}) section.
 
 Choose the options that best fit your requirements.
 

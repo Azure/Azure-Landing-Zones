@@ -11,12 +11,12 @@ This section details the prerequisites for the platform subscriptions.
 You will need to choose the parent management group for your platform landing zone structure to sit under. This could be the `Tenant Root Group` or a new management group you create under there if preferred.
 
 {{< hint type=warning >}}
-If a parent management group other than Tenant Root Group is chosen, then you must move the 3 platform subscriptions into that management group before proceeding.
+If a parent management group other than Tenant Root Group is chosen, then you must move the 4 platform subscriptions into that management group before proceeding.
 {{< /hint >}}
 
 ## 2 - Azure Subscriptions
 
-We recommend setting up 4 subscriptions for Azure landing zones. These are management, identity, connectivity, and security. See our [advanced scenarios]({{< relref "advancedscenarios" >}}) section for alternatives.
+We recommend setting up 4 subscriptions for platform landing zone. These are management, identity, connectivity, and security. See our [advanced scenarios]({{< relref "advancedscenarios" >}}) section for alternatives.
 
 - Management: This is used to deploy the bootstrap and management resources, such as log analytics and automation accounts.
 - Identity: This is used to deploy the identity resources, such as Azure AD and Microsoft Entra Domain Services (formerly Azure AD DS) .
@@ -30,13 +30,13 @@ To create the subscriptions you will need access to a billing agreement. The fol
 - [Enterprise Agreement (EA)](https://learn.microsoft.com/azure/cost-management-billing/manage/create-enterprise-subscription)
 - [Microsoft Customer Agreement (MCA)](https://learn.microsoft.com/azure/cost-management-billing/manage/create-subscription)
 
-Once you have the access required, create the three subscriptions following your desired naming convention.
+Once you have the access required, create the four subscriptions following your desired naming convention.
 
 Take note of the subscription id of each subscription as we will need them later.
 
 ## 3 - Management Group Subscription Placement
 
-If your 3 platform subscriptions are not currently under the management group you chose in step 1, you will need to move them there. This is required for the bootstrap to work correctly.
+If your 4 platform subscriptions are not currently under the management group you chose in step 1, you will need to move them there. This is required for the bootstrap to work correctly.
 
 This can be done via the [Portal](https://learn.microsoft.com/en-us/azure/governance/management-groups/manage#move-management-groups-and-subscriptions) or using the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/account/management-group/subscription?view=azure-cli-latest#az-account-management-group-subscription-add).
 
@@ -48,7 +48,7 @@ Bicep (AVM), Bicep Classic, and Terraform all require the following permissions:
 
 - `Owner` on your chosen parent management group.
   - `Owner` is required because this account grants permissions to the identities that run the management group deployment. Those identities are granted only the permissions they need.
-- `Owner` on each of your 3 Azure landing zone subscriptions.
+- `Owner` on each of your 4 platform landing zone subscriptions.
 
 The new Bicep (AVM) framework has one additional requirement:
 

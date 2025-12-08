@@ -3,18 +3,16 @@ title: Platform Landing Zone Cleanup FAQ
 weight: 20
 ---
 
-If you are just testing the bootstrap process, you may want to remove the environment and start again a number of times. We provide the following guidance to help you do that.
-
-There are two levels of clean up that must be followed in this order:
+To remove and redeploy, follow these steps in order:
 
 1. Remove the platform landing zone
 1. Remove the bootstrap resources
 
-We recommend following these steps in order to ensure a clean environment for re-deployment. However, if you have lost your original bootstrap folder or the steps are not working for you, we have a fallback option at the end of this section.
+If you've lost your bootstrap folder or encounter errors, see the fallback option at the end of this section.
 
 ## How do I remove the bootstrap resources and start again?
 
-After the Terraform apply has been completed there is an opportunity to remove the environment it just created. Follow these steps to teardown the bootstrap environment.
+Follow these steps to teardown the bootstrap environment.
 
 1. If you already ran the CD pipeline / action in phase 3 to deploy the ALZ, then review the [How do I remove the platform landing zones]({{< relref "#how-do-i-remove-the-platform-landing-zone-and-start-again">}}) guidance.
 1. Wait for the destroy run to complete before moving to the next step, you will need to approve it if you configured approvals.
@@ -64,7 +62,7 @@ If you have lost your original bootstrap folder or are getting errors when tryin
 1. Login to Azure CLI and select your bootstrap subscription:
 
     ```powershell
-    az login
+    az login --tenant "<tenant-id>" --use-device-code
     az account set --subscription "<subscription-id>"
     ```
 

@@ -5,9 +5,7 @@ weight: 30
 
 ## Is it possible to upgrade to a newer version of the bootstrap?
 
-At this time, there is no supported approach for this. The accelerator bootstrap is a fire and forget operations that is only run once.
-
-We appreciate that you may want to take advantage of new features and security updates in the bootstrap and hope to support an upgrade path in the future.
+Not currently. The bootstrap is a one-time operation. We plan to support upgrades in the future.
 
 ## How do I upgrade to a newer version of the platform landing zone?
 
