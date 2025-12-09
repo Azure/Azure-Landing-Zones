@@ -1,6 +1,6 @@
 ---
 title: Custom Policy and ALZ
-weight: 10
+weight: 9
 geekdocCollapseSection: true
 ---
 
@@ -77,7 +77,7 @@ Here are the changes that occur when a policy gets deprecated:
 - Description gets updated to provide additional information regarding the deprecation with a link to the superseding policy.
 - Add `supersededBy` metadata property to the policy definition with the name of the superseding policy.
 - Add `deprecated` metadata property to the policy definition with value set to `true`.
-- The version number is updated with ‘-deprecated’ suffix. (see [Policy Versioning](#versioning) above).
+- The version number is updated with ‘-deprecated’ suffix. (see [Policy Versioning](#custom-policy-versioning) above).
 
 Example (policy snippet of deprecated policy):
 

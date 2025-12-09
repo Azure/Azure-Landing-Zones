@@ -1,6 +1,6 @@
 ---
 title: Policy Assignments
-weight: 8
+weight: 5
 ---
 
 As part of a default deployment configuration, policy and policy set definitions are deployed at multiple levels within the Azure landing zone Management Group hierarchy as depicted within the below diagram.
@@ -16,3 +16,7 @@ As part of the ALZ portal deployment/configuration, policy and policy set defini
 ## Default Policy Assignments
 
 {{< csv-table file="data/ALZPolicyAssignments.csv" >}}
+
+{{< hint type=note >}}
+Be sure to also review the [Extra Policies and Information]({{< relref "policyExtras" >}}) document that describes additional ALZ custom policy definitions and initiatives that are not assigned by default in ALZ, but are provided as they may assist some consumers of ALZ in specific scenarios where they can assign these additional policies to help them meet their objectives.
+{{< /hint >}}
