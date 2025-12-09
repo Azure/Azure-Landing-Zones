@@ -1,13 +1,1 @@
 /* You can add custom styles here. */
-.container {
-  max-width: 80%;
-}
-.lntable tr td {
-  padding: 0 !important;
-}
-kbd {
-  border: 1px solid #444;
-  border-bottom: 3px solid #444;
-  border-radius: 5px;
-  padding: 0.1rem 0.4rem;
-}
