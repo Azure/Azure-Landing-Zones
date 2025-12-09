@@ -10,7 +10,16 @@ Three configuration inputs are available:
 * [Platform Landing Zone Configuration File](#platform-landing-zone-configuration-file)
 * [Platform Landing Zone Library (lib) Folder](#platform-landing-zone-library-lib-folder)
 
+{{< hint type=tip title="JSON instead of YAML">}}
+If you are unable to install the [`powershell-yaml` module](https://www.powershellgallery.com/packages/powershell-yaml) (the ALZ module tries to install this automatically for you when invoked), you **can** use `.json` files instead.
+
+We would advise you complete the customizations in YAML and then convert to JSON if necessary as a final step prior to running the `Deploy-Accelerator` function.
+
+You will need to convert your YAML files to JSON before running the bootstrap script. You can use an online YAML to JSON converter or a tool like [DevToys](https://devtoys.app/).
+{{< /hint >}}
+
 ### Bootstrap Configuration File
+
 
 YAML file containing configuration for bootstrapping your VCS and Azure. Examples are provided for each IaC and VCS combination.
 

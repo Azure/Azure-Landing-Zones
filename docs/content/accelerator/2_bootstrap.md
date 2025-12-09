@@ -103,7 +103,7 @@ Terraform scenarios can be found in the [scenarios docs]({{< relref "startermodu
 
     ```
 
-1. Open your `inputs.yaml` bootstrap configuration file in Visual Studio Code and provide values for each input in the required section.
+2. Open your `inputs.yaml` bootstrap configuration file in Visual Studio Code and provide values for each input in the required section.
 
     ```pwsh
     code "$targetFolder/config"
@@ -129,7 +129,11 @@ Terraform options can be found in the [options docs]({{< relref "startermodules/
     az account set --subscription 00000000-0000-0000-0000-000000000000
     ```
 
-1. In your terminal install and run the ALZ bootstrap module:
+2. In your terminal install and run the ALZ bootstrap module:
+
+    {{< hint type=important title="JSON instead of YAML">}}
+If you are unable to install the [`powershell-yaml` module](https://www.powershellgallery.com/packages/powershell-yaml) (the ALZ module tries to install this automatically for you when invoked), you **can** use `.json` files instead; see [Configuration Files]({{< relref "configuration-files" >}}) for more information.
+    {{< /hint >}}
 
     ```pwsh
     $alzModule = Get-InstalledPSResource -Name ALZ
