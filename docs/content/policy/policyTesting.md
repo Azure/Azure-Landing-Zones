@@ -11,8 +11,6 @@ This framework is based on the work done by @fawohlsc in this repo [azure-policy
 
 For ALZ, the focus is on testing Azure Policy definitions that have a DENY effect, as these can be very disruptive to organizations if a regression is introduced, and helps us improve the quality of the policies we are developing and deploying to production environments. The framework can be extended to test other policy effects, but this is not the focus of this framework.
 
-> **_NOTE:_** The ALZ team are considering adding support for testing Azure Policy definitions that use other effects like Audit, DeployIfNotExists.
-
 For authoring tests we standardized on using Az PowerShell native commands as much as possible as it is simpler to implement and read, however, there are circumstances where you will need to use REST APIs as not all features are exposed through Az PowerShell. To keep things simple, we have leveraged the `Invoke-AzRestMethod` function that wraps the REST API calls and make it easier to use in the Pester tests.
 
 ### Prerequisites
@@ -39,7 +37,7 @@ The ALZ policy testing framework is designed to be used with GitHub Actions, but
 
 Create a new GitHub Action workflow in the `.github/workflows` folder of your repository. The workflow should be triggered on pull request events and should run on the `main` branch. The workflow should also allow being triggered manually to allow for testing of policies outside of pull requests.
 
-[Sample GitHub Action Workflow to run Policy tests](ALZ-Policies-Test-Workflow-Sample.md)
+[Sample GitHub Action Workflow to run Policy tests](../policyTestingWorkflow)
 
 #### 2. Create a new Pester test file
 

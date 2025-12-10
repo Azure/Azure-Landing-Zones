@@ -1,8 +1,8 @@
 {{ $file := .Get "file" }}
 {{ $data := slice }}
 {{ with or ($.Page.Resources.Get $file) (resources.Get $file) }}
-  {{ $opts := dict "delimiter" "," }}
-  {{ $data = . | transform.Unmarshal $opts }}
+  {{ $csv := .Content }}
+  {{ $data = $csv | transform.Unmarshal }}
 {{ end }}
 
 {{ with $data }}

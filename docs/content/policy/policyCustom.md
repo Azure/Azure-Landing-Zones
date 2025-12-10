@@ -100,6 +100,8 @@ Example (policy snippet of deprecated policy):
    }
 ```
 
-> **NOTE:** The `name` value must not change in the file through deprecation or preview.
+{{< hint type=note >}}
+The `name` value must not change in the file through deprecation or preview.
+{{< /hint >}}
 
 </div>
