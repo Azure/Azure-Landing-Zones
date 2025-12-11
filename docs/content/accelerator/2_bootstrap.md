@@ -11,7 +11,20 @@ Follow these instructions to bootstrap your Version Control System and Azure rea
     $iacType = "terraform"  # Must be one of: "bicep", "bicep-classic", "terraform"
     $versionControl = "github"  # Must be one of: "azure-devops", "github", "local"
     $scenarioNumber = 1  # Must be a number between 1 and 9 for Terraform only. Ignored for Bicep.
-    $targetFolder = "~/accelerator" # Choose your target folder for the cached files
+    $targetFolderPath = "~/accelerator" # Choose your target folder for the cached files
+
+    $alzModule = Get-InstalledPSResource -Name ALZ
+    if (-not $alzModule) {
+        Install-PSResource -Name ALZ
+    } else {
+        Update-PSResource -Name ALZ
+    }
+
+    New-AcceleratorFolderStructure `
+        -iacType $iacType `
+        -versionControl $versionControl `
+        -scenarioNumber $scenarioNumber `
+        -targetFolderPath $targetFolderPath
 
     ```
 
@@ -19,104 +32,24 @@ Follow these instructions to bootstrap your Version Control System and Azure rea
 Terraform scenarios can be found in the [scenarios docs]({{< relref "startermodules/terraform-platform-landing-zone/scenarios" >}}) section.
     {{< /hint >}}
 
-1. Run the following command to set up your folder structure and download the required files:
-
-    ```pwsh
-    New-Item -ItemType "directory" "$targetFolder/output"
-
-    $tempFolderName = "$targetFolder/temp"
-    New-Item -ItemType "directory" $tempFolderName
-    $tempFolder = Resolve-Path -Path $tempFolderName
-
-    $repos = @{
-        "terraform" = @{
-            repoName = "alz-terraform-accelerator"
-            folderToClone = "templates/platform_landing_zone"
-            libraryFolderPath = "lib"
-            exampleFolderPath = "examples"
-            bootstrapExampleFolderPath = "bootstrap"
-            hasScenarios = $true
-            hasLibrary = $true
-        }
-        "bicep" = @{
-            repoName = "alz-bicep-accelerator"
-            folderToClone = ""
-            libraryFolderPath = ""
-            exampleFolderPath = "examples"
-            bootstrapExampleFolderPath = "bootstrap"
-            hasScenarios = $false
-            hasLibrary = $false
-            platformLandingZoneFilePath = "platform-landing-zone.yaml"
-        }
-        "bicep-classic" = @{
-            repoName = "alz-bicep"
-            folderToClone = "accelerator"
-            libraryFolderPath = ""
-            exampleFolderPath = "examples"
-            bootstrapExampleFolderPath = "bootstrap"
-            hasScenarios = $false
-            hasLibrary = $false
-            platformLandingZoneFilePath = ""
-        }
-    }
-
-    $repo = $repos[$iacType]
-
-    git clone -n --depth=1 --filter=tree:0 "https://github.com/Azure/$($repo.repoName)" "$tempFolder"
-    cd $tempFolder
-
-    git sparse-checkout set --no-cone $repo.folderToClone
-    git checkout
-
-    cd ~
-    $exampleFolderPath = "$($repo.folderToClone)/$($repo.exampleFolderPath)"
-    $bootstrapExampleFolderPath = "$exampleFolderPath/$($repo.bootstrapExampleFolderPath)"
-
-    $targetFolder = Resolve-Path -Path $targetFolder
-    New-Item -ItemType "directory" "$targetFolder/config" -Force
-
-    Copy-Item -Path "$tempFolder/$bootstrapExampleFolderPath/inputs-$versionControl.yaml" -Destination "$targetFolder/config/inputs.yaml" -Force
-
-    if($repo.hasLibrary) {
-        $libFolderPath = "$($repo.folderToClone)/$($repo.libraryFolderPath)"
-        Copy-Item -Path "$tempFolder/$libFolderPath" -Destination "$targetFolder/config" -Recurse -Force
-    }
-
-    if($repo.hasScenarios) {
-        $scenarios = @{
-            1 = "full-multi-region/hub-and-spoke-vnet"
-            2 = "full-multi-region/virtual-wan"
-            3 = "full-multi-region-nva/hub-and-spoke-vnet"
-            4 = "full-multi-region-nva/virtual-wan"
-            5 = "management-only/management"
-            6 = "full-single-region/hub-and-spoke-vnet"
-            7 = "full-single-region/virtual-wan"
-            8 = "full-single-region-nva/hub-and-spoke-vnet"
-            9 = "full-single-region-nva/virtual-wan"
-        }
-
-        Copy-Item -Path "$tempFolder/templates/platform_landing_zone/examples/$($scenarios[$scenarioNumber]).tfvars" -Destination "$targetFolder/config/platform-landing-zone.tfvars" -Force
-    } elseif ($repo.platformLandingZoneFilePath -ne "") {
-        Copy-Item -Path "$tempFolder/$($repo.platformLandingZoneFilePath)" -Destination "$targetFolder/config/platform-landing-zone.yaml" -Force
-    }
-    Remove-Item -Path $tempFolder -Recurse -Force
-
-    ```
-
 2. Open your `inputs.yaml` bootstrap configuration file in Visual Studio Code and provide values for each input in the required section.
 
     ```pwsh
-    code "$targetFolder/config"
+    code "$targetFolderPath/config"
     ```
 
     {{< hint type=tip >}}
 More details about the configuration files can be found in the [configuration files]({{< relref "configuration-files" >}}) section.
     {{< /hint >}}
 
-1. Review and update the platform landing zone configuration file if required. More details can be found in the relevant section for your chosen Infrastructure as Code tool:
+1. Review and update the platform landing zone configuration file.
 
-    - [Terraform Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "startermodules/terraform-platform-landing-zone" >}})
-    - [Bicep Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "startermodules/bicep-platform-landing-zone" >}})
+    The `starter_locations` input is required and must be updated in this file to include at least one Azure region for your platform landing zone.
+
+    More details can be found in the relevant section for your chosen Infrastructure as Code tool:
+
+    - Terraform: `platform-landing-zones.tfvars` - [Terraform Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "startermodules/terraform-platform-landing-zone" >}})
+    - Bicep: `platform-landing-zone.yaml` - [Bicep Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "startermodules/bicep-platform-landing-zone" >}})
 
     {{< hint type=tip >}}
 Terraform options can be found in the [options docs]({{< relref "startermodules/terraform-platform-landing-zone/options" >}}) section.
@@ -136,31 +69,23 @@ If you are unable to install the [`powershell-yaml` module](https://www.powershe
     {{< /hint >}}
 
     ```pwsh
-    $alzModule = Get-InstalledPSResource -Name ALZ
-    if (-not $alzModule) {
-        Install-PSResource -Name ALZ
-    } else {
-        Update-PSResource -Name ALZ
-    }
-
     if($iacType -eq "terraform") {
         Deploy-Accelerator `
-        -inputs "$targetFolder/config/inputs.yaml", "$targetFolder/config/platform-landing-zone.tfvars" `
-        -starterAdditionalFiles "$targetFolder/config/lib" `
-        -output "$targetFolder/output"
+        -inputs "$targetFolderPath/config/inputs.yaml", "$targetFolderPath/config/platform-landing-zone.tfvars" `
+        -starterAdditionalFiles "$targetFolderPath/config/lib" `
+        -output "$targetFolderPath/output"
     }
 
     if($iacType -eq "bicep") {
         Deploy-Accelerator `
-        -inputs "$targetFolder/config/inputs.yaml", "$targetFolder/config/platform-landing-zone.yaml" `
-        -starterAdditionalFiles "$targetFolder/config/lib" `
-        -output "$targetFolder/output"
+        -inputs "$targetFolderPath/config/inputs.yaml", "$targetFolderPath/config/platform-landing-zone.yaml" `
+        -output "$targetFolderPath/output"
     }
 
     if($iacType -eq "bicep-classic") {
         Deploy-Accelerator `
-        -inputs "$targetFolder/config/inputs.yaml" `
-        -output "$targetFolder/output"
+        -inputs "$targetFolderPath/config/inputs.yaml" `
+        -output "$targetFolderPath/output"
     }
 
     ```
