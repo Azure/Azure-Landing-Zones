@@ -7,12 +7,12 @@ weight: 2
 You may want to customize the management groups names and IDs.
 
 {{< hint type=warning >}}
-If you update the management group IDs, you also need to update the `platform-landing-zone.tfvars` file to match the management group IDs you changed. If you don't do this, you will get errors or unexpected behavior when you deploy the platform landing zone.
+If you update the management group IDs, you also need to update the `platform-landing-zone.tfvars` file to match the management group IDs you changed. If you don't do this, you will get errors or unexpected behavior when you deploy the Platform landing zone.
 {{< /hint >}}
 
 There are 2 high level steps required to customize the management group names and IDs:
 
-1. (Optional) Update the platform landing zone configuration file `platform-landing-zone.tfvars` to reflect any changes to management group IDs
+1. (Optional) Update the Platform landing zone configuration file `platform-landing-zone.tfvars` to reflect any changes to management group IDs
     - (Optional) Update the `management_group_settings` > `subscription_placement` block setting to match any management group IDs you changed.
     - (Optional) Update the `policy_assignments_to_modify` block setting to match any management group IDs you changed.
 

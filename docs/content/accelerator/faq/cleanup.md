@@ -1,22 +1,20 @@
 ---
-title: Platform Landing Zone Cleanup FAQ
+title: Platform landing zone Cleanup FAQ
 weight: 20
 ---
 
-If you are just testing the bootstrap process, you may want to remove the environment and start again a number of times. We provide the following guidance to help you do that.
+To remove and redeploy, follow these steps in order:
 
-There are two levels of clean up that must be followed in this order:
-
-1. Remove the platform landing zone
+1. Remove the Platform landing zone
 1. Remove the bootstrap resources
 
-We recommend following these steps in order to ensure a clean environment for re-deployment. However, if you have lost your original bootstrap folder or the steps are not working for you, we have a fallback option at the end of this section.
+If you've lost your bootstrap folder or encounter errors, see the fallback option at the end of this section.
 
 ## How do I remove the bootstrap resources and start again?
 
-After the Terraform apply has been completed there is an opportunity to remove the environment it just created. Follow these steps to teardown the bootstrap environment.
+Follow these steps to teardown the bootstrap environment.
 
-1. If you already ran the CD pipeline / action in phase 3 to deploy the ALZ, then review the [How do I remove the platform landing zones]({{< relref "#how-do-i-remove-the-platform-landing-zone-and-start-again">}}) guidance.
+1. If you already ran the CD pipeline / action in phase 3 to deploy the ALZ, then review the [How do I remove the Platform landing zone]({{< relref "#how-do-i-remove-the-platform-landing-zone-and-start-again">}}) guidance.
 1. Wait for the destroy run to complete before moving to the next step, you will need to approve it if you configured approvals.
 1. Now run `Deploy-Accelerator` with the `-destroy` flag, for example:
 
@@ -32,7 +30,7 @@ After the Terraform apply has been completed there is an opportunity to remove t
 1. To fully clean up, you should now delete the folder that was created for the accelerator.
 1. You'll now be able to run the `Deploy-Accelerator` command again to start fresh.
 
-## How do I remove the platform landing zone and start again?
+## How do I remove the Platform landing zone and start again?
 
 {{< hint type=note >}}
 The following guidance is for Terraform, if you're using Bicep and wish to destroy your landing zone, please refer to the [destroy-landing-zone.ps1](https://github.com/Azure/ALZ-Bicep/blob/main/accelerator/scripts/destroy-landing-zone.ps1) script.
@@ -64,11 +62,11 @@ If you have lost your original bootstrap folder or are getting errors when tryin
 1. Login to Azure CLI and select your bootstrap subscription:
 
     ```powershell
-    az login
+    az login --tenant "<tenant-id>" --use-device-code
     az account set --subscription "<subscription-id>"
     ```
 
-1. Run one of the following commands to prepare to remove the platform landing zone:
+1. Run one of the following commands to prepare to remove the Platform landing zone:
 
     1. If you used a specific management group as the parent management group during bootstrap, you can specify that management group to delete the landing zone. For example:
 
@@ -88,7 +86,7 @@ If you have lost your original bootstrap folder or are getting errors when tryin
         ```
 
 1. Review the plan output to ensure it is going to delete the correct resources.
-1. If the plan looks correct, re-run the command without the `-PlanMode` parameter to delete the platform landing zone.
+1. If the plan looks correct, re-run the command without the `-PlanMode` parameter to delete the Platform landing zone.
 1. If you chose the second option, you'll still need to clean up the custom role definitions on Tenant Root Group before you can re-run the accelerator bootstrap.
     1. Navigate to the Azure Portal and go to the `Management Groups` pane.
     1. Select the `Tenant Root Group`.

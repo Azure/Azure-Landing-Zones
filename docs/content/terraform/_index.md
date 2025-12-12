@@ -1,12 +1,12 @@
 ---
 title: Terraform
 geekdocCollapseSection: true
-weight: 20
+weight: 25
 ---
 
-ALZ ❤️ AVM - Azure Verified Modules for Platform Landing Zones (ALZ)
+ALZ ❤️ AVM - Azure Verified Modules (AVM) for Platform landing zone (ALZ) - Terraform
 
-Based on continuous feedback from the community, we have adopted a more modular approach to deploying Azure Landing Zones with Terraform.
+Based on continuous feedback from the community, we have adopted a more modular approach to deploying Azure landing zone with Terraform.
 This new approach is based on [Azure Verified Modules](https://aka.ms/avm) (AVM) and is designed to be more flexible.
 
 ## Branding
@@ -14,7 +14,7 @@ This new approach is based on [Azure Verified Modules](https://aka.ms/avm) (AVM)
 With the move to using Azure Verified Modules, we have new branding!
 We are using the following wording to describe the new offerings:
 
-> **Azure Verified Modules for Platform Landing Zones (ALZ)**
+> **Azure Verified Modules (AVM) for Platform landing zone (ALZ) - Terraform**
 
 ## Why have we made this change?
 
@@ -40,14 +40,12 @@ You also asked that we make it easier for organizations to have different teams 
 
 The new approach is based on [Azure Verified Modules](https://aka.ms/avm) and is designed to be more flexible.
 
-Here is the list of modules that pertain to Azure Landing Zones and covers the scope of the original ALZ Terraform module:
+Here is the list of modules that pertain to Azure landing zone and covers the scope of the original ALZ Terraform module:
 
-- [ALZ core](https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/latest)
-- [ALZ management](https://registry.terraform.io/modules/Azure/avm-ptn-alz-management/azurerm/latest)
-- [Hub networking](https://registry.terraform.io/modules/Azure/avm-ptn-hubnetworking/azurerm/latest)
-- [Virtual network gateway](https://registry.terraform.io/modules/Azure/avm-ptn-vnetgateway/azurerm/latest)
-- [Virtual WAN](https://registry.terraform.io/modules/Azure/avm-ptn-virtualwan/azurerm/latest)
-- [Private link DNS zones](https://registry.terraform.io/modules/Azure/avm-ptn-network-private-link-private-dns-zones/azurerm/latest)
+- [Management Groups, Policy and Role Assignments](https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/latest)
+- [Management Resources](https://registry.terraform.io/modules/Azure/avm-ptn-alz-management/azurerm/latest)
+- [Hub and Spoke Networking](https://registry.terraform.io/modules/Azure/avm-ptn-alz-connectivity-hub-and-spoke-vnet/azurerm/latest)
+- [Virtual WAN](https://registry.terraform.io/modules/Azure/avm-ptn-alz-connectivity-virtual-wan/azurerm/latest)
 
 {{< hint type=tip >}}
 Refer to each module's documentation to understand the full list of features and customization options.

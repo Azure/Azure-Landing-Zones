@@ -1,7 +1,7 @@
 ---
 title: Release Notes
-description: Release notes for the Accelerator Terraform Platform Landing Zone Starter Module
-weight: 30
+description: Release notes for the Accelerator Terraform Platform landing zone Starter Module
+weight: 200
 ---
 
 This page contains the release notes for the ALZ IaC Accelerator.
@@ -13,7 +13,8 @@ To find the individual release notes for each component of the accelerator, plea
 - [ALZ PowerShell Module](https://github.com/Azure/ALZ-PowerShell-Module/releases)
 - [Accelerator Bootstrap Modules](https://github.com/Azure/accelerator-bootstrap-modules/releases)
 - [Terraform Starter Modules](https://github.com/Azure/alz-terraform-accelerator/releases)
-- [Bicep Starter Modules](https://github.com/Azure/ALZ-Bicep/releases)
+- [Bicep Starter Modules (Latest AVM Framework)](https://github.com/Azure/alz-bicep-accelerator/releases)
+- [Bicep Starter Modules (Classic Framework)](https://github.com/Azure/ALZ-Bicep/releases)
 
 ## Breaking changes
 
@@ -21,11 +22,36 @@ While we try very hard to avoid breaking changes, there are times when a feature
 
 ## Release Notes
 
+### ALZ Accelerator - Bicep Framework Options Support
+
+- Release date: 2025-11-24
+- Impact: **Non-breaking change** - Additive functionality only
+
+The ALZ Accelerator now supports two Bicep framework options to meet different deployment needs:
+
+**New Framework Support (`iac_type: bicep`)**:
+
+- Introduces support for [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) built on Azure Verified Modules
+- Provides enhanced modularity and maintainability
+- Recommended for new Azure Landing Zone deployments
+
+**Classic Framework Continuation (`iac_type: bicep-classic`)**:
+
+- Continues support for 1 year for the traditional [ALZ-Bicep](https://github.com/Azure/ALZ-Bicep) framework
+- Maintains backward compatibility for existing deployments
+- No changes required for current Bicep users
+
+**User Impact**: Existing users can continue using their current configurations without changes. New users can choose the framework that best fits their needs.
+
+---
+
 ### [Terraform Starter Module - v13.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v13.0.0)
 
 - Release date: 2025-11-21
 - Release link: [v13.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v13.0.0)
 - Release diff: [v12.1.0...v13.0.0](https://github.com/Azure/alz-terraform-accelerator/compare/v12.1.0...v13.0.0)
+
+---
 
 #### Breaking Changes
 
@@ -116,7 +142,7 @@ Read more about the H2 FY25 policy refresh [here](https://github.com/Azure/Enter
 The Security management group is on by default. In order to not deploy the Security management group, you need to:
 
 - Remove it from the [architecture definition file](https://github.com/Azure/alz-terraform-accelerator/blob/main/templates/platform_landing_zone/lib/architecture_definitions/alz_custom.alz_architecture_definition.yaml)
-- Remove it from the [subscription placements in the platform landing zone configuration file](https://github.com/Azure/alz-terraform-accelerator/blob/b4115bfe9e6606a06def329f9e0574bc80747c83/templates/platform_landing_zone/examples/full-multi-region/hub-and-spoke-vnet.tfvars#L226)
+- Remove it from the [subscription placements in the Platform landing zone configuration file](https://github.com/Azure/alz-terraform-accelerator/blob/b4115bfe9e6606a06def329f9e0574bc80747c83/templates/platform_landing_zone/examples/full-multi-region/hub-and-spoke-vnet.tfvars#L226)
 - Remove the security subscription line from the bootstrap configuration file if using the accelerator for a new deployment
 
 ---
@@ -161,10 +187,7 @@ In order to support backwards compatibility we have introduced the `<region>-fir
 
 This release introduces a default `lib` folder with predefined override and architecture files. This was introduced to improve the [Options]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options" >}}) that involve the need to turn of policies, such as AMA, DNS, and DDOS. Previously these options advised setting the policy to `DoNotEnforce`, however we found that in some cases that still result in failed deployments of spokes, due to the policy faulting even though it wasn't enforced. As such, that safest approach it to not assign the policy at all. We introduced the default `lib` archetype overrides to simplify this process for those not familiar with the modules.
 
-- We introduced a new step to the accelerator to always setup a `lib` folder. This can be found in Phase 2, Step 5 of the [User Guide]({{< relref "accelerator/userguide" >}}) for all three VCS options.
-    - [Azure DevOps]({{< relref "accelerator/userguide/2_start/terraform-azuredevops" >}})
-    - [GitHub]({{< relref "accelerator/userguide/2_start/terraform-github" >}})
-    - [Local]({{< relref "accelerator/userguide/2_start/terraform-local" >}})
+- We introduced a new step to the accelerator to always setup a `lib` folder. This can be found in Phase 2 of the [User Guide]({{< relref "accelerator/2_bootstrap" >}}) for all three VCS options.
 - Updated the [Options]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options" >}}) to reference this `lib` folder and explain what needs to be uncommented in the archetype overrides:
     - [Customize Management Group Ids and Names]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options/management-groups" >}})
     - [Turn off DDoS Protection Plan]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options/ddos" >}})

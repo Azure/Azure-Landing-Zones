@@ -1,14 +1,17 @@
 ---
 title: Starter Modules
-weight: 10
+weight: 100
 geekdocCollapseSection: true
 ---
 
-The Azure landing zones accelerator includes a number of starter modules that provide opinionated implementations of the Bicep or Terraform Azure landing zones modules.
+Starter modules provide opinionated implementations of Azure landing zone using Bicep or Terraform.
 
-These are called starter modules because the expectation is you'll update these modules as the needs of your organization evolves and you want to add or remove features to your landing zone.
+Update these modules as your organization's needs evolve. Each module expects different inputs, detailed on the following pages.
 
-Each starter module expects different inputs and the following pages detail those inputs. You'll be prompted for these inputs when you run the Accelerator PowerShell module.
+## Bicep Starter Modules
 
-- [Bicep Complete Starter Module]({{< relref "bicepcomplete" >}}): Management groups, policies and hub networking.
-- [Terraform Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "terraform-platform-landing-zone" >}}): Management groups, policies, hub networking with fully custom configuration.
+- **[Bicep Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "bicep-platform-landing-zone" >}})**: Latest framework using Azure Verified Modules (iac_type: `bicep`)
+
+## Terraform Starter Modules
+
+- **[Terraform Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "terraform-platform-landing-zone" >}})**: Management groups, policies, hub networking with fully custom configuration.

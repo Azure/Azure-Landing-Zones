@@ -1,0 +1,61 @@
+---
+title: Configuration Files
+geekdocCollapseSection: true
+weight: 120
+---
+
+Three configuration inputs are available:
+
+* [Bootstrap Configuration File](#bootstrap-configuration-file)
+* [Platform landing zone Configuration File](#platform-landing-zone-configuration-file)
+* [Platform landing zone Library (lib) Folder](#platform-landing-zone-library-lib-folder)
+
+{{< hint type=tip title="JSON instead of YAML">}}
+If you are unable to install the [`powershell-yaml` module](https://www.powershellgallery.com/packages/powershell-yaml) (the ALZ module tries to install this automatically for you when invoked), you **can** use `.json` files instead.
+
+We would advise you complete the customizations in YAML and then convert to JSON if necessary as a final step prior to running the `Deploy-Accelerator` function.
+
+You will need to convert your YAML files to JSON before running the bootstrap script. You can use an online YAML to JSON converter or a tool like [DevToys](https://devtoys.app/).
+{{< /hint >}}
+
+### Bootstrap Configuration File
+
+
+YAML file containing configuration for bootstrapping your VCS and Azure. Examples are provided for each IaC and VCS combination.
+
+{{< hint type=note >}}
+Some of this configuration is also fed into the starter module to avoid duplication of inputs. This includes management group ID, subscriptions IDs, starter locations, etc. You will see a `terraform.tfvars.json` file is created in your repository after the bootstrap has run for this purpose.
+{{< /hint >}}
+
+### Platform landing zone Configuration File
+
+#### Terraform
+
+{{< hint type=note >}}
+Only required for Terraform ALZ starter module. Bicep users can skip this.
+{{< /hint >}}
+
+HCL `tfvars` file determining deployed resources and hub networking type. Copied to your repository as `*.auto.tfvars`.
+
+Examples: [Scenarios]({{< relref "startermodules/terraform-platform-landing-zone/scenarios">}})
+
+#### Bicep
+
+This is the `yaml` file that determines resource names and other configuration for the Bicep Azure Verified Modules for Platform landing zone (ALZ) starter module.
+
+### Platform landing zone Library (lib) Folder
+
+{{< hint type=note >}}
+Only required for Terraform ALZ starter module. Bicep users can skip this.
+{{< /hint >}}
+
+Configuration files for customizing management groups and policies. By default, an empty `lib` folder is provided.
+
+Use cases:
+* Renaming or restructuring management groups
+* Modifying policy assignments
+* Adding custom policy definitions
+
+Documentation:
+* [Platform landing zone Library](https://azure.github.io/Azure-Landing-Zones-Library/)
+* [AVM for Management Groups and Policy](https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/0.10.0)

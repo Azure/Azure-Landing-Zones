@@ -33,7 +33,7 @@ provider "alz" {
 name: alz_custom
 management_groups:
   - id: alz
-    display_name: Azure Landing Zones
+    display_name: Azure landing zone
     archetypes:
       - root_custom
       - amba_root
