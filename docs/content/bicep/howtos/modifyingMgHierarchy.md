@@ -7,7 +7,7 @@ To modify the management group hierarchy, you will need to customize the configu
 
 ## Default Management Group Structure
 
-The default Azure Landing Zones management group hierarchy includes:
+The default Azure landing zone management group hierarchy includes:
 
 ```text
 <Tenant Root or Custom Parent>
@@ -35,7 +35,7 @@ param intRootConfig = {
   createOrUpdateManagementGroup: true
   managementGroupName: 'alz'
   managementGroupParentId: ''  // Empty means tenant root
-  managementGroupDisplayName: 'Azure Landing Zones'
+  managementGroupDisplayName: 'Azure landing zone'
   managementGroupDoNotEnforcePolicyAssignments: []
   managementGroupExcludedPolicyAssignments: []
   // ... other properties

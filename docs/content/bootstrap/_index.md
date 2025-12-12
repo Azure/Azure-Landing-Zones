@@ -3,15 +3,15 @@ title: Getting started
 weight: 10
 ---
 
-Before we begin our Azure Landing Zones journey proper, we need some prerequisites in place.
+Before we begin our Azure landing zone journey proper, we need some prerequisites in place.
 
 {{< hint type=note >}}
-If you are planning to use the Azure Landing Zones IaC Accelerator, please head over to the [Accelerator Docs]({{< relref "accelerator" >}}) now. We'll guide you through the bootstrap requirements there. If you intend to create your own modules, then you can continue to read this page.
+If you are planning to use the Azure landing zone IaC Accelerator, please head over to the [Accelerator Docs]({{< relref "accelerator" >}}) now. We'll guide you through the bootstrap requirements there. If you intend to create your own modules, then you can continue to read this page.
 {{< /hint >}}
 
 ## Azure Subscriptions
 
-We recommend setting up 4 subscriptions for the Platform Landing Zone.
+We recommend setting up 4 subscriptions for the Platform landing zone.
 
 These are management, identity, connectivity, and security.
 
@@ -20,7 +20,7 @@ These are management, identity, connectivity, and security.
 - **Identity**: This is used to deploy the identity resources, such as Active Directory and Microsoft Entra Domain Services.
 - **Security**: This is used to deploy security resources, such as Azure Sentinel.
 
-You can read more about the management, identity, connectivity,and security subscriptions in the [Azure Landing Zones docs](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/deploy-landing-zones-with-terraform).
+You can read more about the management, identity, connectivity,and security subscriptions in the [Azure landing zone docs](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/deploy-landing-zones-with-terraform).
 
 To create the subscriptions you will need access to a billing agreement.
 The following links detail the permissions required for each type of agreement:
@@ -61,7 +61,7 @@ Remember, if a parent management group other than Tenant Root Group is chosen, t
 
 Now choose your next step!
 
-The ALZ IaC Accelerator allows you to quickly get started with IaC and DevOps best practices for Azure Landing Zones.
+The ALZ IaC Accelerator allows you to quickly get started with IaC and DevOps best practices for Azure landing zone.
 
 It supports both Terraform and Bicep:
 

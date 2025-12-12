@@ -3,13 +3,13 @@ title: 9 - Single-Region Virtual WAN with Network Virtual Appliance (NVA)
 weight: 9
 ---
 
-A full platform landing zone deployment with Virtual WAN network connectivity in a single region, ready for a third party Network Virtual Appliance (NVA).
+A full Platform landing zone deployment with Virtual WAN network connectivity in a single region, ready for a third party Network Virtual Appliance (NVA).
 
 {{< hint type=warning >}}
 The single region option is here for completeness, we recommend always having at least 2 regions to support resiliency.
 {{< /hint >}}
 
-* Example platform landing zone configuration file: [full-single-region-nva/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-single-region-nva/virtual-wan.tfvars)
+* Example Platform landing zone configuration file: [full-single-region-nva/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-single-region-nva/virtual-wan.tfvars)
 
 ## Resources
 

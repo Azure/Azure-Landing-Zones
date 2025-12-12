@@ -7,8 +7,8 @@ weight: 120
 Three configuration inputs are available:
 
 * [Bootstrap Configuration File](#bootstrap-configuration-file)
-* [Platform Landing Zone Configuration File](#platform-landing-zone-configuration-file)
-* [Platform Landing Zone Library (lib) Folder](#platform-landing-zone-library-lib-folder)
+* [Platform landing zone Configuration File](#platform-landing-zone-configuration-file)
+* [Platform landing zone Library (lib) Folder](#platform-landing-zone-library-lib-folder)
 
 {{< hint type=tip title="JSON instead of YAML">}}
 If you are unable to install the [`powershell-yaml` module](https://www.powershellgallery.com/packages/powershell-yaml) (the ALZ module tries to install this automatically for you when invoked), you **can** use `.json` files instead.
@@ -27,7 +27,7 @@ YAML file containing configuration for bootstrapping your VCS and Azure. Example
 Some of this configuration is also fed into the starter module to avoid duplication of inputs. This includes management group ID, subscriptions IDs, starter locations, etc. You will see a `terraform.tfvars.json` file is created in your repository after the bootstrap has run for this purpose.
 {{< /hint >}}
 
-### Platform Landing Zone Configuration File
+### Platform landing zone Configuration File
 
 #### Terraform
 
@@ -41,9 +41,9 @@ Examples: [Scenarios]({{< relref "startermodules/terraform-platform-landing-zone
 
 #### Bicep
 
-This is the `yaml` file that determines resource names and other configuration for the Bicep Azure Verified Modules for Platform Landing Zone (ALZ) starter module.
+This is the `yaml` file that determines resource names and other configuration for the Bicep Azure Verified Modules for Platform landing zone (ALZ) starter module.
 
-### Platform Landing Zone Library (lib) Folder
+### Platform landing zone Library (lib) Folder
 
 {{< hint type=note >}}
 Only required for Terraform ALZ starter module. Bicep users can skip this.
@@ -57,5 +57,5 @@ Use cases:
 * Adding custom policy definitions
 
 Documentation:
-* [Platform Landing Zone Library](https://azure.github.io/Azure-Landing-Zones-Library/)
+* [Platform landing zone Library](https://azure.github.io/Azure-Landing-Zones-Library/)
 * [AVM for Management Groups and Policy](https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/0.10.0)

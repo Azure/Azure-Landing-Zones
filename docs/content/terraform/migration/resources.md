@@ -1,11 +1,11 @@
 ---
 title: 1 - Management and Connectivity Resources
-description: Migration path 1 for management and connectivity resources from CAF Enterprise Scale to Azure Verified Modules for Platform Landing Zones (ALZ)
+description: Migration path 1 for management and connectivity resources from CAF Enterprise Scale to Azure Verified Modules (AVM) for Platform landing zone (ALZ)
 geekdocCollapseSection: true
 weight: 5
 ---
 
-This document provides step by step guidance for migrating from the CAF Enterprise Scale module connectivity and management resources to the Azure Verified Modules for Platform Landing Zones (ALZ) module.
+This document provides step by step guidance for migrating from the CAF Enterprise Scale module connectivity and management resources to the Azure Verified Modules (AVM) for Platform landing zone (ALZ) module.
 
 The migration process relies on Terraform state migration using the Terraform [import](https://developer.hashicorp.com/terraform/language/import) block.
 

@@ -4,7 +4,7 @@ geekdocCollapseSection: true
 weight: 1
 ---
 
-Scenarios are common use cases when deploying the platform landing zone. The following section provide a description of the scenario and link to the pre-configured files for that scenario.
+Scenarios are common use cases when deploying the Platform landing zone. The following section provide a description of the scenario and link to the pre-configured files for that scenario.
 
 The available scenarios are:
 

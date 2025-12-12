@@ -3,7 +3,7 @@ title: 6 - Single-Region Hub and Spoke Virtual Network with Azure Firewall
 weight: 6
 ---
 
-A full platform landing zone deployment with hub and spoke Virtual Network connectivity using Azure Firewall in a single region.
+A full Platform landing zone deployment with hub and spoke Virtual Network connectivity using Azure Firewall in a single region.
 
 {{< hint type=warning >}}
 The single region option is here for completeness, we recommend always having at least 2 regions to support resiliency.

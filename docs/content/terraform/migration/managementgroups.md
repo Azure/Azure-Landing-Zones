@@ -1,11 +1,11 @@
 ---
 title: 2 - Management Groups and Policy
-description: Migration path 2 for management groups and policy from CAF Enterprise Scale to Azure Verified Modules for Platform Landing Zones (ALZ)
+description: Migration path 2 for management groups and policy from CAF Enterprise Scale to Azure Verified Modules (AVM) for Platform landing zone (ALZ)
 geekdocCollapseSection: true
 weight: 10
 ---
 
-This document provides step by step guidance for migrating from the CAF Enterprise Scale module management groups and policy to the Azure Verified Modules for Platform Landing Zones (ALZ) module.
+This document provides step by step guidance for migrating from the CAF Enterprise Scale module management groups and policy to the Azure Verified Modules (AVM) for Platform landing zone (ALZ) module.
 
 The migration process relies on Terraform state migration using the Terraform [import](https://developer.hashicorp.com/terraform/language/import) block.
 

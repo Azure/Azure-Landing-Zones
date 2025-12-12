@@ -28,7 +28,7 @@ In order to use the secure island approach, you can follow these steps:
 
 This will result in the bootstrap resources being deployed in the new subscription and management group hierarchy, while the Azure Landing Zone is deployed into the defined management group hierarchy.
 
-### Option 2 - Separate subscription under Azure Landing Zones management group hierarchy
+### Option 2 - Separate subscription under Azure landing zone management group hierarchy
 
 1. Create a new subscription for the bootstrap resources. Take note of the subscription id.
 2. Grant owner rights to the account you are using to deploy the accelerator on the new subscription.

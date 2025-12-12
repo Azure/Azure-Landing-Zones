@@ -185,7 +185,7 @@ When this happens, we will flag it in the [release notes](https://github.com/Azu
     git clone https://github.com/Azure/alz-terraform-accelerator ~/code/alz-terraform-accelerator
     ```
 
-1. Copy the platform landing zones .tf files over to your local cloned version of the repository. This will ensure you have the latest version of the module code.
+1. Copy the Platform landing zone .tf files over to your local cloned version of the repository. This will ensure you have the latest version of the module code.
 
     ```powershell
     $pathToMyModuleFolder = "~/code/my-module-folder"

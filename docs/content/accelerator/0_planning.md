@@ -12,16 +12,16 @@ This phase is optional. You can skip it and go straight to [Phase 1]({{< relref 
 
 ## 1 - Learn
 
-Learn about the Azure landing zones architecture and the accelerator.
+Learn about the Azure landing zone architecture and the accelerator.
 
 ### Glossary
 
 You should understand these terms before you start:
 
 * Infrastructure as Code (IaC): Managing and provisioning infrastructure through machine-readable definition files rather than manual configuration.
-* Platform Landing Zone: See [Azure landing zone documentation](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
-* Bootstrap or Bootstrap Module: The IaC module that sets up version control, CI/CD pipelines, and required Azure resources before deploying the Platform Landing Zone.
-* Starter or Starter Module: A pre-configured IaC module for deploying platform landing zone configurations.
+* Platform landing zone: See [Azure landing zone documentation](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
+* Bootstrap or Bootstrap Module: The IaC module that sets up version control, CI/CD pipelines, and required Azure resources before deploying the Platform landing zone.
+* Starter or Starter Module: A pre-configured IaC module for deploying Platform landing zone configurations.
 * Accelerator PowerShell Module: The PowerShell module that is used to deploy the bootstrap. Find it here: [https://www.powershellgallery.com/packages/ALZ](https://www.powershellgallery.com/packages/ALZ).
 
 ### Technical Knowledge
@@ -42,7 +42,7 @@ This file has several tabs, described here:
 
 * Accelerator - Bootstrap: This tab details the settings required for the bootstrap configuration
 * Accelerator - Bicep: This tab details the settings required for the Bicep configuration
-* Accelerator - Terraform: This tab details the settings required for the Azure Verified Modules for Platform Landing Zone (ALZ) configuration
+* Accelerator - Terraform: This tab details the settings required for the Azure Verified Modules for Platform landing zone (ALZ) configuration
 
 {{< hint type=tip >}}
 As an advanced user, you can go right ahead and fill in the configuration file directly, you don't have to use the spreadsheet.
@@ -50,10 +50,10 @@ As an advanced user, you can go right ahead and fill in the configuration file d
 
 After following this set of decisions, you will have a completed `checklist.xlsx` file that you can use in phases 1 and 2.
 
-There are two sets of decisions to make, one for the bootstrap and one for the platform landing zone.
+There are two sets of decisions to make, one for the bootstrap and one for the Platform landing zone.
 
 * [Bootstrap Decisions](#3---bootstrap-decisions)
-* [Platform Landing Zone (Starter) Decisions](#4---platform-landing-zone-starter-decisions)
+* [Platform landing zone (Starter) Decisions](#4---platform-landing-zone-starter-decisions)
 
 ## 3 - Bootstrap Decisions
 
@@ -98,9 +98,9 @@ Below is a table describing the available starter modules, along with guidance o
 
 | Starter Module | Setting | Description | Recommendation |
 |--|--|----|---|
-| [Bicep - Platform Landing Zone]({{< relref "startermodules/bicep-platform-landing-zone">}}) | `complete` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. Uses the alz-bicep-accelerator framework. | Use this for new Bicep deployments (iac_type: `bicep`) |
+| [Bicep - Platform landing zone]({{< relref "startermodules/bicep-platform-landing-zone">}}) | `complete` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. Uses the alz-bicep-accelerator framework. | Use this for new Bicep deployments (iac_type: `bicep`) |
 | [Bicep Classic - Complete]({{< relref "startermodules/bicep-classic-complete">}}) | `complete` | Multi-region implementation using traditional ALZ-Bicep modules. | Use this for existing Bicep deployments (iac_type: `bicep-classic`) |
-| [Terraform - Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "startermodules/terraform-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Terraform deployments |
+| [Terraform - Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "startermodules/terraform-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Terraform deployments |
 
 Fill out the `Starter module` value with either `complete` or `platform_landing_zone`.
 
@@ -117,9 +117,9 @@ The bootstrap resources include:
 
 Fill out the `Bootstrap region` value with the Azure region you have chosen.
 
-### Decision 5 - Choose region(s) for the platform landing zone resources
+### Decision 5 - Choose region(s) for the Platform landing zone resources
 
-Choose the Azure region(s) for platform landing zone resources based on your data sovereignty or latency requirements.
+Choose the Azure region(s) for Platform landing zone resources based on your data sovereignty or latency requirements.
 
 Fill out the `Platform landing zone region(s)` value with the Azure region(s) you have chosen.
 
@@ -127,7 +127,7 @@ Fill out the `Platform landing zone region(s)` value with the Azure region(s) yo
 
 The parent management group will contain the management groups created by the bootstrap and must already exist.
 
-We recommend `Tenant Root Group`. The platform landing zone hierarchy builds underneath it, with only permission changes applied at that level (no policies).
+We recommend `Tenant Root Group`. The Platform landing zone hierarchy builds underneath it, with only permission changes applied at that level (no policies).
 
 {{< hint type=warning >}}
 If a parent management group other than Tenant Root Group is chosen, then move the 3 platform subscriptions into the management group before proceeding.
@@ -203,10 +203,10 @@ Review the remaining settings in the `Accelerator - Bootstrap` tab of the `check
 
 You may wish to follow the steps for [phase 1 pre-requisites Azure DevOps]({{< relref "1_prerequisites/azuredevops">}}) or [phase 1 pre-requisites GitHub]({{< relref "1_prerequisites/github">}}) to create the personal access tokens (PAT) and add the PAT to the checklist.
 
-## 4 - Platform Landing Zone (Starter) Decisions
+## 4 - Platform landing zone (Starter) Decisions
 
 {{< hint type=note >}}
-This section applies only to the Terraform Azure Verified Modules for Platform Landing Zone (ALZ) starter module at this time. For all others, continue on to [Phase 1]({{< relref "1_prerequisites">}}).
+This section applies only to the Terraform Azure Verified Modules for Platform landing zone (ALZ) starter module at this time. For all others, continue on to [Phase 1]({{< relref "1_prerequisites">}}).
 {{< /hint >}}
 
 The following decisions need to be made before you start the starter module process.
@@ -215,7 +215,7 @@ Fill out the `Accelerator - Terraform - ALZ` tab of the `checklist.xlsx` file wi
 
 ### Decision 1 - Choose a scenario
 
-The Azure Verified Modules for Platform Landing Zone (ALZ) starter module supports a number of scenarios as a starting point.
+The Azure Verified Modules for Platform landing zone (ALZ) starter module supports a number of scenarios as a starting point.
 
 The scenarios can be found in the [SCENARIOS]({{< relref "startermodules/terraform-platform-landing-zone/scenarios" >}}) section.
 
@@ -225,7 +225,7 @@ Fill out the `Scenario` section with the scenario you have chosen.
 
 ### Decision 2 - Choose options
 
-The Azure Verified Modules for Platform Landing Zone (ALZ) starter module supports a number of options that can be applied to a scenario.
+The Azure Verified Modules for Platform landing zone (ALZ) starter module supports a number of options that can be applied to a scenario.
 
 The options can be found in the [OPTIONS]({{< relref "startermodules/terraform-platform-landing-zone/options" >}}) section.
 

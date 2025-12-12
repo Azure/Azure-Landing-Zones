@@ -73,16 +73,16 @@ agent_container_zone_support: false
 ╵
 ```
 
-## Error: Failed to delete resource - when destroying the platform landing zone on the module.management_groups.module.management_groups.azapi_resource.subscription_(platform subscription) resource
+## Error: Failed to delete resource - when destroying the Platform landing zone on the module.management_groups.module.management_groups.azapi_resource.subscription_(platform subscription) resource
 
-If you are trying to destroy your platform landing zone and you see three errors like the below, it is because you don't have permissions on the management group that it is trying to move the subscriptions to.
+If you are trying to destroy your Platform landing zone and you see three errors like the below, it is because you don't have permissions on the management group that it is trying to move the subscriptions to.
 
 This is the default management group, in most cases `Tenant Root Group`. If you didn't use `Tenant Root Group` as your root parent management group for the deployment, you will recall that you had to move the platform subscriptions under the management group you defined. The bootstrap only applied permissions to that management group and therefore has no permissions on your default management group.
 
 You have two options to resolve this:
 
-1. Manually move the subscriptions back to the default management group or your chosen root management group before destroying the platform landing zone.
-2. Change the default management group for your tenant to the management group you used for the platform landing zone.
+1. Manually move the subscriptions back to the default management group or your chosen root management group before destroying the Platform landing zone.
+2. Change the default management group for your tenant to the management group you used for the Platform landing zone.
 
 ```text
 ╷

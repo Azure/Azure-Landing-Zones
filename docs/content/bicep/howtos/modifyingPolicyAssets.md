@@ -3,12 +3,12 @@ title: Updating the ALZ Library Version
 weight: 10
 ---
 
-The ALZ (Azure Landing Zones) library contains Microsoft-provided policy definitions, policy set definitions, role definitions, and policy assignments. This library is updated regularly with new policies, security improvements, and best practices.
+The ALZ (Azure landing zone) library contains Microsoft-provided policy definitions, policy set definitions, role definitions, and policy assignments. This library is updated regularly with new policies, security improvements, and best practices.
 
 {{< hint type=warning >}}
 **IMPORTANT: Read Release Notes Before Updating**
 
-Always review both the [Azure Landing Zones Library release notes](https://github.com/Azure/Azure-Landing-Zones-Library/releases) and the [alz-bicep-accelerator release notes](https://github.com/Azure/alz-bicep-accelerator/releases) before updating the ALZ library version.
+Always review both the [Azure landing zone Library release notes](https://github.com/Azure/Azure-Landing-Zones-Library/releases) and the [alz-bicep-accelerator release notes](https://github.com/Azure/alz-bicep-accelerator/releases) before updating the ALZ library version.
 
 Release notes contain critical information about:
 
@@ -44,7 +44,7 @@ The ALZ library version is managed through the `alz_library_metadata.json` file 
 {
   "$schema": "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/main/schemas/library_metadata.json",
   "name": "local",
-  "display_name": "ALZ Accelerator - Azure Verified Modules for ALZ Platform Landing Zone",
+  "display_name": "ALZ Accelerator - Azure Verified Modules for ALZ Platform landing zone",
   "description": "This library allows overriding policies, archetypes, and management group architecture in the ALZ Accelerator.",
   "dependencies": [
     {
@@ -55,7 +55,7 @@ The ALZ library version is managed through the `alz_library_metadata.json` file 
 }
 ```
 
-The `ref` field specifies the version of the [Azure Landing Zones Library](https://github.com/Azure/Azure-Landing-Zones-Library) to use.
+The `ref` field specifies the version of the [Azure landing zone Library](https://github.com/Azure/Azure-Landing-Zones-Library) to use.
 
 ## Prerequisites
 
@@ -75,9 +75,9 @@ This is the **most critical step** in the update process. Do not skip it.
 
 Before proceeding with any update, thoroughly review the release notes from both repositories:
 
-#### Azure Landing Zones Library Release Notes
+#### Azure landing zone Library Release Notes
 
-Visit the [Azure Landing Zones Library releases](https://github.com/Azure/Azure-Landing-Zones-Library/releases) page and review:
+Visit the [Azure landing zone Library releases](https://github.com/Azure/Azure-Landing-Zones-Library/releases) page and review:
 
 - **Breaking Changes** - Pay special attention to:
   - Policy assignments that have been renamed or removed
@@ -134,7 +134,7 @@ Only delete the `alz/` directory. Do **not** delete the `customer/` directory if
 
 ### Step 4: Regenerate the ALZ Library
 
-Use the `alzlibtool.exe` to regenerate the library from the Azure Landing Zones Library repository:
+Use the `alzlibtool.exe` to regenerate the library from the Azure landing zone Library repository:
 
 ```powershell
 # Navigate to the tooling directory
@@ -159,7 +159,7 @@ cd C:\Path\To\templates\core\governance\tooling
 The tool will:
 
 1. Read the version from `alz_library_metadata.json`
-1. Download the specified version from the Azure Landing Zones Library GitHub repository
+1. Download the specified version from the Azure landing zone Library GitHub repository
 1. Generate policy definitions, policy set definitions, role definitions, and policy assignments
 1. Organize files by management group scope
 
@@ -280,7 +280,7 @@ The What-If analysis uses standard Azure deployments with the `-WhatIf` paramete
 **For GitHub Actions:**
 
 ```yaml
-# Workflow: 01 Azure Landing Zones Continuous Integration
+# Workflow: 01 Azure landing zone Continuous Integration
 # Triggered on: Pull Request to main branch
 # Permissions: id-token (write), contents (read), pull-requests (write)
 ```
@@ -415,4 +415,4 @@ param intRootConfig = {
 
 - [Modifying Policy Assignments]({{< relref "modifyingPolicyAssignments" >}}) - How to customize policy parameters
 - [Modifying Management Group Hierarchy]({{< relref "modifyingMgHierarchy" >}}) - Customizing management groups
-- [Azure Landing Zones Library](https://github.com/Azure/Azure-Landing-Zones-Library) - Source library repository
+- [Azure landing zone Library](https://github.com/Azure/Azure-Landing-Zones-Library) - Source library repository

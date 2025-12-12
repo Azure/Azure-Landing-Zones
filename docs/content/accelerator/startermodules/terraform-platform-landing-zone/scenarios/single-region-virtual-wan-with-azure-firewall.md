@@ -3,13 +3,13 @@ title: 7 - Single-Region Virtual WAN with Azure Firewall
 weight: 7
 ---
 
-A full platform landing zone deployment with Virtual WAN network connectivity using Azure Firewall in a single region.
+A full Platform landing zone deployment with Virtual WAN network connectivity using Azure Firewall in a single region.
 
 {{< hint type=warning >}}
 The single region option is here for completeness, we recommend always having at least 2 regions to support resiliency.
 {{< /hint >}}
 
-* Example platform landing zone configuration file: [full-single-region/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-single-region/virtual-wan.tfvars)
+* Example Platform landing zone configuration file: [full-single-region/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-single-region/virtual-wan.tfvars)
 
 ## Resources
 

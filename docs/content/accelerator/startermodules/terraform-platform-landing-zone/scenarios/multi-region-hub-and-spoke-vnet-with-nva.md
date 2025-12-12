@@ -3,9 +3,9 @@ title: 3 - Multi-Region Hub and Spoke Virtual Network with Network Virtual Appli
 weight: 3
 ---
 
-A full platform landing zone deployment with hub and spoke Virtual Network connectivity in multiple regions, ready for a third party Network Virtual Appliance (NVA).
+A full Platform landing zone deployment with hub and spoke Virtual Network connectivity in multiple regions, ready for a third party Network Virtual Appliance (NVA).
 
-* Example platform landing zone configuration file: [full-multi-region-nva/hub-and-spoke-vnet.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region-nva/hub-and-spoke-vnet.tfvars)
+* Example Platform landing zone configuration file: [full-multi-region-nva/hub-and-spoke-vnet.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region-nva/hub-and-spoke-vnet.tfvars)
 
 ## Resources
 

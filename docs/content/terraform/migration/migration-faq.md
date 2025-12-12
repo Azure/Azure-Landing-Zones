@@ -1,11 +1,11 @@
 ---
 title: Migration FAQ
-description: Frequently asked questions about the migration from CAF Enterprise Scale to Azure Verified Modules for Platform Landing Zones (ALZ)
+description: Frequently asked questions about the migration from CAF Enterprise Scale to Azure Verified Modules (AVM) for Platform landing zone (ALZ)
 geekdocCollapseSection: true
 weight: 20
 ---
 
-This document contains frequently asked questions about the migration from CAF Enterprise Scale to Azure Verified Modules for Platform Landing Zones (ALZ).
+This document contains frequently asked questions about the migration from CAF Enterprise Scale to Azure Verified Modules (AVM) for Platform landing zone (ALZ).
 
 ## When applying Terraform, I get the error "The resource operation completed with terminal provisioning state 'Failed'." for the Firewall Policy
 

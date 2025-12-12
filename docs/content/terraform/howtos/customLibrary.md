@@ -17,7 +17,7 @@ If you don't want to use a filesystem, you may use a git reference, or any other
 You can then use one of two approaches to tell the provider to use your custom library:
 
 {{< hint type=tip >}}
-The ALZ provider has a default value for the `library_references` attribute, which is the official Azure Landing Zones library.
+The ALZ provider has a default value for the `library_references` attribute, which is the official Azure landing zone library.
 Each release of the provider may update this value to a newer version.
 The value is documented [here](https://registry.terraform.io/providers/Azure/alz/latest/docs#library_references-1).
 {{< /hint >}}
@@ -64,7 +64,7 @@ First create the metadata file `alz_library_metadata.json` in your custom librar
   "$schema": "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/main/schemas/library_metadata.json",
   "name": "custom",
   "display_name": "My custom library",
-  "description": "This library contains customizations to Azure Landing Zones.",
+  "description": "This library contains customizations to Azure landing zone.",
   "dependencies": [
     {
       "path": "platform/alz",
