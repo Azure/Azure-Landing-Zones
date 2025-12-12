@@ -6,7 +6,7 @@ weight: 20
 
 ALZ ❤️ AVM - Azure Verified Modules for Platform Landing Zones (ALZ)
 
-Based on continuous feedback from the community, we have adopted a more modular approach to deploying Azure Landing Zones with Bicep.
+Based on upon feedback from the community and ensuring that we are aligned to Microsoft's best practices, we have adopted a more modular approach to deploying Azure Landing Zones with Bicep.
 This new approach is based on [Azure Verified Modules](https://aka.ms/avm) (AVM) and is designed to be more flexible.
 
 ## Branding
@@ -119,7 +119,7 @@ New-AzManagementGroupDeploymentStack `
 ### What-If Support
 
 {{< hint type=note >}}
-Azure Deployment Stacks do not currently support what-if operations. To provide preview capabilities, the CI/CD pipelines run what-if analysis using standard Azure deployments with the `-WhatIf` parameter before executing the deployment stack.
+Azure Deployment Stacks do not currently support what-if operations although it is planned for the near future. To provide preview capabilities, the CI/CD pipelines run what-if analysis using standard Azure deployments with the `-WhatIf` parameter before executing the deployment stack.
 
 This means:
 
@@ -127,12 +127,16 @@ This means:
 - **CD pipelines** deploy using `New-AzManagementGroupDeploymentStack`
 {{< /hint >}}
 
-### Deployment Stack Lifecycle
+{{< hint type=important >}}
+Be aware that what-if analysis using standard deployments may not perfectly reflect the final state after deployment stack execution, especially regarding resource deletions. Always review the deployment stack results carefully.
+{{< /hint >}}
+
+### Updating Your Landing Zone
 
 When updating your Azure Landing Zone (e.g., updating the ALZ library version):
 
-1. **Update templates** - Modify Bicep files or parameter files
+1. **Update templates** - Modify Bicep files and/or parameter files
 2. **Commit and PR** - Create pull request with changes
 3. **CI validation** - What-if analysis shows what will change (currently uses standard deployments; will transition to deployment stacks once what-if support is added)
 4. **Merge and deploy** - CD pipeline creates/updates deployment stack
-5. **Automatic cleanup** - Stack automatically removes deprecated resources that are no longer defined in templates
+5. **Automatic cleanup** - Stack automatically removes deprecated resources that are no longer defined in the configuration

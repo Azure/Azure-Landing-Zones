@@ -241,23 +241,3 @@ param landingzonesCorpConfig = {
 4. **Test First**: Test changes in a non-production environment
 5. **Document Customizations**: Maintain documentation of why you deviated from the default structure
 6. **Deploy in Order**: Always deploy parent management groups before children
-
-## Deployment
-
-After modifying management group configurations, deploy each management group separately:
-
-```bash
-# Deploy int-root first
-az deployment mg create \
-  --location <location> \
-  --management-group-id <parent-mg-id> \
-  --template-file templates/core/governance/mgmt-groups/int-root/main.bicep \
-  --parameters templates/core/governance/mgmt-groups/int-root/main.bicepparam
-
-# Then deploy child management groups
-az deployment mg create \
-  --location <location> \
-  --management-group-id alz \
-  --template-file templates/core/governance/mgmt-groups/platform/main.bicep \
-  --parameters templates/core/governance/mgmt-groups/platform/main.bicepparam
-```
