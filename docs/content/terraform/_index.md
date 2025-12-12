@@ -4,7 +4,7 @@ geekdocCollapseSection: true
 weight: 25
 ---
 
-ALZ ❤️ AVM - Azure Verified Modules (AVM) for Platform landing zone (ALZ)
+ALZ ❤️ AVM - Azure Verified Modules (AVM) for Platform landing zone (ALZ) - Terraform
 
 Based on continuous feedback from the community, we have adopted a more modular approach to deploying Azure landing zone with Terraform.
 This new approach is based on [Azure Verified Modules](https://aka.ms/avm) (AVM) and is designed to be more flexible.
@@ -14,7 +14,7 @@ This new approach is based on [Azure Verified Modules](https://aka.ms/avm) (AVM)
 With the move to using Azure Verified Modules, we have new branding!
 We are using the following wording to describe the new offerings:
 
-> **Azure Verified Modules (AVM) for Platform landing zone (ALZ)**
+> **Azure Verified Modules (AVM) for Platform landing zone (ALZ) - Terraform**
 
 ## Why have we made this change?
 
