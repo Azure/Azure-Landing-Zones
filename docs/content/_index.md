@@ -28,7 +28,7 @@ The bootstrap is the first step in the Azure landing zone journey.
 It is the process of setting up the foundational components that will be used to deploy and manage Azure landing zone.
 In this step we ensure we have the correct access and some subscriptions to work with.
 
-See the [bootstrap]({{< relref "bootstrap" >}}) section for more information.
+See the [getting started]({{< relref "bootstrap" >}}) section for more information.
 
 ### Azure landing zone platform
 
