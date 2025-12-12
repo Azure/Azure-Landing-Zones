@@ -42,12 +42,10 @@ The new approach is based on [Azure Verified Modules](https://aka.ms/avm) and is
 
 Here is the list of modules that pertain to Azure Landing Zones and covers the scope of the original ALZ Terraform module:
 
-- [ALZ core](https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/latest)
-- [ALZ management](https://registry.terraform.io/modules/Azure/avm-ptn-alz-management/azurerm/latest)
-- [Hub networking](https://registry.terraform.io/modules/Azure/avm-ptn-hubnetworking/azurerm/latest)
-- [Virtual network gateway](https://registry.terraform.io/modules/Azure/avm-ptn-vnetgateway/azurerm/latest)
-- [Virtual WAN](https://registry.terraform.io/modules/Azure/avm-ptn-virtualwan/azurerm/latest)
-- [Private link DNS zones](https://registry.terraform.io/modules/Azure/avm-ptn-network-private-link-private-dns-zones/azurerm/latest)
+- [Management Groups, Policy and Role Assignments](https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/latest)
+- [Management Resources](https://registry.terraform.io/modules/Azure/avm-ptn-alz-management/azurerm/latest)
+- [Hub and Spoke Networking](https://registry.terraform.io/modules/Azure/avm-ptn-alz-connectivity-hub-and-spoke-vnet/azurerm/latest)
+- [Virtual WAN](https://registry.terraform.io/modules/Azure/avm-ptn-alz-connectivity-virtual-wan/azurerm/latest)
 
 {{< hint type=tip >}}
 Refer to each module's documentation to understand the full list of features and customization options.

@@ -1,5 +1,5 @@
 ---
-title: Known Issues
+title: Known issues
 geekdocCollapseSection: true
 weight: 40
 resources:
