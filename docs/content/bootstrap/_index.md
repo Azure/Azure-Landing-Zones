@@ -1,5 +1,5 @@
 ---
-title: Bootstrap
+title: Getting started
 weight: 10
 ---
 
