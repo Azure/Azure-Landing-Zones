@@ -204,5 +204,5 @@ If you believe an issue is with an underlying AVM module (not the ALZ framework)
 
 If you encounter issues during updates:
 
-- **General Guidance and Framework Issues**: Check the [Azure Landing Zones documentation](https://aka.ms/alz/acc)
+- **General Guidance and Framework Issues**: Check the [Azure landing zone documentation](https://aka.ms/alz/acc)
 - **Module Issues**: Submit to [bicep-registry-modules](https://github.com/Azure/bicep-registry-modules) for the specific module

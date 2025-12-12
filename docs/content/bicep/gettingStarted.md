@@ -4,8 +4,8 @@ weight: 10
 ---
 
 {{< hint type=tip >}}
-We recommend that you use the [accelerator]({{< relref "accelerator" >}}) to deploy Azure Landing Zones with Bicep.
-This guide is for those that want to deploy Azure Landing Zones using the Bicep templates directly.
+We recommend that you use the [accelerator]({{< relref "accelerator" >}}) to deploy Azure landing zone with Bicep.
+This guide is for those that want to deploy Azure landing zone using the Bicep templates directly.
 This guide assumes that you are comfortable composing and utilizing Bicep templates and modules.
 {{< /hint >}}
 

@@ -4,14 +4,14 @@ weight: 10
 ---
 
 {{< hint type=tip >}}
-We recommend that you use the [accelerator]({{< relref "accelerator" >}}) to deploy Azure Landing Zones with Terraform.
-This guide is for those that want to deploy Azure Landing Zones using the Terraform modules directly.
+We recommend that you use the [accelerator]({{< relref "accelerator" >}}) to deploy Azure landing zone with Terraform.
+This guide is for those that want to deploy Azure landing zone using the Terraform modules directly.
 This guide assumes that you are comfortable composing modules.
 {{< /hint >}}
 
 ## Add `.alzlib` to your gitignore
 
-The [Azure Landing Zones provider](https://registry.terraform.io/providers/Azure/alz/latest/docs) is used to process the landing zone library data and produce a coherent set of policy assets for deployment.
+The [Azure landing zone provider](https://registry.terraform.io/providers/Azure/alz/latest/docs) is used to process the landing zone library data and produce a coherent set of policy assets for deployment.
 The provider uses a local cache to store the library references.
 This cache is stored in a directory called `.alzlib` in your working directory.
 You should add this directory to your gitignore file to prevent it from being committed to your repository.
@@ -124,7 +124,7 @@ module "alz" {
 ## Review Policy Assignments
 
 {{< hint type=tip >}}
-Azure Landing Zones contains Microsoft's prescriptive guidance for getting started in Azure.
+Azure landing zone contains Microsoft's prescriptive guidance for getting started in Azure.
 We recommend leaving these policy assignments enabled unless you have a specific reason to disable them.
 {{< /hint >}}
 
@@ -154,7 +154,7 @@ module "alz" {
 
 ### DDoS Protection
 
-Azure Landing Zones has a policy assignment called `Enable-DDoS-VNET` that enables DDoS protection on all in-scope virtual networks.
+Azure landing zone has a policy assignment called `Enable-DDoS-VNET` that enables DDoS protection on all in-scope virtual networks.
 It is assigned at the `platform` management group.
 
 If you do not have a DDoS protection plan, you should disable this policy assignment, if you do not then virtual networks deployments in the `platform` management group will fail due to the default value for the DDoS protection plan resource id.
@@ -175,7 +175,7 @@ If you use a third party monitoring solution, you should disable the following p
 
 ## Additional Role Assignments
 
-The Azure Landing Zones provider will correctly calculate the role assignments required for the policy assignments.
+The Azure landing zone provider will correctly calculate the role assignments required for the policy assignments.
 This includes supporting resources that require role assignments outside of the assignment scope.
 
 We do this by looking at the [`assignPermissions`](https://learn.microsoft.com/azure/governance/policy/concepts/definition-structure-parameters?branch=main&branchFallbackFrom=pr-en-us-292127#parameter-properties) metadata property in the policy definition parameters.

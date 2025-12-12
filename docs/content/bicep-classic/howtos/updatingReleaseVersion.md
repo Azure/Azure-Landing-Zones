@@ -3,7 +3,7 @@ title: Updating the Release Version
 weight: 10
 ---
 
-This guide outlines the steps to update the release version of the [Azure Landing Zones Bicep](https://github.com/Azure/ALZ-Bicep) modules used in your Accelerator framework.
+This guide outlines the steps to update the release version of the [Azure landing zone Bicep](https://github.com/Azure/ALZ-Bicep) modules used in your Accelerator framework.
 
 We recommend updating to the latest minor or patch version of the ALZ Bicep modules to take advantage of bug fixes, new features, and ongoing improvements.
 
@@ -19,7 +19,7 @@ In your cloned **primary** repository (not the `templates` repository, if `use_s
 
 ## Step Two – Set the New Release Version
 
-In the `parameters.json` file, locate the `RELEASE_VERSION` parameter and update it to the desired version from the [Azure Landing Zones Bicep releases](https://github.com/Azure/ALZ-Bicep/releases).
+In the `parameters.json` file, locate the `RELEASE_VERSION` parameter and update it to the desired version from the [Azure landing zone Bicep releases](https://github.com/Azure/ALZ-Bicep/releases).
 
 Example:
 
@@ -59,7 +59,7 @@ After pushing your changes, open a pull request (PR) in your primary repository 
 This PR allows your team to:
 
 - Review the changes.
-- Validate them using the automated `what-if` analysis built into the CI (01 Azure Landing Zones Continuous Integration) pipeline/workflow.
+- Validate them using the automated `what-if` analysis built into the CI (01 Azure landing zone Continuous Integration) pipeline/workflow.
 - Ensure the updated release version and parameter changes will not introduce unexpected changes to the environment.
 
 Use clear commit messages and PR titles like:
@@ -72,12 +72,12 @@ Once reviewed and approved, the PR can be safely merged.
 
 Once the pull request is approved and merged into the `main` branch:
 
-- The `02 Azure Landing Zones Continuous Delivery` pipeline/workflow will be automatically triggered.
+- The `02 Azure landing zone Continuous Delivery` pipeline/workflow will be automatically triggered.
 - This pipeline/workflow will perform a `what-if` analysis to preview changes.
-- If no issues are detected, it will proceed to deploy the updated Azure Landing Zones Bicep modules to your Azure environment.
+- If no issues are detected, it will proceed to deploy the updated Azure landing zone Bicep modules to your Azure environment.
 
 {{< hint type=note >}}
-If you have approvers configured for the `02 Azure Landing Zones Continuous Delivery` pipeline/workflow, you will need to wait for them to approve the deployment before it proceeds with the actual deployment.
+If you have approvers configured for the `02 Azure landing zone Continuous Delivery` pipeline/workflow, you will need to wait for them to approve the deployment before it proceeds with the actual deployment.
 
 You may also need to manually trigger the pipeline/workflow if it does not automatically run after the pull request is merged, depending on your pipeline/workflow triggers.
 {{< /hint >}}

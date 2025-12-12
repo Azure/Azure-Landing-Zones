@@ -8,7 +8,7 @@ This section details the prerequisites for the platform subscriptions.
 
 ## 1 - Management Group
 
-You will need to choose the parent management group for your platform landing zone structure to sit under. This could be the `Tenant Root Group` or a new management group you create under there if preferred.
+You will need to choose the parent management group for your Platform landing zone structure to sit under. This could be the `Tenant Root Group` or a new management group you create under there if preferred.
 
 {{< hint type=warning >}}
 If a parent management group other than Tenant Root Group is chosen, then you must move the 4 platform subscriptions into that management group before proceeding.
@@ -16,7 +16,7 @@ If a parent management group other than Tenant Root Group is chosen, then you mu
 
 ## 2 - Azure Subscriptions
 
-We recommend setting up 4 subscriptions for platform landing zone. These are management, identity, connectivity, and security. See our [advanced scenarios]({{< relref "advancedscenarios" >}}) section for alternatives.
+We recommend setting up 4 subscriptions for Platform landing zone. These are management, identity, connectivity, and security. See our [advanced scenarios]({{< relref "advancedscenarios" >}}) section for alternatives.
 
 - Management: This is used to deploy the bootstrap and management resources, such as log analytics and automation accounts.
 - Identity: This is used to deploy the identity resources, such as Azure AD and Microsoft Entra Domain Services (formerly Azure AD DS) .
@@ -48,7 +48,7 @@ Bicep (AVM), Bicep Classic, and Terraform all require the following permissions:
 
 - `Owner` on your chosen parent management group.
   - `Owner` is required because this account grants permissions to the identities that run the management group deployment. Those identities are granted only the permissions they need.
-- `Owner` on each of your 4 platform landing zone subscriptions.
+- `Owner` on each of your 4 Platform landing zone subscriptions.
 
 The new Bicep (AVM) framework has one additional requirement:
 

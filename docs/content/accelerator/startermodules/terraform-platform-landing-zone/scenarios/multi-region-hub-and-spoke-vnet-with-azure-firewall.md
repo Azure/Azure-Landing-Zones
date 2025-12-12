@@ -3,7 +3,7 @@ title: 1 - Multi-Region Hub and Spoke Virtual Network with Azure Firewall
 weight: 1
 ---
 
-A full platform landing zone deployment with hub and spoke Virtual Network connectivity using Azure Firewall in multiple regions.
+A full Platform landing zone deployment with hub and spoke Virtual Network connectivity using Azure Firewall in multiple regions.
 
 * Example Platform landing zone configuration file: [full-multi-region/hub-and-spoke-vnet.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region/hub-and-spoke-vnet.tfvars)
 

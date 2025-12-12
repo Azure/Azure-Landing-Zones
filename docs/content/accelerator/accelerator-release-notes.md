@@ -1,6 +1,6 @@
 ---
 title: Release Notes
-description: Release notes for the Accelerator Terraform Platform Landing Zone Starter Module
+description: Release notes for the Accelerator Terraform Platform landing zone Starter Module
 weight: 200
 ---
 
@@ -142,7 +142,7 @@ Read more about the H2 FY25 policy refresh [here](https://github.com/Azure/Enter
 The Security management group is on by default. In order to not deploy the Security management group, you need to:
 
 - Remove it from the [architecture definition file](https://github.com/Azure/alz-terraform-accelerator/blob/main/templates/platform_landing_zone/lib/architecture_definitions/alz_custom.alz_architecture_definition.yaml)
-- Remove it from the [subscription placements in the platform landing zone configuration file](https://github.com/Azure/alz-terraform-accelerator/blob/b4115bfe9e6606a06def329f9e0574bc80747c83/templates/platform_landing_zone/examples/full-multi-region/hub-and-spoke-vnet.tfvars#L226)
+- Remove it from the [subscription placements in the Platform landing zone configuration file](https://github.com/Azure/alz-terraform-accelerator/blob/b4115bfe9e6606a06def329f9e0574bc80747c83/templates/platform_landing_zone/examples/full-multi-region/hub-and-spoke-vnet.tfvars#L226)
 - Remove the security subscription line from the bootstrap configuration file if using the accelerator for a new deployment
 
 ---

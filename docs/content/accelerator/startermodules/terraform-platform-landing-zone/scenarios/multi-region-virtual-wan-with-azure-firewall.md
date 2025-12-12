@@ -3,9 +3,9 @@ title: 2 - Multi-Region Virtual WAN with Azure Firewall
 weight: 2
 ---
 
-A full platform landing zone deployment with Virtual WAN network connectivity using Azure Firewall in multiple regions.
+A full Platform landing zone deployment with Virtual WAN network connectivity using Azure Firewall in multiple regions.
 
-* Example platform landing zone configuration file: [full-multi-region/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region/virtual-wan.tfvars)
+* Example Platform landing zone configuration file: [full-multi-region/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-multi-region/virtual-wan.tfvars)
 
 ## Resources
 

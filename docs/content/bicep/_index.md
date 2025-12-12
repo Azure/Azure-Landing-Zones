@@ -4,9 +4,9 @@ geekdocCollapseSection: true
 weight: 20
 ---
 
-ALZ ❤️ AVM - Azure Verified Modules for Platform Landing Zones (ALZ)
+ALZ ❤️ AVM - Azure Verified Modules (AVM) for Platform landing zone (ALZ)
 
-Based on upon feedback from the community and ensuring that we are aligned to Microsoft's best practices, we have adopted a more modular approach to deploying Azure Landing Zones with Bicep.
+Based on upon feedback from the community and ensuring that we are aligned to Microsoft's best practices, we have adopted a more modular approach to deploying Azure landing zone with Bicep.
 This new approach is based on [Azure Verified Modules](https://aka.ms/avm) (AVM) and is designed to be more flexible.
 
 ## Branding
@@ -14,7 +14,7 @@ This new approach is based on [Azure Verified Modules](https://aka.ms/avm) (AVM)
 With the move to using Azure Verified Modules, we have new branding!
 We are using the following wording to describe the new offerings:
 
-> **Azure Verified Modules for Platform Landing Zones (ALZ)**
+> **Azure Verified Modules (AVM) for Platform landing zone (ALZ)**
 
 ## Why have we made this change?
 
@@ -40,7 +40,7 @@ You also asked that we make it easier for organizations to have different teams 
 
 The new approach is based on [Azure Verified Modules](https://aka.ms/avm) and is designed to be more flexible.
 
-The [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) repository provides Bicep templates that leverage Azure Verified Modules for deploying Azure Landing Zones. These templates cover the complete scope of an Azure Landing Zone deployment:
+The [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) repository provides Bicep templates that leverage Azure Verified Modules for deploying Azure landing zone. These templates cover the complete scope of an Azure Landing Zone deployment:
 
 - **ALZ core**: Management group hierarchy, policies, and policy assignments
 - **ALZ management**: Log Analytics workspace and Automation account for centralized management
@@ -48,7 +48,7 @@ The [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) repo
 - **Virtual WAN**: Virtual WAN hub with routing and security configurations
 
 {{< hint type=tip >}}
-The Bicep templates in the alz-bicep-accelerator repository reference Azure Verified Modules to provide a consistent and maintainable approach to deploying Azure Landing Zones.
+The Bicep templates in the alz-bicep-accelerator repository reference Azure Verified Modules to provide a consistent and maintainable approach to deploying Azure landing zone.
 In this documentation site, we will cover the core concepts and customization options.
 For detailed module documentation, refer to the [Azure Verified Modules registry](https://aka.ms/avm).
 {{< /hint >}}

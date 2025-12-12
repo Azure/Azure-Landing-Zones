@@ -10,7 +10,7 @@ If you are familiar with Terraform `tfvars` file structure, you can skip the nex
 
 ## Platform configuration file updates
 
-Most of the options require you to update the platform configuration file. The platform configuration file is a HCL (tfvars) file that contains the configuration settings for the platform landing zone.
+Most of the options require you to update the platform configuration file. The platform configuration file is a HCL (tfvars) file that contains the configuration settings for the Platform landing zone.
 
 There are two types of settings in the platform configuration file that you may need to update. For the sake of simplicity we will refer to these as `line` and `block` settings.
 

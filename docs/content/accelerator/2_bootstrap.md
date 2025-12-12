@@ -3,7 +3,7 @@ title: Phase 2 - Bootstrap
 weight: 30
 ---
 
-Follow these instructions to bootstrap your Version Control System and Azure ready to deploy your platform landing zone.
+Follow these instructions to bootstrap your Version Control System and Azure ready to deploy your Platform landing zone.
 
 1. Run the following command, updating it for your chosen Infrastructure as Code, Version Control System and scenario number:
 
@@ -42,14 +42,14 @@ Terraform scenarios can be found in the [scenarios docs]({{< relref "startermodu
 More details about the configuration files can be found in the [configuration files]({{< relref "configuration-files" >}}) section.
     {{< /hint >}}
 
-1. Review and update the platform landing zone configuration file.
+1. Review and update the Platform landing zone configuration file.
 
-    The `starter_locations` input is required and must be updated in this file to include at least one Azure region for your platform landing zone.
+    The `starter_locations` input is required and must be updated in this file to include at least one Azure region for your Platform landing zone.
 
     More details can be found in the relevant section for your chosen Infrastructure as Code tool:
 
-    - Terraform: `platform-landing-zones.tfvars` - [Terraform Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "startermodules/terraform-platform-landing-zone" >}})
-    - Bicep: `platform-landing-zone.yaml` - [Bicep Azure Verified Modules for Platform Landing Zone (ALZ)]({{< relref "startermodules/bicep-platform-landing-zone" >}})
+    - Terraform: `platform-landing-zones.tfvars` - [Terraform Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "startermodules/terraform-platform-landing-zone" >}})
+    - Bicep: `platform-landing-zone.yaml` - [Bicep Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "startermodules/bicep-platform-landing-zone" >}})
 
     {{< hint type=tip >}}
 Terraform options can be found in the [options docs]({{< relref "startermodules/terraform-platform-landing-zone/options" >}}) section.
