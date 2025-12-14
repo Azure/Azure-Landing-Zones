@@ -80,41 +80,37 @@ To find the `policyDefinitionId` for built-in policies, use [AzAdvertizer](https
 
 For custom policies, you first need to create the policy definition (see [Creating a Custom Azure Policy Definition]({{< relref "createCustomAzurePolicy" >}})), then create an assignment that references it.
 
-### Example: Whitelist Resource Providers
+### Example: Deny Specific Resource Types
 
-This example assigns a custom policy that restricts which resource providers can be registered.
+This example assigns a custom policy that denies the deployment of specific resource types.
 
-Create a file named `Deny-Resource-Providers.alz_policy_assignment.json` in your `lib/policy_assignments/` folder:
+Create a file named `Deny-Resource-Types.alz_policy_assignment.json` in your `lib/policy_assignments/` folder:
 
 ```json
 {
   "type": "Microsoft.Authorization/policyAssignments",
   "apiVersion": "2024-04-01",
-  "name": "Deny-Resource-Providers",
+  "name": "Deny-Resource-Types",
   "dependsOn": [],
   "properties": {
-    "displayName": "Only allow whitelisted Resource Providers",
-    "description": "This policy restricts which resource providers can be registered, ensuring only approved Azure services are available.",
-    "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/placeholder/providers/Microsoft.Authorization/policyDefinitions/Deny-Resource-Providers",
+    "displayName": "Deny specific resource types",
+    "description": "This policy restricts which resource types can be deployed, ensuring only approved Azure services are available.",
+    "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/placeholder/providers/Microsoft.Authorization/policyDefinitions/Deny-Resource-Types",
     "enforcementMode": "Default",
     "nonComplianceMessages": [
       {
-        "message": "Resource provider registration is not allowed. Only approved resource providers can be registered."
+        "message": "This resource type is not allowed. Only approved resource types can be deployed."
       }
     ],
     "parameters": {
       "effect": {
         "value": "Deny"
       },
-      "allowedResourceProviders": {
+      "deniedResourceTypes": {
         "value": [
-          "Microsoft.Compute",
-          "Microsoft.Storage",
-          "Microsoft.Network",
-          "Microsoft.KeyVault",
-          "Microsoft.ManagedIdentity",
-          "Microsoft.Authorization",
-          "Microsoft.Resources"
+          "Microsoft.ClassicCompute/virtualMachines",
+          "Microsoft.ClassicStorage/storageAccounts",
+          "Microsoft.ClassicNetwork/virtualNetworks"
         ]
       }
     },
@@ -216,9 +212,6 @@ Create a file named `Enforce-Mandatory-Tags.alz_policy_assignment.json` in your 
       }
     ],
     "parameters": {
-      "effect": {
-        "value": "Audit"
-      },
       "environmentTagName": {
         "value": "Environment"
       },
@@ -270,11 +263,11 @@ name: "landing_zones_override"
 base_archetype: "landing_zones"
 policy_assignments_to_add:
   - "Require-Tag-Environment"
-  - "Deny-Resource-Providers"
+  - "Deny-Resource-Types"
   - "Allowed-Locations"
 policy_assignments_to_remove: []
 policy_definitions_to_add:
-  - "Deny-Resource-Providers"
+  - "Deny-Resource-Types"
 policy_definitions_to_remove: []
 policy_set_definitions_to_add: []
 policy_set_definitions_to_remove: []

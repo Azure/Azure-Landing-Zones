@@ -3,7 +3,7 @@ title: Creating a custom Azure Policy definition
 weight: 10
 ---
 
-This guide walks you through creating a custom Azure Policy definition for your Azure Landing Zone deployment. We'll use a practical example: creating a policy to whitelist allowed Azure Resource Providers.
+This guide walks you through creating a custom Azure Policy definition for your Azure Landing Zone deployment. We'll use a practical example: creating a policy to deny specific Azure Resource Types.
 
 {{< hint type=important >}}
 You will need to have a [custom library]({{< relref "customLibrary" >}}) if you want to add custom policies.
@@ -19,29 +19,29 @@ Policy definitions in the ALZ library follow a specific naming convention and st
 - **Filename**: `<PolicyName>.alz_policy_definition.json` (or `.yaml`)
 - **Location**: `lib/policy_definitions/` folder in your custom library
 
-## Example: Whitelist Allowed Resource Providers
+## Example: Deny Specific Resource Types
 
-This policy denies the registration of resource providers that are not in an approved list. This is useful for controlling which Azure services can be used within your organization.
+This policy denies the deployment of resource types that are in a denied list. This is useful for preventing the use of unapproved or legacy Azure services within your organization (e.g., blocking classic compute resources).
 
 ### Create the Policy Definition File
 
-Create a file named `Deny-Resource-Providers.alz_policy_definition.json` in your custom library's `policy_definitions` folder (create the folder if it doesn't exist):
+Create a file named `Deny-Resource-Types.alz_policy_definition.json` in your custom library's `policy_definitions` folder (create the folder if it doesn't exist):
 
 ```text
 lib/
 ├── policy_definitions/
-│   └── Deny-Resource-Providers.alz_policy_definition.json
+│   └── Deny-Resource-Types.alz_policy_definition.json
 ```
 
 Add the following content:
 
 ```json
 {
-  "name": "Deny-Resource-Providers",
+  "name": "Deny-Resource-Types",
   "type": "Microsoft.Authorization/policyDefinitions",
   "properties": {
-    "displayName": "Only allow whitelisted Resource Providers",
-    "description": "This policy restricts which resource providers can be registered, ensuring only approved Azure services are available.",
+    "displayName": "Only allow whitelisted Resource Types",
+    "description": "This policy restricts which resource types can be deployed, ensuring only approved Azure services are available. This is enforced by checking the resource type during deployment.",
     "policyType": "Custom",
     "mode": "All",
     "metadata": {
@@ -66,42 +66,22 @@ Add the following content:
           "Deny",
           "Disabled"
         ],
-        "defaultValue": "Deny"
+        "defaultValue": "Audit"
       },
-      "allowedResourceProviders": {
+      "deniedResourceTypes": {
         "type": "Array",
         "metadata": {
-          "displayName": "Allowed Resource Providers",
-          "description": "The list of resource providers that are allowed to be registered"
+          "displayName": "Denied Resource Types",
+          "description": "The list of resource types that are not allowed to be deployed. Example: Microsoft.Sql/servers, Microsoft.ClassicCompute/virtualMachines",
+          "strongType": "resourceTypes"
         },
-        "defaultValue": [
-          "Microsoft.Compute",
-          "Microsoft.Storage",
-          "Microsoft.Network",
-          "Microsoft.KeyVault",
-          "Microsoft.ManagedIdentity",
-          "Microsoft.Authorization",
-          "Microsoft.Resources",
-          "Microsoft.OperationalInsights",
-          "Microsoft.OperationsManagement",
-          "Microsoft.Insights",
-          "Microsoft.Security",
-          "Microsoft.PolicyInsights"
-        ]
+        "defaultValue": []
       }
     },
     "policyRule": {
       "if": {
-        "allOf": [
-          {
-            "field": "type",
-            "equals": "Microsoft.Resources/subscriptions/providers"
-          },
-          {
-            "field": "Microsoft.Resources/subscriptions/providers/resourceProviderNamespace",
-            "notIn": "[parameters('allowedResourceProviders')]"
-          }
-        ]
+        "field": "type",
+        "in": "[parameters('deniedResourceTypes')]"
       },
       "then": {
         "effect": "[parameters('effect')]"
@@ -182,7 +162,7 @@ base_archetype: "root"
 policy_assignments_to_add: []
 policy_assignments_to_remove: []
 policy_definitions_to_add:
-  - "Deny-Resource-Providers"
+  - "Deny-Resource-Types"
 policy_definitions_to_remove: []
 policy_set_definitions_to_add: []
 policy_set_definitions_to_remove: []
@@ -196,7 +176,7 @@ Adding a policy definition to an archetype only deploys the definition. To enfor
 
 ## Best Practices
 
-1. **Use meaningful names**: Policy definition names should clearly indicate their purpose using the format `Action-Resource-Description` (e.g., `Deny-Resource-Providers`, `Audit-Storage-Encryption`).
+1. **Use meaningful names**: Policy definition names should clearly indicate their purpose using the format `Action-Resource-Description` (e.g., `Deny-Resource-Types`, `Audit-Storage-Encryption`).
 
 2. **Version your policies**: Include a version number in the metadata to track changes over time.
 

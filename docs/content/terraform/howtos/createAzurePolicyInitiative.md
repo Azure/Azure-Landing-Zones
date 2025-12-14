@@ -93,8 +93,8 @@ For custom policies, use a placeholder management group path. The ALZ provider a
 
 ```json
 {
-  "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/placeholder/providers/Microsoft.Authorization/policyDefinitions/Deny-Resource-Providers",
-  "policyDefinitionReferenceId": "Deny-Unapproved-Resource-Providers",
+  "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/placeholder/providers/Microsoft.Authorization/policyDefinitions/Deny-Resource-Types",
+  "policyDefinitionReferenceId": "Deny-Unapproved-Resource-Types",
   "parameters": {
     "effect": {
       "value": "[parameters('effect')]"
@@ -104,7 +104,7 @@ For custom policies, use a placeholder management group path. The ALZ provider a
 ```
 
 {{< hint type=note >}}
-The policy definition name (e.g., `Deny-Resource-Providers`) must match the `name` field in your custom policy definition file.
+The policy definition name (e.g., `Deny-Resource-Types`) must match the `name` field in your custom policy definition file.
 {{< /hint >}}
 
 ### Reusing the Same Policy Multiple Times
@@ -166,14 +166,14 @@ Use the `[parameters('parameterName')]` syntax to pass initiative parameters to 
 
 ```json
 {
-  "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/placeholder/providers/Microsoft.Authorization/policyDefinitions/Deny-Resource-Providers",
-  "policyDefinitionReferenceId": "Deny-Unapproved-Resource-Providers",
+  "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/placeholder/providers/Microsoft.Authorization/policyDefinitions/Deny-Resource-Types",
+  "policyDefinitionReferenceId": "Deny-Unapproved-Resource-Types",
   "parameters": {
     "effect": {
       "value": "[parameters('effect')]"
     },
-    "allowedResourceProviders": {
-      "value": "[parameters('allowedResourceProviders')]"
+    "deniedResourceTypes": {
+      "value": "[parameters('deniedResourceTypes')]"
     }
   }
 }
@@ -329,9 +329,9 @@ Create `Enforce-Mandatory-Tags.alz_policy_set_definition.json`:
 
 ## Example 2: Custom Policies Only
 
-This example creates an initiative using the custom `Deny-Resource-Providers` policy from [Creating a Custom Azure Policy Definition]({{< relref "createCustomAzurePolicy" >}}).
+This example creates an initiative using the custom `Deny-Resource-Types` policy from [Creating a Custom Azure Policy Definition]({{< relref "createCustomAzurePolicy" >}}).
 
-First, ensure you have created `Deny-Resource-Providers.alz_policy_definition.json` in your `lib/policy_definitions/` folder.
+First, ensure you have created `Deny-Resource-Types.alz_policy_definition.json` in your `lib/policy_definitions/` folder.
 
 Create `Enforce-Resource-Restrictions.alz_policy_set_definition.json`:
 
@@ -341,7 +341,7 @@ Create `Enforce-Resource-Restrictions.alz_policy_set_definition.json`:
   "type": "Microsoft.Authorization/policySetDefinitions",
   "properties": {
     "displayName": "Enforce resource restrictions",
-    "description": "This initiative enforces resource restrictions including approved resource providers.",
+    "description": "This initiative enforces resource restrictions by denying unapproved resource types.",
     "policyType": "Custom",
     "metadata": {
       "version": "1.0.0",
@@ -363,33 +363,30 @@ Create `Enforce-Resource-Restrictions.alz_policy_set_definition.json`:
         "allowedValues": ["Audit", "Deny", "Disabled"],
         "defaultValue": "Deny"
       },
-      "allowedResourceProviders": {
+      "deniedResourceTypes": {
         "type": "Array",
         "metadata": {
-          "displayName": "Allowed Resource Providers",
-          "description": "The list of resource providers that are allowed to be registered"
+          "displayName": "Denied Resource Types",
+          "description": "The list of resource types that are not allowed to be deployed",
+          "strongType": "resourceTypes"
         },
         "defaultValue": [
-          "Microsoft.Compute",
-          "Microsoft.Storage",
-          "Microsoft.Network",
-          "Microsoft.KeyVault",
-          "Microsoft.ManagedIdentity",
-          "Microsoft.Authorization",
-          "Microsoft.Resources"
+          "Microsoft.ClassicCompute/virtualMachines",
+          "Microsoft.ClassicStorage/storageAccounts",
+          "Microsoft.ClassicNetwork/virtualNetworks"
         ]
       }
     },
     "policyDefinitions": [
       {
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/placeholder/providers/Microsoft.Authorization/policyDefinitions/Deny-Resource-Providers",
-        "policyDefinitionReferenceId": "Deny-Unapproved-Resource-Providers",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/placeholder/providers/Microsoft.Authorization/policyDefinitions/Deny-Resource-Types",
+        "policyDefinitionReferenceId": "Deny-Unapproved-Resource-Types",
         "parameters": {
           "effect": {
             "value": "[parameters('effect')]"
           },
-          "allowedResourceProviders": {
-            "value": "[parameters('allowedResourceProviders')]"
+          "deniedResourceTypes": {
+            "value": "[parameters('deniedResourceTypes')]"
           }
         }
       }
@@ -460,20 +457,17 @@ Create `Enforce-Governance-Standards.alz_policy_set_definition.json`:
         },
         "defaultValue": "CostCenter"
       },
-      "allowedResourceProviders": {
+      "deniedResourceTypes": {
         "type": "Array",
         "metadata": {
-          "displayName": "Allowed Resource Providers",
-          "description": "The list of resource providers that are allowed to be registered"
+          "displayName": "Denied Resource Types",
+          "description": "The list of resource types that are not allowed to be deployed",
+          "strongType": "resourceTypes"
         },
         "defaultValue": [
-          "Microsoft.Compute",
-          "Microsoft.Storage",
-          "Microsoft.Network",
-          "Microsoft.KeyVault",
-          "Microsoft.ManagedIdentity",
-          "Microsoft.Authorization",
-          "Microsoft.Resources"
+          "Microsoft.ClassicCompute/virtualMachines",
+          "Microsoft.ClassicStorage/storageAccounts",
+          "Microsoft.ClassicNetwork/virtualNetworks"
         ]
       },
       "allowedLocations": {
@@ -535,15 +529,15 @@ Create `Enforce-Governance-Standards.alz_policy_set_definition.json`:
         }
       },
       {
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/placeholder/providers/Microsoft.Authorization/policyDefinitions/Deny-Resource-Providers",
-        "policyDefinitionReferenceId": "Deny-Unapproved-Resource-Providers",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/placeholder/providers/Microsoft.Authorization/policyDefinitions/Deny-Resource-Types",
+        "policyDefinitionReferenceId": "Deny-Unapproved-Resource-Types",
         "groupNames": ["ResourceRestrictions"],
         "parameters": {
           "effect": {
             "value": "[parameters('resourceRestrictionEffect')]"
           },
-          "allowedResourceProviders": {
-            "value": "[parameters('allowedResourceProviders')]"
+          "deniedResourceTypes": {
+            "value": "[parameters('deniedResourceTypes')]"
           }
         }
       },
@@ -571,7 +565,7 @@ Create `Enforce-Governance-Standards.alz_policy_set_definition.json`:
 3. **Mixed Policy Sources**: The initiative includes:
    - Built-in policy `871b6d14-10aa-478d-b590-94f262ecfa99` (Require a tag on resources) - fixed Deny effect
    - Built-in policy `e56962a6-4747-49cd-b67b-bf8b01975c4c` (Allowed locations)
-   - Custom policy `Deny-Resource-Providers`
+   - Custom policy `Deny-Resource-Types`
 
 ## Designing Modular Initiatives
 
@@ -623,7 +617,7 @@ base_archetype: "root"
 policy_assignments_to_add: []
 policy_assignments_to_remove: []
 policy_definitions_to_add:
-  - "Deny-Resource-Providers"
+  - "Deny-Resource-Types"
 policy_definitions_to_remove: []
 policy_set_definitions_to_add:
   - "Enforce-Governance-Standards"
@@ -650,7 +644,7 @@ lib/
 ├── policy_assignments/
 │   └── Enforce-Governance-Standards.alz_policy_assignment.json
 ├── policy_definitions/
-│   └── Deny-Resource-Providers.alz_policy_definition.json
+│   └── Deny-Resource-Types.alz_policy_definition.json
 └── policy_set_definitions/
     └── Enforce-Governance-Standards.alz_policy_set_definition.json
 ```
