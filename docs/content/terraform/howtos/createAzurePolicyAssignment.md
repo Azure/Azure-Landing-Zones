@@ -34,9 +34,13 @@ Policy assignments in the ALZ library follow a specific naming convention and st
 
 Built-in policies are provided by Microsoft and don't require a policy definition file. You only need to create an assignment file.
 
+{{< hint type=important >}}
+Always check policy parameters on [AzAdvertizer](https://www.azadvertizer.net/azpolicyadvertizer_all.html) before creating assignments. Some policies have **fixed effects** and don't accept an `effect` parameter, while others require specific parameters.
+{{< /hint >}}
+
 ### Example: Require a Tag on Resources
 
-This example assigns the built-in policy that requires a specific tag on resources.
+This example assigns the built-in policy `871b6d14-10aa-478d-b590-94f262ecfa99` that requires a specific tag on resources. This policy has a **fixed Deny effect** and only accepts the `tagName` parameter.
 
 Create a file named `Require-Tag-Environment.alz_policy_assignment.json` in your `lib/policy_assignments/` folder:
 

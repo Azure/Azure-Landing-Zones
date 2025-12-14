@@ -166,14 +166,14 @@ Use the `[parameters('parameterName')]` syntax to pass initiative parameters to 
 
 ```json
 {
-  "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/871b6d14-10aa-478d-b590-94f262ecfa99",
-  "policyDefinitionReferenceId": "Require-Tag",
+  "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/placeholder/providers/Microsoft.Authorization/policyDefinitions/Deny-Resource-Providers",
+  "policyDefinitionReferenceId": "Deny-Unapproved-Resource-Providers",
   "parameters": {
-    "tagName": {
-      "value": "[parameters('tagName')]"
-    },
     "effect": {
       "value": "[parameters('effect')]"
+    },
+    "allowedResourceProviders": {
+      "value": "[parameters('allowedResourceProviders')]"
     }
   }
 }
@@ -244,6 +244,10 @@ Use a single shared parameter when policies should be enabled/disabled together.
 
 This example creates an initiative using only built-in policies to enforce mandatory tags.
 
+{{< hint type=note >}}
+The built-in policy `871b6d14-10aa-478d-b590-94f262ecfa99` ("Require a tag on resources") has a **fixed Deny effect** and only accepts the `tagName` parameter. Always check policy parameters on [AzAdvertizer](https://www.azadvertizer.net/azpolicyadvertizer_all.html) before including them in initiatives.
+{{< /hint >}}
+
 Create `Enforce-Mandatory-Tags.alz_policy_set_definition.json`:
 
 ```json
@@ -265,15 +269,6 @@ Create `Enforce-Mandatory-Tags.alz_policy_set_definition.json`:
       ]
     },
     "parameters": {
-      "effect": {
-        "type": "String",
-        "metadata": {
-          "displayName": "Effect",
-          "description": "Enable or disable the execution of the policy"
-        },
-        "allowedValues": ["Audit", "Deny", "Disabled"],
-        "defaultValue": "Audit"
-      },
       "environmentTagName": {
         "type": "String",
         "metadata": {
@@ -306,9 +301,6 @@ Create `Enforce-Mandatory-Tags.alz_policy_set_definition.json`:
         "parameters": {
           "tagName": {
             "value": "[parameters('environmentTagName')]"
-          },
-          "effect": {
-            "value": "[parameters('effect')]"
           }
         }
       },
@@ -318,9 +310,6 @@ Create `Enforce-Mandatory-Tags.alz_policy_set_definition.json`:
         "parameters": {
           "tagName": {
             "value": "[parameters('ownerTagName')]"
-          },
-          "effect": {
-            "value": "[parameters('effect')]"
           }
         }
       },
@@ -330,9 +319,6 @@ Create `Enforce-Mandatory-Tags.alz_policy_set_definition.json`:
         "parameters": {
           "tagName": {
             "value": "[parameters('costCenterTagName')]"
-          },
-          "effect": {
-            "value": "[parameters('effect')]"
           }
         }
       }
@@ -441,15 +427,6 @@ Create `Enforce-Governance-Standards.alz_policy_set_definition.json`:
       ]
     },
     "parameters": {
-      "taggingEffect": {
-        "type": "String",
-        "metadata": {
-          "displayName": "Tagging Effect",
-          "description": "Effect for tagging policies"
-        },
-        "allowedValues": ["Audit", "Deny", "Disabled"],
-        "defaultValue": "Audit"
-      },
       "resourceRestrictionEffect": {
         "type": "String",
         "metadata": {
@@ -534,9 +511,6 @@ Create `Enforce-Governance-Standards.alz_policy_set_definition.json`:
         "parameters": {
           "tagName": {
             "value": "[parameters('environmentTagName')]"
-          },
-          "effect": {
-            "value": "[parameters('taggingEffect')]"
           }
         }
       },
@@ -547,9 +521,6 @@ Create `Enforce-Governance-Standards.alz_policy_set_definition.json`:
         "parameters": {
           "tagName": {
             "value": "[parameters('ownerTagName')]"
-          },
-          "effect": {
-            "value": "[parameters('taggingEffect')]"
           }
         }
       },
@@ -560,9 +531,6 @@ Create `Enforce-Governance-Standards.alz_policy_set_definition.json`:
         "parameters": {
           "tagName": {
             "value": "[parameters('costCenterTagName')]"
-          },
-          "effect": {
-            "value": "[parameters('taggingEffect')]"
           }
         }
       },
@@ -598,10 +566,10 @@ Create `Enforce-Governance-Standards.alz_policy_set_definition.json`:
 
 1. **Policy Groups**: The `policyDefinitionGroups` field organizes policies into logical categories (Tagging, ResourceRestrictions). This improves compliance reporting and makes the initiative easier to understand.
 
-2. **Separate Effect Parameters**: Using `taggingEffect` and `resourceRestrictionEffect` allows you to set different enforcement levels for each category. For example, start with `Audit` for tagging while enforcing `Deny` for resource restrictions.
+2. **Effect Parameters**: The `resourceRestrictionEffect` parameter allows you to control the enforcement level for resource restriction policies. Note that the tagging policy `871b6d14-10aa-478d-b590-94f262ecfa99` has a fixed Deny effect and does not accept an effect parameter.
 
 3. **Mixed Policy Sources**: The initiative includes:
-   - Built-in policy `871b6d14-10aa-478d-b590-94f262ecfa99` (Require a tag on resources)
+   - Built-in policy `871b6d14-10aa-478d-b590-94f262ecfa99` (Require a tag on resources) - fixed Deny effect
    - Built-in policy `e56962a6-4747-49cd-b67b-bf8b01975c4c` (Allowed locations)
    - Custom policy `Deny-Resource-Providers`
 
