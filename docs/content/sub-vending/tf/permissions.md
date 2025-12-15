@@ -4,6 +4,11 @@ aliases:
   - /terraform/subscription-vending/permissions/
 weight: 15
 ---
+{{< hint type="tip" >}}
+To help with the setup of the billing account permissions we have provided a function as part of the [`ALZ` PowerShell Module](https://www.powershellgallery.com/packages/ALZ) called [`Grant-SubscriptionCreatorRole`](https://github.com/Azure/ALZ-PowerShell-Module/blob/main/src/ALZ/Public/Grant-SubscriptionCreatorRole.ps1) which can be used on EAs, MCAs or MPAs to assign the required roles to your service principal or managed identity. 
+
+Follow the examples in the function itself [here.](https://github.com/Azure/ALZ-PowerShell-Module/blob/main/src/ALZ/Public/Grant-SubscriptionCreatorRole.ps1#L9-L20)
+{{< /hint>}}
 
 ## Permissions required
 
