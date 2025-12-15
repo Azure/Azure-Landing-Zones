@@ -13,7 +13,7 @@ resources:
 
 Welcome to the Azure landing zone IaC Accelerator for Bicep and Terraform!
 
-The Azure Verified Modules for Platform landing zone (ALZ) [Terraform](https://github.com/Azure/alz-terraform-accelerator/tree/main/templates/platform_landing_zone) and [Bicep](https://github.com/Azure/alz-bicep-accelerator/tree/main/templates) modules provide an opinionated approach for deploying and managing the core platform capabilities of [Azure landing zone architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture) using Bicep or Terraform.
+The Azure Verified Modules for Platform landing zone (ALZ) [Terraform](https://github.com/Azure/alz-terraform-accelerator/tree/main/templates/platform_landing_zone) and [Bicep](https://github.com/Azure/alz-bicep-accelerator/tree/main/templates) modules provide an opinionated approach for deploying and managing the core platform capabilities of [Azure landing zone architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-architecture) using Bicep or Terraform.
 
 ## Get Started
 
@@ -122,4 +122,4 @@ This outputs the ALZ module files to the file system, so you can apply them manu
 
 The following diagram and links detail the Platform landing zone, but you can learn a lot more about Azure landing zone [here](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
 
-![Azure landing zone conceptual architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/media/ns-arch-cust-expanded.svg)
+![Azure landing zone reference architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/media/ns-arch-cust-expanded.svg)
