@@ -1,7 +1,7 @@
 ---
 title: Azure Policy
 geekdocCollapseSection: true
-weight: 30
+weight: 90
 ---
 
 This section documents all the Azure landing zone specific Azure Policy details.

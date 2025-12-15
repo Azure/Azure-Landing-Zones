@@ -1,7 +1,7 @@
 ---
 title: Known issues
 geekdocCollapseSection: true
-weight: 40
+weight: 100
 resources:
   - name: diagsetting-assignment
     src: img/diagsetting_assignment.png
