@@ -4,10 +4,6 @@ aliases:
   - /terraform/subscription-vending/
 geekdocCollapseSection: true
 weight: 30
-resources:
-  - name: subscription-vending-journey
-    src: img/subscription-vending-journey.png
-    title: Subscription Vending Journey
 ---
 
 Welcome to the avm-ptn-alz-sub-vending module documentation.
@@ -17,7 +13,7 @@ This section contains longer form documentation.
 
 This module can be used standalone, or combined with the [Azure landing zone Terraform module][alz_tf_module] to create a landing zone within the [Azure landing zone reference architecture][alz_reference_arch].
 
-{{< img name="subscription-vending-journey" size="origin" lazy=true >}}
+![Subscription vending](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/media/subscription-vending-high-res.png)
 
 In the above diagram, this module provides the capability to deploy landing zones (subscriptions) and the core resources, e.g. networking.
 

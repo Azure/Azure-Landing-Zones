@@ -2,10 +2,6 @@
 title: Bicep
 geekdocCollapseSection: true
 weight: 40
-resources:
-  - name: subscription-vending-journey
-    src: img/journey.png
-    title: Subscription Vending Journey
 ---
 Welcome to the Bicep Subscription vending module documentation.
 
@@ -13,7 +9,7 @@ Please see the [README](https://aka.ms/lz-vending/bicep) (in the BRM repository)
 
 This module can be used standalone, or combined with the [Azure Verified Modules (AVM) for Platform landing zone (ALZ) - Bicep]({{< relref "../../bicep">}}) to create a landing zone within the [Azure Landing Zones reference architecture](https://aka.ms/alz#azure-landing-zone-architecture).
 
-{{< img name="subscription-vending-journey" size="origin" lazy=true >}}
+![Subscription vending](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/media/subscription-vending-high-res.png)
 
 In the above diagram, this module provides the capability to deploy landing zones (subscriptions) and the core resources, e.g. networking.
 
