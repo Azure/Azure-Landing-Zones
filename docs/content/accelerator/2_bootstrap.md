@@ -35,7 +35,7 @@ Terraform scenarios can be found in the [scenarios docs]({{< relref "startermodu
 2. Open your `inputs.yaml` bootstrap configuration file in Visual Studio Code and provide values for each input in the required section.
 
     ```pwsh
-    code "$targetFolderPath/config"
+    code (Resolve-Path "$targetFolderPath/config").Path
     ```
 
     {{< hint type=tip >}}
