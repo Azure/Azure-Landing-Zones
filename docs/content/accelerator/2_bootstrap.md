@@ -68,9 +68,9 @@ More details about the configuration files can be found in the [configuration fi
     - Terraform: `platform-landing-zones.tfvars` - [Terraform Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "startermodules/terraform-platform-landing-zone" >}})
     - Bicep: `platform-landing-zone.yaml` - [Bicep Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "startermodules/bicep-platform-landing-zone" >}})
 
-    Update the following required input in the file:
+    Update the following required inputs in the file:
 
-    - `starter_locations`: this must be updated to include at least one Azure region for your Platform landing zone.
+    - `starter_locations`: you must update all the `<region-#>` placeholders with valid Azure regions for your Platform landing zone.
     - `defender_email_security_contact`: (Terraform only) this must be updated to include an email address for your security contact for Microsoft Defender for Cloud alerts.
 
     {{< hint type=tip >}}

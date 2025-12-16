@@ -32,7 +32,11 @@ Choose your preferred scenario and copy the example configuration file to your `
 
 The scenarios can be found in the [Scenarios]({{< relref "scenarios" >}}) documentation.
 
-## 2 - Microsoft Defender for Cloud security contact email address
+## 2 - Starter Locations
+
+The `starter_locations` input variable is used to define the Azure regions where your Platform landing zone resources will be deployed. You need to update the value with valid Azure regions for your organization.
+
+## 3 - Microsoft Defender for Cloud security contact email address
 
 The `defender_email_security_contact` is used by Microsoft Defender for Cloud to send security alerts to the security contact at your organization. You need to update the value with a valid security contact email address for your organization.
 
@@ -46,7 +50,7 @@ To update it:
 1. Update the value `replace_me@replace_me.com` with a valid security contact email address for your organization
 1. Save the configuration file
 
-## 3 - Options
+## 4 - Options
 
 The options section details how to make configuration changes that apply to the common scenarios.
 
@@ -54,7 +58,7 @@ Choose your preferred option and update the your `platform-landing-zone.tfvars` 
 
 The options can be found in the [Options]({{< relref "options" >}}) documentation.
 
-## 4 - Advanced
+## 5 - Advanced
 
 If you were unable to cover all your Platform landing zone requirements with our standard scenarios and options, you can use the advanced configuration settings to further customize your deployment.
 
