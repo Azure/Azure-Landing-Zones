@@ -67,6 +67,6 @@ Migration guidance will be provided as the new framework reaches general availab
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[example_powershell_inputs_azure_devops_bicep_platform_landing_zone]: https://raw.githubusercontent.com/Azure/alz-bicep-accelerator/refs/heads/main/examples/inputs-azure-devops.yaml "Example - PowerShell Inputs - Azure DevOps - Bicep - Platform landing zone"
-[example_powershell_inputs_github_bicep_platform_landing_zone]:  https://raw.githubusercontent.com/Azure/alz-bicep-accelerator/refs/heads/main/examples/inputs-github.yaml "Example - PowerShell Inputs - GitHub - Bicep - Platform landing zone"
-[example_powershell_inputs_local_bicep_platform_landing_zone]:  https://raw.githubusercontent.com/Azure/alz-bicep-accelerator/refs/heads/main/examples/inputs-local.yaml "Example - PowerShell Inputs - Local - Bicep - Platform landing zone"
+[example_powershell_inputs_azure_devops_bicep_platform_landing_zone]: https://raw.githubusercontent.com/Azure/alz-bicep-accelerator/refs/heads/main/examples/bootstrap/inputs-azure-devops.yaml "Example - PowerShell Inputs - Azure DevOps - Bicep - Platform landing zone"
+[example_powershell_inputs_github_bicep_platform_landing_zone]:  https://raw.githubusercontent.com/Azure/alz-bicep-accelerator/refs/heads/main/examples/bootstrap/inputs-github.yaml "Example - PowerShell Inputs - GitHub - Bicep - Platform landing zone"
+[example_powershell_inputs_local_bicep_platform_landing_zone]:  https://raw.githubusercontent.com/Azure/alz-bicep-accelerator/refs/heads/main/examples/bootstrap/inputs-local.yaml "Example - PowerShell Inputs - Local - Bicep - Platform landing zone"
