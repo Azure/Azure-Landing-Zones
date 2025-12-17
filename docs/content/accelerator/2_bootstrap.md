@@ -24,7 +24,7 @@ Terraform scenarios can be found in the [scenarios docs]({{< relref "startermodu
 1. Run the following command to install or update the ALZ PowerShell module:
 
     ```pwsh
-    $alzModule = Get-InstalledPSResource -Name ALZ
+    $alzModule = Get-InstalledPSResource -Name ALZ 2>$null
     if (-not $alzModule) {
         Install-PSResource -Name ALZ
     } else {
