@@ -1,95 +1,144 @@
 ---
-title: Platform landing zone Cleanup FAQ
+title: Cleanup FAQ
 weight: 20
 ---
 
-To remove and redeploy, follow these steps in order:
+There are two parts to cleaning up your accelerator bootstrap and Platform landing zone deployment:
 
 1. Remove the Platform landing zone
 1. Remove the bootstrap resources
 
-If you've lost your bootstrap folder or encounter errors, see the fallback option at the end of this section.
+For convenience we provide a PowerShell cmdlet called `Remove-PlatformLandingZone` to help with the Platform landing zone and the Microsoft Azure portion of these tasks. We recommend you use this cmdlet to clean up after testing as it is faster than using the Terraform destroy option of the Continuous Delivery Pipeline.
 
-## How do I remove the bootstrap resources and start again?
-
-Follow these steps to teardown the bootstrap environment.
-
-1. If you already ran the CD pipeline / action in phase 3 to deploy the ALZ, then review the [How do I remove the Platform landing zone]({{< relref "#how-do-i-remove-the-platform-landing-zone-and-start-again">}}) guidance.
-1. Wait for the destroy run to complete before moving to the next step, you will need to approve it if you configured approvals.
-1. Now run `Deploy-Accelerator` with the `-destroy` flag, for example:
-
-    ```pwsh
-    Deploy-Accelerator `
-      -inputs "~/accelerator/config/inputs.yaml", "~/accelerator/config/platform-landing-zone.tfvars" `
-      -output "~/accelerator/output" `
-      -destroy
-
-    ```
-
-1. You can confirm the destroy by hitting enter when prompted.
-1. To fully clean up, you should now delete the folder that was created for the accelerator.
-1. You'll now be able to run the `Deploy-Accelerator` command again to start fresh.
-
-## How do I remove the Platform landing zone and start again?
-
-{{< hint type=note >}}
-The following guidance is for Terraform, if you're using Bicep and wish to destroy your landing zone, please refer to the [destroy-landing-zone.ps1](https://github.com/Azure/ALZ-Bicep/blob/main/accelerator/scripts/destroy-landing-zone.ps1) script.
-{{< /hint >}}
-
-### Azure DevOps or GitHub
-
-1. Run the CD pipeline / action in phase 3, but this time select the `destroy` option. This will delete the landing zone resources; you will need to approve it if you configured approvals.
-
-### Local
-
-1. Navigate to the directory shown in the `module_output_directory_path` output from the bootstrap.
-1. Run `./scripts/deploy-local.ps1 -destroy`.
-1. A plan will run and then you’ll be prompted to check it and run the deploy.
-1. Type yes and hit enter to run the deploy.
-1. The ALZ will now be destroyed, this may take some time.
-
-## I can't find my original bootstrap folder or I am getting errors, how do I clean up?
-
-If you have lost your original bootstrap folder or are getting errors when trying to destroy the landing zone, you can follow these steps to clean up the resources manually.
+## Steps to clean up the Accelerator Bootstrap and Platform landing zone Microsoft Azure resources
 
 1. Open a PowerShell terminal using PowerShell 7.
 1. Ensure you have the latest version of the [ALZ PowerShell Module](https://www.powershellgallery.com/packages/ALZ) installed:
 
-    ```powershell
-    Install-PSResource -Name ALZ -Force -AllowClobber
+    ```pwsh
+    $alzModule = Get-InstalledPSResource -Name ALZ 2>$null
+    if (-not $alzModule) {
+        Install-PSResource -Name ALZ
+    } else {
+        Update-PSResource -Name ALZ
+    }
+
     ```
 
 1. Login to Azure CLI and select your bootstrap subscription:
 
-    ```powershell
+    ```pwsh
     az login --tenant "<tenant-id>" --use-device-code
-    az account set --subscription "<subscription-id>"
+    az account set --subscription "<bootstrap-subscription-id>"
+
     ```
 
-1. Run one of the following commands to prepare to remove the Platform landing zone:
+1. Run the following command to prepare to remove the Platform landing zone:
 
-    1. If you used a specific management group as the parent management group during bootstrap, you can specify that management group to delete the landing zone. For example:
+    {{< hint type=tip >}}
+If you are in a brownfield environment and your Management Groups or Platform subscriptions contain resource you do not wish to delete, you can use the `-ResourceGroupsToRetainNamePatterns` and `-ManagementGroupsToDeleteNamePatterns` parameters to be specific about what to delete / retain. See the [Remove-PlatformLandingZone documentation](https://github.com/Azure/ALZ-PowerShell-Module/blob/main/src/ALZ/Public/Remove-PlatformLandingZone.ps1) for more details on the available parameters.
+    {{< /hint >}}
 
-        ```powershell
-        Remove-PlatformLandingZone `
-          -ManagementGroups = "<root-parent-management-group-id>" `
-          -PlanMode
-        ```
+    ```pwsh
+    Remove-PlatformLandingZone `
+      -ManagementGroups = "<root-parent-management-group-id>" `
+      -Subscriptions = "<management-subscription-id>","<connectivity-subscription-id>","<identity-subscription-id>", "<security-subscription-id>" `  # Required if your subscriptions were not moved under the platform management groups
+      -AdditionalSubscriptions "<bootstrap-subscription-id>" `  # Only required if you choose a separate bootstrap subscription that sits outside of your platform subscriptions
+      -SubscriptionsTargetManagementGroup "<root-parent-management-group-id>" `  # Only required if your root-parent-management-group-id is not Tenant Root Group
+      -PlanMode
 
-    1. If you choose to use the Tenant Root Group as the parent management group and you are brownfield, you may need to avoid deleting other management group structures. In that case, you can specify the top level management groups to delete. For example:
+    ```
 
-        ```powershell
-        Remove-PlatformLandingZone `
-          -ManagementGroups = "alz" `
-          -DeleteTargetManagementGroups `
-          -PlanMode
-        ```
+1. You'll be prompted to confirm you want to proceed, follow the instructions to run the plan
+1. Review the plan output to ensure it is going to delete the correct resources
+1. If the plan looks correct, re-run the command without the `-PlanMode` parameter to delete the Platform landing zone
 
-1. Review the plan output to ensure it is going to delete the correct resources.
-1. If the plan looks correct, re-run the command without the `-PlanMode` parameter to delete the Platform landing zone.
-1. If you chose the second option, you'll still need to clean up the custom role definitions on Tenant Root Group before you can re-run the accelerator bootstrap.
-    1. Navigate to the Azure Portal and go to the `Management Groups` pane.
-    1. Select the `Tenant Root Group`.
-    1. Go to the `Access control (IAM)` section.
-    1. Select the `Roles` tab.
-    1. Find and delete any custom roles that were created by the accelerator. These will likely have `alz` in the name. Delete all 4 of them. If they are still assigned anywhere, you will need to remove the assignments first.
+    ```pwsh
+    Remove-PlatformLandingZone `
+      -ManagementGroups = "<root-parent-management-group-id>" `
+      -Subscriptions = "<management-subscription-id>","<connectivity-subscription-id>","<identity-subscription-id>", "<security-subscription-id>"  `  # Required if your subscriptions were not moved under the platform management groups
+      -AdditionalSubscriptions "<bootstrap-subscription-id>" ` # Only required if you choose a separate bootstrap subscription that sits outside of your platform subscriptions
+      -SubscriptionsTargetManagementGroup "<root-parent-management-group-id>" `  # Only required if your root-parent-management-group-id is not Tenant Root Group
+
+    ```
+
+1. You'll be prompted to confirm you want to proceed, follow the instructions to run the deletion
+
+## Steps to clean up version control system resources
+
+If you still have your folder structure created during bootstrap, you can re-run the `Deploy-Accelerator` cmdlet with the `-Destroy` parameter to remove any version control system resources created during bootstrap
+
+{{< hint type=warning >}}
+If you lost your folder structure, you'll need to manually delete the version control system resources such as projects or repositories, agent pools, and teams.
+{{< /hint >}}
+
+1. Open a PowerShell terminal using PowerShell 7.
+
+1. Set your variables for the Infrastructure as Code type and the target folder path where your folder structure is located:
+
+    ```pwsh
+    $iacType = "terraform" # Set to 'bicep', 'terraform', or 'bicep-classic'
+    $targetFolderPath = "~/accelerator"
+
+    ```
+
+1. Ensure you have the latest version of the [ALZ PowerShell Module](https://www.powershellgallery.com/packages/ALZ) installed:
+
+    ```pwsh
+    $alzModule = Get-InstalledPSResource -Name ALZ 2>$null
+    if (-not $alzModule) {
+        Install-PSResource -Name ALZ
+    } else {
+        Update-PSResource -Name ALZ
+    }
+
+    ```
+
+1. Login to Azure CLI and select your bootstrap subscription:
+
+    This is required even though we already deleted our Azure resources as the Terraform provider needs valid credentials to query that they have been deleted.
+
+    ```pwsh
+    az login --tenant "<tenant-id>" --use-device-code
+    az account set --subscription "<bootstrap-subscription-id>"
+
+    ```
+
+1. If you set your Version Control System personal access tokens (PATs) as environment variables during bootstrap, ensure they are still set in your current terminal session or set them again.
+
+1. Run the following command to remove the version control system resources created during bootstrap:
+
+    {{< hint type=warning >}}
+If you are using GitHub and you deployed GitHub Actions Runner Groups, will need to manually delete any agents from the Runner Groups before running this command, due to limitation of the GitHub API. More details can be found in [here](<{{< ref "../troubleshooting" >}}>).
+    {{< /hint >}}
+
+    ```pwsh
+    if(!$iacType) {
+        throw "iacType variable is not set. Please set it to one of: 'bicep', 'terraform', or 'bicep-classic'."
+    }
+
+    if($iacType -eq "terraform") {
+        Deploy-Accelerator `
+            -inputs "$targetFolderPath/config/inputs.yaml", "$targetFolderPath/config/platform-landing-zone.tfvars" `
+            -starterAdditionalFiles "$targetFolderPath/config/lib" `
+            -output "$targetFolderPath/output" `
+            -destroy
+    }
+
+    if($iacType -eq "bicep") {
+        Deploy-Accelerator `
+            -inputs "$targetFolderPath/config/inputs.yaml", "$targetFolderPath/config/platform-landing-zone.yaml" `
+            -output "$targetFolderPath/output" `
+            -destroy
+    }
+
+    if($iacType -eq "bicep-classic") {
+        Deploy-Accelerator `
+            -inputs "$targetFolderPath/config/inputs.yaml" `
+            -output "$targetFolderPath/output" `
+            -destroy
+    }
+
+    ```
+
+1. Once it generates the plan, hit enter to deploy the bootstrap.
