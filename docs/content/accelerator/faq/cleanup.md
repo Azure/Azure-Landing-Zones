@@ -44,6 +44,7 @@ If you are in a brownfield environment and your Management Groups or Platform su
       -ManagementGroups = "<root-parent-management-group-id>" `
       -Subscriptions = "<management-subscription-id-1>","<connectivity-subscription-id-2>","<identity-subscription-id-3>", "<security-subscription-id-4>" `  # Required if your subscriptions we not moved under the platform management groups
       -AdditionalSubscriptions "<bootstrap-subscription-id>" `  # Only required if you choose a separate bootstrap subscription that sits outside of your platform subscriptions
+      -SubscriptionsTargetManagementGroup "<root-parent-management-group-id>" `  # Only required if your root-parent-management-group-id is not Tenant Root Group
       -PlanMode
 
     ```
@@ -56,7 +57,8 @@ If you are in a brownfield environment and your Management Groups or Platform su
     Remove-PlatformLandingZone `
       -ManagementGroups = "<root-parent-management-group-id>" `
       -Subscriptions = "<management-subscription-id-1>","<connectivity-subscription-id-2>","<identity-subscription-id-3>", "<security-subscription-id-4>" `  # Required if your subscriptions we not moved under the platform management groups
-      -AdditionalSubscriptions "<bootstrap-subscription-id>"  # Only required if you choose a separate bootstrap subscription that sits outside of your platform subscriptions
+      -AdditionalSubscriptions "<bootstrap-subscription-id>" ` # Only required if you choose a separate bootstrap subscription that sits outside of your platform subscriptions
+      -SubscriptionsTargetManagementGroup "<root-parent-management-group-id>" `  # Only required if your root-parent-management-group-id is not Tenant Root Group
 
     ```
 
