@@ -122,4 +122,4 @@ This outputs the ALZ module files to the file system, so you can apply them manu
 
 The following diagram and links detail the Platform landing zone, but you can learn a lot more about Azure landing zone [here](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
 
-![Azure landing zone reference architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/media/ns-arch-cust-expanded.svg)
+[![Azure landing zone reference architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/media/azure-landing-zone-architecture-diagram-hub-spoke.svg)](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/media/azure-landing-zone-architecture-diagram-hub-spoke.svg)
