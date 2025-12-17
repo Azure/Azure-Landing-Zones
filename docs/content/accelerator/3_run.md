@@ -6,7 +6,7 @@ weight: 40
 Deploy your Platform landing zone by triggering the continuous delivery pipeline.
 
 {{< hint type=tip >}}
-If you have questions regarding bootstrap clean up, in the case you were testing or made a mistake, see the [FAQs - Questions about bootstrap clean up]({{< relref "faq/#questions-about-bootstrap-clean-up">}})
+If you have questions about clean up, in the case you were testing, see the [Cleanup FAQ]({{< relref "faq/cleanup">}})
 {{< /hint >}}
 
 ## Azure DevOps
