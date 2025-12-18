@@ -41,8 +41,8 @@ If you are in a brownfield environment and your Management Groups or Platform su
 
     ```pwsh
     Remove-PlatformLandingZone `
-      -ManagementGroups = "<root-parent-management-group-id>" `
-      -Subscriptions = "<management-subscription-id>","<connectivity-subscription-id>","<identity-subscription-id>", "<security-subscription-id>" `  # Required if your subscriptions were not moved under the platform management groups
+      -ManagementGroups "<root-parent-management-group-id>" `
+      -Subscriptions "<management-subscription-id>","<connectivity-subscription-id>","<identity-subscription-id>", "<security-subscription-id>" `  # Required if your subscriptions were not moved under the platform management groups
       -AdditionalSubscriptions "<bootstrap-subscription-id>" `  # Only required if you choose a separate bootstrap subscription that sits outside of your platform subscriptions
       -SubscriptionsTargetManagementGroup "<root-parent-management-group-id>" `  # Only required if your root-parent-management-group-id is not Tenant Root Group
       -PlanMode
@@ -55,8 +55,8 @@ If you are in a brownfield environment and your Management Groups or Platform su
 
     ```pwsh
     Remove-PlatformLandingZone `
-      -ManagementGroups = "<root-parent-management-group-id>" `
-      -Subscriptions = "<management-subscription-id>","<connectivity-subscription-id>","<identity-subscription-id>", "<security-subscription-id>"  `  # Required if your subscriptions were not moved under the platform management groups
+      -ManagementGroups "<root-parent-management-group-id>" `
+      -Subscriptions "<management-subscription-id>","<connectivity-subscription-id>","<identity-subscription-id>", "<security-subscription-id>"  `  # Required if your subscriptions were not moved under the platform management groups
       -AdditionalSubscriptions "<bootstrap-subscription-id>" ` # Only required if you choose a separate bootstrap subscription that sits outside of your platform subscriptions
       -SubscriptionsTargetManagementGroup "<root-parent-management-group-id>" `  # Only required if your root-parent-management-group-id is not Tenant Root Group
 
