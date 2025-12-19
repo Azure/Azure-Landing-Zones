@@ -19,7 +19,7 @@ If a parent management group other than Tenant Root Group is chosen, then you mu
 We recommend setting up 4 subscriptions for Platform landing zone. These are management, identity, connectivity, and security. See our [advanced scenarios]({{< relref "advancedscenarios" >}}) section for alternatives.
 
 - Management: This is used to deploy the bootstrap and management resources, such as log analytics and automation accounts.
-- Identity: This is used to deploy the identity resources, such as Azure AD and Microsoft Entra Domain Services (formerly Azure AD DS) .
+- Identity: This is used to deploy the identity resources, such as Azure AD and Microsoft Entra Domain Services.
 - Connectivity: This is used to deploy the hub networking resources, such as virtual networks and firewalls.
 - Security: This is used to deploy Sentinel and other security related resources.
 
@@ -62,7 +62,7 @@ Access at the tenant root is currently required due to a bug within ARM, and is 
 For simplicity, we recommend using a User account since this is a one off process that you are unlikely to repeat.
 
 {{< hint type=warning >}}
-Remember, if a parent management group other than Tenant Root Group is chosen, then you must move the 3 platform subscriptions into that management group before proceeding.
+Remember, if a parent management group other than Tenant Root Group is chosen, then you must move the 4 platform subscriptions into that management group before proceeding.
 {{< /hint >}}
 
 ### Authenticate via User Account
