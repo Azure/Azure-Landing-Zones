@@ -39,30 +39,37 @@ For convenience we provide a PowerShell cmdlet called `Remove-PlatformLandingZon
 If you are in a brownfield environment and your Management Groups or Platform subscriptions contain resource you do not wish to delete, you can use the `-ResourceGroupsToRetainNamePatterns` and `-ManagementGroupsToDeleteNamePatterns` parameters to be specific about what to delete / retain. See the [Remove-PlatformLandingZone documentation](https://github.com/Azure/ALZ-PowerShell-Module/blob/main/src/ALZ/Public/Remove-PlatformLandingZone.ps1) for more details on the available parameters.
     {{< /hint >}}
 
+    The following describes the required parameters:
+
+    - `-ManagementGroups`: (Required) The root parent management group ID under which the Platform landing zone management groups were created
+    - `-Subscriptions`: (Recommended Optional) A comma-separated list of the Platform landing zone subscription IDs (management, connectivity, identity, security). We set this for scenarios where a full deployment wasn't completed and the subscriptions are not nested under the management group hierarchy.
+    - `-AdditionalSubscriptions`: (Optional) A comma-separated list of any additional subscription IDs that were used during deployment that are outside of the Platform landing zone subscriptions (e.g. the bootstrap subscription in 5 subscription model)
+    - `-SubscriptionsTargetManagementGroup`: (Optional) The management group ID under which the Platform landing zone subscriptions were moved to. Only required if this is not the Tenant Root Group.
+    - `-PlanMode`: (Optional) Runs the cmdlet in plan mode to show what resources will be deleted without actually deleting them.
+
     ```pwsh
     Remove-PlatformLandingZone `
       -ManagementGroups "<root-parent-management-group-id>" `
-      -Subscriptions "<management-subscription-id>","<connectivity-subscription-id>","<identity-subscription-id>", "<security-subscription-id>" `  # Required if your subscriptions were not moved under the platform management groups
-      -AdditionalSubscriptions "<bootstrap-subscription-id>" `  # Only required if you choose a separate bootstrap subscription that sits outside of your platform subscriptions
-      -SubscriptionsTargetManagementGroup "<root-parent-management-group-id>" `  # Only required if your root-parent-management-group-id is not Tenant Root Group
+      -Subscriptions "<management-subscription-id>", "<connectivity-subscription-id>", "<identity-subscription-id>", "<security-subscription-id>" `
+      -AdditionalSubscriptions "<bootstrap-subscription-id>" `
+      -SubscriptionsTargetManagementGroup "<root-parent-management-group-id>" `
       -PlanMode
 
     ```
 
-1. You'll be prompted to confirm you want to proceed, follow the instructions to run the plan
 1. Review the plan output to ensure it is going to delete the correct resources
 1. If the plan looks correct, re-run the command without the `-PlanMode` parameter to delete the Platform landing zone
 
     ```pwsh
     Remove-PlatformLandingZone `
       -ManagementGroups "<root-parent-management-group-id>" `
-      -Subscriptions "<management-subscription-id>","<connectivity-subscription-id>","<identity-subscription-id>", "<security-subscription-id>"  `  # Required if your subscriptions were not moved under the platform management groups
-      -AdditionalSubscriptions "<bootstrap-subscription-id>" ` # Only required if you choose a separate bootstrap subscription that sits outside of your platform subscriptions
-      -SubscriptionsTargetManagementGroup "<root-parent-management-group-id>" `  # Only required if your root-parent-management-group-id is not Tenant Root Group
+      -Subscriptions "<management-subscription-id>", "<connectivity-subscription-id>", "<identity-subscription-id>", "<security-subscription-id>"  `
+      -AdditionalSubscriptions "<bootstrap-subscription-id>" `
+      -SubscriptionsTargetManagementGroup "<root-parent-management-group-id>"
 
     ```
 
-1. You'll be prompted to confirm you want to proceed, follow the instructions to run the deletion
+1. You'll be prompted to confirm you want to proceed, follow the instructions to run the deletions
 
 ## Steps to clean up version control system resources
 
