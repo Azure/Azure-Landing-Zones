@@ -7,6 +7,8 @@ weight: 200
 
 In order to successfully deploy the Azure Landing Zone using Bicep (AVM), you need to ensure that the account you are using has at least `User Access Administrator` permissions at the root (`/`) level.
 
+You can read more about this access level in the [Microsoft Documentation](https://learn.microsoft.com/en-us/azure/role-based-access-control/elevate-access-global-admin).
+
 Follow the steps below to assign the required permissions:
 
 1. Navigate to the [Azure Portal](https://portal.azure.com) and sign in to your tenant.
