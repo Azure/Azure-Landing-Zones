@@ -32,29 +32,25 @@ Once you have the access required, create the four subscriptions following your 
 
 Take note of the subscription id of each subscription as we will need them later.
 
-## 4 - Azure Authentication and Permissions
+## Azure Authentication and Permissions
 
-You need either an Azure User Account or Service Principal with the following permissions to run the bootstrap:
+You need either an Azure User Account or Service Principal with the following permissions to run the bootstrap. For simplicity, we recommend using a User account since this is a one off process that you are unlikely to repeat.
 
-Bicep (AVM), Bicep Classic, and Terraform all require the following permissions:
+### Bicep (AVM), Bicep Classic, and Terraform all require the following permissions:
 
 - `Owner` on your chosen parent management group.
   - `Owner` is required because this account grants permissions to the identities that run the management group deployment. Those identities are granted only the permissions they need.
 - `Owner` on each of your 3 Azure landing zone subscriptions.
 
-The new Bicep (AVM) framework has one additional requirement:
+### Bicep (AVM) has one additional requirement:
 
-- `User Access Administrator` at that root `/` tenant level.
+- `User Access Administrator` at that root `/` level.
   - `User Access Administrator` is required for the same reason: this account delegates access to the identities that run the management group deployment using least privilege.
 
-{{< hint type=information >}}
-Access at the tenant root is currently required due to a bug within ARM, and is being investigated by Microsoft.
-{{< /hint >}}
+Follow the instructions in the [Root Access]({{< relref "/accelerator/1_prerequisites/root-access" >}}) section if you need to assign this permission.
 
-For simplicity, we recommend using a User account since this is a one off process that you are unlikely to repeat.
-
-{{< hint type=warning >}}
-Remember, if a parent management group other than Tenant Root Group is chosen, then you must move the 3 platform subscriptions into that management group before proceeding.
+{{< hint type=info >}}
+Access at the root is currently required due to a bug within ARM, and is being investigated by Microsoft.
 {{< /hint >}}
 
 ## Next Steps
