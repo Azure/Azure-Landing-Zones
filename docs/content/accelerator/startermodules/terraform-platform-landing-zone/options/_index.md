@@ -94,3 +94,4 @@ The available options are:
 1. [Turn off Defender Plans]({{< relref "defender">}})
 1. [Implement Zero Trust Networking]({{< relref "zero-trust">}})
 1. [Implement Sovereign Landing Zone (SLZ) controls]({{< relref "slz">}})
+1. [Add custom policy assignments]({{< relref "custom-policy-assignments">}})
