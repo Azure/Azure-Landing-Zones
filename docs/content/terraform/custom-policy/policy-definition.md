@@ -1,6 +1,6 @@
 ---
-title: Creating a custom Azure Policy definition
-weight: 10
+title: Creating a Custom Policy Definition
+weight: 100
 ---
 
 This guide walks you through creating a custom Azure Policy definition for your Azure Landing Zone deployment. We'll use a practical example: creating a policy to deny specific Azure Resource Types.
@@ -10,7 +10,7 @@ You will need to have a [custom library]({{< relref "customLibrary" >}}) if you 
 Make sure you have completed that step before continuing.
 {{< /hint >}}
 
-Once you have created your policy definition, see [Creating an Azure Policy Assignment]({{< relref "createAzurePolicyAssignment" >}}) to learn how to assign it, or [Creating an Azure Policy Initiative]({{< relref "createAzurePolicyInitiative" >}}) to learn how to group multiple policies together.
+Once you have created your policy definition, see [Creating an Azure Policy Assignment]({{< relref "policy-assignment" >}}) to learn how to assign it, or [Creating an Azure Policy Initiative]({{< relref "policy-initiative" >}}) to learn how to group multiple policies together.
 
 ## Policy Definition Structure
 
@@ -171,7 +171,7 @@ role_definitions_to_remove: []
 ```
 
 {{< hint type=note >}}
-Adding a policy definition to an archetype only deploys the definition. To enforce the policy, you must also create and assign a policy assignment. See [Creating an Azure Policy Assignment]({{< relref "createAzurePolicyAssignment" >}}) for details.
+Adding a policy definition to an archetype only deploys the definition. To enforce the policy, you must also create and assign a policy assignment. See [Creating an Azure Policy Assignment]({{< relref "policy-assignment" >}}) for details.
 {{< /hint >}}
 
 ## Best Practices

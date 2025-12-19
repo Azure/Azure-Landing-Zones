@@ -1,6 +1,6 @@
 ---
-title: Creating an Azure Policy Assignment
-weight: 10
+title: Creating a Policy Assignment
+weight: 300
 ---
 
 This guide walks you through creating Azure Policy assignments in your Azure Landing Zone (ALZ) deployment.
@@ -42,7 +42,7 @@ For Policy Assignments to be discovered by the ALZ provider, follow the followin
 | **Location** | `lib/policy_assignments/` folder in your custom library |
 
 {{< hint type=note >}}
-So it's easier to manage your custom library, try to keep the file name related to the name of the assignment. 
+So it's easier to manage your custom library, try to keep the file name related to the name of the assignment.
 
 💡 **Example:** An assignment named `Require-Tag-Environment` should be in a file called `Require-Tag-Environment.alz_policy_assignment.json`
 {{< /hint >}}
@@ -99,7 +99,7 @@ Create `Require-Tag-Environment.alz_policy_assignment.json` in your `lib/policy_
 
 ## Assigning a Custom Policy
 
-For custom policies, you must first create the policy definition (see [Creating a Custom Azure Policy Definition]({{< relref "createCustomAzurePolicy" >}})), then create an assignment that references it.
+For custom policies, you must first create the policy definition (see [Creating a Custom Azure Policy Definition]({{< relref "policy-definition" >}})), then create an assignment that references it.
 
 {{< hint type=important >}}
 **Custom policy resource ID format:**
@@ -208,7 +208,7 @@ For initiatives, use `policySetDefinitions` instead of `policyDefinitions` in th
 
 ## Assigning a Custom Initiative
 
-For custom initiatives, first create the initiative definition (see [Creating an Azure Policy Initiative]({{< relref "createAzurePolicyInitiative" >}})), then create an assignment.
+For custom initiatives, first create the initiative definition (see [Creating an Azure Policy Initiative]({{< relref "policy-initiative" >}})), then create an assignment.
 
 ### Step-by-Step: Enforce Mandatory Tags
 
@@ -278,9 +278,9 @@ Use this table as a quick reference when building your assignment files:
 | `properties.displayName` | ✅ | Human-readable name shown in Azure Portal |
 | `properties.description` | ✅ | Detailed description of the assignment's purpose |
 | `properties.policyDefinitionId` | ✅ | Resource ID of the policy/initiative to assign |
-| `properties.enforcementMode` | ⚪ | `Default` (enforced) or `DoNotEnforce` (audit only). See [`policy_assignments_to_modify`]({{< relref "modifyingPolicyAssignments" >}}) |
-| `properties.nonComplianceMessages` | ⚪ | Messages shown when resources are non-compliant. See [`policy_assignments_to_modify`]({{< relref "modifyingPolicyAssignments" >}}) |
-| `properties.parameters` | ⚪ | Parameter values for the policy. See [`policy_assignments_to_modify`]({{< relref "modifyingPolicyAssignments" >}}) |
+| `properties.enforcementMode` | ⚪ | `Default` (enforced) or `DoNotEnforce` (audit only). See [`policy_assignments_to_modify`]({{< relref "policy-assignment" >}}) |
+| `properties.nonComplianceMessages` | ⚪ | Messages shown when resources are non-compliant. See [`policy_assignments_to_modify`]({{< relref "policy-assignment" >}}) |
+| `properties.parameters` | ⚪ | Parameter values for the policy. See [`policy_assignments_to_modify`]({{< relref "policy-assignment" >}}) |
 | `properties.scope` | ✅ | Use `/providers/Microsoft.Management/managementGroups/placeholder` |
 | `properties.notScopes` | ⚪ | Array of scopes to exclude from the assignment |
 | `location` | ✅ | Use `${default_location}` for deployment location |
@@ -318,6 +318,6 @@ Follow these recommendations for successful policy assignments:
 
 ### Related Guides
 
-- [Creating a Custom Azure Policy Definition]({{< relref "createCustomAzurePolicy" >}}) – Before assigning custom policies
-- [Creating an Azure Policy Initiative]({{< relref "createAzurePolicyInitiative" >}}) – Before assigning custom initiatives
-- [Modifying Policy Assignments]({{< relref "modifyingPolicyAssignments" >}}) – To customize parameters and enforcement
+- [Creating a Custom Azure Policy Definition]({{< relref "policy-definition" >}}) – Before assigning custom policies
+- [Creating an Azure Policy Initiative]({{< relref "policy-initiative" >}}) – Before assigning custom initiatives
+- [Modifying Policy Assignments]({{< relref "policy-assignment" >}}) – To customize parameters and enforcement

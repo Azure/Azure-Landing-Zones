@@ -1,6 +1,6 @@
 ---
-title: Creating an Azure Policy initiative (policy set)
-weight: 10
+title: Creating a Custom Policy Initiative (Policy Set)
+weight: 200
 ---
 
 This guide explains how to create Azure Policy initiatives (also known as policy sets) in your Azure Landing Zone deployment. Initiatives allow you to group multiple policy definitions together for easier management and assignment.
@@ -329,7 +329,7 @@ Create `Enforce-Mandatory-Tags.alz_policy_set_definition.json`:
 
 ## Example 2: Custom Policies Only
 
-This example creates an initiative using the custom `Deny-Resource-Types` policy from [Creating a Custom Azure Policy Definition]({{< relref "createCustomAzurePolicy" >}}).
+This example creates an initiative using the custom `Deny-Resource-Types` policy from [Creating a Custom Azure Policy Definition]({{< relref "policy-definition" >}}).
 
 First, ensure you have created `Deny-Resource-Types.alz_policy_definition.json` in your `lib/policy_definitions/` folder.
 
@@ -627,7 +627,7 @@ role_definitions_to_remove: []
 ```
 
 {{< hint type=note >}}
-Adding an initiative to an archetype only deploys the initiative definition. To enforce it, you must also create and assign a policy assignment. See [Creating an Azure Policy Assignment]({{< relref "createAzurePolicyAssignment" >}}) for details on assigning initiatives.
+Adding an initiative to an archetype only deploys the initiative definition. To enforce it, you must also create and assign a policy assignment. See [Creating an Azure Policy Assignment]({{< relref "policy-assignment" >}}) for details on assigning initiatives.
 {{< /hint >}}
 
 ## Complete Library Structure
