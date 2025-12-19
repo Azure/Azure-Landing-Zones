@@ -1,11 +1,11 @@
 ---
-title: Tenant Root Access
+title: Root Access
 weight: 200
 ---
 
-## Tenant Root Access Configuration
+## Root Access Configuration
 
-In order to successfully deploy the Azure Landing Zone using Bicep (AVM), you need to ensure that the account you are using has at least `User Access Administrator` permissions at the tenant root (`/`) level.
+In order to successfully deploy the Azure Landing Zone using Bicep (AVM), you need to ensure that the account you are using has at least `User Access Administrator` permissions at the root (`/`) level.
 
 Follow the steps below to assign the required permissions:
 
@@ -25,7 +25,7 @@ If you want to assign the `User Access Administrator` role to a Service Principa
     ```pwsh
     az login --tenant "<tenant-id>" --use-device-code
     ```
-1. Run the following command to assign the `User Access Administrator` role at the tenant root level:
+1. Run the following command to assign the `User Access Administrator` role at the root level:
 
     ```pwsh
     az role assignment create `

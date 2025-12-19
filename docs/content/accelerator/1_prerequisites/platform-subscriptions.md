@@ -52,13 +52,13 @@ You need either an Azure User Account or Service Principal with the following pe
 
 ### Bicep (AVM) has one additional requirement:
 
-- `User Access Administrator` at that root `/` tenant level.
+- `User Access Administrator` at that root `/` level.
   - `User Access Administrator` is required for the same reason: this account delegates access to the identities that run the management group deployment using least privilege.
 
-Follow the instructions in the [Tenant Root Access]({{< relref "tenant-root-access" >}}) section if you need to assign this permission.
+Follow the instructions in the [Root Access]({{< relref "root-access" >}}) section if you need to assign this permission.
 
 {{< hint type=info >}}
-Access at the tenant root is currently required due to a bug within ARM, and is being investigated by Microsoft.
+Access at the root is currently required due to a bug within ARM, and is being investigated by Microsoft.
 {{< /hint >}}
 
 {{< hint type=warning >}}
