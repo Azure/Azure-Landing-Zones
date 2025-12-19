@@ -12,7 +12,7 @@ You can read more about this access level in the [Microsoft Documentation](https
 Follow the steps below to assign the required permissions:
 
 1. Navigate to the [Azure Portal](https://portal.azure.com) and sign in to your tenant.
-1. You'll need to be in the `Global Administrator` role for the followings steps. If you don't have that role, request it from your Azure AD administrator or PIM elevate to it if you are able to.
+1. You'll need to be in the `Global Administrator` role for the followings steps. If you don't have that role, request it from your Entra ID Tenant administrator or PIM elevate to it if you are able to.
 1. Search for `Microsoft Entra ID` and click to navigate to the Entra ID view.
 1. Click on `Properties` under the `Manage` section in the left navigation pane.
 1. Under `Access management for Azure resources`, set the toggle to `Yes` to enable the setting `manage access to all Azure subscriptions and management groups in this tenant`.
