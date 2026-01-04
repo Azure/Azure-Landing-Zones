@@ -74,7 +74,7 @@ The accelerator supports both Bicep and Terraform. You need to choose one of the
 * **bicep**: Use this for new deployments with the Azure Verified Modules framework ([alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator))
 * **bicep-classic**: Use this for existing deployments or when preferring the traditional framework ([ALZ-Bicep](https://github.com/Azure/ALZ-Bicep))
 
-Fill out the `Infrastructure as Code` value with either `bicep`, `bicep-classic`, or `terraform`.
+Fill out the `Infrastructure as Code` value with either `bicep`, `terraform`, or  `bicep-classic`.
 
 {{< hint type=tip >}}
 **Recommendation for new deployments**: Choose `bicep` to leverage the latest Azure Verified Modules framework for better modularity and maintainability.
@@ -98,11 +98,11 @@ Below is a table describing the available starter modules, along with guidance o
 
 | Starter Module | Setting | Description | Recommendation |
 |--|--|----|---|
-| [Bicep - Platform landing zone]({{< relref "startermodules/bicep-platform-landing-zone">}}) | `complete` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. Uses the alz-bicep-accelerator framework. | Use this for new Bicep deployments (iac_type: `bicep`) |
-| [Bicep Classic - Complete]({{< relref "startermodules/bicep-classic-complete">}}) | `complete` | Multi-region implementation using traditional ALZ-Bicep modules. | Use this for existing Bicep deployments (iac_type: `bicep-classic`) |
+| [Bicep - Platform landing zone]({{< relref "startermodules/bicep-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. Uses the alz-bicep-accelerator framework. | Use this for new Bicep deployments (iac_type: `bicep`) |
 | [Terraform - Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "startermodules/terraform-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Terraform deployments |
+| [Bicep Classic - Complete]({{< relref "startermodules/bicep-classic-complete">}}) | `complete` | Multi-region implementation using traditional ALZ-Bicep modules. | Use this for existing Bicep deployments (iac_type: `bicep-classic`) |
 
-Fill out the `Starter module` value with either `complete` or `platform_landing_zone`.
+Fill out the `Starter module` value with either `platform_landing_zone` or `complete`.
 
 ### Decision 4 - Choose a region for the bootstrap resources
 
@@ -123,11 +123,15 @@ Choose the Azure region(s) for Platform landing zone resources based on your dat
 
 Fill out the `Platform landing zone region(s)` value with the Azure region(s) you have chosen.
 
+{{< hint type=note >}}
+The `starter_locations` setting is in the platform landing zone configuration file for `bicep` and `terraform` iac_type, not the bootstrap configuration file.
+{{< /hint >}}
+
 ### Decision 6 - Choose a parent management group
 
 The parent management group will contain the management groups created by the bootstrap and must already exist.
 
-We recommend `Tenant Root Group`. The Platform landing zone hierarchy builds underneath it, with only permission changes applied at that level (no policies).
+The Platform landing zone hierarchy is built underneath it, with only permission applied at that scope (no policies are applied at that scope).
 
 {{< hint type=warning >}}
 If a parent management group other than Tenant Root Group is chosen, then move the 3 platform subscriptions into the management group before proceeding.
@@ -138,10 +142,6 @@ Fill out the `Parent management group id` value with the management group you ha
 ### Decision 7 - Choose the platform subscriptions
 
 We require 4 platform subscriptions: Management, Connectivity, Identity, and Security.
-
-{{< hint type=note >}}
-A single subscription model is technically possible, but only recommended for sandbox testing purposes.
-{{< /hint >}}
 
 You may wish to follow the steps in the [phase 1 prerequisites]({{< relref "1_prerequisites/platform-subscriptions">}}) to create the 4 platform subscriptions and add the subscription IDs to the checklist now.
 
