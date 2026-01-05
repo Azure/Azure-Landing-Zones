@@ -1,6 +1,6 @@
 name: Feature Request
 description: File a feature request for Azure landing zone tools or guidance
-title: "[Feautre Request]: "
+title: "[Feature Request]: "
 labels: ["Needs: Triage :mag:"]
 projects: []
 body:
@@ -42,6 +42,7 @@ body:
       render: Text
     validations:
       required: false
+
 
 
   
