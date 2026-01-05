@@ -1,0 +1,63 @@
+name: Bug Report
+description: File an Azure landing zone bug report with our tools or guidance
+title: "[Bug]: "
+labels: ["Needs: Triage :mag:"]
+projects: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report, please try to include as much detail as possible to help us triage and resolve the issue as quickly as possible.
+  - type: dropdown
+    id: product
+    attributes:
+      label: What are your reporting a bug for?
+      description: You can select multiple items, if required, just keep openning the dropdown and selecting items
+      multiple: true
+      options:
+        - Azure Policy
+        - ALZ Portal Experience
+        - ALZ Terraform (Classic)
+        - ALZ Terraform (AVM)
+        - ALZ Bicep (Classic)
+        - ALZ Bicep (AVM)
+        - ALZ PowerShell Module (Accelerator)
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: versions
+    attributes:
+      label: What versions of the tools are you using?
+      description: "List the versions of the tools you are using that are relevant to this bug report to help us reproduce the issue."
+      placeholder: "- ALZ PowerShell Module: vX.Y.Z\n- ALZ Terraform AVM Pattern Module: vX.Y.Z\n- Terraform: vX.Y.Z"
+    validations:
+      required: false
+  - type: textarea
+    id: what
+    attributes:
+      label: What is the bug?
+      description: "Please provide a clear and concise description of what the bug is."
+      placeholder: "E.g. When I do [...], I expect [...], but instead [...]."
+    validations:
+      required: true
+  - type: textarea
+    id: logoutput
+    attributes:
+      label: Log Output
+      description: "Please provide any relevant log output or error messages that can help us diagnose the issue."
+      placeholder: "E.g. Copy and paste any relevant log output or error messages here."
+      render: Text
+    validations:
+      required: false
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot(s)
+      description: "Please provide any relevant screenshots that can help us diagnose the issue."
+      placeholder: "E.g. Upload screenshots of the issue here."
+    validations:
+      required: false
+
+  

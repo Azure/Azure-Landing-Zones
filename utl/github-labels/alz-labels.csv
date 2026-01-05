@@ -1,0 +1,50 @@
+Name,Description,HEX,Colour
+Area: Documentation :page_facing_up:,Improvements or additions to documentation,0075ca,Picture
+Needs: Attention :wave:,Needs attention from the maintainers,e99695,Picture
+Needs: Author Feedback :ear:,Needs the author to provide feedback,f18a07,Picture
+Needs: External Changes :gear:,When an issue/PR requires changes that are outside of the control of this repo,de389d,Picture
+Needs: More Evidence :balance_scale:,We are looking for more evidence to make a decision on this,f64872,Picture
+Needs: Triage :mag:,Needs triaging by the team,ffff00,Picture
+Needs: Upstream Policy Changes :arrows_clockwise:,Built-in policy update required by owning product team,513b3c,Picture
+Product: Accelerator :zap:,Issues / PRs related to ALZ Accelerator,ecba82,Picture
+Product: ALZ Provider (Terraform),Issues / PRs related to the ALZ Terraform Provider,000000,Picture
+Product: Library ,Issues / PRs related to ALZ Library,000000,Picture
+Product: Bicep (AVM),Issues / PRs related to ALZ Bicep (AVM Based),000000,Picture
+Product: Bicep (Classic),Issues / PRs related to ALZ-Bicep (Classic),000000,Picture
+Product: Portal,Issues / PRs related to ALZ Portal,000000,Picture
+Product: Terraform (AVM),Issues / PRs related to ALZ Terraform (AVM Based),000000,Picture
+Product: Terraform (Classic),Issues / PRs related to caf-enterprise-scale (Classic),000000,Picture
+Product: ALZ PowerShell ,Issues / PRs related to ALZ PowerShell Module,000000,Picture
+Status: Blocked :collision:,Something is blocking us from fixing this,d8dbe2,Picture
+Status: Do Not Merge :no_entry:,Do not merge PRs with this label attached as they are not ready etc.,c62a4b,Picture
+Status: External Contribution :earth_americas:,This is being worked on by someone outside of the owners/contributors or core team,d8fa2c,Picture
+Status: Help Wanted :sos:,Extra attention is needed. Feel free to assist.,008672,Picture
+Status: Long Term :hourglass:,"We will do it, but will take a longer amount of time due to complexity/priorities",b60205,Picture
+Status: No Recent Activity :zzz:,"No recent activity, will be closed automatically soon unless modified",58a4b0,Picture
+Status: PR Modified Workflows :warning:,PR contains changes to GitHub Actions Workflows,daa49a,Picture
+Topic: Diagnostic Settings :test_tube:,Issues / PRs related to Diagnostic Settings,2e933c,Picture
+Topic: Logging & Automation :camera:,Issues / PRs related to Logging & Automation,bfcc94,Picture
+Topic: Management Groups :beers:,Issues / PRs related to Management Groups,204e4a,Picture
+Topic: MDFC :lock:,Issues / PRs related to Microsoft Defender for Cloud,b24c63,Picture
+Topic: Networking (general) :globe_with_meridians:,Issues / PRs related to Networking that is agnostic to topology,5438dc,Picture
+Topic: Networking (H&S) :globe_with_meridians:,Issues / PRs related to Networking that is specific to Hub & Spoke topologies,5438dc,Picture
+Topic: Networking (VWAN) :globe_with_meridians:,Issues / PRs related to Networking that is specific to Virtual WAN (VWAN) topologies,5438dc,Picture
+Topic: Non-Resource Specific :label:,"Things like tags, location etc.",357ded,Picture
+Topic: Policy :pencil:,Issues / PRs related to Policy,32e875,Picture
+Topic: RBAC :passport_control:,Issues / PRs related to RBAC,c1eeff,Picture
+Topic: Sovereign :alien:,Issues / PRs related to Microsoft Sovereign Cloud,655356,Picture
+Variant: SLZ,Issues / PRs related to Sovereign landing zone (SLZ),ffd700,Picture
+Transfer From: ALZ Library :arrow_right:,Issue transferred from Azure/Azure-Landing-Zones-Library,d1d1d1,Picture
+Transfer From: TF avm-ptn-alz :arrow_right:,Issue transferred from Azure/terraform-azurerm-avm-ptn-alz,d1d1d1,Picture
+Transfer From: TF avm-ptn-alz-mgmt :arrow_right:,Issue transferred from Azure/terraform-azurerm-avm-ptn-alz-management,d1d1d1,Picture
+Transfer From: TF avm-ptn-con-hs :arrow_right:,Issue transferred from Azure/terraform-azurerm-avm-ptn-alz-connectivity-hub-and-spoke-vnet,d1d1d1,Picture
+Transfer From:TF avm-ptn-con-vwan  :arrow_right:,Issue transferred from Azure/terraform-azurerm-avm-ptn-alz-connectivity-virtual-wan,d1d1d1,Picture
+Transfer From: Enterprise-Scale :arrow_right:,Issue transferred from Azure/Enterprise-Scale,d1d1d1,Picture
+Transfer From: Azure-Landing-Zones :arrow_right:,Issue transferred from Azure/Azure-Landing-Zones,d1d1d1,Picture
+Transfer From: alzlib :arrow_right:,Issue transferred from Azure/alzlib,d1d1d1,Picture
+Transfer From: alz-tf-accelerator :arrow_right:,Issue transferred from Azure/alz-terraform-accelerator,d1d1d1,Picture
+Transfer From: alz-powershell-module :arrow_right:,Issue transferred from Azure/alz-powershell-module,d1d1d1,Picture
+Transfer From: ALZ-Bicep :arrow_right:,Issue transferred from Azure/ALZ-Bicep,d1d1d1,Picture
+Transfer From: alz-bicep-accelerator :arrow_right:,Issue transferred from Azure/alz-bicep-accelerator,d1d1d1,Picture
+Transfer From: accel-bstrap-modules :arrow_right:,Issue transferred from Azure/accelerator-bootstrap-modules,d1d1d1,Picture
+Transfer From: caf-enterprise-scale :arrow_right:,Issue transferred from Azure/terraform-azurerm-caf-enterprise-scale,d1d1d1,Picture
