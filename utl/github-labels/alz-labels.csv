@@ -14,7 +14,9 @@ Product: Bicep (Classic),Issues / PRs related to ALZ-Bicep (Classic),000000,Pict
 Product: Portal,Issues / PRs related to ALZ Portal,000000,Picture
 Product: Terraform (AVM),Issues / PRs related to ALZ Terraform (AVM Based),000000,Picture
 Product: Terraform (Classic),Issues / PRs related to caf-enterprise-scale (Classic),000000,Picture
-Product: ALZ PowerShell ,Issues / PRs related to ALZ PowerShell Module,000000,Picture
+Product: ALZ PowerShell,Issues / PRs related to ALZ PowerShell Module,000000,Picture
+Product: Sub/LZ Vending (TF),Issues / PRs related to Terraform Sub/LZ Vending,000000,Picture
+Product: Sub/LZ Vending (Bicep),Issues / PRs related to Bicep Sub/LZ Vending,000000,Picture
 Status: Blocked :collision:,Something is blocking us from fixing this,d8dbe2,Picture
 Status: Do Not Merge :no_entry:,Do not merge PRs with this label attached as they are not ready etc.,c62a4b,Picture
 Status: External Contribution :earth_americas:,This is being worked on by someone outside of the owners/contributors or core team,d8fa2c,Picture
@@ -38,7 +40,8 @@ Transfer From: ALZ Library :arrow_right:,Issue transferred from Azure/Azure-Land
 Transfer From: TF avm-ptn-alz :arrow_right:,Issue transferred from Azure/terraform-azurerm-avm-ptn-alz,d1d1d1,Picture
 Transfer From: TF avm-ptn-alz-mgmt :arrow_right:,Issue transferred from Azure/terraform-azurerm-avm-ptn-alz-management,d1d1d1,Picture
 Transfer From: TF avm-ptn-con-hs :arrow_right:,Issue transferred from Azure/terraform-azurerm-avm-ptn-alz-connectivity-hub-and-spoke-vnet,d1d1d1,Picture
-Transfer From:TF avm-ptn-con-vwan  :arrow_right:,Issue transferred from Azure/terraform-azurerm-avm-ptn-alz-connectivity-virtual-wan,d1d1d1,Picture
+Transfer From: TF avm-ptn-con-vwan  :arrow_right:,Issue transferred from Azure/terraform-azurerm-avm-ptn-alz-connectivity-virtual-wan,d1d1d1,Picture
+Transfer From: TF avm-ptn-lz-vend :arrow_right:,Issue transferred from Azure/terraform-azure-avm-ptn-alz-sub-vending,d1d1d1,Picture
 Transfer From: Enterprise-Scale :arrow_right:,Issue transferred from Azure/Enterprise-Scale,d1d1d1,Picture
 Transfer From: Azure-Landing-Zones :arrow_right:,Issue transferred from Azure/Azure-Landing-Zones,d1d1d1,Picture
 Transfer From: alzlib :arrow_right:,Issue transferred from Azure/alzlib,d1d1d1,Picture
