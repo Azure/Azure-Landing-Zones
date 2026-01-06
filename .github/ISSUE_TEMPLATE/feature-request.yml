@@ -22,6 +22,9 @@ body:
         - ALZ Bicep (Classic)
         - ALZ Bicep (AVM)
         - ALZ PowerShell Module (Accelerator)
+        - Sub/LZ Vending
+        - Sub/LZ Vending (TF)
+        - Sub/LZ Vending (Bicep)
         - Documentation
         - Other
     validations:
