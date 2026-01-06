@@ -158,7 +158,7 @@ param parPolicyAssignmentParameterOverrides = {
 
 ## Common Policy Assignments to Review
 
-### DDoS Protection
+### DDoS Protection {#ddos-protection}
 
 If you don't have a DDoS protection plan, disable the `Enable-DDoS-VNET` policy assignment at the `platform` management group:
 

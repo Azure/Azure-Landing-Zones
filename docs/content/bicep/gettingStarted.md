@@ -58,6 +58,10 @@ The templates include logic that automatically determines recommended availabili
 
 The [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) repository is structured with each module in its own folder, containing both the Bicep template (`main.bicep`) and its corresponding parameter file (`main.bicepparam`). Each management group template is deployed independently, referencing the parent management group ID you define in the parameter files.
 
+{{< hint type=note >}}
+When you run the bootstrap, the accelerator pre-populates subscription IDs in each `.bicepparam` file based on the values you provided in the YAML configuration.
+{{< /hint >}}
+
 ## Determine What to Customize
 
 The bootstrap process pre-populates subscription IDs in the `.bicepparam` files based on your YAML configuration. However, you should still review and customize other parameters to match your requirements.
@@ -146,6 +150,10 @@ param hubNetworks = [
 - **Zone Support**: For regions without zone support, templates automatically return empty arrays. You can also explicitly use non-zonal SKUs (e.g., `VpnGw2` instead of `VpnGw2AZ`)
 - **Optional Services**: Enable or disable Azure Firewall, Bastion, VPN Gateway, ExpressRoute Gateway, DDoS protection, and DNS Private Resolver by setting the `deploy*` properties
 
+{{< hint type=important >}}
+**DDoS Protection Policy Assignment**: The networking module does not control the DDoS protection policy assignment. If you don't have a DDoS protection plan, you must disable or modify the [DDoS Protection policy assignment]({{< relref "howtos/modifyingPolicyAssignments" >}}#ddos-protection) separately in your management group configuration.
+{{< /hint >}}
+
 ### Virtual WAN Configuration
 
 If you choose the Virtual WAN networking pattern, the parameter file includes **two hub definitions by default** for multi-region connectivity:
@@ -209,8 +217,8 @@ param vwanHubs = [
 - **Sidecar Virtual Networks**: Enable for hosting shared services that require virtual network features (e.g., private endpoints, VNet integration)
 - **Optional Services**: Configure Azure Firewall, DDoS protection, and DNS Private Resolver by setting the appropriate `deploy*` properties
 
-{{< hint type=note >}}
-When you run the bootstrap, the accelerator pre-populates subscription IDs in each `.bicepparam` file based on the values you provided in the YAML configuration.
+{{< hint type=important >}}
+**DDoS Protection Policy Assignment**: The networking module does not control the DDoS protection policy assignment. If you don't have a DDoS protection plan, you must disable or modify the [DDoS Protection policy assignment]({{< relref "howtos/modifyingPolicyAssignments" >}}#ddos-protection) separately in your management group configuration.
 {{< /hint >}}
 
 ## Next Steps
