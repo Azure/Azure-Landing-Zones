@@ -1,0 +1,32 @@
+id: avmEventResponder
+name: AVM Event Responder
+description: AVM Event Responder
+resource: repository
+disabled: false
+
+configuration:
+  resourceManagementConfiguration:
+    eventResponderTasks:
+      - description: 'ALZ Terraform (AVM) label'
+        if:
+          - payloadType: Issues
+          - isAction:
+              action: Opened
+          - bodyContains:
+              pattern: "### Which product(s) are you raising for\\?\\s+.*(ALZ Terraform \\(AVM\\)).*\\s+###"
+              isRegex: true
+        then:
+          - addLabel:
+              label: "Product: Terraform (AVM)"
+
+      - description: 'Azure Policy label'
+        if:
+          - payloadType: Issues
+          - isAction:
+              action: Opened
+          - bodyContains:
+              pattern: "### Which product(s) are you raising for\\?\\s+.*(Azure Policy).*\\s+###"
+              isRegex: true
+        then:
+          - addLabel:
+              label: "Product: Azure Policy :shield:"
