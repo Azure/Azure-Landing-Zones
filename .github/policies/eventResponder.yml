@@ -13,7 +13,7 @@ configuration:
           - isAction:
               action: Opened
           - bodyContains:
-              pattern: "### Which product(s) are you raising for\\?\\s+.*ALZ Terraform \\(AVM\\).*\\s+###"
+              pattern: "### Which product(s) are you raising for\\?\\s+.*(ALZ Terraform \\(AVM\\)).*\\s+###"
               isRegex: true
         then:
           - addLabel:
@@ -25,7 +25,7 @@ configuration:
           - isAction:
               action: Opened
           - bodyContains:
-              pattern: "### Which product(s) are you raising for\\?\\s+.*Azure Policy.*\\s+###"
+              pattern: "### Which product(s) are you raising for\\?\\s+.*(Azure Policy).*\\s+###"
               isRegex: true
         then:
           - addLabel:
