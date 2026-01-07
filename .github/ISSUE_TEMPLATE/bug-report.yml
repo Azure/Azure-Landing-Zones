@@ -11,8 +11,8 @@ body:
   - type: dropdown
     id: product
     attributes:
-      label: What are your reporting a bug for?
-      description: You can select multiple items, if required, just keep openning the dropdown and selecting items
+      label: Which product are you raising for?
+      description: You can select multiple items, if required, just keep opening the dropdown and selecting items
       multiple: true
       options:
         - Azure Policy
@@ -63,4 +63,3 @@ body:
     validations:
       required: false
 
-  

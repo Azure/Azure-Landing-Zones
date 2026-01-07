@@ -11,8 +11,8 @@ body:
   - type: dropdown
     id: product
     attributes:
-      label: What are your requesting a feature for?
-      description: You can select multiple items, if required, just keep openning the dropdown and selecting items
+      label: Which product are you raising for?
+      description: You can select multiple items, if required, just keep opening the dropdown and selecting items
       multiple: true
       options:
         - Azure Policy
@@ -41,11 +41,11 @@ body:
     id: potential
     attributes:
       label: Potential implementation/configuration
-      description: "(Optional) Please provide an example implemetation/configuration of your feature request or the changes you'd like made"
+      description: "(Optional) Please provide an example implementation/configuration of your feature request or the changes you'd like made"
       render: Text
     validations:
       required: false
 
 
 
-  
+
