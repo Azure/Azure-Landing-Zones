@@ -7,16 +7,17 @@ disabled: false
 configuration:
   resourceManagementConfiguration:
     eventResponderTasks:
-      - description: 'If a new issue or PR is opened add the "Needs: Triage :mag:" label'
+      - description: 'ALZ Terraform (AVM) label'
         if:
-          - or:
-              - payloadType: Issues
-              - payloadType: Pull_Request
+          - payloadType: Issues
           - isAction:
               action: Opened
+          - bodyContains:
+              pattern: "### Which product(s) are you raising for\\?\\s+.*ALZ Terraform \\(AVM\\).*\\s+###"
+              isRegex: true
         then:
           - addLabel:
-              label: "Needs: Triage :mag:"
+              label: "Product: Terraform (AVM)"
 
       - description: 'Azure Policy label'
         if:
@@ -24,10 +25,8 @@ configuration:
           - isAction:
               action: Opened
           - bodyContains:
-              pattern: |
-                ### Which product are you raising for?
-
-                Azure Policy
+              pattern: "### Which product(s) are you raising for\\?\\s+.*Azure Policy.*\\s+###"
+              isRegex: true
         then:
           - addLabel:
               label: "Product: Azure Policy :shield:"

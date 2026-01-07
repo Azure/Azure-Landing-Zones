@@ -11,7 +11,7 @@ body:
   - type: dropdown
     id: product
     attributes:
-      label: Which product are you raising for?
+      label: Which product(s) are you raising for?
       description: You can select multiple items, if required, just keep opening the dropdown and selecting items
       multiple: true
       options:
