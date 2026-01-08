@@ -45,7 +45,7 @@ The simplest way to get started is to use the interactive wizard which guides yo
         - Selection lists for management groups and subscriptions
         - GUID validation for subscription and tenant IDs
 
-1. After configuration, the wizard offers to open VS Code for final review of your configuration files.
+1. After configuration, the wizard offers to open VS Code for final review of your configuration files. You'll need to update your platform landing zone config file at this stage before proceeding.
 
 1. Type `yes` when prompted to continue with deployment, or `no` to exit and configure later.
 
