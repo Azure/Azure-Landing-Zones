@@ -1,9 +1,9 @@
 ---
-title: Phase 2 - Bootstrap
-weight: 30
+title: Advanced Bootstrap
+weight: 10
 ---
 
-Follow these instructions to bootstrap your Version Control System and Azure ready to deploy your Platform landing zone.
+If you prefer more control over the configuration process, you can use the manual approach below.
 
 1. Copy the following variables to Notepad and edit them for your chosen settings:
 
@@ -16,7 +16,7 @@ Follow these instructions to bootstrap your Version Control System and Azure rea
     ```
 
     {{< hint type=tip >}}
-Terraform scenarios can be found in the [scenarios docs]({{< relref "startermodules/terraform-platform-landing-zone/scenarios" >}}) section.
+Terraform scenarios can be found in the [scenarios docs]({{< relref "../startermodules/terraform-platform-landing-zone/scenarios" >}}) section.
     {{< /hint >}}
 
 1. Open a new PowerShell terminal and copy and paste it in there from Notepad to run it. You'll need these variables set for subsequent steps, so keep the terminal open or run this again if you open a new new terminal.
@@ -58,15 +58,15 @@ If you don't have Visual Studio Code installed, you can navigate to the config f
 1. Open your `inputs.yaml` bootstrap configuration file in Visual Studio Code and provide values for each input in the required section.
 
     {{< hint type=tip >}}
-More details about the configuration files can be found in the [configuration files]({{< relref "configuration-files" >}}) section.
+More details about the configuration files can be found in the [configuration files]({{< relref "../configuration-files" >}}) section.
     {{< /hint >}}
 
 1. Open your Platform landing zone configuration file in Visual Studio Code and provide values for each required input.
 
     The file extension differs for each Infrastructure as Code tool. You can learn more about the specific settings for each tool in the relevant starter module documentation:
 
-    - Terraform: `platform-landing-zones.tfvars` - [Terraform Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "startermodules/terraform-platform-landing-zone" >}})
-    - Bicep: `platform-landing-zone.yaml` - [Bicep Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "startermodules/bicep-platform-landing-zone" >}})
+    - Terraform: `platform-landing-zones.tfvars` - [Terraform Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "../startermodules/terraform-platform-landing-zone" >}})
+    - Bicep: `platform-landing-zone.yaml` - [Bicep Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "../startermodules/bicep-platform-landing-zone" >}})
 
     Update the following required inputs in the file:
 
@@ -74,7 +74,7 @@ More details about the configuration files can be found in the [configuration fi
     - `defender_email_security_contact`: (Terraform only) this must be updated to include an email address for your security contact for Microsoft Defender for Cloud alerts.
 
     {{< hint type=tip >}}
-Terraform options can be found in the [options docs]({{< relref "startermodules/terraform-platform-landing-zone/options" >}}) section.
+Terraform options can be found in the [options docs]({{< relref "../startermodules/terraform-platform-landing-zone/options" >}}) section.
     {{< /hint >}}
 
 1. Login to Azure CLI replacing the tenant and subscription IDs with your own to target your desired bootstrap subscription:
@@ -88,7 +88,7 @@ Terraform options can be found in the [options docs]({{< relref "startermodules/
 1. In your terminal run the ALZ module to bootstrap your environment:
 
     {{< hint type=important title="JSON instead of YAML">}}
-If you are unable to install the [`powershell-yaml` module](https://www.powershellgallery.com/packages/powershell-yaml) (the ALZ module tries to install this automatically for you when invoked), you **can** use `.json` files instead; see [Configuration Files]({{< relref "configuration-files" >}}) for more information.
+If you are unable to install the [`powershell-yaml` module](https://www.powershellgallery.com/packages/powershell-yaml) (the ALZ module tries to install this automatically for you when invoked), you **can** use `.json` files instead; see [Configuration Files]({{< relref "../configuration-files" >}}) for more information.
     {{< /hint >}}
 
     ```pwsh
@@ -123,8 +123,8 @@ If you are unable to install the [`powershell-yaml` module](https://www.powershe
 You can now update your `Azure Landing Zone Terraform Accelerator Runner Registration` GitHub PAT (`token-2`) to restrict it to the main repository created by the bootstrap.
     {{< /hint >}}
 
-1. For Bicep only, clone your newly created repository to your local machine and make any changes required to the parameter files. See the [Bicep getting started guide]({{< relref "../bicep/gettingStarted" >}}) for more information on customizing the parameter files. Commit and push any changes to your repository. For the local file system option, you can make changes directly in the output folder.
+1. For Bicep only, clone your newly created repository to your local machine and make any changes required to the parameter files. See the [Bicep getting started guide]({{< relref "../../bicep/gettingStarted" >}}) for more information on customizing the parameter files. Commit and push any changes to your repository. For the local file system option, you can make changes directly in the output folder.
 
 ## Next Steps
 
-Now head to [Phase 3]({{< relref "3_run" >}}).
+Now head to [Phase 3]({{< relref "../3_run" >}}).
