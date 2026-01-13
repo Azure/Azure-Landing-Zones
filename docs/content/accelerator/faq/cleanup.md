@@ -111,16 +111,6 @@ If you deployed the using the [advanced]({{< ref "../2_bootstrap/advanced" >}}) 
 
     ```
 
-1. Login to Azure CLI and select your bootstrap subscription:
-
-    This is required even though we already deleted our Azure resources as the Terraform provider needs valid credentials to query that they have been deleted.
-
-    ```pwsh
-    az login --tenant "<tenant-id>" --use-device-code
-    az account set --subscription "<bootstrap-subscription-id>"
-
-    ```
-
 1. If you set your Version Control System personal access tokens (PATs) as environment variables during bootstrap, ensure they are still set in your current terminal session or set them again.
 
 1. Run the following command to remove the version control system resources created during bootstrap:
