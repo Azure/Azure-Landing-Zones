@@ -12,8 +12,6 @@ For convenience we provide a PowerShell cmdlet called `Remove-PlatformLandingZon
 
 ## Steps to clean up the Accelerator Bootstrap and Platform landing zone Microsoft Azure resources
 
-If you deployed the using the [advanced]({{< ref "../2_bootstrap/advanced" >}}) deployment mode, follow these steps:
-
 1. Open a PowerShell terminal using PowerShell 7.
 1. Ensure you have the latest version of the [ALZ PowerShell Module](https://www.powershellgallery.com/packages/ALZ) installed:
 
