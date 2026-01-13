@@ -22,24 +22,48 @@ While we try very hard to avoid breaking changes, there are times when a feature
 
 ## Release Notes
 
-### ALZ Accelerator - Bicep Framework Options Support
+---
+
+### [ALZ PowerShell Module - v6.0.4](https://github.com/Azure/ALZ-PowerShell-Module/releases/tag/v6.0.4)
+
+- Release date: 2026-01-10
+- Release link: [v6.0.4](https://github.com/Azure/ALZ-PowerShell-Module/releases/tag/v6.0.4)
+- Release diff: [v5.1.7...v6.0.4](https://github.com/Azure/ALZ-PowerShell-Module/compare/v12.1.0...v13.0.0)
+
+We released a new interactive experience for the ALZ PowerShell Module in v6.0.0 to simplify the process of generating bootstrap configuration files for the ALZ Terraform and Bicep Starter Modules.
+
+Now when you run the `Deploy-Accelerator` command without any parameters, you will be guided through a series of prompts to gather the necessary information to generate your bootstrap configuration files.
+
+Features include:
+
+- Interactive prompts for key configuration options
+- Validation of user input to ensure correctness
+- Lookup of existing Azure resources to simplify configuration
+- Generation of bootstrap configuration files for both Terraform and Bicep Starter Modules
+
+The documentation has been updated to reflect the new interactive experience. You can find the updated guide [here]({{< relref "accelerator/2_bootstrap" >}}).
+
+---
+
+### ALZ Accelerator - Bicep Azure Verified Modules Release
 
 - Release date: 2025-11-24
 - Impact: **Non-breaking change** - Additive functionality only
 
 The ALZ Accelerator now supports two Bicep framework options to meet different deployment needs:
 
-**New Framework Support (`iac_type: bicep`)**:
+**Azure Verified Modules Bicep (`iac_type: bicep`)**:
 
 - Introduces support for [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) built on Azure Verified Modules
 - Provides enhanced modularity and maintainability
 - Recommended for new Azure Landing Zone deployments
 
-**Classic Framework Continuation (`iac_type: bicep-classic`)**:
+**Classic Bicep (`iac_type: bicep-classic`)**:
 
 - Continues support for 1 year for the traditional [ALZ-Bicep](https://github.com/Azure/ALZ-Bicep) framework
 - Maintains backward compatibility for existing deployments
 - No changes required for current Bicep users
+- Will be removed as an accelerator option within 3 months of this release
 
 **User Impact**: Existing users can continue using their current configurations without changes. New users can choose the framework that best fits their needs.
 
@@ -50,8 +74,6 @@ The ALZ Accelerator now supports two Bicep framework options to meet different d
 - Release date: 2025-11-21
 - Release link: [v13.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v13.0.0)
 - Release diff: [v12.1.0...v13.0.0](https://github.com/Azure/alz-terraform-accelerator/compare/v12.1.0...v13.0.0)
-
----
 
 #### Breaking Changes
 
@@ -109,6 +131,8 @@ private_dns_zones = {
 }
 ```
 
+---
+
 ### [Terraform Starter Module - v12.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v12.0.0)
 
 - Release date: 2025-11-03
@@ -126,6 +150,8 @@ There have been significant change to the variable interface. We have updated th
 - Migration of Virtual WAN configuration to dedicated variable objects.
 
 We don't plan any further significant changes to the module interface for the foreseeable future. Any further changes will be additive and non-breaking.
+
+---
 
 ### [Terraform Starter Module - v9.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v9.0.0)
 
