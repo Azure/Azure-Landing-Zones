@@ -14,6 +14,20 @@ The accelerator does not support GitHub personal accounts, since they don't supp
 If you choose to use a `free` organization account the accelerator bootstrap will make your repositories public. It must do this to support the functionality required by the accelerator. This is not recommended for production environments.
 {{< /hint >}}
 
+### How do I use a GitHub Enterprise Cloud with data residency (*.ghe.com) hosted instance?
+
+In order to target your own domain, add the following settings to your bootstrap configuration file `inputs.yaml`:
+
+```yaml
+github_organization_domain_name: "<enterprise name>.ghe.com"
+```
+
+For example:
+
+```yaml
+github_organization_domain_name: "contoso.ghe.com"
+```
+
 ## GitHub Personal Access Token (PAT)
 
 This first PAT is referred to as `token-1`.
@@ -71,3 +85,4 @@ You can should this post bootstrap deployment to limit access to only the reposi
     1. `Self-hosted runners`: `Read and write`  Only required if you plan to use Runner Groups at the organization level.
 1. Click `Generate token`.
 1. Copy the token and save it somewhere safe.
+
