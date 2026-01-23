@@ -10,9 +10,10 @@ Set up the prerequisites by following the steps below.
 
 Install the following tools before getting started.
 
-- PowerShell 7.4 (or newer): [Follow the instructions for your operating system](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
-- Azure CLI 2.55.0 (or newer): [Follow the instructions for your operating system](https://learn.microsoft.com/cli/azure/install-azure-cli)
-* Git (any supported version): [Follow the instructions for your operating system](https://git-scm.com/downloads).
+* PowerShell 7.4 (or newer): [Follow the instructions for your operating system](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
+* Azure CLI 2.55.0 (or newer): [Follow the instructions for your operating system](https://learn.microsoft.com/cli/azure/install-azure-cli)
+* Git (any supported version): [Follow the instructions for your operating system](https://git-scm.com/downloads)
+* VSCode (not required, highly recommended): [Follow the instructions for your operating system](https://code.visualstudio.com/download)
 
 {{< hint type=note >}}
 Ensure all tools are available from a PowerShell Core (pwsh) terminal. Add them to your environment path if needed.
@@ -26,7 +27,7 @@ We **DO NOT** explicitly support:
 * Running in Azure Cloud Shell
 
 {{< hint type=tip >}}
-If your local machine is behind a corporate proxy, consider spinning up a temporary VM in Azure to run the Accelerator from, then tear it down when you are done.
+If your local machine is behind a corporate proxy, consider spinning up a temporary VM in Azure to run the Accelerator from, then tear it down when you are done. Alternatively, turn the VM off and retain it for future use/upgrades or tear down of the environment.
 {{< /hint >}}
 
 ## 2 - Azure Subscriptions and Permissions
