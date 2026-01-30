@@ -30,8 +30,6 @@ graph TD
     D --> L[Online]
 ```
 
-
-
 #### Terraform
 
 - **Plan UAMI**:
