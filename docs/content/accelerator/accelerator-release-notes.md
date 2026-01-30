@@ -41,7 +41,7 @@ We have also introduced a new convenience function that the accelerator now move
 
 There have been other quality of life improvements in this release, including:
 
-- New preview cmdlets for destroying Azure DevOps and GitHub resources created by the accelerator. These will be added to the docs after further testing.
+- New cmdlets for destroying Azure DevOps and GitHub resources created by the accelerator. `Remove-AzureDevOpsAccelerator` and `Remove-GitHubAccelerator`.
 - Improved and standardized logging throughout the PowerShell module.
 
 ---
