@@ -10,10 +10,6 @@ This section details the prerequisites for the platform subscriptions.
 
 You will need to choose the parent management group for your Platform landing zone structure to sit under. This could be the `Tenant Root Group` or a new management group you create under there if preferred.
 
-{{< hint type=warning >}}
-If a parent management group other than Tenant Root Group is chosen, then you must move the 4 platform subscriptions into that management group before proceeding.
-{{< /hint >}}
-
 ## 2 - Azure Subscriptions
 
 We recommend setting up 4 subscriptions for Platform landing zone. These are management, identity, connectivity, and security. See our [advanced scenarios]({{< relref "advancedscenarios" >}}) section for alternatives.
@@ -34,13 +30,7 @@ Once you have the access required, create the four subscriptions following your 
 
 Take note of the subscription id of each subscription as we will need them later.
 
-## 3 - Management Group Subscription Placement
-
-If your 4 platform subscriptions are not currently under the management group you chose in step 1, you will need to move them there. This is required for the bootstrap to work correctly.
-
-This can be done via the [Portal](https://learn.microsoft.com/en-us/azure/governance/management-groups/manage#move-management-groups-and-subscriptions) or using the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/account/management-group/subscription?view=azure-cli-latest#az-account-management-group-subscription-add).
-
-## 4 - Azure Authentication and Permissions
+## 3 - Azure Authentication and Permissions
 
 You need either an Azure User Account or Service Principal with the following permissions to run the bootstrap. For simplicity, we recommend using a User account since this is a one off process that you are unlikely to repeat.
 
@@ -59,10 +49,6 @@ Follow the instructions in the [Root Access]({{< relref "root-access" >}}) secti
 
 {{< hint type=info >}}
 Access at the root is currently required due to a bug within ARM, and is being investigated by Microsoft.
-{{< /hint >}}
-
-{{< hint type=warning >}}
-Remember, if a parent management group other than Tenant Root Group is chosen, then you must move the 4 platform subscriptions into that management group before proceeding.
 {{< /hint >}}
 
 ### Authenticate via User Account

@@ -133,10 +133,6 @@ The parent management group will contain the management groups created by the bo
 
 The Platform landing zone hierarchy is built underneath it, with only permission applied at that scope (no policies are applied at that scope).
 
-{{< hint type=warning >}}
-If a parent management group other than Tenant Root Group is chosen, then move the 3 platform subscriptions into the management group before proceeding.
-{{< /hint >}}
-
 Fill out the `Parent management group id` value with the management group you have chosen.
 
 ### Decision 7 - Choose the platform subscriptions

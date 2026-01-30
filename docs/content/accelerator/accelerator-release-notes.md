@@ -22,13 +22,35 @@ While we try very hard to avoid breaking changes, there are times when a feature
 
 ## Release Notes
 
+### [ALZ PowerShell Module - v7.0.0](https://github.com/Azure/ALZ-PowerShell-Module/releases/tag/v7.0.0) and [Accelerator Bootstrap Modules - v7.0.0](https://github.com/Azure/accelerator-bootstrap-modules/releases/tag/v7.0.0)
+
+- Release date: 2026-01-30
+- Release link: [ALZ PowerShell Module - v7.0.0](https://github.com/Azure/ALZ-PowerShell-Module/releases/tag/v7.0.0) and [Accelerator Bootstrap Modules - v7.0.0](https://github.com/Azure/accelerator-bootstrap-modules/releases/tag/v7.0.0)
+- Release diff: [ALZ PowerShell Module - v6.0.5...v7.0.0](https://github.com/Azure/ALZ-PowerShell-Module/compare/v6.0.5...v7.0.0) and [Accelerator Bootstrap Modules - v6.1.8...v7.0.0](https://github.com/Azure/accelerator-bootstrap-modules/compare/v6.1.8...v7.0.0)
+
+This release is focussed on simplifying and improving the security posture of the ALZ IaC Accelerator. We have reduced the scope of role assignments and removed the need for custom role definitions where possible.
+
+- The read / write role assignments for the User Assigned Managed Identity (UAMI) now use the built-in `Owner` and `Reader` roles at the.
+- The role assignments are now just applied at the management group, they are no longer applied to each platform subscription.
+- The Bicep read identity still requires a custom role definition for `action` permissions, but it is much simplified and just requires `Microsoft.Resources/deployments/whatIf/action` and `Microsoft.Resources/deployments/validate/action`.
+- The role assignments are now just applied at the intermediate root management group, they are no longer applied at the parent management group.
+
+In order to achieve this, we had to move the responsibility for creating the intermediate root management group to the bootstrap modules. The name and display name are determined from the relevant configuration files, so there are no additional inputs required.
+
+We have also introduced a new convenience function that the accelerator now moves the platform subscriptions under the intermediate root management group automatically. This removes the need for users to manually move the subscriptions prior to deploying the platform landing zone. We have also catered for this on destroy for Terraform, it will move them back to intermediate root and then the default management group when destroying the accelerator.
+
+There have been other quality of life improvements in this release, including:
+
+- New preview cmdlets for destroying Azure DevOps and GitHub resources created by the accelerator. These will be added to the docs after further testing.
+- Improved and standardized logging throughout the PowerShell module.
+
 ---
 
 ### [ALZ PowerShell Module - v6.0.4](https://github.com/Azure/ALZ-PowerShell-Module/releases/tag/v6.0.4)
 
 - Release date: 2026-01-10
 - Release link: [v6.0.4](https://github.com/Azure/ALZ-PowerShell-Module/releases/tag/v6.0.4)
-- Release diff: [v5.1.7...v6.0.4](https://github.com/Azure/ALZ-PowerShell-Module/compare/v12.1.0...v13.0.0)
+- Release diff: [v5.1.7...v6.0.4](https://github.com/Azure/ALZ-PowerShell-Module/compare/v5.1.7...v6.0.4)
 
 We released a new interactive experience for the ALZ PowerShell Module in v6.0.0 to simplify the process of generating bootstrap configuration files for the ALZ Terraform and Bicep Starter Modules.
 
