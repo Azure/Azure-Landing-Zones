@@ -57,7 +57,7 @@ The components of the environment are similar, but differ depending on your choi
   - Storage Account and Container for State (Terraform only)
   - Resource Group for Identity
   - User Assigned Managed Identities (UAMI) with Federated Credentials for Plan and Apply
-  - Permissions for the UAMI on state storage container, subscriptions and management groups
+  - Permissions for the UAMI on state storage container and management groups
   - [Optional] Container Registry for GitHub Runner image
   - [Optional] Container Instances hosting GitHub Runners
   - [Optional] Virtual network, subnets, private DNS zone and private endpoint.
@@ -83,7 +83,7 @@ The components of the environment are similar, but differ depending on your choi
   - Storage Account and Container for State (Terraform only)
   - Resource Group for Identity
   - User Assigned Managed Identities (UAMI) with Federated Credentials for Plan and Apply
-  - Permissions for the UAMI on state storage container, subscriptions and management groups
+  - Permissions for the UAMI on state storage container and management groups
   - [Optional] Container Registry for Azure DevOps Agent image
   - [Optional] Container Instances hosting Azure DevOps Agents
   - [Optional] Virtual network, subnets, private DNS zone and private endpoint.
@@ -113,7 +113,7 @@ This outputs the ALZ module files to the file system, so you can apply them manu
   - Storage Account and Container for State (Terraform only)
   - Resource Group for Identity
   - User Assigned Managed Identities (UAMI) for Plan and Apply
-  - Permissions for the UAMI on state storage container, subscriptions and management groups
+  - Permissions for the UAMI on state storage container and management groups
 
 - Local File System
   - Starter module with variables

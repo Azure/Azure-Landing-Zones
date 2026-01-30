@@ -13,4 +13,5 @@ If you have a question not listed here, please raise an [Issue](https://github.c
 - [Bootstrap customization FAQs]({{< relref "customization" >}})
 - [Platform landing zone Cleanup FAQs]({{< relref "cleanup" >}})
 - [Upgrading Accelerator FAQs]({{< relref "upgrade" >}})
+- [Permissions FAQs]({{< relref "permissions" >}})
 - [Miscellaneous FAQs]({{< relref "misc" >}})

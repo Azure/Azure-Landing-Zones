@@ -76,7 +76,7 @@ If you are in a brownfield environment and your Management Groups or Platform su
 If you still have your folder structure created during bootstrap, you can re-run the `Deploy-Accelerator` cmdlet with the `-Destroy` parameter to remove any version control system resources created during bootstrap
 
 {{< hint type=warning >}}
-If you lost your folder structure, you'll need to manually delete the version control system resources such as projects or repositories, agent pools, and teams.
+If you lost your folder structure, you can use the `Remove-AzureDevOpsAccelerator` or `Remove-GitHubAccelerator` cmdlets to remove the version control system resources.
 {{< /hint >}}
 
 1. Open a PowerShell terminal using PowerShell 7.
