@@ -60,9 +60,9 @@ The bootstrap process generates a YAML file by default, but JSON format is also 
 
 {{< highlight terraform "linenos=table" >}}
 locals {
-  root_management_group_name = yamldecode(file("${path.root}/lib/architecture_definitions/alz.alz_architecture_definition.yaml")).management_groups[0].id
+  root_management_group_name = yamldecode(file("${path.root}/lib/architecture_definitions/alz_custom.alz_architecture_definition.yaml")).management_groups[0].id
 
-  # root_management_group_name = jsondecode(file("${path.root}/lib/architecture_definitions/alz.alz_architecture_definition.json")).management_groups[0].id
+  # root_management_group_name = jsondecode(file("${path.root}/lib/architecture_definitions/alz_custom.alz_architecture_definition.json")).management_groups[0].id
 }
 
 module "amba" {
