@@ -41,7 +41,7 @@ management_groups:
     parent_id: null
 {{< / highlight >}}
 
-3. Before deployment, there are a couple of pre-requisites that need to be completed, they include creating a managed identity in order to query Resource Graph for alerts and a resource group to store the alert/monitoring assets. Start by locating the `platform-landing-zone.auto.tfvars` >`custom_replacements` > `names` block setting and add the following code:
+3. Before deployment, there are a couple of pre-requisites that need to be completed, they include creating a managed identity in order to query Resource Graph for alerts and a resource group to store the alert/monitoring assets. Start by locating the `platform-landing-zone.tfvars` >`custom_replacements` > `names` block setting and add the following code:
 
 {{< highlight terraform "linenos=table" >}}
 custom_replacements = {
@@ -80,7 +80,7 @@ module "amba" {
 
 This module creates a resource group and managed identity and it pulls the names from the `custom_replacements` > `names` block.
 
-5. Finally, you need to amend the policy default values that share common parameters like the managed identity, resource group and any other customizations. To achieve this, locate the `platform-landing-zone.auto.tfvars` > `management_group_settings` > `policy_default_values` and append the following code: 
+5. Finally, you need to amend the policy default values that share common parameters like the managed identity, resource group and any other customizations. To achieve this, locate the `platform-landing-zone.tfvars` > `management_group_settings` > `policy_default_values` and append the following code: 
 
 {{< hint type=tip >}}
 Ensure you amend the `amba_alz_action_group_email` option if you want to receive email notifications.
