@@ -85,7 +85,7 @@ If you lost your folder structure, you'll need to manually delete the version co
 Even if you deployed with advanced mode, you should still be able to use this method as long as you have the standard folder structure created during bootstrap.
 {{< /hint >}}
 
-If you deployed the using the [interactive]({{< ref "../2_bootstrap" >}}) deployment mode, follow these steps:
+If you deployed using the [interactive]({{< ref "../2_bootstrap" >}}) deployment mode, follow these steps:
 
 1. Open a PowerShell terminal using PowerShell 7.
 1. Run the following command to prepare to remove the Platform landing zone and bootstrap resources:
@@ -99,7 +99,7 @@ If you deployed the using the [interactive]({{< ref "../2_bootstrap" >}}) deploy
 
 ### Advanced mode
 
-If you deployed the using the [advanced]({{< ref "../2_bootstrap/advanced" >}}) deployment mode, follow these steps:
+If you deployed using the [advanced]({{< ref "../2_bootstrap/advanced" >}}) deployment mode, follow these steps:
 
 1. Open a PowerShell terminal using PowerShell 7.
 
