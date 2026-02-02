@@ -79,6 +79,28 @@ If you still have your folder structure created during bootstrap, you can re-run
 If you lost your folder structure, you can use the `Remove-AzureDevOpsAccelerator` or `Remove-GitHubAccelerator` cmdlets to remove the version control system resources.
 {{< /hint >}}
 
+### Interactive mode
+
+{{< hint type=tip >}}
+Even if you deployed with advanced mode, you should still be able to use this method as long as you have the standard folder structure created during bootstrap.
+{{< /hint >}}
+
+If you deployed using the [interactive]({{< ref "../2_bootstrap" >}}) deployment mode, follow these steps:
+
+1. Open a PowerShell terminal using PowerShell 7.
+1. Run the following command to prepare to remove the Platform landing zone and bootstrap resources:
+
+    ```pwsh
+    Deploy-Accelerator -Destroy
+    ```
+
+1. Follow the prompts and supply the values if needed.
+1. Once it generates the plan, hit enter to destroy the bootstrap resources.
+
+### Advanced mode
+
+If you deployed using the [advanced]({{< ref "../2_bootstrap/advanced" >}}) deployment mode, follow these steps:
+
 1. Open a PowerShell terminal using PowerShell 7.
 
 1. Set your variables for the Infrastructure as Code type and the target folder path where your folder structure is located:
@@ -86,28 +108,6 @@ If you lost your folder structure, you can use the `Remove-AzureDevOpsAccelerato
     ```pwsh
     $iacType = "terraform" # Set to 'bicep', 'terraform', or 'bicep-classic'
     $targetFolderPath = "~/accelerator"
-
-    ```
-
-1. Ensure you have the latest version of the [ALZ PowerShell Module](https://www.powershellgallery.com/packages/ALZ) installed:
-
-    ```pwsh
-    $alzModule = Get-InstalledPSResource -Name ALZ 2>$null
-    if (-not $alzModule) {
-        Install-PSResource -Name ALZ
-    } else {
-        Update-PSResource -Name ALZ
-    }
-
-    ```
-
-1. Login to Azure CLI and select your bootstrap subscription:
-
-    This is required even though we already deleted our Azure resources as the Terraform provider needs valid credentials to query that they have been deleted.
-
-    ```pwsh
-    az login --tenant "<tenant-id>" --use-device-code
-    az account set --subscription "<bootstrap-subscription-id>"
 
     ```
 
@@ -148,4 +148,4 @@ If you are using GitHub and you deployed GitHub Actions Runner Groups, will need
 
     ```
 
-1. Once it generates the plan, hit enter to deploy the bootstrap.
+1. Once it generates the plan, hit enter to destroy the bootstrap resources.
