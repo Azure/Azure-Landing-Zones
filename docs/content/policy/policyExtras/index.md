@@ -27,12 +27,16 @@ ALZ provides several additional policies that are not assigned by default but th
 | Deploy-Vnet-Hubspoke | Deploy Virtual Network with peering to the hub | Automatically peer a new virtual network with the hub, for example, in the Corp management group |
 | Deploy-Windows-DomainJoin | Deploy Windows Domain Join Extension with Key Vault configuration | Windows Domain Join a virtual machine using domain name and password stored in Key Vault as secrets |
 
-## 2. ALZ, Workload Specific Compliance and Regulated Industries
+## 2. ALZ, Workload Specific Compliance (WSC) and Regulated Industries
 
 The Azure Landing Zone is designed to be a flexible and scalable solution that can be used by organizations in a variety of industries. However, organizations in regulated industries (FSI, Healthcare, etc.) may need to take additional steps to ensure compliance with industry-specific regulations. These regulations often commonly have a consistent set of controls to cover, like CMK, locking down public endpoints, TLS version enforcement, logging etc.
 
 To support the additional control requirements of these industries, we're providing the following additional initiatives that enhance the security and compliance posture of the Azure Landing Zone:
 
 > **Please Note:** These are meant to help customers across all regulated industries (FSI, Healthcare, etc.) and not be aligned to specific regulatory controls, as there are already policy initiatives available for these via [Azure Policy](https://learn.microsoft.com/azure/azure-resource-manager/management/security-controls-policy) & [Microsoft Defender for Cloud](https://learn.microsoft.com/azure/defender-for-cloud/regulatory-compliance-dashboard)
+
+{{< hint type=note >}}
+The below table is scrollable. On smaller screens, please scroll horizontally to view all columns.
+{{< /hint >}}
 
 {{< csv-table file="data/ALZWorkloadAssignments.csv" >}}
