@@ -4,7 +4,7 @@ geekdocCollapseSection: true
 weight: 1
 ---
 
-Here's what's changed in Enterprise Scale/Azure Landing Zones:
+Here's what's changed in Azure landing zone:
 
 {{< expand "February 2026" ">" >}}
 
