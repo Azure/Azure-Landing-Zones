@@ -14,3 +14,5 @@ hugo.linux
 # Exclude Terraform files used for testing examples
 .terraform
 .terraform.lock.hcl
+
+.DS_Store
