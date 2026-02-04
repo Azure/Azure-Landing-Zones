@@ -1,6 +1,11 @@
 ---
 title: Policy Assignments
 weight: 5
+resources:
+  - name: excel-logo
+    src: img/ef73.jpg
+    alt: Excel
+    title: Excel
 ---
 
 As part of a default deployment configuration, policy and policy set definitions are deployed at multiple levels within the Azure landing zone Management Group hierarchy as depicted within the below diagram.
@@ -13,7 +18,7 @@ As part of the ALZ portal deployment/configuration, policy and policy set defini
 
 {{< hint type=note >}}
 <table><tr><td>
-<a href=./data/ALZPolicyAssignments.xlsx>{{< figure src="../img/ef73.jpg">}}</a></td><td>For convenience, an Excel version of the below information is available <a href=./data/ALZPolicyAssignments.xlsx>here</a> or click the Excel icon.</td></tr></table>
+<a href=./data/ALZPolicyAssignments.xlsx>{{< img name="excel-logo" size="origin" lazy=true >}}</a></td><td>For convenience, an Excel version of the below information is available <a href=./data/ALZPolicyAssignments.xlsx>here</a> or click the Excel icon.</td></tr></table>
 {{< /hint >}}
 
 ## Default Policy Assignments
