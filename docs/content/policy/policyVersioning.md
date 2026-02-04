@@ -56,16 +56,16 @@ We do not recommend implementing updated major policy versions outside of the AL
 Moving forward, the ALZ team will monitor new major versions of built-in policies and initiatives used by ALZ. Updates will be incorporated as part of the regular policy refresh cycle once the necessary changes have been reviewed, tested, and validated.
 
 {{< hint type=note >}}
-Due to upstream dependencies on product SDKs, Azure Policy versioning is not yet supported in Terraform Azure Verified Modules for Platform Landing Zone (ALZ) and Bicep accelerator.
+Due to upstream dependencies on product SDKs, Azure Policy versioning is not yet supported in Terraform Azure Verified Modules for Platform landing zone (ALZ) and Bicep accelerator.
 {{< /hint >}}
 
 ## Updating
 
-Depending on the accelerator you've used to deploy your Azure Landing Zones, you may need to update your policies/initiatives and assignments.
+Depending on the accelerator you've used to deploy your Azure landing zone, you may need to update your policies/initiatives and assignments.
 
-- **Portal**: If you have deployed your Azure Landing Zones using the portal, you will need to update your policies/initiatives and assignments manually. This is because the portal does not support automatic updates for policies/initiatives and assignments.
-- **Bicep**: If you have deployed your Azure Landing Zones using Bicep, you will need to update your policies/initiatives and assignments manually. This is because Bicep does not support automatic updates for policies/initiatives and assignments.
-- **Terraform**: If you have deployed your Azure Landing Zones using Terraform, you will need to update to the latest version of the policy library and apply the changes using your normal Terraform workflow - [more info](https://azure.github.io/Azure-Landing-Zones/terraform/howtos/update/).
+- **Portal**: If you have deployed your Azure landing zone using the portal, you will need to update your policies/initiatives and assignments manually. This is because the portal does not support automatic updates for policies/initiatives and assignments.
+- **Bicep**: If you have deployed your Azure landing zone using Bicep, you will need to update your policies/initiatives and assignments manually. This is because Bicep does not support automatic updates for policies/initiatives and assignments.
+- **Terraform**: If you have deployed your Azure landing zone using Terraform, you will need to update to the latest version of the policy library and apply the changes using your normal Terraform workflow - [more info](https://azure.github.io/Azure-Landing-Zones/terraform/howtos/update/).
 
 For guidance on updating existing policies/initiatives and assignments, please refer to the following links:
 

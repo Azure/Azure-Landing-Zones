@@ -1,0 +1,234 @@
+---
+title: Phase 0 - Planning
+geekdocCollapseSection: true
+weight: 10
+---
+
+Plan your deployment by following the steps below.
+
+{{< hint type=note >}}
+This phase is optional. You can skip it and go straight to [Phase 1]({{< relref "1_prerequisites" >}}) if you already know what you want to deploy.
+{{< /hint >}}
+
+## 1 - Learn
+
+Learn about the Azure landing zone architecture and the accelerator.
+
+### Glossary
+
+You should understand these terms before you start:
+
+* Infrastructure as Code (IaC): Managing and provisioning infrastructure through machine-readable definition files rather than manual configuration.
+* Platform landing zone: See [Azure landing zone documentation](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
+* Bootstrap or Bootstrap Module: The IaC module that sets up version control, CI/CD pipelines, and required Azure resources before deploying the Platform landing zone.
+* Starter or Starter Module: A pre-configured IaC module for deploying Platform landing zone configurations.
+* Accelerator PowerShell Module: The PowerShell module that is used to deploy the bootstrap. Find it here: [https://www.powershellgallery.com/packages/ALZ](https://www.powershellgallery.com/packages/ALZ).
+
+### Technical Knowledge
+
+You should have a good understanding of the following technologies and concepts:
+
+* Terraform Workflow: Understand the standard write, init, plan and apply workflow. [Learning path](https://aka.ms/tf/fundamentals)
+* Terraform HCL (HashiCorp Configuration Language): Understand the basics of HCL. [Learning path](https://aka.ms/tf/labs)
+* DevOps: Understand the fundamentals of DevOps. [Learning path](https://learn.microsoft.com/training/modules/introduction-to-devops/)
+* Continuous Integration and Delivery: Understand the basics of CI/CD. [Learning path](https://learn.microsoft.com/training/modules/explain-devops-continous-delivery-quality/)
+* git version control: Understand the fundamentals of git. [Learning path](https://learn.microsoft.com/training/modules/intro-to-git/)
+
+## 2 - Download the checklist
+
+We provide a spreadsheet that you can use to help gather the required information to make choices and fill out configuration files. You can download it {{< a-download href="examples/tf/accelerator/config/checklist.xlsx" download="checklist.xlsx" >}}HERE{{< /a-download >}}.
+
+This file has several tabs, described here:
+
+* Accelerator - Bootstrap: This tab details the settings required for the bootstrap configuration
+* Accelerator - Bicep: This tab details the settings required for the Bicep configuration
+* Accelerator - Terraform: This tab details the settings required for the Azure Verified Modules for Platform landing zone (ALZ) configuration
+
+{{< hint type=tip >}}
+As an advanced user, you can go right ahead and fill in the configuration file directly, you don't have to use the spreadsheet.
+{{< /hint >}}
+
+After following this set of decisions, you will have a completed `checklist.xlsx` file that you can use in phases 1 and 2.
+
+There are two sets of decisions to make, one for the bootstrap and one for the Platform landing zone.
+
+* [Bootstrap Decisions](#3---bootstrap-decisions)
+* [Platform landing zone (Starter) Decisions](#4---platform-landing-zone-starter-decisions)
+
+## 3 - Bootstrap Decisions
+
+The following decisions need to be made before you start the bootstrap process.
+
+Fill out the `Accelerator - Bootstrap` tab of the `checklist.xlsx` file with the relevant settings for the bootstrap configuration by following these steps below:
+
+{{< hint type=tip >}}
+Each decision number maps to a decision number in the `checklist.xlsx` file.
+{{< /hint >}}
+
+### Decision 1 - Choose Infrastructure as Code (IaC) tooling
+
+The accelerator supports both Bicep and Terraform. You need to choose one of these to use for the bootstrap process.
+
+**For Bicep users**, you have two framework options:
+
+* **bicep**: Use this for new deployments with the Azure Verified Modules framework ([alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator))
+* **bicep-classic**: Use this for existing deployments or when preferring the traditional framework ([ALZ-Bicep](https://github.com/Azure/ALZ-Bicep))
+
+Fill out the `Infrastructure as Code` value with either `bicep`, `terraform`, or  `bicep-classic`.
+
+{{< hint type=tip >}}
+**Recommendation for new deployments**: Choose `bicep` to leverage the latest Azure Verified Modules framework for better modularity and maintainability.
+{{< /hint >}}
+
+### Decision 2 - Choose a version control system
+
+We support Azure DevOps and GitHub. For other version control systems, use the local file system option and implement your own CI/CD pipeline.
+
+Choose either:
+
+* Azure DevOps: Choose this option if you are using Azure DevOps.
+* GitHub: Choose this option if you are using GitHub.
+* Local: Choose this option if you are using another version control system, such as GitLab or Bitbucket.
+
+Fill out the `Version control system` value with either `alz_azuredevops`, `alz_github`, or `alz_local`.
+
+### Decision 3 - Choose a starter module
+
+Below is a table describing the available starter modules, along with guidance on their use:
+
+| Starter Module | Setting | Description | Recommendation |
+|--|--|----|---|
+| [Bicep - Platform landing zone]({{< relref "startermodules/bicep-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. Uses the alz-bicep-accelerator framework. | Use this for new Bicep deployments (iac_type: `bicep`) |
+| [Terraform - Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "startermodules/terraform-platform-landing-zone">}}) | `platform_landing_zone` | Multi-region implementation using Azure Verified Modules for networking that accepts a configuration file to customize. | Use this for Terraform deployments |
+| [Bicep Classic - Complete]({{< relref "startermodules/bicep-classic-complete">}}) | `complete` | Multi-region implementation using traditional ALZ-Bicep modules. | Use this for existing Bicep deployments (iac_type: `bicep-classic`) |
+
+Fill out the `Starter module` value with either `platform_landing_zone` or `complete`.
+
+### Decision 4 - Choose a region for the bootstrap resources
+
+The bootstrap resources are deployed to a single region. Choose the Azure region where you would like to deploy them.
+
+The bootstrap resources include:
+
+* Resource groups
+* Storage account for state (Terraform only)
+* User assigned managed identities
+* Role definitions and assignments (non-regional)
+
+Fill out the `Bootstrap region` value with the Azure region you have chosen.
+
+### Decision 5 - Choose region(s) for the Platform landing zone resources
+
+Choose the Azure region(s) for Platform landing zone resources based on your data sovereignty or latency requirements.
+
+Fill out the `Platform landing zone region(s)` value with the Azure region(s) you have chosen.
+
+{{< hint type=note >}}
+The `starter_locations` setting is in the platform landing zone configuration file for `bicep` and `terraform` iac_type, not the bootstrap configuration file.
+{{< /hint >}}
+
+### Decision 6 - Choose a parent management group
+
+The parent management group will contain the management groups created by the bootstrap and must already exist.
+
+The Platform landing zone hierarchy is built underneath it, with only permission applied at that scope (no policies are applied at that scope).
+
+Fill out the `Parent management group id` value with the management group you have chosen.
+
+### Decision 7 - Choose the platform subscriptions
+
+We require 4 platform subscriptions: Management, Connectivity, Identity, and Security.
+
+You may wish to follow the steps in the [phase 1 prerequisites]({{< relref "1_prerequisites/platform-subscriptions">}}) to create the 4 platform subscriptions and add the subscription IDs to the checklist now.
+
+Fill out the `Management subscription id`, `Connectivity subscription id`, `Identity subscription id`, and `Security subscription id` values with the subscription IDs you have chosen.
+
+### Decision 8 - Choose the bootstrap subscription
+
+You can use a 4 or 5 subscription model. For 5 subscriptions (separate bootstrap subscription), see [advanced scenarios]({{< relref "advancedscenarios">}}).
+
+We recommend using the Management subscription for bootstrap resources. Set `bootstrap_subscription_id` in the config file or connect via az cli.
+
+Fill out the `Bootstrap subscription id` value with the subscription ID you have chosen.
+
+### Decision 9 - Choose the bootstrap resource naming
+
+Choose a `service name` and `environment name` to derive bootstrap resource names.
+
+{{< hint type=tip >}}
+To override the naming convention, see the [FAQ]({{< relref "faq">}}).
+{{< /hint >}}
+
+Fill out the `Service name` and `Environment name` values with the names you have chosen.
+
+### Decision 10 - Choose the bootstrap networking
+
+We offer 3 agent / runner and networking options for the bootstrap. The options and related settings are listed here:
+
+* Private networking with self-hosted agents / runners
+  * Azure DevOps:
+    * `use_private_networking` = `true`
+    * `use_self_hosted_agents` = `true`
+  * GitHub:
+    * `use_private_networking` = `true`
+    * `use_self_hosted_runners` = `true`
+* Public networking with self-hosted agents / runners
+  * Azure DevOps:
+    * `use_private_networking` = `false`
+    * `use_self_hosted_agents` = `true`
+  * GitHub:
+    * `use_private_networking` = `false`
+    * `use_self_hosted_runners` = `true`
+* Public networking with Microsoft-hosted agents / runners
+  * Azure DevOps:
+    * `use_private_networking` = `false`
+    * `use_self_hosted_agents` = `false`
+  * GitHub:
+    * `use_private_networking` = `false`
+    * `use_self_hosted_runners` = `false`
+
+{{< hint type=note >}}
+Self-hosted agents / runners are required for private networking, so that setting will be ignored if private networking is selected.
+{{< /hint >}}
+
+Fill out the `Use private networking`, `Use self-hosted agents`, and / or `Use self-hosted runners` values with the settings you have chosen.
+
+### Decision 11 - Choose / validate your version control system specific settings
+
+Review the remaining settings in the `Accelerator - Bootstrap` tab of the `checklist.xlsx` file and fill out any remaining settings relevant to the chosen version control system.
+
+You may wish to follow the steps for [phase 1 pre-requisites Azure DevOps]({{< relref "1_prerequisites/azuredevops">}}) or [phase 1 pre-requisites GitHub]({{< relref "1_prerequisites/github">}}) to create the personal access tokens (PAT) and add the PAT to the checklist.
+
+## 4 - Platform landing zone (Starter) Decisions
+
+{{< hint type=note >}}
+This section applies only to the Terraform Azure Verified Modules for Platform landing zone (ALZ) starter module at this time. For all others, continue on to [Phase 1]({{< relref "1_prerequisites">}}).
+{{< /hint >}}
+
+The following decisions need to be made before you start the starter module process.
+
+Fill out the `Accelerator - Terraform - ALZ` tab of the `checklist.xlsx` file with the relevant setting decisions by following these steps below:
+
+### Decision 1 - Choose a scenario
+
+The Azure Verified Modules for Platform landing zone (ALZ) starter module supports a number of scenarios as a starting point.
+
+The scenarios can be found in the [SCENARIOS]({{< relref "startermodules/terraform-platform-landing-zone/scenarios" >}}) section.
+
+Choose a scenario that best fits your requirements.
+
+Fill out the `Scenario` section with the scenario you have chosen.
+
+### Decision 2 - Choose options
+
+The Azure Verified Modules for Platform landing zone (ALZ) starter module supports a number of options that can be applied to a scenario.
+
+The options can be found in the [OPTIONS]({{< relref "startermodules/terraform-platform-landing-zone/options" >}}) section.
+
+Choose the options that best fit your requirements.
+
+Fill out the `Options` section with the options you have chosen.
+
+## Next Steps
+
+Now head to [Phase 1]({{< relref "1_prerequisites" >}}).

@@ -1,9 +1,9 @@
 # {{ .Site.Title }}
 
-Azure Landing Zones - Documentation - Welcome to the Azure Landing Zones technical documentation site. This site provides guidance on how to deploy and manage Azure Landing Zones using the solutions we provide.
+Azure landing zone - Documentation - Welcome to the Azure landing zone technical documentation site. This site provides guidance on how to deploy and manage Azure landing zone using the solutions we provide.
 
 ## Summary
-Welcome to the Azure Landing Zones technical documentation site. This site provides guidance on how to deploy and manage Azure Landing Zones using the solutions we provide.
+Welcome to the Azure landing zone technical documentation site. This site provides guidance on how to deploy and manage Azure landing zone using the solutions we provide.
 
 {{- $baseGithubURL := "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones/refs/heads/main/docs/content" -}}
 

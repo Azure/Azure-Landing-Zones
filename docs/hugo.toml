@@ -1,7 +1,7 @@
 baseURL = "https://azure.github.io/Azure-Landing-Zones"
 languageCode = "en-us"
-title = "Azure Landing Zones Documentation"
-description = "Documentation site for the Azure Landing Zones."
+title = "Azure landing zone Documentation"
+description = "Documentation site for the Azure landing zone."
 theme = "hugo-geekdoc"
 
 [outputs]

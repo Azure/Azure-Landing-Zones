@@ -4,7 +4,7 @@ geekdocCollapseSection: true
 weight: 10
 ---
 
-Follow these steps to remove policy assignments from the platform landing zone.
+Follow these steps to remove policy assignments from the Platform landing zone.
 
 1. Locate the `lib` folder in your `config` directory. This folder was created in the initial steps of phase 2.
 

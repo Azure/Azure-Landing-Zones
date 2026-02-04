@@ -11,13 +11,18 @@ resources:
     title: Overview
 ---
 
-Welcome to the Azure Landing Zones IaC Accelerator for Bicep and Terraform!
+Welcome to the Azure landing zone IaC Accelerator for Bicep and Terraform!
 
-The Azure landing zones [Terraform](https://github.com/Azure/alz-terraform-accelerator/tree/main/templates/platform_landing_zone) and [Bicep](https://github.com/Azure/ALZ-Bicep) modules provide an opinionated approach for deploying and managing the core platform capabilities of [Azure landing zones architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture) using Bicep or Terraform.
+The Azure Verified Modules for Platform landing zone (ALZ) [Terraform](https://github.com/Azure/alz-terraform-accelerator/tree/main/templates/platform_landing_zone) and [Bicep](https://github.com/Azure/alz-bicep-accelerator/tree/main/templates) modules provide an opinionated approach for deploying and managing the core platform capabilities of [Azure landing zone architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-architecture) using Bicep or Terraform.
 
-This accelerator provides an opinionated approach for configuring and securing those modules in a continuous delivery environment. It has end to end automation for bootstrapping the modules.
+## Get Started
 
-Head to the [User Guide]({{< relref "userguide" >}}) to get started now.
+Head to the relevant section to get started:
+
+- [0 - Planning]({{< relref "0_planning" >}}) - Skip this if you already know what you want to deploy
+- [1 - Prerequisites]({{< relref "1_prerequisites" >}})
+- [2 - Bootstrap]({{< relref "2_bootstrap" >}})
+- [3 - Run]({{< relref "3_run" >}})
 
 ## Supported Version Control Systems (VCS)
 
@@ -30,7 +35,7 @@ If you are using self-hosted versions of these services or another VCS, you can 
 The accelerator bootstraps a continuous delivery environment for you. It supports both the Azure DevOps and GitHub version control system (VCS). It uses the [ALZ PowerShell module](https://www.powershellgallery.com/packages/ALZ) to gather required user input and apply a Terraform module to configure the bootstrap environment.
 
 {{< hint type=note >}}
-For Bicep users, the accelerator uses Terraform to bootstrap the environment only. Bicep is used to deploy and update the Azure landing zone.
+For Bicep users, the accelerator uses Terraform to bootstrap the environment only. Bicep is used to deploy and update the Platform landing zone.
 {{< /hint >}}
 
 The accelerator follows a 3 phase approach:
@@ -52,7 +57,7 @@ The components of the environment are similar, but differ depending on your choi
   - Storage Account and Container for State (Terraform only)
   - Resource Group for Identity
   - User Assigned Managed Identities (UAMI) with Federated Credentials for Plan and Apply
-  - Permissions for the UAMI on state storage container, subscriptions and management groups
+  - Permissions for the UAMI on state storage container and management groups
   - [Optional] Container Registry for GitHub Runner image
   - [Optional] Container Instances hosting GitHub Runners
   - [Optional] Virtual network, subnets, private DNS zone and private endpoint.
@@ -78,7 +83,7 @@ The components of the environment are similar, but differ depending on your choi
   - Storage Account and Container for State (Terraform only)
   - Resource Group for Identity
   - User Assigned Managed Identities (UAMI) with Federated Credentials for Plan and Apply
-  - Permissions for the UAMI on state storage container, subscriptions and management groups
+  - Permissions for the UAMI on state storage container and management groups
   - [Optional] Container Registry for Azure DevOps Agent image
   - [Optional] Container Instances hosting Azure DevOps Agents
   - [Optional] Virtual network, subnets, private DNS zone and private endpoint.
@@ -108,17 +113,13 @@ This outputs the ALZ module files to the file system, so you can apply them manu
   - Storage Account and Container for State (Terraform only)
   - Resource Group for Identity
   - User Assigned Managed Identities (UAMI) for Plan and Apply
-  - Permissions for the UAMI on state storage container, subscriptions and management groups
+  - Permissions for the UAMI on state storage container and management groups
 
 - Local File System
   - Starter module with variables
 
-## Next steps
+## Azure landing zone
 
-Check out the [User Guide]({{< relref "userguide" >}}).
+The following diagram and links detail the Platform landing zone, but you can learn a lot more about Azure landing zone [here](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
 
-## Azure landing zones
-
-The following diagram and links detail the Azure landing zone, but you can learn a lot more about Azure landing zones [here](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
-
-![Azure landing zone conceptual architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/media/ns-arch-cust-expanded.svg)
+[![Azure landing zone reference architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/media/azure-landing-zone-architecture-diagram-hub-spoke.svg)](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/media/azure-landing-zone-architecture-diagram-hub-spoke.svg)

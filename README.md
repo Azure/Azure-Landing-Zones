@@ -1,12 +1,12 @@
-# Azure Landing Zones
+# Azure landing zone
 
-This site contains documentation for the Azure Landing Zones software:
+This site contains documentation for the Azure landing zone software:
 
 - Bicep modules
 - ALZ Accelerator
 - Terraform modules
 
-It will help you to deploy and configure the Azure Landing Zones in your environment.
+It will help you to deploy and configure the Azure landing zone in your environment.
 
 Please see the documentation site <https://azure.github.io/Azure-Landing-Zones/>
 
