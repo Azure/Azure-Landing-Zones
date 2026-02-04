@@ -18,7 +18,7 @@ As part of the ALZ portal deployment/configuration, policy and policy set defini
 
 {{< hint type=note >}}
 <table><tr><td>
-<a href=./data/ALZPolicyAssignments.xlsx>{{< img name="excel-logo" size="origin" lazy=true >}}</a></td><td>For convenience, an Excel version of the below information is available <a href=./data/ALZPolicyAssignments.xlsx>here</a> or click the Excel icon.</td></tr></table>
+{{< img name="excel-logo" size="origin" >}}</td><td>For convenience, an Excel version of the below information is available <a href=./data/ALZPolicyAssignments.xlsx>here</a>.</td></tr></table>
 {{< /hint >}}
 
 ## Default Policy Assignments
