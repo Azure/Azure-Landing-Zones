@@ -5,7 +5,7 @@ geekdocCollapseSection: true
 weight: 200
 ---
 
-This section provides step by step guidance for migrating from the [CAF Enterprise Scale](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale) module to the new [Azure Verified Modules (AVM) for Platform landing zone (ALZ)]({{< relref "/accelerator/startermodules/terraform-platform-landing-zone" >}}).
+This section provides step by step guidance for migrating from the [CAF Enterprise Scale](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale) module to the new [Azure Verified Modules (AVM) for Platform landing zone (ALZ)]({{< relref "/accelerator/starter-terraform" >}}).
 
 ## Introduction
 

@@ -1,6 +1,7 @@
 ---
-title: Terraform - Azure Verified Modules for Platform landing zone (ALZ)
-weight: 15
+title: Terraform
+description: The Azure Verified Modules for Platform landing zone (ALZ) (`platform_landing_zone`) starter module deploys the end to end Platform landing zone using Azure Verified Modules. It is fully configurable to meet different scenarios.
+weight: 60
 geekdocCollapseSection: true
 ---
 
@@ -21,7 +22,7 @@ This documentation covers the following:
 Follow these steps to populate and configure your Platform landing zone configuration file:
 
 {{< hint type=tip >}}
-If you followed our [phase 0 planning and decisions]({{< relref "../../0_planning">}}) guidance, you should have these choices already.
+If you followed our [phase 0 planning and decisions]({{< relref "../0_planning">}}) guidance, you should have these choices already.
 {{< /hint >}}
 
 ## 1 - Scenarios
@@ -66,4 +67,4 @@ The advanced configuration settings can be found in the [Platform landing zone c
 
 ## Next Steps
 
-Now head back to [Phase 2]({{< relref "../../2_bootstrap" >}}) to continue your deployment.
+Now head back to [Phase 2]({{< relref "../2_bootstrap" >}}) to continue your deployment.
