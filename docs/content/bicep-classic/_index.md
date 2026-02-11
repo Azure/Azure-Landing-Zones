@@ -37,7 +37,6 @@ Choose Bicep Classic if you:
 
 - Have existing ALZ-Bicep deployments
 - Need compatibility with established patterns
-- Prefer the proven, stable approach
 - Are not ready to migrate to the new AVM framework
 
 ## Migration Considerations

@@ -6,15 +6,14 @@ weight: 200
 
 This page contains the release notes for the ALZ IaC Accelerator.
 
-This page will only list changes that have been identified as breaking and may require action to be taken by the user to complete our [Upgrade Guidance]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/upgrade-guide" >}}).
+This page will only list changes that have been identified as breaking and may require action to be taken by the user to complete our [Upgrade Guidance]({{< relref "accelerator/starter-terraform/upgrade-guide" >}}).
 
 To find the individual release notes for each component of the accelerator, please refer to the following links:
 
 - [ALZ PowerShell Module](https://github.com/Azure/ALZ-PowerShell-Module/releases)
 - [Accelerator Bootstrap Modules](https://github.com/Azure/accelerator-bootstrap-modules/releases)
 - [Terraform Starter Modules](https://github.com/Azure/alz-terraform-accelerator/releases)
-- [Bicep Starter Modules (Latest AVM Framework)](https://github.com/Azure/alz-bicep-accelerator/releases)
-- [Bicep Starter Modules (Classic Framework)](https://github.com/Azure/ALZ-Bicep/releases)
+- [Bicep Starter Modules](https://github.com/Azure/alz-bicep-accelerator/releases)
 
 ## Breaking changes
 
@@ -233,15 +232,15 @@ In order to support backwards compatibility we have introduced the `<region>-fir
 - Release link: [v7.3.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v7.3.0)
 - Release diff: [v7.2.0...v7.3.0](https://github.com/Azure/alz-terraform-accelerator/compare/v7.2.0...v7.3.0)
 
-This release introduces a default `lib` folder with predefined override and architecture files. This was introduced to improve the [Options]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options" >}}) that involve the need to turn of policies, such as AMA, DNS, and DDOS. Previously these options advised setting the policy to `DoNotEnforce`, however we found that in some cases that still result in failed deployments of spokes, due to the policy faulting even though it wasn't enforced. As such, that safest approach it to not assign the policy at all. We introduced the default `lib` archetype overrides to simplify this process for those not familiar with the modules.
+This release introduces a default `lib` folder with predefined override and architecture files. This was introduced to improve the [Options]({{< relref "accelerator/starter-terraform/options" >}}) that involve the need to turn of policies, such as AMA, DNS, and DDOS. Previously these options advised setting the policy to `DoNotEnforce`, however we found that in some cases that still result in failed deployments of spokes, due to the policy faulting even though it wasn't enforced. As such, that safest approach it to not assign the policy at all. We introduced the default `lib` archetype overrides to simplify this process for those not familiar with the modules.
 
 - We introduced a new step to the accelerator to always setup a `lib` folder. This can be found in Phase 2 of the [User Guide]({{< relref "accelerator/2_bootstrap" >}}) for all three VCS options.
-- Updated the [Options]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options" >}}) to reference this `lib` folder and explain what needs to be uncommented in the archetype overrides:
-    - [Customize Management Group Ids and Names]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options/management-groups" >}})
-    - [Turn off DDoS Protection Plan]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options/ddos" >}})
-    - [Turn off Private DNS zones]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options/dns" >}})
-    - [Turn off a Policy Assignment]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options/policy-assignment" >}})
-    - [Turn off Azure Monitoring Agent]({{< relref "accelerator/startermodules/terraform-platform-landing-zone/options/ama" >}})
+- Updated the [Options]({{< relref "accelerator/starter-terraform/options" >}}) to reference this `lib` folder and explain what needs to be uncommented in the archetype overrides:
+    - [Customize Management Group Ids and Names]({{< relref "accelerator/starter-terraform/options/management-groups" >}})
+    - [Turn off DDoS Protection Plan]({{< relref "accelerator/starter-terraform/options/ddos" >}})
+    - [Turn off Private DNS zones]({{< relref "accelerator/starter-terraform/options/dns" >}})
+    - [Turn off a Policy Assignment]({{< relref "accelerator/starter-terraform/options/policy-assignment" >}})
+    - [Turn off Azure Monitoring Agent]({{< relref "accelerator/starter-terraform/options/ama" >}})
 
 In order to achieve this, we introduced a custom architecture to follow best practice for the Library setup. Previously we advised overriding the `alz` architecture for simplicity.
 

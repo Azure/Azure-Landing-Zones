@@ -8,7 +8,7 @@ If you prefer more control over the configuration process, you can use the manua
 1. Copy the following variables to Notepad and edit them for your chosen settings:
 
      ```pwsh
-    $iacType = "terraform"  # Must be one of: "bicep" (Recommended), "terraform" (Recommended), or "bicep-classic" (Not Recommended)
+    $iacType = "terraform"  # Must be one of: "bicep" or "terraform"
     $versionControl = "github"  # Must be one of: "azure-devops", "github", "local"
     $scenarioNumber = 1  # Must be a number between 1 and 9 for Terraform only. Ignored for Bicep.
     $targetFolderPath = "~/accelerator" # Choose your target folder for the cached files
@@ -16,7 +16,7 @@ If you prefer more control over the configuration process, you can use the manua
     ```
 
     {{< hint type=tip >}}
-Terraform scenarios can be found in the [scenarios docs]({{< relref "../startermodules/terraform-platform-landing-zone/scenarios" >}}) section.
+Terraform scenarios can be found in the [scenarios docs]({{< relref "../starter-terraform/scenarios" >}}) section.
     {{< /hint >}}
 
 1. Open a new PowerShell terminal and copy and paste it in there from Notepad to run it. You'll need these variables set for subsequent steps, so keep the terminal open or run this again if you open a new new terminal.
@@ -65,8 +65,8 @@ More details about the configuration files can be found in the [configuration fi
 
     The file extension differs for each Infrastructure as Code tool. You can learn more about the specific settings for each tool in the relevant starter module documentation:
 
-    - Terraform: `platform-landing-zones.tfvars` - [Terraform Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "../startermodules/terraform-platform-landing-zone" >}})
-    - Bicep: `platform-landing-zone.yaml` - [Bicep Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "../startermodules/bicep-platform-landing-zone" >}})
+    - Terraform: `platform-landing-zones.tfvars` - [Terraform Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "../starter-terraform" >}})
+    - Bicep: `platform-landing-zone.yaml` - [Bicep Azure Verified Modules for Platform landing zone (ALZ)]({{< relref "../starter-bicep" >}})
 
     Update the following required inputs in the file:
 
@@ -74,7 +74,7 @@ More details about the configuration files can be found in the [configuration fi
     - `defender_email_security_contact`: (Terraform only) this must be updated to include an email address for your security contact for Microsoft Defender for Cloud alerts.
 
     {{< hint type=tip >}}
-Terraform options can be found in the [options docs]({{< relref "../startermodules/terraform-platform-landing-zone/options" >}}) section.
+Terraform options can be found in the [options docs]({{< relref "../starter-terraform/options" >}}) section.
     {{< /hint >}}
 
 1. Login to Azure CLI replacing the tenant and subscription IDs with your own to target your desired bootstrap subscription:
@@ -93,7 +93,7 @@ If you are unable to install the [`powershell-yaml` module](https://www.powershe
 
     ```pwsh
     if(!$iacType) {
-        throw "iacType variable is not set. Please set it to one of: 'bicep', 'terraform', or 'bicep-classic'."
+        throw "iacType variable is not set. Please set it to one of: 'bicep' or 'terraform'."
     }
 
     if($iacType -eq "terraform") {
@@ -106,12 +106,6 @@ If you are unable to install the [`powershell-yaml` module](https://www.powershe
     if($iacType -eq "bicep") {
         Deploy-Accelerator `
             -inputs "$targetFolderPath/config/inputs.yaml", "$targetFolderPath/config/platform-landing-zone.yaml" `
-            -output "$targetFolderPath/output"
-    }
-
-    if($iacType -eq "bicep-classic") {
-        Deploy-Accelerator `
-            -inputs "$targetFolderPath/config/inputs.yaml" `
             -output "$targetFolderPath/output"
     }
 

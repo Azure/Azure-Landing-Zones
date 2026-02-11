@@ -36,13 +36,13 @@ Take note of the subscription id of each subscription as we will need them later
 
 You need either an Azure User Account or Service Principal with the following permissions to run the bootstrap. For simplicity, we recommend using a User account since this is a one off process that you are unlikely to repeat.
 
-### Bicep (AVM), Bicep Classic, and Terraform all require the following permissions:
+### Bicep and Terraform both require the following permissions:
 
 - `Owner` on your chosen parent management group.
   - `Owner` is required because this account grants permissions to the identities that run the management group deployment. Those identities are granted only the permissions they need.
 - `Owner` on each of your 4 Azure landing zone subscriptions.
 
-### Bicep (AVM) has one additional requirement:
+### Bicep has one additional requirement:
 
 - `User Access Administrator` at that root `/` level.
   - `User Access Administrator` is required for the same reason: this account delegates access to the identities that run the management group deployment using least privilege.

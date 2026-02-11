@@ -106,7 +106,7 @@ If you deployed using the [advanced]({{< ref "../2_bootstrap/advanced" >}}) depl
 1. Set your variables for the Infrastructure as Code type and the target folder path where your folder structure is located:
 
     ```pwsh
-    $iacType = "terraform" # Set to 'bicep', 'terraform', or 'bicep-classic'
+    $iacType = "terraform" # Set to 'bicep' or 'terraform'
     $targetFolderPath = "~/accelerator"
 
     ```
@@ -121,7 +121,7 @@ If you are using GitHub and you deployed GitHub Actions Runner Groups, will need
 
     ```pwsh
     if(!$iacType) {
-        throw "iacType variable is not set. Please set it to one of: 'bicep', 'terraform', or 'bicep-classic'."
+        throw "iacType variable is not set. Please set it to one of: 'bicep' or 'terraform'."
     }
 
     if($iacType -eq "terraform") {
@@ -135,13 +135,6 @@ If you are using GitHub and you deployed GitHub Actions Runner Groups, will need
     if($iacType -eq "bicep") {
         Deploy-Accelerator `
             -inputs "$targetFolderPath/config/inputs.yaml", "$targetFolderPath/config/platform-landing-zone.yaml" `
-            -output "$targetFolderPath/output" `
-            -destroy
-    }
-
-    if($iacType -eq "bicep-classic") {
-        Deploy-Accelerator `
-            -inputs "$targetFolderPath/config/inputs.yaml" `
             -output "$targetFolderPath/output" `
             -destroy
     }

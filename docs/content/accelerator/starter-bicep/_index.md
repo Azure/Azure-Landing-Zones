@@ -1,13 +1,10 @@
 ---
-title: Bicep AVM - Azure Verified Modules for Platform landing zone (ALZ)
-weight: 5
+title: Bicep
+description: The Azure Verified Modules for Platform landing zone (ALZ) (`platform_landing_zone`) starter module deploys the end to end Platform landing zone using Azure Verified Modules. It is fully configurable to meet different scenarios.
+weight: 50
 ---
 
-The `complete` starter module for the new Bicep framework uses Azure Verified Modules from the [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) repository.
-
-{{< hint type=tip >}}
-This is the **new Bicep framework** (`iac_type: bicep`) built on Azure Verified Modules. For the traditional framework, see [Bicep Classic - Complete]({{< relref "../bicep-classic-complete" >}}).
-{{< /hint >}}
+The `platform_landing_zone` starter module for the new Bicep framework uses Azure Verified Modules from the [alz-bicep-accelerator](https://github.com/Azure/alz-bicep-accelerator) repository.
 
 ## Framework Overview
 
@@ -38,7 +35,7 @@ The framework includes the following core modules:
 
 ## Configuration Inputs
 
-The following table describes the inputs required for the `complete` starter module:
+The following table describes the inputs required for the `platform_landing_zone` starter module:
 
 | Input | Placeholder | Description |
 | - | -- | --- |
@@ -57,7 +54,7 @@ The following table describes the inputs required for the `complete` starter mod
 If you're considering migrating from the classic framework:
 
 * **New Deployments**: Start with the new framework for enhanced capabilities
-* **Existing Deployments**: Continue with the classic framework for stability for now
+* **Existing Deployments**: Start looking at migrating from the classic framework to get the latest capabilities and improvements. Detailed migration guidance will be provided in the coming months.
 
 {{< hint type=note >}}
 Migration guidance will be provided as the new framework reaches general availability.
