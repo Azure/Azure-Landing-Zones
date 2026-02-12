@@ -24,6 +24,8 @@ which includes the following policy definition:
 {{<expand "Azure Kubernetes Service - kubenet" ">">}}
 [Prepare for AKS kubenet deprecation](https://learn.microsoft.com/en-us/azure/aks/configure-kubenet)
 
+To help identify any Azure Kubernetes Service instances that may be impacted by this change, we have provided the following Azure Policy definition in our Azure Policy library:
+
 **Initiative:** [Enforce-Guardrails-Kubernetes](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-Kubernetes.html)
 
 which includes the following custom ALZ policy definition:
