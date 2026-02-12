@@ -61,7 +61,14 @@ The `ref` field specifies the version of the [Azure landing zone Library](https:
 
 Before updating the ALZ library, ensure you have:
 
-- **alzlibtool.exe** - Can be downloaded from the [alzlib](https://github.com/Azure/alzlib/releases) repository releases page
+- **alzlibtool** - Download the latest release from the [alzlib releases page](https://github.com/Azure/alzlib/releases).
+  - Choose the correct binary for your operating system (e.g., `alzlibtool_windows_amd64.zip` for Windows, `alzlibtool_linux_amd64.tar.gz` for Linux, `alzlibtool_darwin_arm64.tar.gz` for macOS Apple Silicon).
+  - Extract the archive and place the `alzlibtool` binary (or `alzlibtool.exe` on Windows) in a directory on your `PATH`, or in the `templates/core/governance/tooling/` directory of your repository.
+
+{{< hint type=note >}}
+The `alzlibtool` binary is **not** included in the alz-bicep-accelerator repository. You must download it separately before running the update process.
+{{< /hint >}}
+
 - **PowerShell 7.0 or later** - Required for the update script
 - **Git** - To review changes before committing
 
@@ -134,13 +141,21 @@ Only delete the `alz/` directory. Do **not** delete the `customer/` directory if
 
 ### Step 4: Regenerate the ALZ Library
 
-Use the `alzlibtool.exe` to regenerate the library from the Azure landing zone Library repository:
+Use the `alzlibtool` binary you downloaded in the [Prerequisites](#prerequisites) section to regenerate the library from the Azure landing zone Library repository:
 
 ```powershell
 # Navigate to the tooling directory
 cd C:\Path\To\templates\core\governance\tooling
 
 # Run alzlibtool to generate the library
+# If alzlibtool is on your PATH:
+alzlibtool generate architecture `
+  "C:\Path\To\templates\core\governance\tooling" `
+  alz `
+  --for-alz-bicep `
+  -o "C:\Path\To\templates\core\governance\lib"
+
+# Or if you placed it in the tooling directory:
 .\alzlibtool.exe generate architecture `
   "C:\Path\To\templates\core\governance\tooling" `
   alz `

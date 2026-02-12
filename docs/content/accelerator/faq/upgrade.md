@@ -11,5 +11,5 @@ Not currently. The bootstrap is a one-time operation. We plan to support upgrade
 
 Follow the steps in the relevant for your chosen Infrastructure as Code (IaC) tool.
 
-* [Terraform Upgrade Guide]({{< relref "../startermodules/terraform-platform-landing-zone/upgrade-guide" >}})
+* [Terraform Upgrade Guide]({{< relref "../starter-terraform/upgrade-guide" >}})
 * Bicep coming soon.
