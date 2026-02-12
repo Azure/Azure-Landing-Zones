@@ -15,6 +15,8 @@ To help identify any Azure Key Vaults that may be impacted by this change, we pr
 
 **Initiative** [Enforce-Guardrails-KeyVault](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-KeyVault_20260203.html) includes the policy definition [Azure Key Vault should use RBAC permission model](https://www.azadvertizer.net/azpolicyadvertizer/12d4fa5e-1f9f-4c21-97a9-b99b3c6611b5.html).
 
+This policy audits any Key Vaults that are not using the Azure RBAC permission model, which will be impacted by the API retirement. By identifying these resources, customers can take proactive steps to update their Key Vaults to use Azure RBAC before the API retirement date, ensuring continued access and functionality.
+
 {{< /expand >}}
 
 {{<expand "Azure Kubernetes Service - kubenet" ">">}}
@@ -23,5 +25,7 @@ To help identify any Azure Key Vaults that may be impacted by this change, we pr
 To help identify any Azure Kubernetes Service instances that may be impacted by this change, we provide the following Azure Policy definition in our Azure Policy library:
 
 **Initiative** [Enforce-Guardrails-Kubernetes](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-Kubernetes.html) includes the custom ALZ policy definition [Detect AKS clusters using kubenet network plugin](https://www.azadvertizer.net/azpolicyadvertizer/Audit-AKS-kubenet.html).
+
+This policy audits any AKS clusters that are using the kubenet network plugin, which will be impacted by the deprecation. By identifying these resources, customers can take proactive steps to update their AKS clusters to use the Azure CNI network plugin before the deprecation date, ensuring continued support and functionality.
 
 {{< /expand >}}
