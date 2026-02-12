@@ -11,25 +11,17 @@ Azure services and features are regularly updated, and occasionally, certain ser
 {{<expand "Azure Key Vault - API Retirement" ">">}}
 [Prepare for Key Vault API version 2026-02-01: Azure RBAC as default access control](https://learn.microsoft.com/en-us/azure/key-vault/general/access-control-default?tabs=azure-cli)
 
-To help identify any Azure Key Vaults that may be impacted by this change, we have provided the following Azure Policy definition in our Azure Policy library:
+To help identify any Azure Key Vaults that may be impacted by this change, we provide the following Azure Policy definition in our Azure Policy library:
 
-**Initiative:** [Enforce-Guardrails-KeyVault](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-KeyVault_20260203.html)
-
-which includes the following policy definition:
-
-**Policy:** [Azure Key Vault should use RBAC permission model](https://www.azadvertizer.net/azpolicyadvertizer/12d4fa5e-1f9f-4c21-97a9-b99b3c6611b5.html)
+**Initiative** [Enforce-Guardrails-KeyVault](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-KeyVault_20260203.html) includes the policy definition [Azure Key Vault should use RBAC permission model](https://www.azadvertizer.net/azpolicyadvertizer/12d4fa5e-1f9f-4c21-97a9-b99b3c6611b5.html).
 
 {{< /expand >}}
 
 {{<expand "Azure Kubernetes Service - kubenet" ">">}}
 [Prepare for AKS kubenet deprecation](https://learn.microsoft.com/en-us/azure/aks/configure-kubenet)
 
-To help identify any Azure Kubernetes Service instances that may be impacted by this change, we have provided the following Azure Policy definition in our Azure Policy library:
+To help identify any Azure Kubernetes Service instances that may be impacted by this change, we provide the following Azure Policy definition in our Azure Policy library:
 
-**Initiative:** [Enforce-Guardrails-Kubernetes](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-Kubernetes.html)
-
-which includes the following custom ALZ policy definition:
-
-**Policy:** [Detect AKS clusters using kubenet network plugin](https://www.azadvertizer.net/azpolicyadvertizer/Audit-AKS-kubenet.html)
+**Initiative** [Enforce-Guardrails-Kubernetes](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-Kubernetes.html) includes the custom ALZ policy definition [Detect AKS clusters using kubenet network plugin](https://www.azadvertizer.net/azpolicyadvertizer/Audit-AKS-kubenet.html).
 
 {{< /expand >}}
