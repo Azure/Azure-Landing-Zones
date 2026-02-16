@@ -12,9 +12,9 @@ This article will guide you through the process of configuring permissions in yo
 The steps below require you to use an identity that is local to the Microsoft Entra ID, and **_not_** Guest user account due to known restrictions.
 {{< /hint >}}
 
-Enterprise-Scale reference implementation requires permission at tenant root scope "/" to be able to configure Management Group and create/move subscription. In order to grant permission at tenant root scope "/", users in "Microsoft Entra Global Administrators" group can temporarily elevate access, to manage all Azure resources in the directory.
+Azure landing zone reference implementation requires permission at tenant root scope "/" to be able to configure Management Group and create/move subscription. In order to grant permission at tenant root scope "/", users in "Microsoft Entra Global Administrators" group can temporarily elevate access, to manage all Azure resources in the directory.
 
-Once the User Access Administrator (UAA) role is enabled, a UAA can grant **_other users and service principals_** within organization to deploy/manage Enterprise-Scale reference implementation by granting "Owner" permission at tenant root scope "/".
+Once the User Access Administrator (UAA) role is enabled, a UAA can grant **_other users and service principals_** within organization to deploy/manage Azure landing zone reference implementation by granting "Owner" permission at tenant root scope "/".
 
 Once permission is granted to other **users and service principals**, you can safely disable "User Access Administrator" permission for the "Microsoft Entra Global Administrator" users. For more information please follow this article [elevated account permissions](https://learn.microsoft.com/azure/role-based-access-control/elevate-access-global-admin)
 
@@ -31,7 +31,7 @@ Once permission is granted to other **users and service principals**, you can sa
 
 ![alt](https://learn.microsoft.com/azure/role-based-access-control/media/elevate-access-global-admin/aad-properties-global-admin-setting.png)
 
-## 2. Grant Access to User and/or Service principal at root scope "/" to deploy Enterprise-Scale reference implementation
+## 2. Grant Access to User and/or Service principal at root scope "/" to deploy Azure landing zone reference implementation
 
 Please ensure you are logged in as a user with UAA role enabled in Microsoft Entra tenant and logged in user is not a guest user.
 
@@ -74,5 +74,5 @@ Please note, it may take up to 15-30 minutes for permission to propagate at tena
 
 ### Creating a scoped role assignment
 
-The Owner privileged root tenant scope *is required* in the deployment of the Azure landing zone.  However post deployment, and as your use of Enterprise Scale matures, you are able to limit the scope of the Service principal roleAssignments to a subsection of the Management Group hierarchy.
+The Owner privileged root tenant scope *is required* in the deployment of the Azure landing zone.  However post deployment, and as your use of Azure landing zone matures, you are able to limit the scope of the Service principal roleAssignments to a subsection of the Management Group hierarchy.
 Eg. `"/providers/Microsoft.Management/managementGroups/YourMgGroup"`.
