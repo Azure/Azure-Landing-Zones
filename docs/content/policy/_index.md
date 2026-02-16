@@ -12,7 +12,7 @@ This section is a work in progress as we slowly move content from the [wiki](htt
 
 Azure Policy and deployIfNotExist enables autonomy in the platform, and reduces operational burden as you scale your deployments and subscriptions in the Azure landing zone architecture. The primary purpose is to ensure that subscriptions and resources are compliant, while empowering application teams to use their own preferred tools/clients to deploy.
 
-> Please refer to [Policy Driven Governance](https://learn.microsoft.com/en-gb/azure/cloud-adoption-framework/ready/landing-zone/design-principles#policy-driven-governance) for further information.
+> Please refer to [Policy Driven Governance](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-principles#policy-driven-governance) for further information.
 
 {{< hint type=important >}}
 **IMPORTANT NOTE:** ALZ priority is to provide a secure by default, Zero Trust aligned, configuration, and occasionally we will rely on `-preview` policies in our default assignments to meet our core objective. These preview policies are maintained by the Azure product owners and versioning is not in our control, however, we feel they are sufficiently important to be included in our releases. If the inclusion of preview policies is of concern, please review all ALZ default initiative assignments and remove any `-preview` policies that you are not comfortable with.
@@ -36,7 +36,7 @@ For Azure landing zones, the custom Azure Policy Definitions and Initiatives are
 
 ## Why are managed identities deployed as part of the ALZ policies?
 
-Managed Identities provide an alternative way to access Azure resources without having to manage credentials. They are created as a part of the ALZ policies mainly for policies that have the deployIfNotExists (DINE) effect in this initiative. The managed identities are used in order to remediate resources that are not compliant with the policy. For further information on how remediation works with access control, please refer to the following documentation: [Remediate non-compliant resources - Azure Policy | Microsoft](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources?tabs=azure-portal#how-remediation-access-control-works)
+Managed Identities provide an alternative way to access Azure resources without having to manage credentials. They are created as a part of the ALZ policies mainly for policies that have the deployIfNotExists (DINE) effect in this initiative. The managed identities are used in order to remediate resources that are not compliant with the policy. For further information on how remediation works with access control, please refer to the following documentation: [Remediate non-compliant resources - Azure Policy | Microsoft](https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources?tabs=azure-portal#how-remediation-access-control-works)
 
 ## AzAdvertizer Integration
 
