@@ -1,7 +1,7 @@
 ---
-title: Community Calls
+title: Community calls
 geekdocCollapseSection: true
-weight: 5
+weight: 20
 ---
 
 On this page you will find the meeting recordings and PowerPoint slides from previous Azure Landing Zone External Community Calls. To sign-up to the next Azure Landing Zone External Community Call, head to: [aka.ms/alz/communitycall](https://aka.ms/alz/communitycall)

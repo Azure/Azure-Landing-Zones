@@ -1,10 +1,14 @@
 ---
-title: What's New
+title: What's new
 geekdocCollapseSection: true
-weight: 1
+weight: 10
 ---
 
 Here's what's changed in Azure landing zone:
+
+{{< hint type=info >}}
+Find detailed release notes for the Azure lading zone IaC accelerator over here: [Azure landing zone IaC accelerator release notes]({{% ref "accelerator/accelerator-release-notes" %}})
+{{</hint >}}
 
 {{< expand "February 2026" ">" >}}
 
@@ -12,7 +16,7 @@ Here's what's changed in Azure landing zone:
 
 #### Policy
 
-- **Breaking change:** we accidentally introduced a breaking change to the initiative [Enforce-Guardrails-KeyVault](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-KeyVault.html) in the last policy refresh where we fixed a typo is serveral parameter names, changing "Hms" to "Hsm". This change has been reverted in this release to avoid breaking existing assignments and a new version of the initiative has been created [Enforce-Guardrails-KeyVault_20260203](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-KeyVault_20260203.html) with the corrected parameter names.
+- **Breaking change:** we accidentally introduced a breaking change to the initiative [Enforce-Guardrails-KeyVault](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-KeyVault.html) in the last policy refresh where we fixed a typo is several parameter names, changing "Hms" to "Hsm". This change has been reverted in this release to avoid breaking existing assignments and a new version of the initiative has been created [Enforce-Guardrails-KeyVault_20260203](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-KeyVault_20260203.html) with the corrected parameter names.
   - **Action Required:** If you have previously assigned this initiative, please delete the existing assignment prior to deploying the updated initiative to avoid deployment failures.
 - Add `RouteServerSubnet` to default parameter values in `Deny-Subnet-Without-Nsg`, `Deny-Subnet-Without-Udr`, and `Deny-Subnet-Without-Penp` policies as Azure Route Server doesn't support these on it's subnet.
 

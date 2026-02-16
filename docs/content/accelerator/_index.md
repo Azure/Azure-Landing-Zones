@@ -1,7 +1,7 @@
 ---
-title: IaC Accelerator
+title: IaC accelerator
 geekdocCollapseSection: true
-weight: 20
+weight: 30
 resources:
   - name: components
     src: img/components.png

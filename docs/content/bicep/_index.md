@@ -1,7 +1,7 @@
 ---
 title: Bicep
 geekdocCollapseSection: true
-weight: 20
+weight: 50
 ---
 
 ALZ ❤️ AVM - Azure Verified Modules (AVM) for Platform landing zone (ALZ) - Bicep
