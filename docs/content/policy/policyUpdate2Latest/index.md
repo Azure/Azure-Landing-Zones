@@ -15,7 +15,7 @@ To carry out the instructions below, the operator will require Resource Policy C
 
 ## Detect updates to policy
 
-1. To determine if there has been updates to ALZ your first reference should be [What's New](https://github.com/Azure/Enterprise-Scale/wiki/Whats-new). Any updates to policies or other ALZ related artifacts will be reflected here upon release. An example of what that will look like can be seen [here](https://github.com/Azure/Enterprise-Scale/wiki/Whats-new#policy).
+1. To determine if there has been updates to ALZ your first reference should be [What's New](../../whats-new/). Any updates to policies or other ALZ related artifacts will be reflected here upon release.
 
 2. Alternatively, [Azure Governance Visualizer](https://github.com/JulianHayward/Azure-MG-Sub-Governance-Reporting) can be run in your environment and reveal information about the current state of policies and policy assignments. Part of the output of Azure Governance Visualizer is Azure Landing Zones (ALZ) Policy Version Checker which will allows you to see all **outDated** ALZ policies in your environment (see figure 1).
 ![AzGovViz-ALZ-Policy-Checker](img/AzGovViz-ALZ-Policy-outDated.png)

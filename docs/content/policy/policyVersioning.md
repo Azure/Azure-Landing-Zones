@@ -69,7 +69,7 @@ Depending on the accelerator you've used to deploy your Azure landing zone, you 
 
 For guidance on updating existing policies/initiatives and assignments, please refer to the following links:
 
-- [Update ALZ Custom Policies to Latest](https://github.com/Azure/Enterprise-Scale/wiki/Update-ALZ-Custom-Policies-to-Latest)
+- [Update ALZ Custom Policies to Latest](../policyUpdate2Latest/)
 
 If you are using the latest release of ALZ and have updated ALZ initiatives and assignments, you will automatically utilize the most recent minor and patch versions of the policy or initiative definition within the currently pinned major version. This ensures you benefit from the latest features and bug fixes.
 
