@@ -37,7 +37,7 @@ Only required for Terraform ALZ starter module. Bicep users can skip this.
 
 HCL `tfvars` file determining deployed resources and hub networking type. Copied to your repository as `*.auto.tfvars`.
 
-Examples: [Scenarios]({{< relref "startermodules/terraform-platform-landing-zone/scenarios">}})
+Examples: [Scenarios]({{< relref "starter-terraform/scenarios">}})
 
 #### Bicep
 

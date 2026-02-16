@@ -1,14 +1,13 @@
 ---
 title: Bicep classic
 geekdocCollapseSection: true
-weight: 70
-hidden: true
+weight: 10
 ---
 
 This section provides guidance for performing common tasks with the **Bicep Classic** framework using the traditional [ALZ-Bicep](https://github.com/Azure/ALZ-Bicep) modules.
 
 {{< hint type=note >}}
-This documentation is specific to the **Bicep Classic** framework (`iac_type: bicep-classic`). For the new Azure Verified Modules framework, see [Bicep]({{< relref "../bicep" >}}).
+This documentation is specific to the **Bicep Classic** framework (`iac_type: bicep-classic`). For the new Azure Verified Modules framework, see [Bicep]({{< relref "../../bicep" >}}).
 {{< /hint >}}
 
 ## Framework Overview
@@ -25,7 +24,7 @@ If you're working with the Bicep Classic framework:
 
 - [ALZ-Bicep Repository](https://github.com/Azure/ALZ-Bicep) - Main repository with modules and documentation
 - [ALZ-Bicep Release Notes](https://github.com/Azure/ALZ-Bicep/releases) - Latest updates and changes
-- [Deploying with the Accelerator]({{< relref "../accelerator" >}}) - Using the PowerShell accelerator
+- [Deploying with the Accelerator]({{< relref "../../accelerator" >}}) - Using the PowerShell accelerator
 
 ## Common Tasks
 
@@ -37,12 +36,11 @@ Choose Bicep Classic if you:
 
 - Have existing ALZ-Bicep deployments
 - Need compatibility with established patterns
-- Prefer the proven, stable approach
 - Are not ready to migrate to the new AVM framework
 
 ## Migration Considerations
 
-If you're considering migrating to the new [Bicep]({{< relref "../bicep" >}}) framework:
+If you're considering migrating to the new [Bicep]({{< relref "../../bicep" >}}) framework:
 
 - Migration guidance will be provided in future releases
 - New deployments should consider starting with the new framework

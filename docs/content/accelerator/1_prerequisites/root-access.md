@@ -5,7 +5,7 @@ weight: 200
 
 ## Root Access Configuration
 
-In order to successfully deploy the Platform landing zone using AVM Bicep, you need to ensure that the account you are using has at least `User Access Administrator` permissions at the root (`/`) level.
+In order to successfully deploy the Platform landing zone using Bicep, you need to ensure that the account you are using has at least `User Access Administrator` permissions at the root (`/`) level.
 
 ### Assign Root Access to your User Account
 
