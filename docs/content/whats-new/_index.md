@@ -7,7 +7,7 @@ weight: 10
 Here's what's changed in Azure landing zone:
 
 {{< hint type=info >}}
-Find detailed release notes for the Azure lading zone IaC accelerator over here: [Azure landing zone IaC accelerator release notes]({{% ref "accelerator/accelerator-release-notes" %}})
+Azure landing zone IaC accelerator release notes are [HERE]({{% ref "accelerator/accelerator-release-notes" %}})
 {{</hint >}}
 
 {{< expand "February 2026" ">" >}}
