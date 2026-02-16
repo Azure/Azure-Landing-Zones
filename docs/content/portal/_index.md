@@ -1,5 +1,5 @@
 ---
-title: Azure portal accelerator
+title: Portal accelerator
 geekdocCollapseSection: true
 weight: 15
 ---
@@ -10,6 +10,6 @@ The Azure landing zone portal accelerator provides a user-friendly interface for
 
 [![Deploy To Azure](https://learn.microsoft.com/en-us/azure/templates/media/deploy-to-azure.svg)](https://aka.ms/alz/portal)
 
-{{< hint type=note >}}
-Before deploying, please ensure pe-requisites for using the Azure landing zone portal accelerator are configured. 
+{{< hint type=important >}}
+Before deploying, please ensure prerequisites for using the Azure landing zone portal accelerator are configured.
 {{< /hint >}}
