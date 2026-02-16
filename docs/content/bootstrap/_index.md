@@ -61,10 +61,11 @@ The ALZ IaC Accelerator allows you to quickly get started with IaC and DevOps be
 
 It supports both Terraform and Bicep:
 
-- [**ALZ IaC Accelerator**]({{< relref "accelerator" >}})
+- [**ALZ IaC accelerator**]({{< relref "accelerator" >}}) (recommended) - This is the recommended approach for most customers. It provides a streamlined experience with built-in best practices and CI/CD pipelines to get you up and running quickly.
+- [**Portal accelerator**]({{< relref "portal" >}}) - It provides an Azure Portal based experience for deploying the new modules.
+
 
 You can also opt to use Bicep and Terraform directly:
 
 - [**Bicep**]({{< relref "bicep" >}})
-- [**Bicep Classic**]({{< relref "bicep-classic" >}})
 - [**Terraform**]({{< relref "terraform" >}})

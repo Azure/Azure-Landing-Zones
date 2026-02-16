@@ -1,7 +1,7 @@
 ---
 title: Portal accelerator
 geekdocCollapseSection: true
-weight: 15
+weight: 40
 ---
 
 ## Overview

@@ -1,7 +1,8 @@
 ---
-title: Bicep Classic
+title: Bicep classic
 geekdocCollapseSection: true
-weight: 20
+weight: 70
+hidden: true
 ---
 
 This section provides guidance for performing common tasks with the **Bicep Classic** framework using the traditional [ALZ-Bicep](https://github.com/Azure/ALZ-Bicep) modules.

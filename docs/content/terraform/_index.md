@@ -1,7 +1,7 @@
 ---
 title: Terraform
 geekdocCollapseSection: true
-weight: 25
+weight: 60
 ---
 
 ALZ ❤️ AVM - Azure Verified Modules (AVM) for Platform landing zone (ALZ) - Terraform
