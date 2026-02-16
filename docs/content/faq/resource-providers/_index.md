@@ -4,6 +4,8 @@ geekdocCollapseSection: true
 weight: 10
 ---
 
+{{< toc >}}
+
 ## What are Resource Providers in Azure?
 
 An Azure resource provider is a set of REST operations that enable functionality for a specific Azure service. For example, the Key Vault service consists of a resource provider named **Microsoft.KeyVault**. The resource provider defines [REST operations](https://learn.microsoft.com/rest/api/keyvault/) for managing vaults, secrets, keys, and certificates.
@@ -39,7 +41,7 @@ This list of RPs is all you need to deploy Enterprise Scale for EMPTY subscripti
 
 Most of the time, if they are not registered prior, Azure should automatically register them for you. However, in some cases, deployment fails if the proper Resource Providers are not registered. 
 
-# Additional Recommended Resource Providers to Register (for common resources)
+## Additional Recommended Resource Providers to Register (for common resources)
 
 Some other common Resource Providers to consider having registered in your subscriptions for resources you may deploy are:
 
