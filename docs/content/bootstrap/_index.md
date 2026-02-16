@@ -40,7 +40,7 @@ You need either an Azure User Account or Service Principal with the following pe
 
 - `Owner` on your chosen parent management group.
   - `Owner` is required because this account grants permissions to the identities that run the management group deployment. Those identities are granted only the permissions they need.
-- `Owner` on each of your 3 Azure landing zone subscriptions.
+- `Owner` on each of your 4 Azure landing zone subscriptions.
 
 ### Bicep (AVM) has one additional requirement:
 
