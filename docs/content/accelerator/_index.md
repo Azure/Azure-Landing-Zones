@@ -1,5 +1,5 @@
 ---
-title: Accelerator
+title: IaC Accelerator
 geekdocCollapseSection: true
 weight: 20
 resources:
