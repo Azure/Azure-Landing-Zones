@@ -13,7 +13,7 @@ Follow the examples in the function itself [here.](https://github.com/Azure/ALZ-
 ## Permissions required
 
 This module now uses a single provider - `AzAPI`.
-See [provider configuration](Provider-configuration) for more information.
+See [provider configuration]({{< relref "provider-configuration" >}}).
 
 ### Subscription sub-module
 

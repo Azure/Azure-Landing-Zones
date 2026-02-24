@@ -24,4 +24,4 @@ Then to get started, look at one of the [examples](examples).
 
 [alz_reference_arch]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-architecture
 [alz_tf_module]: https://aka.ms/alz/tf
-[readme]: https://github.com/Azure/terraform-azurerm-avm-ptn-alz-sub-vending#readme
+[readme]: https://github.com/Azure/terraform-azure-avm-ptn-alz-sub-vending#readme
