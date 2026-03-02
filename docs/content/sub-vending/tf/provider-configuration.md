@@ -11,7 +11,7 @@ This was done because of the design of the AzureRM v4.0 provider and its mandato
 This does not make sense for a module that is designed to create subscriptions!
 Also, this has the benefit of simplifying the module design.
 
-Also see [required permissions](Permissions) for more information.
+Also see [required permissions]({{< relref "permissions" >}}) for more information.
 
 ## AzureRM provider
 
