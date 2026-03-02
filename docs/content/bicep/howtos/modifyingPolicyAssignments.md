@@ -30,9 +30,12 @@ param parPolicyAssignmentParameterOverrides = {
 
 ## Disabling a Policy Assignment
 
-To change the Enforcement mode of a policy assignment to DoNoteEnforce, but still assign the policy, add it to the `managementGroupDoNotEnforcePolicyAssignments` array:
+Let's say you want to disable the `Enable-DDoS-VNET` policy assignment. You can either set its enforcement mode to DoNotEnforce or exclude it entirely from deployment.
 
-**platform/main.bicepparam:**
+To change the Enforcement mode of a policy assignment to DoNoteEnforce, but still assign the policy, add it to the `managementGroupDoNotEnforcePolicyAssignments` array in the corresponding management group's `.bicepparam` file:
+
+**landingzones/main.bicepparam:**
+**platform/platform-connectivity/main.bicepparam:**
 
 ```bicep-params
 param platformConfig = {
