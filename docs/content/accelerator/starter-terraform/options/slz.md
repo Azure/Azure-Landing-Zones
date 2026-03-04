@@ -37,3 +37,11 @@ The steps to follow are:
     | Setting Type | Parent block(s) | Key | Action | Count | Notes |
     | - | - | - | - | - | - |
     | block | `management_group_settings` > `policy_default_values` | `allowed_locations` | Uncomment the block and add any extra locations you want to allow into the array | 1 | |
+
+{{< hint type=warning >}}
+By default we name the SLZ architecture file `lib/architecture_definitions/alz_custom.alz_architecture_definition.yaml`. We recommend you do not update the name of this file as it will result in duplicate architecture files that you may want to clean up. However, if you must rename it, then you must also set the `terraform_architecture_file_path` variable to point to the new file name and path in your bootstrap configuration file (`inputs.yaml`). For example:
+
+```yaml
+terraform_architecture_file_path: "lib/architecture_definitions/my_custom.alz_architecture_definition.yaml"
+```
+{{< /hint >}}
