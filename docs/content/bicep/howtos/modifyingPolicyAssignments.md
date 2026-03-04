@@ -30,18 +30,17 @@ param parPolicyAssignmentParameterOverrides = {
 
 ## Disabling a Policy Assignment
 
-Let's say you want to disable the `Enable-DDoS-VNET` policy assignment. You can either set its enforcement mode to DoNotEnforce or exclude it entirely from deployment.
+You can either set a policy assignment's enforcement mode to DoNotEnforce or exclude it entirely from deployment.
 
-To change the Enforcement mode of a policy assignment to DoNoteEnforce, but still assign the policy, add it to the `managementGroupDoNotEnforcePolicyAssignments` array in the corresponding management group's `.bicepparam` file:
+To change the Enforcement mode of a policy assignment to DoNotEnforce, but still assign the policy, add it to the `managementGroupDoNotEnforcePolicyAssignments` array in the corresponding management group's `.bicepparam` file:
 
-**landingzones/main.bicepparam:**
-**platform/platform-connectivity/main.bicepparam:**
+**Example using `landingzones/main.bicepparam`:**
 
 ```bicep-params
-param platformConfig = {
+param landingZonesConfig = {
   // ... other config
   managementGroupDoNotEnforcePolicyAssignments: [
-    'Enable-DDoS-VNET'  // This policy will be set to DoNotEnforce mode
+    'Deny-Subnet-Without-Nsg'  // This policy will be set to DoNotEnforce mode
   ]
 }
 ```
@@ -49,10 +48,10 @@ param platformConfig = {
 Alternatively, you can exclude a policy assignment entirely from the deployment using `managementGroupExcludedPolicyAssignments`:
 
 ```bicep-params
-param platformConfig = {
+param landingZonesConfig = {
   // ... other config
   managementGroupExcludedPolicyAssignments: [
-    'Enable-DDoS-VNET'  // This policy will not be deployed at all
+    'Deny-Subnet-Without-Nsg'  // This policy will not be deployed at all
   ]
 }
 ```
@@ -163,12 +162,55 @@ param parPolicyAssignmentParameterOverrides = {
 
 ### DDoS Protection {#ddos-protection}
 
-If you don't have a DDoS protection plan, disable the `Enable-DDoS-VNET` policy assignment at the `platform` management group:
+The `Enable-DDoS-VNET` policy assignment is deployed at two management groups:
 
-**platform/main.bicepparam:**
+- **Connectivity** management group — via `lib/alz/platform/connectivity/Enable-DDoS-VNET.alz_policy_assignment.json`
+- **Landing Zones** management group — via `lib/alz/landingzones/Enable-DDoS-VNET.alz_policy_assignment.json`
+
+#### Keeping the policy enabled
+
+If you plan to keep the policy enabled, make sure you provide the DDoS protection plan resource ID via the `Enable-DDoS-VNET` override in both management group parameter files:
+
+**platform-connectivity/main.bicepparam:**
 
 ```bicep-params
-param platformConfig = {
+param parPolicyAssignmentParameterOverrides = {
+  'Enable-DDoS-VNET': {
+    parameters: {
+      ddosPlan: {
+        value: '/subscriptions/<subscription-id>/resourceGroups/<rg-name>/providers/Microsoft.Network/ddosProtectionPlans/<plan-name>'
+      }
+    }
+  }
+}
+```
+
+**landingzones/main.bicepparam:**
+
+```bicep-params
+param parPolicyAssignmentParameterOverrides = {
+  'Enable-DDoS-VNET': {
+    parameters: {
+      ddosPlan: {
+        value: '/subscriptions/<subscription-id>/resourceGroups/<rg-name>/providers/Microsoft.Network/ddosProtectionPlans/<plan-name>'
+      }
+    }
+  }
+}
+```
+
+#### Disabling the policy
+
+{{< hint type=important >}}
+The `Enable-DDoS-VNET` policy uses a `Modify` effect with `Default` enforcement mode. This means the policy actively intercepts VNet creation and update requests to inject the DDoS protection plan reference. If the policy is deployed with placeholder parameter values and no DDoS protection plan exists, VNet deployments will fail with `LinkedAuthorizationFailed` errors. Make sure the governance stacks are updated and deployed before running the networking stack.
+{{< /hint >}}
+
+If you don't have a DDoS protection plan, exclude the `Enable-DDoS-VNET` policy assignment from both management groups:
+
+**platform-connectivity/main.bicepparam:**
+
+```bicep-params
+param platformConnectivityConfig = {
   // ... other config
   managementGroupExcludedPolicyAssignments: [
     'Enable-DDoS-VNET'
@@ -176,29 +218,33 @@ param platformConfig = {
 }
 ```
 
-Or set it to DoNotEnforce mode:
+**landingzones/main.bicepparam:**
 
 ```bicep-params
-param platformConfig = {
+param landingZonesConfig = {
   // ... other config
-  managementGroupDoNotEnforcePolicyAssignments: [
+  managementGroupExcludedPolicyAssignments: [
     'Enable-DDoS-VNET'
   ]
 }
 ```
 
-If you plan to keep the policy enabled, make sure you provide the DDoS protection plan resource ID via the `Enable-DDoS-VNET` override:
+You must also update the cross-management group RBAC parameter files to exclude the policy assignment. These modules reference the policy assignment as an `existing` resource to retrieve its managed identity, and will fail if the assignment does not exist.
+
+**platform/main-rbac.bicepparam:**
 
 ```bicep-params
-param parPolicyAssignmentParameterOverrides = {
-  'Enable-DDoS-VNET': {
-    parameters: {
-      ddosProtectionPlanId: {
-        value: '/subscriptions/<subscription-id>/resourceGroups/<rg-name>/providers/Microsoft.Network/ddosProtectionPlans/<plan-name>'
-      }
-    }
-  }
-}
+param parManagementGroupExcludedPolicyAssignments = [
+  'Enable-DDoS-VNET'
+]
+```
+
+**landingzones/main-rbac.bicepparam:**
+
+```bicep-params
+param parManagementGroupExcludedPolicyAssignments = [
+  'Enable-DDoS-VNET'
+]
 ```
 
 ### Private DNS Zones
