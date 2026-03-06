@@ -10,6 +10,15 @@ Here's what's changed in Azure landing zone:
 Azure landing zone IaC accelerator release notes are [HERE]({{% ref "accelerator/accelerator-release-notes" %}})
 {{</hint >}}
 
+{{< expand "March 2026" ">" >}}
+
+### March 2026
+
+#### Tooling
+
+- Updated the ***Baseline alerts and monitoring*** integration section in the portal accelerator to deploy the latest release of AMBA (2026-03-06). To read more on the changes, see the [What's new](https://aka.ms/amba/alz/whatsnew) page in the AMBA documentation.
+
+{{< /expand >}}
 {{< expand "February 2026" ">" >}}
 
 ### February 2026
