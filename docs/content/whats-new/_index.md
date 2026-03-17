@@ -14,6 +14,12 @@ Azure landing zone IaC accelerator release notes are [HERE]({{% ref "accelerator
 
 ### March 2026
 
+#### Policy
+
+- **IMPORTANT:** Updated ALZ Library to version: [`2026.01.3`](https://github.com/Azure/Azure-Landing-Zones-Library/releases/tag/platform%2Falz%2F2026.01.3) to handle the mapping of resource group location correctly in the assignment called `Deploy-SvcHealth-BuiltIn` of the built-in definition of [`[Preview]: Configure subscriptions to enable service health alert monitoring rule`](https://www.azadvertizer.net/azpolicyadvertizer/98903777-a9f6-47f5-90a9-acaf62ab01a8.html) which was previously being incorrectly set to `${default_location}` in the ALZ Terraform AVM-based deployment option. Please update your library version to the latest by following the guidance here: [Updating the module and library version](https://azure.github.io/Azure-Landing-Zones/terraform/howtos/update/#updating-the-policy-library)
+  - For clarity the ALZ Bicep AVM-based deployment does not require and update as this was replacing the token placeholder correctly 👍
+  - Sovereign landing zone (SLZ) Terraform deployments should also update to the latest library release of SLZ, which is [`2026.02.2`](https://github.com/Azure/Azure-Landing-Zones-Library/releases/tag/platform%2Fslz%2F2026.02.2)
+
 #### Tooling
 
 - Updated the ***Baseline alerts and monitoring*** integration section in the portal accelerator to deploy the latest release of AMBA (2026-03-06). To read more on the changes, see the [What's new](https://aka.ms/amba/alz/whatsnew) page in the AMBA documentation.
