@@ -10,7 +10,7 @@ Here's what's changed in Azure landing zone:
 Azure landing zone IaC accelerator release notes are [HERE]({{% ref "accelerator/accelerator-release-notes" %}})
 {{</hint >}}
 
-{{< expand "March 2026" ">" >}}
+{{< expand title="March 2026" icon=">" expandByDefault="true" >}}
 
 ### March 2026
 
