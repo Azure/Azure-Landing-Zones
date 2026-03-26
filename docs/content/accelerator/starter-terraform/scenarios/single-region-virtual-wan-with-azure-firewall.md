@@ -32,7 +32,16 @@ The following resources are deployed by default in this scenario:
 - User Assigned Managed Identity for AMA
 - Automation Account
 
-### Connectivity
+#### Subscription Placement
+
+{{< hint type=tip >}}
+**Identity and Security subscriptions are recommended but optional.** If you do not yet have dedicated subscriptions for identity and security workloads, you can comment out or remove the identity and security subscription placement blocks in the configuration file and add them later.
+{{< /hint >}}
+
+- Connectivity subscription - placed under the `connectivity` management group
+- Management subscription - placed under the `management` management group
+- Identity subscription - placed under the `identity` management group (recommended)
+- Security subscription - placed under the `security` management group (recommended)
 
 #### Azure DDOS Protection Plan
 

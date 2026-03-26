@@ -27,3 +27,13 @@ The following resources are deployed by default in this scenario:
 - Log Analytics Data Collection Rules for AMA
 - User Assigned Managed Identity for AMA
 - Automation Account
+
+#### Subscription Placement
+
+{{< hint type=tip >}}
+**Identity and Security subscriptions are recommended but optional.** If you do not yet have dedicated subscriptions for identity and security workloads, you can comment out or remove the identity and security subscription placement blocks in the configuration file and add them later.
+{{< /hint >}}
+
+- Management subscription - placed under the `management` management group
+- Identity subscription - placed under the `identity` management group (recommended)
+- Security subscription - placed under the `security` management group (recommended)
