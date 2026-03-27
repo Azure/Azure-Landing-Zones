@@ -127,11 +127,26 @@ Fill out the `Parent management group id` value with the management group you ha
 
 ### Decision 7 - Choose the platform subscriptions
 
-We require 4 platform subscriptions: Management, Connectivity, Identity, and Security.
+{{< hint type=tip >}}
+**Recommended: 4 subscriptions.** We strongly recommend setting up all 4 platform subscriptions (Management, Connectivity, Identity, and Security) for a complete and well-architected landing zone.
+{{< /hint >}}
 
-You may wish to follow the steps in the [phase 1 prerequisites]({{< relref "1_prerequisites/platform-subscriptions">}}) to create the 4 platform subscriptions and add the subscription IDs to the checklist now.
+{{< hint type=warning >}}
+**SMB (Small-Medium Business) minimum: 2 subscriptions.** If you are a small business that has not yet scaled and you are using one of the [SMB scenarios]({{< relref "starter-terraform/scenarios#smb-small-medium-business-scenarios" >}}), you can start with just **Management** and **Connectivity** subscriptions. However, this is only a starting point — as your organization grows, you **will** need to add dedicated Identity and Security subscriptions. Plan for this from the outset.
+{{< /hint >}}
 
-Fill out the `Management subscription id`, `Connectivity subscription id`, `Identity subscription id`, and `Security subscription id` values with the subscription IDs you have chosen.
+The 4 recommended platform subscriptions are:
+
+- **Management** (required): Used to deploy the bootstrap and management resources, such as log analytics and automation accounts.
+- **Connectivity** (required): Used to deploy the hub networking resources, such as virtual networks and firewalls.
+- **Identity** (recommended): Used to deploy the identity resources, such as Azure AD and Microsoft Entra Domain Services. *Can be deferred for SMB scenarios, but will be required as you scale.*
+- **Security** (recommended): Used to deploy Sentinel and other security related resources. *Can be deferred for SMB scenarios, but will be required as you scale.*
+
+You may wish to follow the steps in the [phase 1 prerequisites]({{< relref "1_prerequisites/platform-subscriptions">}}) to create the platform subscriptions and add the subscription IDs to the checklist now.
+
+**For 4 subscriptions (recommended):** Fill out the `Management subscription id`, `Connectivity subscription id`, `Identity subscription id`, and `Security subscription id` values with the subscription IDs you have chosen.
+
+**For 2 subscriptions (SMB only):** Fill out the `Management subscription id` and `Connectivity subscription id` values. Leave `Identity subscription id` and `Security subscription id` blank. You will need to add these later as your organization scales.
 
 ### Decision 8 - Choose the bootstrap subscription
 
