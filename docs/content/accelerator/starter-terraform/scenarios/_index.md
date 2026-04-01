@@ -25,7 +25,7 @@ The available scenarios are:
 These scenarios are designed for small-medium businesses starting out with Azure Landing Zones. They are cost-optimized with reduced resource deployment. Identity and security subscriptions are recommended but optional in these scenarios.
 
 {{< hint type=warning >}}
-The SMB scenarios disable the DDoS Protection Plan to reduce costs. If you use these scenarios, you **MUST** implement [Azure DDoS IP Protection](https://learn.microsoft.com/azure/ddos-protection/ddos-protection-sku-comparison) on each public IP address to maintain security.
+The SMB scenarios disable the DDoS Network Protection Plan to reduce costs. If you use these scenarios, you **MUST** consider and plan how to sufficiently protect your applications and workloads from DDoS attacks, like using [DDoS IP Protection](https://learn.microsoft.com/azure/ddos-protection/ddos-protection-sku-comparison), or an alternative solution.
 {{< /hint >}}
 
 10. [SMB Single-Region Hub and Spoke Virtual Network with Azure Firewall]({{< relref "smb-single-region-hub-and-spoke-vnet-with-azure-firewall" >}})
