@@ -6,8 +6,8 @@ weight: 3
 
 You can choose to not deploy a DDOS protection plan. In order to do that, they need to remove the DDOS protection plan configuration and disable the DINE (deploy if not exists) policy. You can either comment out or remove the configuration entirely.
 
-{{< hint type=warning >}}
-DDOS Protection plan is a critical security protection for public facing services. Carefully consider this and be sure to put in place an alternative solution, such as per IP protection.
+{{< hint type=danger >}}
+**Security Risk:** A DDoS Network Protection Plan is a recommended security control for public-facing services. Disabling it without an alternative may leave your applications and workloads vulnerable to DDoS attacks. You should weigh up the pros and cons of before deciding to disable the DDoS Network Protection Plan and also consider how you will protect your applications and services without it. You may decide the DDoS IP Protection offering per-Public IP is a suitable option, as detailed [here](https://learn.microsoft.com/azure/ddos-protection/ddos-protection-sku-comparison), or an alternative solution. 
 {{< /hint >}}
 
 The steps to follow are:

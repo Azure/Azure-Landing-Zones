@@ -12,21 +12,35 @@ You will need to choose the parent management group for your Platform landing zo
 
 ## 2 - Azure Subscriptions
 
-We recommend setting up 4 subscriptions for Platform landing zone. These are management, identity, connectivity, and security. See our [advanced scenarios]({{< relref "advancedscenarios" >}}) section for alternatives.
+{{< hint type=tip >}}
+**Recommended: 4 subscriptions.** We strongly recommend setting up all 4 platform subscriptions for a complete and well-architected landing zone. Migrating resources between subscriptions can be a complex and time-consuming process and not it is not supported for all resource types. See [here](https://learn.microsoft.com/azure/azure-resource-manager/management/move-resources-overview) for more details. 
+{{< /hint >}}
 
-- Management: This is used to deploy the bootstrap and management resources, such as log analytics and automation accounts.
-- Identity: This is used to deploy the identity resources, such as Azure AD and Microsoft Entra Domain Services.
-- Connectivity: This is used to deploy the hub networking resources, such as virtual networks and firewalls.
-- Security: This is used to deploy Sentinel and other security related resources.
+The 4 recommended platform subscriptions are:
+
+- **Management** (required): This is used to deploy the bootstrap and management resources, such as log analytics and automation accounts.
+- **Connectivity** (required): This is used to deploy the hub networking resources, such as virtual networks and firewalls.
+- **Identity** (recommended): This is used to deploy the identity resources, such as Azure AD and Microsoft Entra Domain Services.
+- **Security** (recommended): This is used to deploy Sentinel and other security related resources.
 
 You can read more about the management, identity, connectivity, and security subscriptions in the [Landing Zone docs](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/deploy-landing-zones-with-terraform).
+
+{{< hint type=warning >}}
+**SMB (Small-Medium Business) minimum: 2 subscriptions.** If you are a small business that has not yet scaled and you are using, or planning to use, one of the [SMB scenarios]({{< relref "../../accelerator/starter-terraform/scenarios#smb-small-medium-business-scenarios" >}}), you can start with just the **Management** and **Connectivity** subscriptions. The Identity and Security subscription placements are commented out in the SMB configuration files and can be enabled later.
+
+**Important:** This is only a starting point. As your organization grows, you **will** need to add dedicated Identity and Security subscriptions. Plan for this from the outset.
+{{< /hint >}}
 
 To create the subscriptions you will need access to a billing agreement. The following links detail the permissions required for each type of agreement:
 
 - [Enterprise Agreement (EA)](https://learn.microsoft.com/azure/cost-management-billing/manage/create-enterprise-subscription)
 - [Microsoft Customer Agreement (MCA)](https://learn.microsoft.com/azure/cost-management-billing/manage/create-subscription)
 
-Once you have the access required, create the four subscriptions following your desired naming convention.
+Once you have the access required, create the subscriptions following your desired naming convention.
+
+**For the recommended 4-subscription model:** Create all four subscriptions (Management, Connectivity, Identity, Security).
+
+**For the SMB 2-subscription model:** Create the Management and Connectivity subscriptions. You will add Identity and Security subscriptions later as your organization scales.
 
 Take note of the subscription id of each subscription as we will need them later.
 
@@ -38,7 +52,7 @@ You need either an Azure User Account or Service Principal with the following pe
 
 - `Owner` on your chosen parent management group.
   - `Owner` is required because this account grants permissions to the identities that run the management group deployment. Those identities are granted only the permissions they need.
-- `Owner` on each of your 4 Platform landing zone subscriptions.
+- `Owner` on each of your platform landing zone subscriptions (4 for standard deployments, or 2 for SMB deployments).
 
 ### Bicep has one additional requirement:
 
