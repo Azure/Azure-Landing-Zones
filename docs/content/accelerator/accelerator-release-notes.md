@@ -21,6 +21,35 @@ While we try very hard to avoid breaking changes, there are times when a feature
 
 ## Release Notes
 
+### [Terraform Starter Module - v15.5.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v15.5.0), [Accelerator Bootstrap Modules - v7.2.0](https://github.com/Azure/accelerator-bootstrap-modules/releases/tag/v7.2.0), and [ALZ PowerShell Module - v7.1.0](https://github.com/Azure/ALZ-PowerShell-Module/releases/tag/v7.1.0)
+
+- Release date: 2026-04-01
+- Release link: [Terraform Starter Module - v15.5.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v15.5.0), [Accelerator Bootstrap Modules - v7.2.0](https://github.com/Azure/accelerator-bootstrap-modules/releases/tag/v7.2.0), and [ALZ PowerShell Module - v7.1.0](https://github.com/Azure/ALZ-PowerShell-Module/releases/tag/v7.1.0)
+- Release diff: [Terraform Starter Module - v13.0.0...v15.5.0](https://github.com/Azure/alz-terraform-accelerator/compare/v13.0.0...v15.5.0), [Accelerator Bootstrap Modules - v7.0.0...v7.2.0](https://github.com/Azure/accelerator-bootstrap-modules/compare/v7.0.0...v7.2.0), and [ALZ PowerShell Module - v7.0.0...v7.1.0](https://github.com/Azure/ALZ-PowerShell-Module/compare/v7.0.0...v7.1.0)
+
+This release introduces new SMB (Small-Medium Business) scenarios and a 2 subscription model for the ALZ Terraform Accelerator.
+
+#### New SMB Scenarios
+
+Two new cost-optimized scenarios have been added for small-medium businesses:
+
+- **SMB Single-Region Hub and Spoke Virtual Network with Azure Firewall**: A cost-optimized deployment using hub and spoke Virtual Network connectivity with Azure Firewall (Basic SKU) in a single region.
+- **SMB Single-Region Virtual WAN with Azure Firewall**: A cost-optimized deployment using Virtual WAN network connectivity with Azure Firewall (Basic SKU) in a single region.
+
+These scenarios are designed for small-medium businesses that want to start with an ALZ aligned platform landing zone but are not yet ready for the full scale and associated cost. They are cost-optimized with reduced resource deployment out of the box and can be expanded upon later without redeployment.
+
+#### 2 Subscription Model
+
+Identity and Security platform subscriptions are now marked as optional. The SMB scenarios use a minimum of 2 subscriptions (Management and Connectivity), with Identity and Security subscription placements commented out in the configuration files. These can be enabled later as the organization scales.
+
+The 4 subscription model remains the recommended approach for a complete and well-architected landing zone.
+
+#### DDoS Protection Warnings
+
+The SMB scenarios disable the DDoS Network Protection Plan to reduce costs. Clear warnings have been added to the documentation advising users to consider and plan how to sufficiently protect their applications and workloads from DDoS attacks, such as using DDoS IP Protection per public IP.
+
+---
+
 ### [ALZ PowerShell Module - v7.0.0](https://github.com/Azure/ALZ-PowerShell-Module/releases/tag/v7.0.0) and [Accelerator Bootstrap Modules - v7.0.0](https://github.com/Azure/accelerator-bootstrap-modules/releases/tag/v7.0.0)
 
 - Release date: 2026-01-30
