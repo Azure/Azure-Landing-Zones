@@ -13,7 +13,7 @@ You will need to choose the parent management group for your Platform landing zo
 ## 2 - Azure Subscriptions
 
 {{< hint type=tip >}}
-**Recommended: 4 subscriptions.** We strongly recommend setting up all 4 platform subscriptions for a complete and well-architected landing zone.
+**Recommended: 4 subscriptions.** We strongly recommend setting up all 4 platform subscriptions for a complete and well-architected landing zone. Migrating resources between subscriptions can be a complex and time-consuming process and not it is not supported for all resource types. See [here](https://learn.microsoft.com/azure/azure-resource-manager/management/move-resources-overview) for more details. 
 {{< /hint >}}
 
 The 4 recommended platform subscriptions are:
