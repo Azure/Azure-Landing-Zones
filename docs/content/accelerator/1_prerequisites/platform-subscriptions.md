@@ -26,7 +26,7 @@ The 4 recommended platform subscriptions are:
 You can read more about the management, identity, connectivity, and security subscriptions in the [Landing Zone docs](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/deploy-landing-zones-with-terraform).
 
 {{< hint type=warning >}}
-**SMB (Small-Medium Business) minimum: 2 subscriptions.** If you are a small business that has not yet scaled and you are using one of the [SMB scenarios]({{< relref "../../accelerator/starter-terraform/scenarios#smb-small-medium-business-scenarios" >}}), you can start with just the **Management** and **Connectivity** subscriptions. The Identity and Security subscription placements are commented out in the SMB configuration files and can be enabled later.
+**SMB (Small-Medium Business) minimum: 2 subscriptions.** If you are a small business that has not yet scaled and you are using, or planning to use, one of the [SMB scenarios]({{< relref "../../accelerator/starter-terraform/scenarios#smb-small-medium-business-scenarios" >}}), you can start with just the **Management** and **Connectivity** subscriptions. The Identity and Security subscription placements are commented out in the SMB configuration files and can be enabled later.
 
 **Important:** This is only a starting point. As your organization grows, you **will** need to add dedicated Identity and Security subscriptions. Plan for this from the outset.
 {{< /hint >}}
