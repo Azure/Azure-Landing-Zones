@@ -71,7 +71,7 @@ The following resources are **not deployed** in this scenario to reduce costs:
 **DDoS Network Protection Plan is disabled in this scenario.** This means your public-facing resources are not protected by an Azure DDoS Network Protection Plan. Disabling it without an alternative may leave your applications and workloads vulnerable to DDoS attacks. You should weigh up the pros and cons of before deciding to disable the DDoS Network Protection Plan and also consider how you will protect your applications and services without it. You may decide the DDoS IP Protection offering per-Public IP is a suitable option, as detailed [here](https://learn.microsoft.com/azure/ddos-protection/ddos-protection-sku-comparison), or an alternative solution. 
 {{< /hint >}}
 
-- DDoS Protection Plan (see warning above - per-IP DDoS protection must be implemented as an alternative)
+- DDoS Protection Plan
 - ExpressRoute Gateway
 - Azure Bastion
 
