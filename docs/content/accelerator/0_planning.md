@@ -132,7 +132,11 @@ Fill out the `Parent management group id` value with the management group you ha
 {{< /hint >}}
 
 {{< hint type=warning >}}
-**SMB (Small-Medium Business) minimum: 2 subscriptions.** If you are a small business that has not yet scaled and you are using one of the [SMB scenarios]({{< relref "starter-terraform/scenarios#smb-small-medium-business-scenarios" >}}), you can start with just **Management** and **Connectivity** subscriptions. However, this is only a starting point — as your organization grows, you **will** need to add dedicated Identity and Security subscriptions. Plan for this from the outset.
+**SMB (Small-Medium Business) minimum: 2 subscriptions.** These scenarios are designed for small-medium businesses **only** (e.g. less than 10 workloads or less than 100/200 FTEs) that want to start with an Azure landing zone (ALZ) aligned platform landing zone but perhaps are not yet ready for the full scale of ALZ and the associated cost. However, they want to start on the right path and not pin themselves in to an architecture they cannot expand upon later. 
+
+They are cost-optimized with reduced resource deployment, out of the box.
+
+Identity and security subscriptions are recommended but optional in these scenarios also and should be planned for from the start.
 {{< /hint >}}
 
 The 4 recommended platform subscriptions are:

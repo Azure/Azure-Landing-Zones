@@ -3,10 +3,10 @@ title: 11 - SMB Single-Region Virtual WAN with Azure Firewall
 weight: 11
 ---
 
-A cost-optimized Platform landing zone deployment designed for small-medium businesses (SMB) starting out with Azure Landing Zones. This scenario uses Virtual WAN network connectivity with Azure Firewall (Basic SKU) in a single region.
+A cost-optimized Platform landing zone deployment designed for small-medium businesses (SMB) **only** (e.g. less than 10 workloads or less than 100/200 FTEs) that want to start with an Azure landing zone (ALZ) aligned platform landing zone but perhaps are not yet ready for the full scale of ALZ and the associated cost. . This scenario uses Virtual WAN network connectivity with Azure Firewall (Basic SKU) in a single region.
 
 {{< hint type=tip >}}
-This scenario is designed to minimize costs while still providing a solid foundation for your Azure Landing Zone. As your organization grows, you can enable additional resources and expand to multiple regions.
+This scenario is designed to minimize costs while still providing a solid foundation for your Azure landing zone. As your organization grows, you can enable additional resources and expand to multiple regions easily without having to redeploy etc.
 {{< /hint >}}
 
 {{< hint type=warning >}}
@@ -72,7 +72,7 @@ The following resources are deployed by default in this scenario:
 The following resources are **not deployed** in this scenario to reduce costs:
 
 {{< hint type=danger >}}
-**DDoS Protection Plan is disabled in this scenario.** This means your public-facing resources are not protected by an Azure DDoS Protection Plan. You **MUST** implement [Azure DDoS IP Protection](https://learn.microsoft.com/azure/ddos-protection/ddos-protection-sku-comparison) on each public IP address to maintain security. Failure to implement per-IP DDoS protection leaves your public-facing services vulnerable to DDoS attacks.
+**DDoS Network Protection Plan is disabled in this scenario.** This means your public-facing resources are not protected by an Azure DDoS Network Protection Plan. Disabling it without an alternative may leave your applications and workloads vulnerable to DDoS attacks. You should weigh up the pros and cons of before deciding to disable the DDoS Network Protection Plan and also consider how you will protect your applications and services without it. You may decide the DDoS IP Protection offering per-Public IP is a suitable option, as detailed [here](https://learn.microsoft.com/azure/ddos-protection/ddos-protection-sku-comparison), or an alternative solution. 
 {{< /hint >}}
 
 - DDoS Protection Plan (see warning above - per-IP DDoS protection must be implemented as an alternative)
