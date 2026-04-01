@@ -6,7 +6,7 @@ weight: 10
 A cost-optimized Platform landing zone deployment designed for small-medium businesses (SMB) **only** (e.g. less than 10 workloads or less than 100/200 FTEs) that want to start with an Azure landing zone (ALZ) aligned platform landing zone but perhaps are not yet ready for the full scale of ALZ and the associated cost. This scenario uses hub and spoke Virtual Network connectivity with Azure Firewall (Basic SKU) in a single region.
 
 {{< hint type=tip >}}
-This scenario is designed to minimize costs while still providing a solid foundation for your Azure Landing Zone. As your organization grows, you can enable additional resources and expand to multiple regions.
+This scenario is designed to minimize costs while still providing a solid foundation for your Azure landing zone. As your organization grows, you can enable additional resources and expand to multiple regions easily without having to redeploy etc.
 {{< /hint >}}
 
 {{< hint type=warning >}}
