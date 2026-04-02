@@ -133,7 +133,7 @@ At the scale this scenario is designed for (less than 10 workloads), Private Lin
 
 As your organization grows beyond the SMB scale, you can upgrade this deployment to a full enterprise-scale configuration without redeploying. Update your Platform landing zone configuration file with the following changes:
 
-1. **Upgrade the Azure Firewall SKU** - Update `primary_firewall_sku_tier` from `"Basic"` to `"Standard"` (or `"Premium"` for [Zero Trust]({{< relref "../options/zero-trust" >}})).
+1. **Upgrade the Azure Firewall SKU** - Update `primary_firewall_sku_tier` from `"Basic"` to `"Premium"` (or `"Standard"`). See [Change Firewall SKU]({{< relref "../options/zero-trust" >}}) for details.
 2. **Enable centralized Private DNS zones and Private DNS Resolver** - Set `primary_private_dns_zones_enabled`, `primary_private_dns_auto_registration_zone_enabled`, and `primary_private_dns_resolver_enabled` to `true`. See [Turn off Private DNS zones]({{< relref "../options/dns" >}}) for details.
 3. **Enable DDoS Protection Plan** - Set `ddos_protection_plan_enabled` to `true`. See [Turn off DDOS protection plan]({{< relref "../options/ddos" >}}) for details.
 4. **Enforce DDoS policy** - Remove the `Enable-DDoS-VNET` entries from the `policy_assignments_to_modify` section for the `connectivity` and `landingzones` management groups.

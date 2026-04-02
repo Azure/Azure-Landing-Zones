@@ -43,13 +43,13 @@ The following table provides an approximate monthly cost comparison for the fixe
 
 | Scenario | Estimated Monthly Cost (USD) |
 | - | -: |
-| Multi-Region Hub & Spoke with Azure Firewall | 7,547.72 |
-| Multi-Region Virtual WAN with Azure Firewall | 7,533.12 |
+| Multi-Region Hub & Spoke with Azure Firewall | 8,277.72 |
+| Multi-Region Virtual WAN with Azure Firewall | 8,263.12 |
 | Multi-Region Hub & Spoke with NVA | 5,515.42 * |
 | Multi-Region Virtual WAN with NVA | 5,500.82 * |
 | Management Only | 0.00 |
-| Single-Region Hub & Spoke with Azure Firewall | 5,273.36 |
-| Single-Region Virtual WAN with Azure Firewall | 5,266.06 |
+| Single-Region Hub & Spoke with Azure Firewall | 5,638.36 |
+| Single-Region Virtual WAN with Azure Firewall | 5,631.06 |
 | Single-Region Hub & Spoke with NVA | 4,257.21 * |
 | Single-Region Virtual WAN with NVA | 4,249.91 * |
 | SMB Single-Region Hub & Spoke | 689.85 |

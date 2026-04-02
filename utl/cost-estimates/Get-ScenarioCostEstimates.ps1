@@ -100,8 +100,8 @@ Write-Host ""
 Write-Host "  Azure Firewall Basic..." -ForegroundColor Gray
 $firewallBasic = Get-HourlyMonthlyPrice -Filter "serviceName eq 'Azure Firewall' and meterName eq 'Basic Deployment' and armRegionName eq '$Region'"
 
-Write-Host "  Azure Firewall Standard..." -ForegroundColor Gray
-$firewallStandard = Get-HourlyMonthlyPrice -Filter "serviceName eq 'Azure Firewall' and meterName eq 'Standard Deployment' and armRegionName eq '$Region'"
+Write-Host "  Azure Firewall Premium..." -ForegroundColor Gray
+$firewallPremium = Get-HourlyMonthlyPrice -Filter "serviceName eq 'Azure Firewall' and meterName eq 'Premium Deployment' and armRegionName eq '$Region'"
 
 Write-Host "  Firewall Policy (Standard)..." -ForegroundColor Gray
 $firewallPolicyStandard = Get-FixedMonthlyPrice -Filter "serviceName eq 'Azure Firewall Manager' and meterName eq 'Standard Policy per Region' and armRegionName eq '$Region'"
@@ -144,7 +144,7 @@ $privateDnsZoneCount = 110
 
 $scenarios = [ordered]@{
     "Multi-Region Hub & Spoke with Azure Firewall" = [ordered]@{
-        "Azure Firewall (Standard) x2" = $firewallStandard * 2
+        "Azure Firewall (Premium) x2" = $firewallPremium * 2
         "Firewall Policy (Standard) x2" = $firewallPolicyStandard * 2
         "VPN Gateway (VpnGw2AZ) x2"    = $vpnGateway * 2
         "ExpressRoute GW (ErGw2AZ) x2" = $erGateway * 2
@@ -155,7 +155,7 @@ $scenarios = [ordered]@{
         "Public IP Addresses (x8)"     = $publicIp * 8
     }
     "Multi-Region Virtual WAN with Azure Firewall" = [ordered]@{
-        "Azure Firewall (Standard) x2" = $firewallStandard * 2
+        "Azure Firewall (Premium) x2" = $firewallPremium * 2
         "Firewall Policy (Standard) x2" = $firewallPolicyStandard * 2
         "VPN Gateway (VpnGw2AZ) x2"    = $vpnGateway * 2
         "ExpressRoute GW (ErGw2AZ) x2" = $erGateway * 2
@@ -187,7 +187,7 @@ $scenarios = [ordered]@{
         "(No connectivity resources)"  = 0
     }
     "Single-Region Hub & Spoke with Azure Firewall" = [ordered]@{
-        "Azure Firewall (Standard)"    = $firewallStandard
+        "Azure Firewall (Premium)"    = $firewallPremium
         "Firewall Policy (Standard)"   = $firewallPolicyStandard
         "VPN Gateway (VpnGw2AZ)"       = $vpnGateway
         "ExpressRoute GW (ErGw2AZ)"    = $erGateway
@@ -198,7 +198,7 @@ $scenarios = [ordered]@{
         "Public IP Addresses (x4)"     = $publicIp * 4
     }
     "Single-Region Virtual WAN with Azure Firewall" = [ordered]@{
-        "Azure Firewall (Standard)"    = $firewallStandard
+        "Azure Firewall (Premium)"    = $firewallPremium
         "Firewall Policy (Standard)"   = $firewallPolicyStandard
         "VPN Gateway (VpnGw2AZ)"       = $vpnGateway
         "ExpressRoute GW (ErGw2AZ)"    = $erGateway

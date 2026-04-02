@@ -17,7 +17,7 @@ A full Platform landing zone deployment with Virtual WAN network connectivity us
 
 | Resource | Estimated Monthly Cost (USD) |
 | - | -: |
-| Azure Firewall (Standard) x2 | 1,825.00 |
+| Azure Firewall (Premium) x2 | 2,555.00 |
 | Firewall Policy (Standard) x2 | 200.00 |
 | VPN Gateway (VpnGw2AZ) x2 | 788.40 |
 | ExpressRoute GW (ErGw2AZ) x2 | 922.72 |
@@ -26,7 +26,7 @@ A full Platform landing zone deployment with Virtual WAN network connectivity us
 | Private DNS Resolver x2 | 360.00 |
 | Private DNS Zones (x110) | 55.00 |
 | Public IP Addresses (x4) | 14.60 |
-| **Total** | **7,533.12** |
+| **Total** | **8,263.12** |
 
 {{< hint type=note >}}
 Estimated fixed infrastructure costs based on [Azure Retail Prices](https://learn.microsoft.com/rest/api/cost-management/retail-prices/azure-retail-prices) for the **westus** region in **USD** as of **2026-04-02**. Consumption-based costs (data processing, log ingestion, DNS queries, etc.) are not included and will vary based on usage. DDoS Protection Plan pricing is sourced from the [Azure DDoS Protection pricing page](https://azure.microsoft.com/pricing/details/ddos-protection/). You can generate your own estimates for any region and currency using the [Get-ScenarioCostEstimates.ps1](https://github.com/Azure/Azure-Landing-Zones/blob/main/utl/cost-estimates/Get-ScenarioCostEstimates.ps1) script.
