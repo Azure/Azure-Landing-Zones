@@ -10,10 +10,30 @@ This scenario is designed to minimize costs while still providing a solid founda
 {{< /hint >}}
 
 {{< hint type=warning >}}
-The single region option is here for completeness, we recommend always having at least 2 regions to support resiliency.
+This scenario deploys to a single region to reduce cost and complexity. As your organization grows, we recommend expanding to at least 2 regions to support resiliency. See [Upgrading to Enterprise Scale](#upgrading-to-enterprise-scale) for details.
 {{< /hint >}}
 
 * Example Platform landing zone configuration file: [smb-single-region/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/smb-single-region/virtual-wan.tfvars)
+
+## Contents
+
+- [Estimated Costs](#estimated-costs) - Approximate monthly infrastructure costs
+- [Resources](#resources) - What gets deployed in this scenario
+- [Configuration](#configuration) - How DNS, routing, and policies are configured
+- [Upgrading to Enterprise Scale](#upgrading-to-enterprise-scale) - Steps to grow beyond SMB
+
+## Estimated Costs
+
+| Resource | Estimated Monthly Cost (USD) |
+| - | -: |
+| Azure Firewall (Basic) | 288.35 |
+| VPN Gateway (VpnGw2AZ) | 394.20 |
+| Public IP Addresses (x2) | 7.30 |
+| **Total** | **689.85** |
+
+{{< hint type=note >}}
+Estimated fixed infrastructure costs based on [Azure Retail Prices](https://learn.microsoft.com/rest/api/cost-management/retail-prices/azure-retail-prices) for the **westus** region in **USD** as of **2026-04-02**. Consumption-based costs (data processing, log ingestion, DNS queries, etc.) are not included and will vary based on usage. DDoS Protection Plan pricing is sourced from the [Azure DDoS Protection pricing page](https://azure.microsoft.com/pricing/details/ddos-protection/). You can generate your own estimates for any region and currency using the [Get-ScenarioCostEstimates.ps1](https://github.com/Azure/Azure-Landing-Zones/blob/main/utl/cost-estimates/Get-ScenarioCostEstimates.ps1) script.
+{{< /hint >}}
 
 ## Resources
 
@@ -57,11 +77,7 @@ The following resources are deployed by default in this scenario:
 
 #### Azure Private DNS
 
-- Azure Private DNS Resolver in one region
-- Azure non-regional Private Link Private DNS zones in one region
-- Azure regional Private Link Private DNS zones in one region
-- Azure Virtual Machine auto-registration Private DNS zone in one region
-- Azure Private Link DNS zone virtual network links in one region
+Private DNS zones and Private DNS Resolver are **not deployed** by default in this scenario. See the [DNS](#azure-dns) section below for details.
 
 #### Azure Virtual Network Gateways
 
@@ -72,12 +88,13 @@ The following resources are deployed by default in this scenario:
 The following resources are **not deployed** in this scenario to reduce costs:
 
 {{< hint type=danger >}}
-**DDoS Network Protection Plan is disabled in this scenario.** This means your public-facing resources are not protected by an Azure DDoS Network Protection Plan. Disabling it without an alternative may leave your applications and workloads vulnerable to DDoS attacks. You should weigh up the pros and cons of before deciding to disable the DDoS Network Protection Plan and also consider how you will protect your applications and services without it. You may decide the DDoS IP Protection offering per-Public IP is a suitable option, as detailed [here](https://learn.microsoft.com/azure/ddos-protection/ddos-protection-sku-comparison), or an alternative solution. 
+**DDoS Network Protection Plan is disabled in this scenario.** This means your public-facing resources are not protected by an Azure DDoS Network Protection Plan. Disabling it without an alternative may leave your applications and workloads vulnerable to DDoS attacks. You should weigh up the pros and cons of before deciding to disable the DDoS Network Protection Plan and also consider how you will protect your applications and services without it. You may decide the DDoS IP Protection offering per-Public IP is a suitable option, as detailed [here](https://learn.microsoft.com/azure/ddos-protection/ddos-protection-sku-comparison), or an alternative solution.
 {{< /hint >}}
 
 - DDoS Protection Plan (see warning above - per-IP DDoS protection must be implemented as an alternative)
 - ExpressRoute Gateway
 - Azure Bastion
+- Private DNS Zones and Private DNS Resolver (see [DNS](#azure-dns) section below)
 
 ### Subscription Placement
 
@@ -96,13 +113,42 @@ The following relevant configuration is applied:
 
 ### Azure DNS
 
-Private DNS is configured ready for using Private Link and Virtual Machine Auto-registration. Spoke Virtual Networks should use the Azure Firewall IP Address as their DNS configuration.
+Azure Firewall Basic SKU does not support the DNS proxy feature. As a result, centralized Private DNS zone management and Private DNS Resolver are **disabled by default** in this scenario.
 
-- Azure Firewall is configured as DNS proxy
-- Azure Firewall forwards DNS traffic to the Private DNS resolver
-- Azure Private DNS Resolver has an inbound endpoint from the sidecar network
-- Azure Private Link DNS zones are linked to the all hub sidecar Virtual Networks
+At the scale this scenario is designed for (less than 10 workloads), Private Link Private DNS zones can be created directly in spoke subscriptions as needed, rather than centrally managing them. This keeps the configuration simpler and avoids the cost of additional infrastructure.
+
+{{< hint type=tip >}}
+**As your organization grows**, you should upgrade the firewall SKU from `Basic` to `Standard` (by updating the `primary_firewall_sku_tier` setting) and enable the centralized Private DNS zones and Private DNS Resolver (see [Turn off Private DNS zones]({{< relref "../options/dns" >}}) for details on how to enable them). This will allow you to use Azure Firewall as a DNS proxy and centrally manage DNS resolution for Private Link across all spokes.
+{{< /hint >}}
 
 ### DDoS Policy
 
 - The `Enable-DDoS-VNET` policy assignment is set to `DoNotEnforce` on the `connectivity` and `landingzones` management groups, since DDoS Protection Plan is not deployed.
+
+### Private DNS Zones Policy
+
+- The `Deploy-Private-DNS-Zones` policy assignment is set to `DoNotEnforce` on the `corp` management group, since centralized Private DNS zones are not deployed.
+
+## Upgrading to Enterprise Scale
+
+As your organization grows beyond the SMB scale, you can upgrade this deployment to a full enterprise-scale configuration without redeploying. Update your Platform landing zone configuration file with the following changes:
+
+1. **Upgrade the Azure Firewall SKU** - Update `primary_firewall_sku_tier` from `"Basic"` to `"Premium"` (or `"Standard"`). See [Change Firewall SKU]({{< relref "../options/firewall-sku" >}}) for details.
+2. **Enable centralized Private DNS zones and Private DNS Resolver** - Set `primary_private_dns_zones_enabled`, `primary_private_dns_auto_registration_zone_enabled`, and `primary_private_dns_resolver_enabled` to `true`. See [Turn off Private DNS zones]({{< relref "../options/dns" >}}) for details.
+3. **Enable DDoS Protection Plan** - Set `ddos_protection_plan_enabled` to `true`. See [Turn off DDOS protection plan]({{< relref "../options/ddos" >}}) for details.
+4. **Enforce DDoS policy** - Remove the `Enable-DDoS-VNET` entries from the `policy_assignments_to_modify` section for the `connectivity` and `landingzones` management groups.
+5. **Enforce Private DNS Zones policy** - Remove the `Deploy-Private-DNS-Zones` entry from the `policy_assignments_to_modify` section for the `corp` management group.
+6. **Enable Azure Bastion** - Set `primary_bastion_enabled` to `true`. See [Turn off Bastion host]({{< relref "../options/bastion" >}}) for details.
+5. **Enable ExpressRoute Gateway** - Set `primary_virtual_network_gateway_express_route_enabled` to `true`. See [Turn off Virtual Network Gateways]({{< relref "../options/gateways" >}}) for details.
+6. **Add Identity and Security subscriptions** - Uncomment the `identity` and `security` blocks in the `management_group_settings` > `subscription_placement` section of your configuration file and supply the subscription IDs.
+7. **Add additional regions** - See [Additional Regions]({{< relref "../options/regions" >}}) for details.
+
+Once you have made the changes, commit and push them to your repository. The Continuous Delivery pipeline / workflow will run a plan and apply the changes.
+
+### Post-Deployment Steps
+
+After the Continuous Delivery pipeline has completed:
+
+1. **Migrate spoke Private DNS zones** - Delete any Private Link Private DNS zones that were created directly in spoke subscriptions. The centralized zones deployed by the platform will replace them.
+2. **Remediate the Private DNS Zones policy** - Trigger a [policy remediation](https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources) for `Deploy-Private-DNS-Zones` on the `corp` management group to create the Private DNS zone links for any existing Private Link endpoints in your spokes.
+3. **Remediate the DDoS policy** - Trigger a policy remediation for `Enable-DDoS-VNET` on the `connectivity` and `landingzones` management groups to associate the DDoS Protection Plan with existing virtual networks.
