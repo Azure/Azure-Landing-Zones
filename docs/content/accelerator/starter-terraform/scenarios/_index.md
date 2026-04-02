@@ -6,7 +6,11 @@ weight: 1
 
 Scenarios are common use cases when deploying the Platform landing zone. The following section provide a description of the scenario and link to the pre-configured files for that scenario.
 
-The available scenarios are:
+## Contents
+
+- [Full Scenarios](#full-scenarios) - Enterprise-scale deployments with full resource coverage
+- [SMB Scenarios](#smb-small-medium-business-scenarios) - Cost-optimized deployments for smaller organizations
+- [Estimated Costs](#estimated-costs) - Approximate monthly infrastructure cost comparison
 
 ### Full Scenarios
 
@@ -32,3 +36,25 @@ The SMB scenarios disable the DDoS Network Protection Plan to reduce costs. If y
 
 10. [SMB Single-Region Hub and Spoke Virtual Network with Azure Firewall]({{< relref "smb-single-region-hub-and-spoke-vnet-with-azure-firewall" >}})
 11. [SMB Single-Region Virtual WAN with Azure Firewall]({{< relref "smb-single-region-virtual-wan-with-azure-firewall" >}})
+
+### Estimated Costs
+
+The following table provides an approximate monthly cost comparison for the fixed infrastructure resources deployed by each scenario. Costs are based on the **westus** region in **USD**.
+
+| Scenario | Estimated Monthly Cost (USD) |
+| - | -: |
+| Multi-Region Hub & Spoke with Azure Firewall | 7,547.72 |
+| Multi-Region Virtual WAN with Azure Firewall | 7,533.12 |
+| Multi-Region Hub & Spoke with NVA | 5,515.42 * |
+| Multi-Region Virtual WAN with NVA | 5,500.82 * |
+| Management Only | 0.00 |
+| Single-Region Hub & Spoke with Azure Firewall | 5,273.36 |
+| Single-Region Virtual WAN with Azure Firewall | 5,266.06 |
+| Single-Region Hub & Spoke with NVA | 4,257.21 * |
+| Single-Region Virtual WAN with NVA | 4,249.91 * |
+| SMB Single-Region Hub & Spoke | 689.85 |
+| SMB Single-Region Virtual WAN | 689.85 |
+
+\* NVA scenarios do not include the cost of the Network Virtual Appliance itself, which varies by vendor and configuration.
+
+> **Note:** Estimated fixed infrastructure costs based on [Azure Retail Prices](https://learn.microsoft.com/rest/api/cost-management/retail-prices/azure-retail-prices) for the **westus** region in **USD** as of **2026-04-02**. Consumption-based costs (data processing, log ingestion, DNS queries, etc.) are not included and will vary based on usage. DDoS Protection Plan pricing is sourced from the [Azure DDoS Protection pricing page](https://azure.microsoft.com/pricing/details/ddos-protection/). You can generate your own estimates for any region and currency using the [Get-ScenarioCostEstimates.ps1](https://github.com/Azure/Azure-Landing-Zones/blob/main/utl/cost-estimates/Get-ScenarioCostEstimates.ps1) script.

@@ -9,8 +9,8 @@ This will enable the HTTPS inspection feature, which is a key component of zero 
 
 The steps to follow are:
 
-1. Update each firewall SKU to `"Premium"` in the `hub_and_spoke_vnet_virtual_networks` block setting.
+1. Update each firewall SKU to `"Premium"` in the `custom_replacements` > `names` block setting.
 
     | Setting Type | Parent block(s) | Key | Action | Count | Notes |
     | - | - | - | - | - | - |
-    | line | `hub_and_spoke_vnet_virtual_networks` > `<region>` >  `hub_virtual_network` > `firewall` | `sku_tier` | Update the value from `"Standard"` to `"Premium"` | 1+ | <region> is the relevant region (e.g. primary or secondary). There will be two instances for a multi-region deployment |
+    | line | `custom_replacements` > `names` | `<region>_firewall_sku_tier` | Update the value from `"Standard"` to `"Premium"` | 1+ | `<region>` is the relevant region (e.g. primary or secondary). There will be two instances for a multi-region deployment |

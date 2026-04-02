@@ -11,6 +11,31 @@ The single region option is here for completeness, we recommend always having at
 
 * Example Platform landing zone configuration file: [full-single-region-nva/virtual-wan.tfvars](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/full-single-region-nva/virtual-wan.tfvars)
 
+## Contents
+
+- [Estimated Costs](#estimated-costs) - Approximate monthly infrastructure costs
+- [Resources](#resources) - What gets deployed in this scenario
+- [Configuration](#configuration) - How DNS, routing, and policies are configured
+
+## Estimated Costs
+
+| Resource | Estimated Monthly Cost (USD) |
+| - | -: |
+| VPN Gateway (VpnGw2AZ) | 394.20 |
+| ExpressRoute GW (ErGw2AZ) | 461.36 |
+| Azure Bastion (Standard) | 211.70 |
+| DDoS Protection Plan | 2,944.00 |
+| Private DNS Resolver | 180.00 |
+| Private DNS Zones (x110) | 55.00 |
+| Public IP Addresses (x1) | 3.65 |
+| **Total** | **4,249.91** |
+
+{{< hint type=note >}}
+This estimate does not include the cost of the Network Virtual Appliance (NVA) itself, which varies by vendor and configuration.
+{{< /hint >}}
+
+> **Note:** Estimated fixed infrastructure costs based on [Azure Retail Prices](https://learn.microsoft.com/rest/api/cost-management/retail-prices/azure-retail-prices) for the **westus** region in **USD** as of **2026-04-02**. Consumption-based costs (data processing, log ingestion, DNS queries, etc.) are not included and will vary based on usage. DDoS Protection Plan pricing is sourced from the [Azure DDoS Protection pricing page](https://azure.microsoft.com/pricing/details/ddos-protection/). You can generate your own estimates for any region and currency using the [Get-ScenarioCostEstimates.ps1](https://github.com/Azure/Azure-Landing-Zones/blob/main/utl/cost-estimates/Get-ScenarioCostEstimates.ps1) script.
+
 ## Resources
 
 The following resources are deployed by default in this scenario:
