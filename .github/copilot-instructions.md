@@ -272,7 +272,7 @@ Issues are classified using a structured label taxonomy with four categories:
 - `Status: External Contribution` — Being worked on by non-core contributor
 
 **Transfer labels** (provenance tracking — which repo the issue was transferred from):
-- `Transfer From: Enterprise-Scale`, `Transfer From: ALZ Library`, `Transfer From: alzlib`, `Transfer From: alz-tf-accelerator`, `Transfer From: alz-bicep-accelerator`, `Transfer From: alz-powershell-module`, `Transfer From: accel-bstrap-modules`, `Transfer From: ALZ-Bicep`, `Transfer From: caf-enterprise-scale`, `Transfer From: TF avm-ptn-alz`, `Transfer From: TF avm-ptn-alz-mgmt`, `Transfer From: TF avm-ptn-con-hs`, `Transfer From: TF avm-ptn-con-vwan`, `Transfer From: TF avm-ptn-lz-vend`, `Transfer From: tf-state-importer`
+- `Transfer From: Azure-Landing-Zones :arrow_right:`, `Transfer From: Enterprise-Scale :arrow_right:`, `Transfer From: ALZ Library :arrow_right:`, `Transfer From: alzlib :arrow_right:`, `Transfer From: alz-tf-accelerator :arrow_right:`, `Transfer From: alz-bicep-accelerator :arrow_right:`, `Transfer From: alz-powershell-module :arrow_right:`, `Transfer From: accel-bstrap-modules :arrow_right:`, `Transfer From: ALZ-Bicep :arrow_right:`, `Transfer From: caf-enterprise-scale :arrow_right:`, `Transfer From: TF avm-ptn-alz :arrow_right:`, `Transfer From: TF avm-ptn-alz-mgmt :arrow_right:`, `Transfer From: TF avm-ptn-con-hs :arrow_right:`, `Transfer From: TF avm-ptn-con-vwan :arrow_right:`, `Transfer From: TF avm-ptn-lz-vend :arrow_right:`, `Transfer From: tf-state-importer :arrow_right:`
 
 ## This Repo — Documentation Conventions
 
