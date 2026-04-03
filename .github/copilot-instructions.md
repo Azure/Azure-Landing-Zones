@@ -304,7 +304,7 @@ Issues are classified using a structured label taxonomy with four categories:
 ### Utilities
 
 - `utl/` — PowerShell scripts for cost estimation and GitHub label management
-- PowerShell scripts use `[CmdletBinding()]`, `param()`, comment-based help, and `$ErrorActionPreference = "Stop"`
+- PowerShell scripts should use `[CmdletBinding()]`, `param()`, comment-based help, and `$ErrorActionPreference = "Stop"`
 
 ### Do NOT in This Repo
 
