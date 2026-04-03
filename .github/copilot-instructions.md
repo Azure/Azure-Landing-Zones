@@ -222,22 +222,25 @@ Issues are classified using a structured label taxonomy with four categories:
 
 **Product labels** (which component/path is affected):
 
-| Label | Maps To |
+> **Use the exact GitHub label name from `utl/github-labels/alz-labels.csv` when applying labels.**
+> The product labels in this repo include emoji suffixes (for example, `Product: Accelerator :zap:` and `Product: Azure Policy :shield:`), so do not use shortened names without the emoji.
+
+| Product label family *(use exact label from `utl/github-labels/alz-labels.csv`)* | Maps To |
 |-------|--------|
-| `Product: Accelerator` | `accelerator-bootstrap-modules`, `alz-terraform-accelerator`, `alz-bicep-accelerator` |
-| `Product: ALZ PowerShell` | `ALZ-PowerShell-Module` |
-| `Product: ALZ Provider (Terraform)` | `terraform-provider-alz` |
-| `Product: Azure Policy` | `Enterprise-Scale` (policy authoring) → `Azure-Landing-Zones-Library` |
-| `Product: Bicep (AVM)` | `alz-bicep-accelerator` |
-| `Product: Bicep (Classic)` | `ALZ-Bicep` |
-| `Product: Library` | `Azure-Landing-Zones-Library` |
-| `Product: Portal` | `Enterprise-Scale` (portal deployment experience) |
-| `Product: Sub/LZ Vending (Bicep)` | Bicep subscription vending module |
-| `Product: Sub/LZ Vending (TF)` | Terraform subscription vending module |
-| `Product: Terraform (AVM)` | `terraform-azurerm-avm-ptn-alz`, connectivity modules |
-| `Product: Terraform (Classic)` | `terraform-azurerm-caf-enterprise-scale` |
-| `Product: AMBA` | Azure Monitor Baseline Alerts (`platform/amba/` in Library) |
-| `Variant: SLZ` | Sovereign Landing Zone (`platform/slz/` in Library) |
+| Accelerator | `accelerator-bootstrap-modules`, `alz-terraform-accelerator`, `alz-bicep-accelerator` |
+| ALZ PowerShell | `ALZ-PowerShell-Module` |
+| ALZ Provider (Terraform) | `terraform-provider-alz` |
+| Azure Policy | `Enterprise-Scale` (policy authoring) → `Azure-Landing-Zones-Library` |
+| Bicep (AVM) | `alz-bicep-accelerator` |
+| Bicep (Classic) | `ALZ-Bicep` |
+| Library | `Azure-Landing-Zones-Library` |
+| Portal | `Enterprise-Scale` (portal deployment experience) |
+| Sub/LZ Vending (Bicep) | Bicep subscription vending module |
+| Sub/LZ Vending (TF) | Terraform subscription vending module |
+| Terraform (AVM) | `terraform-azurerm-avm-ptn-alz`, connectivity modules |
+| Terraform (Classic) | `terraform-azurerm-caf-enterprise-scale` |
+| AMBA | Azure Monitor Baseline Alerts (`platform/amba/` in Library) |
+| SLZ variant | Sovereign Landing Zone (`platform/slz/` in Library) |
 
 **Topic labels** (what area of ALZ infrastructure):
 
