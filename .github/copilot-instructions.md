@@ -315,7 +315,7 @@ Issues are classified using a structured label taxonomy with four categories:
 
 ## Agents
 
-- **Hugo Documentation Site** (`.github/agents/hugo.agent.md`) — Maintains documentation with Hugo, geekdoc theme, Markdown content, Go templates, and PowerShell utilities
+- **Hugo Documentation Site** — Maintains documentation with Hugo, geekdoc theme, Markdown content, Go templates, and PowerShell utilities
 
 ## Cross-Repo Development Notes
 
