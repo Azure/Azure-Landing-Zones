@@ -197,12 +197,14 @@ This repo (`Azure/Azure-Landing-Zones`) is the centralised issue tracker. Most A
 **Triage rules** — apply the first matching rule:
 
 1. If issue references specific policy names (`Deny-*`, `Deploy-*`, `Append-*`), policy parameters, or compliance results → label `Product: Azure Policy` + `Topic: Policy`, code lives in `Enterprise-Scale` (synced to `Azure-Landing-Zones-Library`)
+> **Label accuracy requirement**: When triaging, use the exact GitHub label names defined in `utl/github-labels/alz-labels.csv`. If a label in that file includes an emoji suffix, the emoji suffix is part of the label name and must be included exactly.
+
 2. If issue mentions archetype names (root, platform, connectivity, identity, management, landing_zones, corp, online, sandbox, decommissioned) or which policies apply to which MG → label `Product: Library`, code lives in `Azure-Landing-Zones-Library`
 3. If issue mentions `alz_architecture` data source, provider configuration, or library fetch errors → label `Product: ALZ Provider (Terraform)`, code lives in `terraform-provider-alz`
 4. If issue mentions `azapi_resource`, management group deployment, or policy role assignment errors → label `Product: Terraform (AVM)`, code lives in `terraform-azurerm-avm-ptn-alz`
 5. If issue mentions hub VNet, Azure Firewall, VPN/ER gateway, DNS resolver, Bastion, or route tables → label `Topic: Networking (H&S)`, code lives in `terraform-azurerm-avm-ptn-alz-connectivity-hub-and-spoke-vnet`
 6. If issue mentions vWAN, virtual hub, routing intent → label `Topic: Networking (VWAN)`, code lives in `terraform-azurerm-avm-ptn-alz-connectivity-virtual-wan`
-7. If issue mentions private DNS zones, VNet links, NXDomain redirect → code lives in `terraform-azurerm-avm-ptn-network-private-link-private-dns-zones`
+7. If issue mentions private DNS zones, VNet links, NXDomain redirect → apply the exact DNS/private-link-related label from `utl/github-labels/alz-labels.csv` (including any emoji suffix), code lives in `terraform-azurerm-avm-ptn-network-private-link-private-dns-zones`
 8. If issue contains Go stack traces or library processing/validation errors → code lives in `alzlib`
 9. If issue mentions GitHub/ADO repo creation, OIDC federation, state storage, managed identity, pipeline setup → label `Product: Accelerator`, code lives in `accelerator-bootstrap-modules`
 10. If issue mentions `Deploy-Accelerator`, module download failures, or pre-flight check failures → label `Product: ALZ PowerShell`, code lives in `ALZ-PowerShell-Module`
