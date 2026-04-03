@@ -310,7 +310,7 @@ Issues are classified using a structured label taxonomy with four categories:
 
 - **Do not create Terraform (`.tf`), Bicep (`.bicep`), Go (`.go`), or ARM JSON files** — all deployable IaC code lives in the other ecosystem repos, not here
 - **Do not modify policy definitions** — policies are authored in `Enterprise-Scale` and synced to the Library
-- **Do not hardcode internal doc links** — always use `{{</* relref "page-name" */>}}`
+- **Do not hardcode internal doc links** — always use `{{< relref "page-name" >}}`
 - **Do not place documentation pages outside `docs/content/`** — page content belongs under that tree, but legitimate Hugo site changes may also be needed under `docs/layouts/`, `docs/static/`, `docs/data/`, and similar support directories
 
 ## Agents
