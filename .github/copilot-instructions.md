@@ -287,14 +287,15 @@ Issues are classified using a structured label taxonomy with four categories:
 
 - All content uses YAML front matter with `title`, `weight`, and optionally `geekdocCollapseSection`
 - Section indexes are `_index.md` files — `weight` controls sidebar ordering
-- Internal links use `{{</* relref "page-name" */>}}` shortcode, never raw paths
-- Callouts use `{{</* hint type=note|tip|important|warning */>}}` shortcode
+- Internal links use `{{< relref "page-name" >}}` shortcode, never raw paths
+- Callouts use `{{< hint type=note|tip|important|warning >}}` shortcode
+- Use the escaped `{{</* ... */>}}` form only when you need to display shortcode syntax literally in rendered docs, not when authoring normal content
 
 ### Custom Shortcodes
 
-- `{{</* csv-table */>}}` — Renders CSV data as HTML tables
-- `{{</* expand "title" */>}}` — Expandable/collapsible sections
-- `{{</* include "file" */>}}` — Include content from another file
+- `{{< csv-table >}}` — Renders CSV data as HTML tables
+- `{{< expand "title" >}}` — Expandable/collapsible sections
+- `{{< include "file" >}}` — Include content from another file
 
 ### Templates & Layouts
 
