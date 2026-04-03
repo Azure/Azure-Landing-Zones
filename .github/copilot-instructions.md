@@ -285,8 +285,8 @@ Issues are classified using a structured label taxonomy with four categories:
 
 ### Content Conventions
 
-- All content uses YAML front matter with `title`, `weight`, and optionally `geekdocCollapseSection`
-- Section indexes are `_index.md` files — `weight` controls sidebar ordering
+- Most content uses YAML front matter with `title`; use `weight` where sidebar ordering matters, and `geekdocCollapseSection` where needed
+- Section indexes are `_index.md` files — use `weight` on them when you need to control sidebar ordering
 - Internal links use `{{< relref "page-name" >}}` shortcode, never raw paths
 - Callouts use `{{< hint type=note|tip|important|warning >}}` shortcode
 - Use the escaped `{{</* ... */>}}` form only when you need to display shortcode syntax literally in rendered docs, not when authoring normal content
