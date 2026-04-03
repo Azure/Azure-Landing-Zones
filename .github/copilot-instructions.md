@@ -242,21 +242,21 @@ Issues are classified using a structured label taxonomy with four categories:
 | AMBA | Azure Monitor Baseline Alerts (`platform/amba/` in Library) |
 | SLZ variant | Sovereign Landing Zone (`platform/slz/` in Library) |
 
-**Topic labels** (what area of ALZ infrastructure):
+**Topic labels** (what area of ALZ infrastructure; exact GitHub label names, including emoji suffixes, are defined in `utl/github-labels/alz-labels.csv`):
 
-| Label | Scope |
-|-------|-------|
-| `Topic: Policy` | Policy definitions, assignments, compliance |
-| `Topic: RBAC` | Role definitions, role assignments, permissions |
-| `Topic: Management Groups` | MG hierarchy, structure, archetype mappings |
-| `Topic: Networking (general)` | Networking agnostic to topology |
-| `Topic: Networking (H&S)` | Hub & spoke topology specific |
-| `Topic: Networking (VWAN)` | Virtual WAN topology specific |
-| `Topic: MDFC` | Microsoft Defender for Cloud |
-| `Topic: Logging & Automation` | Log Analytics, Automation accounts |
-| `Topic: Diagnostic Settings` | Diagnostic settings configuration |
-| `Topic: Sovereign` | Microsoft Sovereign Cloud |
-| `Topic: Non-Resource Specific` | Cross-cutting (tags, location, etc.) |
+| Topic area | Scope |
+|------------|-------|
+| Topic: Policy | Policy definitions, assignments, compliance |
+| Topic: RBAC | Role definitions, role assignments, permissions |
+| Topic: Management Groups | MG hierarchy, structure, archetype mappings |
+| Topic: Networking (general) | Networking agnostic to topology |
+| Topic: Networking (H&S) | Hub & spoke topology specific |
+| Topic: Networking (VWAN) | Virtual WAN topology specific |
+| Topic: MDFC | Microsoft Defender for Cloud |
+| Topic: Logging & Automation | Log Analytics, Automation accounts |
+| Topic: Diagnostic Settings | Diagnostic settings configuration |
+| Topic: Sovereign | Microsoft Sovereign Cloud |
+| Topic: Non-Resource Specific | Cross-cutting (tags, location, etc.) |
 
 **Status labels** (workflow state):
 - `Needs: Triage :mag:` — New issue, not yet classified
