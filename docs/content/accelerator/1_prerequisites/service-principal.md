@@ -26,7 +26,7 @@ Skip this if using a User account as recommended.
 1. Set the `Start` field to todays date.
 1. Set the `End` field to tomorrows date.
 1. Click `Add`.
-1. Copy the `Value` field save it somewhere safe, making a note that it is the `ARM_CLIENT_SECRET`.
+1. Copy the `Value` this is your `client secret` and save it somewhere safe, making a note that it is the `ARM_CLIENT_SECRET`.
 
 ### Create Permissions
 
@@ -65,7 +65,7 @@ Skip this if using a User account as recommended.
 1. Find the `ARM_CLIENT_ID` you made a note of earlier.
 1. Type `$env:ARM_CLIENT_ID="<client id>"` and hit enter.
 1. Find the `ARM_CLIENT_SECRET` you made a note of earlier.
-1. Type `$env:ARM_CLIENT_SECRET="<client id>"` and hit enter.
+1. Type `$env:ARM_CLIENT_SECRET="<client secret>"` and hit enter.
 1. Find the subscription id of the management subscription you made a note of earlier.
 1. Type `$env:ARM_SUBSCRIPTION_ID="<subscription id>"` and hit enter.
 
