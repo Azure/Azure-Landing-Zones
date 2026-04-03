@@ -259,17 +259,19 @@ Issues are classified using a structured label taxonomy with four categories:
 | `Topic: Non-Resource Specific` | Cross-cutting (tags, location, etc.) |
 
 **Status labels** (workflow state):
-- `Needs: Triage` — New issue, not yet classified
-- `Needs: Attention` — Requires maintainer action
-- `Needs: Author Feedback` — Waiting on issue author
-- `Needs: More Evidence` — Needs reproduction or data
-- `Needs: External Changes` — Requires changes outside this repo
-- `Needs: Upstream Policy Changes` — Built-in policy update needed from Azure product team
-- `Status: Blocked` — Blocked by external dependency
-- `Status: Long Term` — Planned but lower priority
-- `Status: No Recent Activity` — Auto-close candidate
-- `Status: Help Wanted` — Open for community contribution
-- `Status: External Contribution` — Being worked on by non-core contributor
+- `Needs: Triage :mag:` — New issue, not yet classified
+- `Needs: Attention :wave:` — Requires maintainer action
+- `Needs: Author Feedback :ear:` — Waiting on issue author
+- `Needs: More Evidence :balance_scale:` — Needs reproduction or data
+- `Needs: External Changes :gear:` — Requires changes outside this repo
+- `Needs: Upstream Policy Changes :arrows_clockwise:` — Built-in policy update needed from Azure product team
+- `Status: Blocked :collision:` — Blocked by external dependency
+- `Status: Do Not Merge :no_entry:` — PR is not ready to merge
+- `Status: Long Term :hourglass:` — Planned but lower priority
+- `Status: No Recent Activity :zzz:` — Auto-close candidate
+- `Status: Help Wanted :sos:` — Open for community contribution
+- `Status: External Contribution :earth_americas:` — Being worked on by non-core contributor
+- `Status: PR Modified Workflows :warning:` — PR contains changes to GitHub Actions Workflows
 
 **Transfer labels** (provenance tracking — which repo the issue was transferred from):
 - `Transfer From: Azure-Landing-Zones :arrow_right:`, `Transfer From: Enterprise-Scale :arrow_right:`, `Transfer From: ALZ Library :arrow_right:`, `Transfer From: alzlib :arrow_right:`, `Transfer From: alz-tf-accelerator :arrow_right:`, `Transfer From: alz-bicep-accelerator :arrow_right:`, `Transfer From: alz-powershell-module :arrow_right:`, `Transfer From: accel-bstrap-modules :arrow_right:`, `Transfer From: ALZ-Bicep :arrow_right:`, `Transfer From: caf-enterprise-scale :arrow_right:`, `Transfer From: TF avm-ptn-alz :arrow_right:`, `Transfer From: TF avm-ptn-alz-mgmt :arrow_right:`, `Transfer From: TF avm-ptn-con-hs :arrow_right:`, `Transfer From: TF avm-ptn-con-vwan :arrow_right:`, `Transfer From: TF avm-ptn-lz-vend :arrow_right:`, `Transfer From: tf-state-importer :arrow_right:`
