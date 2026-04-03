@@ -239,8 +239,6 @@ Issues are classified using a structured label taxonomy with four categories:
 | Sub/LZ Vending (TF) | Terraform subscription vending module |
 | Terraform (AVM) | `terraform-azurerm-avm-ptn-alz`, connectivity modules |
 | Terraform (Classic) | `terraform-azurerm-caf-enterprise-scale` |
-| AMBA | Azure Monitor Baseline Alerts (`platform/amba/` in Library) |
-| SLZ variant | Sovereign Landing Zone (`platform/slz/` in Library) |
 
 **Topic labels** (what area of ALZ infrastructure; exact GitHub label names, including emoji suffixes, are defined in `utl/github-labels/alz-labels.csv`):
 
