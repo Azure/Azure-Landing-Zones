@@ -23,63 +23,27 @@ Both Terraform and Bicep AVM accelerators compose **Azure Verified Modules (AVM)
 
 The ecosystem is layered. Understanding the dependency chain is essential for navigating issues, making changes, and knowing where code lives.
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                        USER-FACING ENTRY POINT                         │
-│                                                                        │
-│   ALZ-PowerShell-Module (Deploy-Accelerator cmdlet)                    │
-│     Orchestrates bootstrap + starter template deployment               │
-│     Supports: Terraform | Bicep AVM | Bicep Classic                    │
-└──────────┬──────────────────────┬──────────────────────┬───────────────┘
-           │                      │                      │
-    ┌──────▼──────┐       ┌───────▼───────┐      ┌──────▼──────────┐
-    │  Terraform  │       │   Bicep AVM   │      │ Bicep Classic   │
-    │  (AVM) Path │       │    Path       │      │  Path (Legacy)  │
-    └──────┬──────┘       └───────┬───────┘      └──────┬──────────┘
-           │                      │                      │
-           ▼                      ▼                      ▼
-  alz-terraform-          alz-bicep-              ALZ-Bicep
-  accelerator             accelerator             (maintenance only)
-  (starter templates)     (starter templates)
-           │                      │
-           │ uses AVM pattern     │ uses AVM resource & pattern
-           │ & resource modules   │ modules (br/public:avm/...)
-           ▼                      ▼
-  ┌─────────────────────┐  ┌──────────────────────────┐
-  │  Terraform AVM      │  │  Bicep AVM               │
-  │  Pattern Modules    │  │  Modules                  │
-  │  (Registry source)  │  │  (br/public:avm/...)      │
-  │  ├─ avm-ptn-alz     │  │  ├─ ptn/alz/empty        │
-  │  ├─ avm-ptn-alz-    │  │  ├─ ptn/alz/ama          │
-  │  │  connectivity-*  │  │  ├─ ptn/network/          │
-  │  ├─ avm-ptn-network-│  │  │  private-link-*        │
-  │  │  private-link-*  │  │  └─ res/network/*,        │
-  │  ├─ avm-ptn-alz-    │  │     res/resources/*,      │
-  │  │  management      │  │     res/operational-       │
-  │  └─ avm-res-*       │  │     insights/*            │
-  └────────┬────────────┘  └────────────┬─────────────┘
-           │ uses alz provider          │ uses alzlibtool CLI +
-           ▼                            │ custom PowerShell for
-  terraform-provider-alz                │ policy from Library
-  (data source provider,                │
-   generates policy/role/MG data)       │
-           │ built on                   │
-           ▼                            │
-        alzlib ◄────────────────────────┘
-        (Go library — fetches,
-         validates, processes
-         ALZ library data.
-         Also provides alzlibtool CLI)
-           │ reads from
-           ▼
-  Azure-Landing-Zones-Library
-  (source of truth: policy definitions,
-   archetypes, architectures, role definitions)
-           │ policies sourced from
-           ▼
-  Enterprise-Scale
-  (upstream policy source, syncs to Library.
-   Also hosts the Azure Portal deployment experience)
+```mermaid
+graph TD
+    PSModule["ALZ-PowerShell-Module<br/>(Deploy-Accelerator cmdlet)"]
+
+    PSModule --> TFPath["Terraform (AVM) Path"]
+    PSModule --> BicepPath["Bicep AVM Path"]
+    PSModule --> ClassicPath["Bicep Classic Path (Legacy)"]
+
+    TFPath --> TFAccel["alz-terraform-accelerator<br/>(starter templates)"]
+    BicepPath --> BicepAccel["alz-bicep-accelerator<br/>(starter templates)"]
+    ClassicPath --> ALZBicep["ALZ-Bicep<br/>(maintenance only)"]
+
+    TFAccel -- "uses AVM pattern<br/>& resource modules" --> TFModules["Terraform AVM Pattern Modules<br/>(avm-ptn-alz, avm-ptn-alz-connectivity-*,<br/>avm-ptn-network-private-link-*,<br/>avm-ptn-alz-management, avm-res-*)"]
+    BicepAccel -- "uses AVM resource<br/>& pattern modules" --> BicepModules["Bicep AVM Modules<br/>(br/public:avm/ptn/alz/empty,<br/>ptn/alz/ama, ptn/network/private-link-*,<br/>res/network/*, res/resources/*, etc.)"]
+
+    TFModules -- "uses alz provider" --> TFProvider["terraform-provider-alz<br/>(data source provider)"]
+    TFProvider -- "built on" --> alzlib["alzlib<br/>(Go library + alzlibtool CLI)"]
+    BicepModules -- "uses alzlibtool CLI +<br/>custom PowerShell" --> alzlib
+
+    alzlib -- "reads from" --> Library["Azure-Landing-Zones-Library<br/>(policy defs, archetypes,<br/>architectures, role defs)"]
+    Library -- "policies sourced from" --> ES["Enterprise-Scale<br/>(upstream policy source +<br/>Azure Portal experience)"]
 ```
 
 The Azure Portal and Terraform/Bicep Classic paths are independent of the AVM dependency stack shown above — see the **Deployment Flow** section for their details.
