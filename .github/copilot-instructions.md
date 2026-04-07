@@ -192,14 +192,12 @@ The Bicep AVM accelerator composes 19 Azure Verified Modules (3 pattern + 16 res
 
 ## Data Flow: Policies → Deployment
 
-```
-Enterprise-Scale (policy authoring)
-    ↓ sync
-Azure-Landing-Zones-Library (versioned library: platform/alz@YYYY.MM.N)
-    ↓ go-getter fetch
-alzlib (Go: parse, validate, resolve archetypes + architectures)
-    ├─→ terraform-provider-alz (data "alz_architecture") → avm-ptn-alz (Terraform path)
-    └─→ alzlibtool CLI + PowerShell scripts → alz-bicep-accelerator (Bicep AVM path)
+```mermaid
+graph TD
+    ES["Enterprise-Scale<br/>(policy authoring)"] -- sync --> Library["Azure-Landing-Zones-Library<br/>(platform/alz@YYYY.MM.N)"]
+    Library -- go-getter fetch --> alzlib["alzlib<br/>(parse, validate, resolve<br/>archetypes + architectures)"]
+    alzlib -- "Terraform path" --> TFProvider["terraform-provider-alz<br/>(data 'alz_architecture')"] --> avmptn["avm-ptn-alz"]
+    alzlib -- "Bicep AVM path" --> alzlibtool["alzlibtool CLI +<br/>PowerShell scripts"] --> BicepAccel["alz-bicep-accelerator"]
 ```
 
 Library versioning format: `platform/{library}@{YYYY.MM.patch}` (e.g., `platform/alz@2026.01.3`).
@@ -361,6 +359,11 @@ Issues are classified using a structured label taxonomy with four categories:
 - Run `PORCH_NO_TUI=1 ./avm pre-commit` then `PORCH_NO_TUI=1 ./avm pr-check` before PRs
 - Provider version constraints: pessimistic (`~> X.0`); module versions: pin exactly (`version = "X.Y.Z"`)
 - Telemetry: always map `enable_telemetry = var.enable_telemetry`
+
+### Azure landing zone (ALZ) Reference
+
+- **LLM-friendly ALZ documentation**: https://azure.github.io/Azure-Landing-Zones/llms.txt — fetch this for up-to-date technical documentation on the accelerator, deployment scenarios, configuration options, and related topics.
+- **ALZ architecture, design principles, and design recommendations**: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/ — use the `mslearn` MCP server to query this content. Fall back to fetching only if the MCP server is unavailable or returns an error.
 
 ### Conventional Commits
 
