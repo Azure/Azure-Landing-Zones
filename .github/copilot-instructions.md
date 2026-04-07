@@ -44,9 +44,10 @@ graph TD
 
     alzlib -- "reads from" --> Library["Azure-Landing-Zones-Library<br/>(policy defs, archetypes,<br/>architectures, role defs)"]
     Library -- "policies sourced from" --> ES["Enterprise-Scale<br/>(upstream policy source +<br/>Azure Portal experience)"]
+    ALZBicep -- "pulls policies via<br/>custom PowerShell scripts" --> ES
 ```
 
-The Azure Portal and Terraform/Bicep Classic paths are independent of the AVM dependency stack shown above — see the **Deployment Flow** section for their details.
+The Azure Portal path is independent of the dependency stack shown above — see the **Deployment Flow** section for its details.
 
 All IaC paths share:
 - **accelerator-bootstrap-modules** — Terraform modules that create CI/CD infrastructure (GitHub Actions, Azure DevOps, or local) with OIDC authentication, state storage, and managed identities.
