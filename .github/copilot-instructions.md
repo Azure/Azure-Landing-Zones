@@ -13,7 +13,9 @@ Azure Landing Zones is a multi-repo platform-engineering framework that deploys 
 3. **Azure Portal** — No-code deployment via custom portal experience in Enterprise-Scale repo
 4. **Terraform (Classic)** / **Bicep (Classic)** — Legacy paths in maintenance mode
 
-The **ALZ-PowerShell-Module** (`Deploy-Accelerator` cmdlet) is the **recommended entry point** for IaC deployments, but not exclusive — customers can consume the AVM modules directly from the Terraform Registry or Bicep public registry without the accelerator orchestration.
+The **ALZ-PowerShell-Module** (`Deploy-Accelerator` cmdlet), which uses the **Accelerator Bootstrap Modules**, is the **recommended entry point** for IaC deployments.
+
+However, it is not the only option—customers can also consume the AVM modules directly from the Terraform Registry or the Bicep public registry without using the accelerator orchestration.
 
 Both Terraform and Bicep AVM accelerators compose **Azure Verified Modules (AVM)** — reusable, tested resource and pattern modules from the public registries — rather than implementing Azure resources from scratch.
 
