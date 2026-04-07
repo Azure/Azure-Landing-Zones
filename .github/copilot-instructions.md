@@ -136,12 +136,60 @@ All IaC paths share:
 | **avm-ptn-alz-connectivity-virtual-wan** | `Azure/terraform-azurerm-avm-ptn-alz-connectivity-virtual-wan` | `Azure/avm-ptn-alz-connectivity-virtual-wan/azurerm` | Virtual WAN networking: vWAN, virtual hubs, sidecar VNets, Azure Firewall, VPN/ER gateways, DNS resolvers, Bastion, routing intents. |
 | **avm-ptn-network-private-link-private-dns-zones** | `Azure/terraform-azurerm-avm-ptn-network-private-link-private-dns-zones` | `Azure/avm-ptn-network-private-link-private-dns-zones/azurerm` | Deploys all known Azure Private Link private DNS zones with VNet links and NXDomain redirect support. Used by connectivity modules. |
 
+### Bicep AVM Modules
+
+The Bicep AVM accelerator composes 19 Azure Verified Modules (3 pattern + 16 resource) from the Bicep public registry (`br/public:avm/...`). Each module is independently versioned, tested, and maintained. See the [Bicep AVM for Platform Landing Zone blog post](https://techcommunity.microsoft.com/blog/azuretoolsblog/release-of-bicep-azure-verified-modules-for-platform-landing-zone/4487932) for the full announcement.
+
+**Governance (Management Groups):**
+
+| Component | Bicep Registry Module | Type |
+|-----------|----------------------|------|
+| Management group hierarchy (int-root, platform, connectivity, identity, management, security, landing zones, corp, online, sandbox, decommissioned) | `br/public:avm/ptn/alz/empty` | Pattern |
+
+**Logging:**
+
+| Component | Bicep Registry Module | Type |
+|-----------|----------------------|------|
+| Resource Groups | `br/public:avm/res/resources/resource-group` | Resource |
+| Log Analytics Workspace | `br/public:avm/res/operational-insights/workspace` | Resource |
+| Azure Monitoring Agent | `br/public:avm/ptn/alz/ama` | Pattern |
+
+**Hub & Spoke Networking:**
+
+| Component | Bicep Registry Module | Type |
+|-----------|----------------------|------|
+| Virtual Networks | `br/public:avm/res/network/virtual-network` | Resource |
+| Azure Firewall | `br/public:avm/res/network/azure-firewall`, `br/public:avm/res/network/firewall-policy` | Resource |
+| Azure Bastion | `br/public:avm/res/network/bastion-host`, `br/public:avm/res/network/network-security-group` | Resource |
+| VPN Gateway | `br/public:avm/res/network/virtual-network-gateway` | Resource |
+| ExpressRoute Gateway | `br/public:avm/res/network/virtual-network-gateway` | Resource |
+| Route Tables | `br/public:avm/res/network/route-table` | Resource |
+| DDoS Protection | `br/public:avm/res/network/ddos-protection-plan` | Resource |
+| Private DNS Zones | `br/public:avm/ptn/network/private-link-private-dns-zones` | Pattern |
+| DNS Private Resolver | `br/public:avm/res/network/dns-resolver` | Resource |
+
+**Virtual WAN Networking:**
+
+| Component | Bicep Registry Module | Type |
+|-----------|----------------------|------|
+| Virtual WAN | `br/public:avm/res/network/virtual-wan` | Resource |
+| Virtual Hubs | `br/public:avm/res/network/virtual-hub` | Resource |
+| ExpressRoute Gateway | `br/public:avm/res/network/express-route-gateway` | Resource |
+| VPN Gateway (S2S) | `br/public:avm/res/network/vpn-gateway` | Resource |
+| VPN Gateway (P2S) | `br/public:avm/res/network/p2s-vpn-gateway` | Resource |
+| Sidecar VNet | `br/public:avm/res/network/virtual-network` | Resource |
+| Azure Firewall | `br/public:avm/res/network/azure-firewall`, `br/public:avm/res/network/firewall-policy` | Resource |
+| Azure Bastion | `br/public:avm/res/network/bastion-host`, `br/public:avm/res/network/public-ip-address` | Resource |
+| DDoS Protection | `br/public:avm/res/network/ddos-protection-plan` | Resource |
+| Private DNS Zones | `br/public:avm/ptn/network/private-link-private-dns-zones` | Pattern |
+| DNS Private Resolver | `br/public:avm/res/network/dns-resolver` | Resource |
+
 ### Accelerators & Orchestration
 
 | Repository | GitHub | Purpose |
 |-----------|--------|---------|
 | **alz-terraform-accelerator** | `Azure/alz-terraform-accelerator` | Terraform starter templates for platform landing zones. Contains `templates/platform_landing_zone/` (full deployment with examples for hub-spoke, vWAN, multi-region, NVA, SMB, sovereign), `templates/empty/` (minimal starter), and local library overrides in `lib/`. Composes AVM pattern modules (`avm-ptn-alz`, `avm-ptn-alz-connectivity-*`, `avm-ptn-alz-management`) and AVM resource modules (`avm-res-resources-resourcegroup`, `avm-utl-regions`) from the Terraform Registry. |
-| **alz-bicep-accelerator** | `Azure/alz-bicep-accelerator` | Bicep AVM starter templates for platform landing zones. Configuration-driven via YAML. Supports hub & spoke and Virtual WAN. Uses Bicep public registry AVM modules (`br/public:avm/res/...` and `br/public:avm/ptn/...`). Pulls policy definitions, role definitions, and assignments from the **Azure-Landing-Zones-Library** using `alzlibtool` CLI and custom PowerShell tooling (`templates/core/governance/tooling/Update-AlzLibraryReferences.ps1`). |
+| **alz-bicep-accelerator** | `Azure/alz-bicep-accelerator` | Bicep AVM starter templates for platform landing zones. Configuration-driven via YAML. Supports hub & spoke and Virtual WAN. Composes 19 AVM modules from the Bicep public registry (see **Bicep AVM Modules** section above). Pulls policy definitions, role definitions, and assignments from the **Azure-Landing-Zones-Library** using `alzlibtool` CLI and custom PowerShell tooling (`templates/core/governance/tooling/Update-AlzLibraryReferences.ps1`). |
 | **ALZ-Bicep** (Classic) | `Azure/ALZ-Bicep` | Legacy Bicep modules for ALZ. In maintenance mode — new deployments should use `alz-bicep-accelerator` instead. |
 | **caf-enterprise-scale** (Classic) | `Azure/terraform-azurerm-caf-enterprise-scale` | Legacy Terraform module for ALZ (**Terraform Classic**). In maintenance mode — new deployments should use the AVM-based `alz-terraform-accelerator` and `avm-ptn-alz` module instead. |
 | **accelerator-bootstrap-modules** | `Azure/accelerator-bootstrap-modules` | Terraform modules that bootstrap CI/CD infrastructure. Supports three platforms: GitHub Actions (`alz/github/`), Azure DevOps (`alz/azuredevops/`), and local filesystem (`alz/local/`). Creates managed identities with OIDC federation, state storage, networking, repositories, pipelines, and branch policies. |
@@ -215,6 +263,7 @@ This repo (`Azure/Azure-Landing-Zones`) is the centralised issue tracker. Most A
 15. If issue mentions Azure Portal deployment, ARM templates, or UI definition → label `Product: Portal`, code lives in `Enterprise-Scale`
 16. If issue mentions incorrect docs, missing content, broken links, Hugo rendering → label `Area: Documentation`, code lives in `Azure-Landing-Zones` (this repo)
 17. If the issue author says "ALZ", "landing zone module", or "accelerator" without specifying Terraform or Bicep — look for language clues (`.tf`/`.tfvars` = Terraform, `.bicep`/`.yaml` = Bicep) before routing. If ambiguous, ask for clarification.
+18. If the issue is about a missing feature, bug, or unsupported property in an **underlying AVM module** (e.g., `br/public:avm/res/network/virtual-network` or `Azure/avm-ptn-alz/azurerm`) rather than in ALZ-specific code → label `Needs: External Changes :gear:` and direct the user to open the issue against the specific AVM module repo (Bicep: `Azure/bicep-registry-modules`, Terraform: the relevant `Azure/terraform-azurerm-avm-*` repo). Include the appropriate product label (e.g., `Product: Bicep (AVM)` or `Product: Terraform (AVM)`) so the issue is still tracked.
 
 ### Issue Labels
 
