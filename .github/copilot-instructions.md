@@ -8,14 +8,14 @@ This file provides context for AI agents and agentic workflows operating across 
 
 Azure Landing Zones is a multi-repo platform-engineering framework that deploys enterprise-scale Azure governance, networking, and management infrastructure. It supports four deployment paths:
 
-1. **Terraform (AVM)** — Current recommended IaC path using AVM pattern modules and underlying resource modules
+1. **Terraform (AVM)** — Current recommended IaC path using HashiCorp Registry AVM pattern modules and underlying resource modules
 2. **Bicep (AVM)** — Current recommended IaC path using Bicep public registry AVM modules
 3. **Azure Portal** — No-code deployment via custom portal experience in Enterprise-Scale repo
 4. **Terraform (Classic)** / **Bicep (Classic)** — Legacy paths in maintenance mode
 
 The **ALZ-PowerShell-Module** (`Deploy-Accelerator` cmdlet), which uses the **Accelerator Bootstrap Modules**, is the **recommended entry point** for IaC deployments.
 
-However, it is not the only option—customers can also consume the AVM modules directly from the Terraform Registry or the Bicep public registry without using the accelerator orchestration.
+However, it is not the only option—customers can also consume the AVM modules directly from the HashiCorp Registry or the Bicep public registry without using the accelerator orchestration.
 
 Both Terraform and Bicep AVM accelerators compose **Azure Verified Modules (AVM)** — reusable, tested resource and pattern modules from the public registries — rather than implementing Azure resources from scratch.
 
@@ -35,7 +35,7 @@ graph TD
     BicepPath --> BicepAccel["alz-bicep-accelerator<br/>(starter templates)"]
     ClassicPath --> ALZBicep["ALZ-Bicep<br/>(maintenance only)"]
 
-    TFAccel -- "uses AVM pattern<br/>& resource modules" --> TFModules["Terraform AVM Pattern Modules<br/>(avm-ptn-alz, avm-ptn-alz-connectivity-*,<br/>avm-ptn-network-private-link-*,<br/>avm-ptn-alz-management, avm-res-*)"]
+    TFAccel -- "uses AVM pattern<br/>& resource modules" --> TFModules["Terraform AVM Pattern Modules<br/>(HashiCorp Registry:<br/>avm-ptn-alz, avm-ptn-alz-connectivity-*,<br/>avm-ptn-network-private-link-*,<br/>avm-ptn-alz-management, avm-res-*)"]
     BicepAccel -- "uses AVM resource<br/>& pattern modules" --> BicepModules["Bicep AVM Modules<br/>(br/public:avm/ptn/alz/empty,<br/>ptn/alz/ama, ptn/network/private-link-*,<br/>res/network/*, res/resources/*, etc.)"]
 
     TFModules -- "uses alz provider" --> TFProvider["terraform-provider-alz<br/>(data source provider)"]
@@ -95,7 +95,7 @@ All IaC paths share:
 
 ### Terraform AVM Pattern Modules
 
-| Repository | GitHub | Module Registry Source | Purpose |
+| Repository | GitHub | HashiCorp Registry Source | Purpose |
 |-----------|--------|----------------------|---------|
 | **avm-ptn-alz** | `Azure/terraform-azurerm-avm-ptn-alz` | `Azure/avm-ptn-alz/azurerm` | Deploys full ALZ governance: management group hierarchy (7 levels), policy definitions, policy set definitions, policy assignments, role definitions, role assignments, subscription placement. Uses the `alz` provider's `alz_architecture` data source. |
 | **avm-ptn-alz-connectivity-hub-and-spoke-vnet** | `Azure/terraform-azurerm-avm-ptn-alz-connectivity-hub-and-spoke-vnet` | `Azure/avm-ptn-alz-connectivity-hub-and-spoke-vnet/azurerm` | Hub & spoke networking: hub VNets, Azure Firewall, VPN/ExpressRoute gateways, route tables, DNS resolvers, Bastion, DDoS protection, VNet peering. |
@@ -154,7 +154,7 @@ The Bicep AVM accelerator composes 19 Azure Verified Modules (3 pattern + 16 res
 
 | Repository | GitHub | Purpose |
 |-----------|--------|---------|
-| **alz-terraform-accelerator** | `Azure/alz-terraform-accelerator` | Terraform starter templates for platform landing zones. Contains `templates/platform_landing_zone/` (full deployment with examples for hub-spoke, vWAN, multi-region, NVA, SMB, sovereign), `templates/empty/` (minimal starter), and local library overrides in `lib/`. Composes AVM pattern modules (`avm-ptn-alz`, `avm-ptn-alz-connectivity-*`, `avm-ptn-alz-management`) and AVM resource modules (`avm-res-resources-resourcegroup`, `avm-utl-regions`) from the Terraform Registry. |
+| **alz-terraform-accelerator** | `Azure/alz-terraform-accelerator` | Terraform starter templates for platform landing zones. Contains `templates/platform_landing_zone/` (full deployment with examples for hub-spoke, vWAN, multi-region, NVA, SMB, sovereign), `templates/empty/` (minimal starter), and local library overrides in `lib/`. Composes AVM pattern modules (`avm-ptn-alz`, `avm-ptn-alz-connectivity-*`, `avm-ptn-alz-management`) and AVM resource modules (`avm-res-resources-resourcegroup`, `avm-utl-regions`) from the HashiCorp Registry. |
 | **alz-bicep-accelerator** | `Azure/alz-bicep-accelerator` | Bicep AVM starter templates for platform landing zones. Configuration-driven via YAML. Supports hub & spoke and Virtual WAN. Composes 19 AVM modules from the Bicep public registry (see **Bicep AVM Modules** section above). Pulls policy definitions, role definitions, and assignments from the **Azure-Landing-Zones-Library** using `alzlibtool` CLI and custom PowerShell tooling (`templates/core/governance/tooling/Update-AlzLibraryReferences.ps1`). |
 | **ALZ-Bicep** (Classic) | `Azure/ALZ-Bicep` | Legacy Bicep modules for ALZ. In maintenance mode — new deployments should use `alz-bicep-accelerator` instead. |
 | **caf-enterprise-scale** (Classic) | `Azure/terraform-azurerm-caf-enterprise-scale` | Legacy Terraform module for ALZ (**Terraform Classic**). In maintenance mode — new deployments should use the AVM-based `alz-terraform-accelerator` and `avm-ptn-alz` module instead. |
