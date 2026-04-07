@@ -44,28 +44,28 @@ The ecosystem is layered. Understanding the dependency chain is essential for na
            │                      │
            │ uses AVM pattern     │ uses AVM resource & pattern
            │ & resource modules   │ modules (br/public:avm/...)
-           ▼                      │
-  ┌─────────────────────┐         │ uses alzlibtool CLI +
-  │  Terraform AVM      │         │ custom PowerShell for
-  │  Pattern Modules    │         │ policy from Library
-  │  (Registry source)  │         │
-  │  ├─ avm-ptn-alz     │         │
-  │  ├─ avm-ptn-alz-    │         │
-  │  │  connectivity-*  │         │
-  │  ├─ avm-ptn-network-│         │
-  │  │  private-link-*  │         │
-  │  ├─ avm-ptn-alz-    │         │
-  │  │  management      │         │
-  │  └─ avm-res-*       │         │
-  └────────┬────────────┘         │
-           │ uses alz provider    │
-           ▼                      │
-  terraform-provider-alz          │
-  (data source provider,          │
-   generates policy/role/MG data) │
-           │ built on             │
-           ▼                      │
-        alzlib ◄──────────────────┘
+           ▼                      ▼
+  ┌─────────────────────┐  ┌──────────────────────────┐
+  │  Terraform AVM      │  │  Bicep AVM               │
+  │  Pattern Modules    │  │  Modules                  │
+  │  (Registry source)  │  │  (br/public:avm/...)      │
+  │  ├─ avm-ptn-alz     │  │  ├─ ptn/alz/empty        │
+  │  ├─ avm-ptn-alz-    │  │  ├─ ptn/alz/ama          │
+  │  │  connectivity-*  │  │  ├─ ptn/network/          │
+  │  ├─ avm-ptn-network-│  │  │  private-link-*        │
+  │  │  private-link-*  │  │  └─ res/network/*,        │
+  │  ├─ avm-ptn-alz-    │  │     res/resources/*,      │
+  │  │  management      │  │     res/operational-       │
+  │  └─ avm-res-*       │  │     insights/*            │
+  └────────┬────────────┘  └────────────┬─────────────┘
+           │ uses alz provider          │ uses alzlibtool CLI +
+           ▼                            │ custom PowerShell for
+  terraform-provider-alz                │ policy from Library
+  (data source provider,                │
+   generates policy/role/MG data)       │
+           │ built on                   │
+           ▼                            │
+        alzlib ◄────────────────────────┘
         (Go library — fetches,
          validates, processes
          ALZ library data.
