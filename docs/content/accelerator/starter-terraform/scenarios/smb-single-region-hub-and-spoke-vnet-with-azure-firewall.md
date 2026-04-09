@@ -129,7 +129,7 @@ Route tables are pre-configured for spoke virtual networks in one region. Assign
 
 ### Private DNS Zones Policy
 
-- The `Deploy-Private-DNS-Zones` policy assignment is set to `DoNotEnforce` on the `corp` management group, since centralized Private DNS zones are not deployed.
+- The `Deploy-Private-DNS-Zones` policy assignment is **removed entirely** from the `corp` management group archetype via a custom archetype override (`lib/archetype_definitions/corp_custom.alz_archetype_override.yaml`), since centralized Private DNS zones are not deployed. This prevents the policy from creating role assignments scoped to a non-existent DNS resource group.
 
 ## Upgrading to Enterprise Scale
 
@@ -139,7 +139,7 @@ As your organization grows beyond the SMB scale, you can upgrade this deployment
 2. **Enable centralized Private DNS zones and Private DNS Resolver** - Set `primary_private_dns_zones_enabled`, `primary_private_dns_auto_registration_zone_enabled`, and `primary_private_dns_resolver_enabled` to `true`. See [Turn off Private DNS zones]({{< relref "../options/dns" >}}) for details.
 3. **Enable DDoS Protection Plan** - Set `ddos_protection_plan_enabled` to `true`. See [Turn off DDOS protection plan]({{< relref "../options/ddos" >}}) for details.
 4. **Enforce DDoS policy** - Remove the `Enable-DDoS-VNET` entries from the `policy_assignments_to_modify` section for the `connectivity` and `landingzones` management groups.
-5. **Enforce Private DNS Zones policy** - Remove the `Deploy-Private-DNS-Zones` entry from the `policy_assignments_to_modify` section for the `corp` management group.
+5. **Re-enable Private DNS Zones policy** - Delete the `lib/archetype_definitions/corp_custom.alz_archetype_override.yaml` file (or remove `Deploy-Private-DNS-Zones` from the `policy_assignments_to_remove` list in the file) to restore the policy assignment on the `corp` management group. Also add the DNS policy default values (`private_dns_zone_subscription_id`, `private_dns_zone_region`, `private_dns_zone_resource_group_name`) back to the `policy_default_values` section in your configuration file.
 6. **Enable Azure Bastion** - Set `primary_bastion_enabled` to `true`. See [Turn off Bastion host]({{< relref "../options/bastion" >}}) for details.
 5. **Enable ExpressRoute Gateway** - Set `primary_virtual_network_gateway_express_route_enabled` to `true`. See [Turn off Virtual Network Gateways]({{< relref "../options/gateways" >}}) for details.
 6. **Add Identity and Security subscriptions** - Uncomment the `identity` and `security` blocks in the `management_group_settings` > `subscription_placement` section of your configuration file and supply the subscription IDs.
