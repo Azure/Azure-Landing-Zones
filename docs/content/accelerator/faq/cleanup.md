@@ -24,6 +24,10 @@ For convenience we provide a PowerShell cmdlet called `Remove-PlatformLandingZon
     }
 
     ```
+    
+{{< hint type=tip >}}
+Use an account with sufficient permissions for example, if you deployed the resources using a service principal, you can also use that same service principal for cleanup.
+{{< /hint >}}
 
 1. Login to Azure CLI and select your bootstrap subscription:
 
