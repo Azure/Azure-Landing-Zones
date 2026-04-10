@@ -75,4 +75,4 @@ If you close your PowerShell prompt prior to running the bootstrap, you need to 
 
 ## Next Steps
 
-Return to [Phase 1]({{< relref "1_prerequisites" >}}) step **version control systems**.
+Return to [Phase 1]({{< relref "1_prerequisites#3---version-control-systems" >}}) step **version control systems**.
