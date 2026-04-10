@@ -205,7 +205,7 @@ param parPolicyAssignmentParameterOverrides = {
 The `Enable-DDoS-VNET` policy uses a `Modify` effect with `Default` enforcement mode. This means the policy actively intercepts VNet creation and update requests to inject the DDoS protection plan reference. If the policy is deployed with placeholder parameter values and no DDoS protection plan exists, VNet deployments will fail with `LinkedAuthorizationFailed` errors. Make sure the governance stacks are updated and deployed before running the networking stack.
 {{< /hint >}}
 
-If you don't have a DDoS protection plan, exclude the `Enable-DDoS-VNET` policy assignment from both management groups:
+If you aren’t using a DDoS protection plan, exclude the `Enable DDoS VNET` policy assignment from both management groups by adding it to the managementGroupExcludedPolicyAssignments parameter. For example:
 
 **platform-connectivity/main.bicepparam:**
 
