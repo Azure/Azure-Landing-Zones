@@ -22,7 +22,7 @@
 #
 # Automated issue triage for Azure Landing Zones. Checks for duplicates, suggests labels, and posts a triage summary comment on new or reopened issues.
 #
-# gh-aw-metadata: {"schema_version":"v3","frontmatter_hash":"4cdfa4946fa86e566833d9b376e49d4002fce35193e0458e55fff775e56e28e9","compiler_version":"v0.63.0","strict":true,"agent_id":"copilot"}
+# gh-aw-metadata: {"schema_version":"v3","frontmatter_hash":"5bd47c7c8b04ef79d2aa11c3a2d1c4b8de1e7e503d807db6156adc1e39b6a8af","compiler_version":"v0.63.0","strict":true,"agent_id":"copilot"}
 
 name: "Azure Landing Zones — Automated Issue Triage"
 "on":
