@@ -1,45 +1,51 @@
 ---
-description: >
-  Automated issue triage for Azure Landing Zones. Checks for duplicates,
-  suggests labels, and posts a triage summary comment on new or reopened issues.
-on:
+description: |
+  Automated issue triage for Azure Landing Zones. Checks for duplicates, suggests labels, and posts a triage summary comment on new or reopened issues.
+network:
+  allowed:
+  - defaults
+  - github
+  - learn.microsoft.com
+"on":
   issues:
-    types: [opened, reopened]
-  workflow_dispatch:
+    types:
+    - opened
+    - reopened
   roles: all
+  workflow_dispatch: null
 permissions:
   contents: read
   issues: read
   pull-requests: read
-tools:
-  github:
-    toolsets: [default]
-  web-fetch:
-  cache-memory: true
-network:
-  allowed:
-    - defaults
-    - github
 safe-outputs:
   add-comment:
     max: 1
   add-labels:
     max: 10
-  update-issue:
-    max: 1
   close-issue:
     max: 1
   noop:
     max: 1
+  update-issue:
+    max: 1
 steps:
-  - name: Fetch label definitions
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    run: |
-      mkdir -p /tmp/gh-aw/agent
-      gh api repos/${{ github.repository }}/labels --paginate --jq '[.[] | {name, description}]' > /tmp/gh-aw/agent/repo-labels.json
+- env:
+    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  name: Fetch label definitions
+  run: |
+    mkdir -p /tmp/gh-aw/agent
+    gh api repos/${{ github.repository }}/labels --paginate --jq '[.[] | {name, description}]' > /tmp/gh-aw/agent/repo-labels.json
+tools:
+  cache-memory: true
+  github:
+    toolsets:
+    - default
+  web-fetch: null
+mcp-servers:
+  microsoftdocs:
+    url: "https://learn.microsoft.com/api/mcp"
+    allowed: ["*"]
 ---
-
 # Azure Landing Zones — Automated Issue Triage
 
 You are an AI agent that performs initial triage on newly created or reopened issues in the **Azure/Azure-Landing-Zones** repository. This repository is the centralised documentation hub and issue tracker for the entire Azure Landing Zones (ALZ) ecosystem.
