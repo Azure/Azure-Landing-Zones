@@ -23,6 +23,8 @@ network:
 safe-outputs:
   add-comment:
     max: 1
+  add-labels:
+    max: 10
   update-issue:
     max: 1
   close-issue:
@@ -133,7 +135,7 @@ Use the issue content to determine appropriate labels from these categories:
 - **NEVER remove the `Needs: Triage :mag:` label.** This label is used by the human review process and must always remain on the issue. If it is already present, leave it. If it is not present, do NOT add it either — this is managed by the issue template.
 - **NEVER add or remove** `Status:`, `Needs:`, `Transfer From:`, or `Variant:` labels. These are managed by the human triage team.
 - **Only add** `Product:`, `Topic:`, and `Area:` labels based on issue content analysis.
-- Use the `update-issue` safe output to attach labels. When updating, always **preserve all existing labels** and only add new ones.
+- Use the `add-labels` safe output to attach labels. This is the **only** way to actually apply labels to the issue — listing label names in the comment body does NOT apply them.
 
 ---
 
@@ -250,8 +252,8 @@ Once you have identified what the issue is about and which product/repo it relat
 ## Safe Outputs
 
 - If you **close the issue** as a duplicate: Use `close-issue` with state reason `not_planned`, then use `add-comment` for the triage summary.
-- If you **add labels**: Use `update-issue` to attach labels (preserving existing labels).
-- If you **only post a comment** (no labels, no close): Use `add-comment`.
+- If you **add labels AND post a comment** (most common case): Call **both** `add-labels` (to apply labels to the issue) AND `add-comment` (for the triage summary). ⚠️ Listing label names inside the comment body does NOT apply them — you MUST call `add-labels` as a separate action.
+- If you **only post a comment** (no labels to add, no close): Use `add-comment`.
 - If the issue **has already been triaged** or there is **nothing to do**: Use `noop` with a clear message.
 
 ---
