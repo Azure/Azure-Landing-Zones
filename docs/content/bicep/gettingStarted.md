@@ -50,6 +50,8 @@ The accelerator provides two networking patterns. Choose one based on your conne
 
 - Removing the secondary region from `parLocations` arrays in the parameter files
 - Removing the secondary hub configuration from the networking parameter files
+- Adjust `deployPeering` setting to false
+- Remove `peeringSettings` section from the networking parameter files
 
 The templates include logic that automatically determines recommended availability zones for each resource type and region. You can override these recommendations by specifying zone arrays in the parameter files (e.g., `zones: [1, 2, 3]` or `publicIpZones: [1, 2]`).
 {{< /hint >}}
@@ -91,7 +93,7 @@ param parLocations = [
 ]
 ```
 
-**For single-region deployments**: Remove the secondary region from all `parLocations` arrays and remove the corresponding hub configuration from networking parameter files.
+**For single-region deployments**: Remove the secondary region from all `parLocations` arrays, delete the related hub settings from networking parameter files, set `deployPeering` to false, and remove the `peeringSettings` section.
 
 **For different regions**: Replace the region names with your target Azure regions (e.g., `eastus`, `westus2`, `northeurope`).
 
