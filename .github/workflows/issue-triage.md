@@ -246,6 +246,11 @@ Once you have identified what the issue is about and which product/repo it relat
 ### Investigation Guidelines
 
 - Use the GitHub MCP tools to read files, search code, and list commits in the relevant public repo.
+- Use the **Microsoft Docs MCP** (`microsoftdocs`) to query official Azure and Cloud Adoption Framework (CAF) documentation when you need to:
+  - Verify expected Azure service behaviour (e.g., "is this how Azure Policy assignment inheritance is supposed to work?")
+  - Look up ALZ architecture guidance or design recommendations from `learn.microsoft.com`
+  - Determine whether a reported behaviour is a bug vs. expected/by-design per Microsoft documentation
+  - Ground your understanding of a feature request against the official ALZ guidance
 - Look for the specific module, file, variable, or resource referenced in the issue.
 - If you can identify a likely root cause or a specific file/line that may need changing, include that in your triage comment as a suggested fix.
 - **Keep suggestions brief and actionable** — e.g., "The variable `x` in `modules/foo/variables.tf` appears to be missing a default value" or "The policy assignment in `platform/alz/policy_assignments/` may need updating".
@@ -269,5 +274,6 @@ Once you have identified what the issue is about and which product/repo it relat
 - This repository is a **documentation and issue tracker** — it does not contain deployable IaC code.
 - Issues are often filed here that relate to code in **other ecosystem repos** (e.g., `alz-terraform-accelerator`, `ALZ-Bicep`, `Enterprise-Scale`). Apply the appropriate Product label even though the code lives elsewhere.
 - All ALZ ecosystem repositories are **public** — you can read their code, search for files, and list commits using the GitHub MCP tools. Use this to investigate issues and suggest fixes.
+- The **Microsoft Docs MCP** (`microsoftdocs`) gives you access to official Azure and CAF documentation on `learn.microsoft.com`. Use it to ground your answers in authoritative guidance, especially for architecture/design questions.
 - **Never create issues, PRs, or comments in other repos.** All write operations are limited to this repository.
 - Be conservative with duplicate detection. False positives (wrongly closing a valid issue) are much worse than false negatives (leaving a non-duplicate open).
