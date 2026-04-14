@@ -27,6 +27,8 @@ safe-outputs:
     max: 10
   close-issue:
     max: 1
+  noop:
+    report-as-issue: false
   update-issue:
     max: 1
 steps:
