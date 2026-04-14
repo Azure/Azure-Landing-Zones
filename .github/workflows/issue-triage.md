@@ -16,10 +16,7 @@ network:
 permissions:
   contents: read
   issues: read
-  models: read
   pull-requests: read
-features:
-  copilot-requests: true
 safe-outputs:
   add-comment:
     max: 1
@@ -27,8 +24,6 @@ safe-outputs:
     max: 10
   close-issue:
     max: 1
-  noop:
-    report-as-issue: false
   update-issue:
     max: 1
 steps:
