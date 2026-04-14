@@ -16,7 +16,10 @@ network:
 permissions:
   contents: read
   issues: read
+  models: read
   pull-requests: read
+features:
+  copilot-requests: true
 safe-outputs:
   add-comment:
     max: 1
