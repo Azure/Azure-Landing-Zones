@@ -10,7 +10,42 @@ Here's what's changed in Azure landing zone:
 Azure landing zone IaC accelerator release notes are [HERE]({{% ref "accelerator/accelerator-release-notes" %}})
 {{</hint >}}
 
-{{< expand title="March 2026" icon=">" expandByDefault="true" >}}
+{{< expand title="April 2026" icon=">" expandByDefault="true" >}}
+
+### April 2026
+
+#### Policy
+
+- **Removed deprecated custom policy definitions and initiatives from ALZ portal accelerator ARM templates.** These items had been deprecated for a long time and were superseded by either Azure built-in policies/initiatives or newer dated custom versions. Retaining them posed a risk of upstream breaking changes — specifically, built-in policies referenced without `definitionVersion` pinning could silently resolve to newer major versions with incompatible parameter schemas (e.g., PascalCase vs lowercase effect values). Customers who still need these definitions for existing assignments can obtain them from a [previous release of Enterprise-Scale](https://github.com/Azure/Enterprise-Scale/releases), the [Azure-Landing-Zones-Library](https://github.com/Azure/Azure-Landing-Zones-Library), or [AzAdvertizer](https://www.azadvertizer.net/).
+  - **Initiatives removed (8):**
+    - [Deploy-Sql-Security](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Deploy-Sql-Security.html) — superseded by `Deploy-Sql-Security_20240529`
+    - [Enforce-EncryptTransit](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-EncryptTransit.html) — superseded by `Enforce-EncryptTransit_20240509` / `Enforce-EncryptTransit_20241211`
+    - [Enforce-Guardrails-KeyVault](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-KeyVault.html) — superseded by `Enforce-Guardrails-KeyVault_20260203`
+    - [Enforce-Guardrails-Network](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Guardrails-Network.html) — superseded by `Enforce-Guardrails-Network_20250326`
+    - [Deploy-Diagnostics-LogAnalytics](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Deploy-Diagnostics-LogAnalytics.html) — superseded by built-in [`0884adba-2312-4468-abeb-5422caed1038`](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/0884adba-2312-4468-abeb-5422caed1038.html)
+    - [Deploy-MDFC-Config](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Deploy-MDFC-Config.html) — superseded by `Deploy-MDFC-Config_20240319`
+    - [Enforce-Encryption-CMK](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-Encryption-CMK.html) — superseded by `Enforce-Encryption-CMK_20250218`
+    - [Deploy-MDFC-DefenderSQL-AMA](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Deploy-MDFC-DefenderSQL-AMA.html) — superseded by built-in [`de01d381-bae9-4670-8870-786f89f49e26`](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/de01d381-bae9-4670-8870-786f89f49e26.html)
+  - **Policy definitions removed (12):**
+    - [`Deny-PublicEndpoint-MariaDB`](https://www.azadvertizer.net/azpolicyadvertizer/Deny-PublicEndpoint-MariaDB.html) — superseded by built-in [`fdccbe47-f3e3-4213-ad5d-ea459b2fa077`](https://www.azadvertizer.net/azpolicyadvertizer/fdccbe47-f3e3-4213-ad5d-ea459b2fa077.html)
+    - [`Deny-PublicIP`](https://www.azadvertizer.net/azpolicyadvertizer/Deny-PublicIP.html) — superseded by built-in [`6c112d4e-5bc7-47ae-a041-ea2d9dccd749`](https://www.azadvertizer.net/azpolicyadvertizer/6c112d4e-5bc7-47ae-a041-ea2d9dccd749.html)
+    - [`Deny-RDP-From-Internet`](https://www.azadvertizer.net/azpolicyadvertizer/Deny-RDP-From-Internet.html) — superseded by custom [`Deny-MgmtPorts-From-Internet`](https://www.azadvertizer.net/azpolicyadvertizer/Deny-MgmtPorts-From-Internet.html)
+    - [`Deny-Storage-minTLS`](https://www.azadvertizer.net/azpolicyadvertizer/Deny-Storage-minTLS.html) — superseded by built-ins [`fe83a0eb-a853-422d-aac2-1bffd182c5d0`](https://www.azadvertizer.net/azpolicyadvertizer/fe83a0eb-a853-422d-aac2-1bffd182c5d0.html) and [`404c3081-a854-4457-ae30-26a93ef643f9`](https://www.azadvertizer.net/azpolicyadvertizer/404c3081-a854-4457-ae30-26a93ef643f9.html)
+    - [`Deploy-Nsg-FlowLogs-to-LA`](https://www.azadvertizer.net/azpolicyadvertizer/Deploy-Nsg-FlowLogs-to-LA.html) — superseded by built-in [`e920df7f-9a64-4066-9b58-52684c02a091`](https://www.azadvertizer.net/azpolicyadvertizer/e920df7f-9a64-4066-9b58-52684c02a091.html)
+    - [`Deploy-Nsg-FlowLogs`](https://www.azadvertizer.net/azpolicyadvertizer/Deploy-Nsg-FlowLogs.html) — superseded by built-in [`e920df7f-9a64-4066-9b58-52684c02a091`](https://www.azadvertizer.net/azpolicyadvertizer/e920df7f-9a64-4066-9b58-52684c02a091.html)
+    - [`Deploy-MDFC-Arc-SQL-DCR-Association`](https://www.azadvertizer.net/azpolicyadvertizer/Deploy-MDFC-Arc-SQL-DCR-Association.html) — superseded by built-in [`2227e1f1-23dd-4c3a-85a9-7024a401d8b2`](https://www.azadvertizer.net/azpolicyadvertizer/2227e1f1-23dd-4c3a-85a9-7024a401d8b2.html)
+    - [`Deploy-MDFC-Arc-SQL-DefenderSQL-DCR`](https://www.azadvertizer.net/azpolicyadvertizer/Deploy-MDFC-Arc-SQL-DefenderSQL-DCR.html) — superseded by built-in [`63d03cbd-47fd-4ee1-8a1c-9ddf07303de0`](https://www.azadvertizer.net/azpolicyadvertizer/63d03cbd-47fd-4ee1-8a1c-9ddf07303de0.html)
+    - [`Deploy-MDFC-SQL-AMA`](https://www.azadvertizer.net/azpolicyadvertizer/Deploy-MDFC-SQL-AMA.html) — superseded by built-in [`f91991d1-5383-4c95-8ee5-5ac423dd8bb1`](https://www.azadvertizer.net/azpolicyadvertizer/f91991d1-5383-4c95-8ee5-5ac423dd8bb1.html)
+    - [`Deploy-MDFC-SQL-DefenderSQL-DCR`](https://www.azadvertizer.net/azpolicyadvertizer/Deploy-MDFC-SQL-DefenderSQL-DCR.html) — superseded by built-in [`04754ef9-9ae3-4477-bf17-86ef50026304`](https://www.azadvertizer.net/azpolicyadvertizer/04754ef9-9ae3-4477-bf17-86ef50026304.html)
+    - [`Deploy-MDFC-SQL-DefenderSQL`](https://www.azadvertizer.net/azpolicyadvertizer/Deploy-MDFC-SQL-DefenderSQL.html) — superseded by built-in [`ddca0ddc-4e9d-4bbb-92a1-f7c4dd7ef7ce`](https://www.azadvertizer.net/azpolicyadvertizer/ddca0ddc-4e9d-4bbb-92a1-f7c4dd7ef7ce.html)
+    - [`Deny-MachineLearning-PublicNetworkAccess`](https://www.azadvertizer.net/azpolicyadvertizer/Deny-MachineLearning-PublicNetworkAccess.html) — superseded by built-in [`438c38d2-3772-465a-a9cc-7a6666a275ce`](https://www.azadvertizer.net/azpolicyadvertizer/438c38d2-3772-465a-a9cc-7a6666a275ce.html)
+- Added `definitionVersion` pinning (`1.*.*-preview`) to the `migrateToMdeTvm` policy reference in the [Deploy-MDFC-Config_20240319](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Deploy-MDFC-Config_20240319.html) initiative (version bumped to `2.4.1`). This was the last active initiative with a missing `definitionVersion` on a built-in policy reference.
+- Added missing `supersededBy` metadata to the [Deploy-Diagnostics-LogAnalytics](https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Deploy-Diagnostics-LogAnalytics.html) initiative definition.
+- Updated the policy and policySet definition API version from `2023-04-01` to `2025-11-01` to enable full `definitionVersion` support for all remaining active definitions and initiatives.
+
+{{< /expand >}}
+
+{{< expand "March 2026" ">" >}}
 
 ### March 2026
 
