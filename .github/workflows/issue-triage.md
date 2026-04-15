@@ -12,7 +12,12 @@ network:
     - opened
     - reopened
   roles: all
-  workflow_dispatch: null
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: 'Issue number to triage (required for on-demand manual runs)'
+        required: false
+        type: string
 permissions:
   contents: read
   issues: read
@@ -33,6 +38,11 @@ steps:
   run: |
     mkdir -p /tmp/gh-aw/agent
     gh api repos/${{ github.repository }}/labels --paginate --jq '[.[] | {name, description}]' > /tmp/gh-aw/agent/repo-labels.json
+- name: Resolve target issue number
+  env:
+    ISSUE_NUMBER: ${{ github.event.inputs.issue_number || github.event.issue.number }}
+  run: |
+    echo "${ISSUE_NUMBER}" > /tmp/gh-aw/agent/issue-number.txt
 tools:
   cache-memory: true
   github:
@@ -49,6 +59,9 @@ mcp-servers:
 
 You are an AI agent that performs initial triage on newly created or reopened issues in the **Azure/Azure-Landing-Zones** repository. This repository is the centralised documentation hub and issue tracker for the entire Azure Landing Zones (ALZ) ecosystem.
 
+> **Target issue for this run: #${{ github.event.inputs.issue_number || github.event.issue.number }}**
+> Always use this number as `item_number` in all safe output calls (`add-comment`, `add-labels`, `close-issue`).
+
 ## Your Task
 
 When a new issue is created or reopened, perform the following steps **in order**:
@@ -64,7 +77,7 @@ When a new issue is created or reopened, perform the following steps **in order*
 
 ## Step 1: Read the Issue
 
-Read the full issue title and body. Note:
+Read the full issue title and body for issue **#${{ github.event.inputs.issue_number || github.event.issue.number }}** (also available in `/tmp/gh-aw/agent/issue-number.txt`). Note:
 
 - Key terms, product names, error messages, file paths, or module references.
 - Whether the issue is about Terraform, Bicep, Azure Policy, Portal, networking, management groups, RBAC, or documentation.
