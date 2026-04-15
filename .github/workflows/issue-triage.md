@@ -16,7 +16,7 @@ network:
     inputs:
       issue_number:
         description: 'Issue number to triage (required for on-demand manual runs)'
-        required: false
+        required: true
         type: string
 permissions:
   contents: read
