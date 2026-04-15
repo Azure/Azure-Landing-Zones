@@ -36,6 +36,7 @@ steps:
 tools:
   cache-memory: true
   github:
+    min-integrity: none
     toolsets:
     - default
   web-fetch: null
