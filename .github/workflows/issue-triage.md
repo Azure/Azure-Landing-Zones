@@ -38,7 +38,7 @@ steps:
   run: |
     mkdir -p /tmp/gh-aw/agent
     LABELS_FILE=/tmp/gh-aw/agent/repo-labels.json
-    gh api repos/${{ github.repository }}/labels --paginate --jq '[.[] | {name, description}]' > "$LABELS_FILE" || echo '[]' > "$LABELS_FILE"
+    gh api "repos/${{ github.repository }}/labels?per_page=100" | jq '[.[] | {name, description}]' > "$LABELS_FILE" || echo '[]' > "$LABELS_FILE"
 - name: Resolve target issue number
   env:
     ISSUE_NUMBER: ${{ github.event.inputs.issue_number || github.event.issue.number }}

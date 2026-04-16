@@ -22,7 +22,7 @@
 #
 # Automated issue triage for Azure Landing Zones. Checks for duplicates, suggests labels, and posts a triage summary comment on new or reopened issues.
 #
-# gh-aw-metadata: {"schema_version":"v3","frontmatter_hash":"b829738571a24a3f5732b5ab9a69dc9ec8a92ba826b31f2e98205c53b30643e2","compiler_version":"v0.63.0","strict":true,"agent_id":"copilot"}
+# gh-aw-metadata: {"schema_version":"v3","frontmatter_hash":"e8dd22fe50329bb0a6680f5a7b3a167d965f64475cd587269d184e7396beae9c","compiler_version":"v0.63.0","strict":true,"agent_id":"copilot"}
 
 name: "Azure Landing Zones — Automated Issue Triage"
 "on":
@@ -313,7 +313,7 @@ jobs:
         run: |
           mkdir -p /tmp/gh-aw/agent
           LABELS_FILE=/tmp/gh-aw/agent/repo-labels.json
-          gh api repos/${{ github.repository }}/labels --paginate --jq '[.[] | {name, description}]' > "$LABELS_FILE" || echo '[]' > "$LABELS_FILE"
+          gh api "repos/${{ github.repository }}/labels?per_page=100" | jq '[.[] | {name, description}]' > "$LABELS_FILE" || echo '[]' > "$LABELS_FILE"
       - env:
           ISSUE_NUMBER: ${{ github.event.inputs.issue_number || github.event.issue.number }}
         name: Resolve target issue number
