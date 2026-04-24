@@ -1,6 +1,6 @@
 ---
 title: Release Notes
-description: Release notes for the Accelerator Terraform Platform landing zone Starter Module
+description: Release notes for the ALZ IaC Accelerator
 weight: 200
 ---
 
@@ -20,6 +20,46 @@ To find the individual release notes for each component of the accelerator, plea
 While we try very hard to avoid breaking changes, there are times when a feature request, product launch, or Cloud Adoption Framework guidance necessitates us updating the accelerator in a way that may require updates to configuration while updating your code base.
 
 ## Release Notes
+
+### [Terraform Starter Module - v17.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v17.0.0)
+
+- Release date: 2026-04-24
+- Release link: [Terraform Starter Module - v17.0.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v17.0.0)
+- Release diff: [Terraform Starter Module - v15.6.0...v17.0.0](https://github.com/Azure/alz-terraform-accelerator/compare/v15.6.0...v17.0.0)
+
+This release introduces a new `Local` management group to the default Platform Landing Zone architecture for Azure Local (sovereign cloud) workloads, and expands the Sovereign Landing Zone (SLZ) example with additional sovereign controls archetype overrides.
+
+#### New `Local` Management Group (Azure Local / Sovereign)
+
+A new `Local` management group has been added to the default `alz_custom` architecture definition, parented under the `Landing Zones` management group. This provides a dedicated home for **Azure Local** workloads as part of the sovereign cloud landing zone pattern, sitting alongside the existing `Corp`, `Online`, and `Sandbox` management groups.
+
+A corresponding `local_custom` archetype override file is included so you can tailor the Azure Local-specific policies and role assignments applied to the `Local` management group to suit your sovereign and regulatory requirements.
+
+#### SLZ Sovereign Controls Archetype Overrides
+
+The Sovereign Landing Zone (SLZ) example has been restructured to align with the new sovereign controls model. The following archetype overrides have been **removed**:
+
+- `sovereign_root_custom.alz_archetype_override.yaml`
+- `confidential_corp_custom.alz_archetype_override.yaml`
+- `confidential_online_custom.alz_archetype_override.yaml`
+
+They have been replaced with the new sovereign L1/L2/L3 controls archetype override files:
+
+- `sovereign_l1_controls_custom.alz_archetype_override.yaml` — applied at the SLZ intermediate root
+- `sovereign_l2_controls_custom.alz_archetype_override.yaml` — applied at the platform management groups (`Connectivity`, `Identity`, `Management`, `Security`) and landing zone management groups (`Corp`, `Online`, `Confidential Corp`, `Confidential Online`)
+- `sovereign_l3_controls_custom.alz_archetype_override.yaml` — applied at the `Confidential Corp` and `Confidential Online` management groups in addition to the L2 controls
+
+The SLZ `alz_custom` architecture definition has been updated to wire these new archetypes into the relevant management groups, giving you a complete starting point for customizing the L1, L2, and L3 sovereign controls. The SLZ example now references `platform/slz@2026.04.2` and the default platform landing zone references `platform/alz@2026.04.2`.
+
+#### Upgrade Notes
+
+This is a major version bump (v15/v16 → v17) because the architecture definition has changed and the previous SLZ archetype overrides have been removed. If you have customized your `alz_custom.alz_architecture_definition.yaml` or any of the removed `sovereign_root_custom`, `confidential_corp_custom`, or `confidential_online_custom` archetype overrides, you must:
+
+1. Migrate any customizations into the new `sovereign_l1/l2/l3_controls_custom` archetype overrides.
+2. Review and merge the new `Local` management group entry into your architecture definition.
+3. Carefully review the Terraform plan output before applying — you will see policy assignments move between management groups as part of this restructure.
+
+---
 
 ### [Terraform Starter Module - v15.5.0](https://github.com/Azure/alz-terraform-accelerator/releases/tag/v15.5.0), [Accelerator Bootstrap Modules - v7.2.0](https://github.com/Azure/accelerator-bootstrap-modules/releases/tag/v7.2.0), and [ALZ PowerShell Module - v7.1.0](https://github.com/Azure/ALZ-PowerShell-Module/releases/tag/v7.1.0)
 
