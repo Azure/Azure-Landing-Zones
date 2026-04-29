@@ -37,7 +37,7 @@ This first PAT is referred to as `token-1`.
 1. Scroll down and click on `Developer Settings` in the left navigation.
 1. Click `Personal access tokens` in the left navigation and select `Fine-grained tokens`.
 1. Click `Generate new token` at the top.
-1. Enter `Azure Landing Zone Terraform Accelerator` in the `Token name` field.
+1. Enter `Azure Landing Zone` in the `Token name` field.
 1. Alter the `Resource owner` drop down and select your organization.
 1. Alter the `Expiration` drop down and select `Custom`.
 1. Choose tomorrows date in the date picker.
@@ -69,7 +69,7 @@ You may want to set a shorter expiration date for security reasons. In either ca
 1. Scroll down and click on `Developer Settings` in the left navigation.
 1. Click `Personal access tokens` in the left navigation and select `Fine-grained tokens`.
 1. Click `Generate new token` at the top.
-1. Enter `Azure Landing Zone Terraform Accelerator Runner Registration` in the `Token name` field.
+1. Enter `Azure Landing Zone Runners` in the `Token name` field.
 1. Alter the `Resource owner` drop down and select your organization.
 1. Alter the `Expiration` drop down and select `No Expiration`.
     {{< hint type=note >}}
