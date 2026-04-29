@@ -23,7 +23,7 @@ This first PAT is referred to as `token-1`.
 1. Ensure you navigate to the organization you want to deploy to.
 1. Click the `User settings` icon in the top right and select `Personal access tokens`.
 1. Click `+ New Token`.
-1. Enter `Azure Landing Zone Terraform Accelerator` in the `Name` field.
+1. Enter `Azure Landing Zone` in the `Name` field.
 1. Alter the `Expiration` drop down and select `Custom defined`.
 1. Choose tomorrows date in the date picker.
 1. Click the `Show all scopes` link at the bottom.
