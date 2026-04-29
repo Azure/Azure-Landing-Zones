@@ -23,7 +23,7 @@ This first PAT is referred to as `token-1`.
 1. Ensure you navigate to the organization you want to deploy to.
 1. Click the `User settings` icon in the top right and select `Personal access tokens`.
 1. Click `+ New Token`.
-1. Enter `Azure Landing Zone Terraform Accelerator` in the `Name` field.
+1. Enter `Azure Landing Zone` in the `Name` field.
 1. Alter the `Expiration` drop down and select `Custom defined`.
 1. Choose tomorrows date in the date picker.
 1. Click the `Show all scopes` link at the bottom.
@@ -41,12 +41,23 @@ This first PAT is referred to as `token-1`.
 1. Copy the token and save it somewhere safe.
 1. Click `Close`.
 
-If you are using self-hosted runners, you will need to create a second PAT that we'll refer to as `token-2` for them. You can do this by following the steps above with the following differences:
+If you are using self-hosted runners, you will need to create a second PAT that we'll refer to as `token-2` for them. You can do this by following these steps:
 
-1. Select the maximum value for the `Expiration` field (this allows up to 1 year). 
+1. Navigate to [dev.azure.com](https://dev.azure.com) and sign in to your organization.
+1. Ensure you navigate to the organization you want to deploy to.
+1. Click the `User settings` icon in the top right and select `Personal access tokens`.
+1. Click `+ New Token`.
+1. Enter `Azure Landing Zone Runners` in the `Name` field.
+1. Alter the `Expiration` drop down and select `Custom defined`.
+1. Select the maximum value for the `Expiration` field (this allows up to 1 year).
 
     {{< hint type=note >}}
 You may want to set a shorter expiration date for security reasons. In either case, you will need to have a process in place to extend the expiration date of the token before it expires.
     {{< /hint >}}
 
-1. Select only the `Agent Pools`: `Read & manage` scope.
+1. Click the `Show all scopes` link at the bottom.
+1. Check the following scope:
+    1. `Agent Pools`: `Read & manage`
+1. Click `Create`.
+1. Copy the token and save it somewhere safe.
+1. Click `Close`.
