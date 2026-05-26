@@ -122,13 +122,10 @@ You can build your own custom module leveraging our AVM modules at this stage if
 
 1. Open the `platform-landing-zone.auto.tfvars` file in your IDE. This file contains the variables that are used to configure the module. You will need to update the values in this file to match the Azure resources.
 
-1. Turn on the management group and policy resources in the `platform-landing-zone.auto.tfvars` file. This is only relevant if you followed our connectivity guidance. You can do this by setting the `management_group_settings` `enabled` variable to `true`.
+1. Turn on the management group and policy resources in the `platform-landing-zone.auto.tfvars` file. This is only relevant if you followed our connectivity guidance. You can do this by setting the `management_groups_enabled` variable to `true`.
 
     ```terraform
-    management_group_settings = {
-      enabled            = true
-      ...
-    }
+    management_groups_enabled = true
     ```
 
 1. Take a look at each issue in the `issues.csv` file, starting with the issues of `Issue Type` `NoResourceID`. This includes all the resources that require an update to your Terraform module variables.
