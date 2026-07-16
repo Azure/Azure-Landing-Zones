@@ -20,6 +20,7 @@ network:
         type: string
 permissions:
   contents: read
+  copilot-requests: write
   issues: read
   models: read
   pull-requests: read
