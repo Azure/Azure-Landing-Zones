@@ -262,6 +262,17 @@ param landingzonesCorpConfig = {
 }
 ```
 
+You must also update the cross-management group RBAC parameter file. The Platform Connectivity RBAC module references the `Deploy-Private-DNS-Zones` policy assignment as an `existing` resource to retrieve its managed identity. If the policy assignment is excluded but the RBAC module is not updated, the deployment will fail because the referenced policy assignment does not exist.
+This behavior is similar to the `Enable-DDoS-VNET` policy assignment, where associated RBAC modules must also be updated when excluding the policy assignment.
+
+**platform/platform-connectivity/main-rbac.bicepparam:**
+
+```bicep-params
+param parManagementGroupExcludedPolicyAssignments = [
+  'Deploy-Private-DNS-Zones'
+]
+```
+
 When you keep this policy enabled, provide the resource group that hosts your private DNS zones:
 
 ```bicep-params
