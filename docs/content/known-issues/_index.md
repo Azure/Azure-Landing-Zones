@@ -43,3 +43,35 @@ Select the assignment:
 
 Update the assignment parameter:
 {{< img name="diagsetting-assignment-params" size="origin" lazy=true >}}
+
+## Policy: VM Backup DINE policy blocked by Deny-PublicPaaSEndpoints
+
+Azure Landing Zones (ALZ) references the Microsoft built-in VM Backup DINE policy
+(98d0b9f8-fd90-49c9-88e2-d3baf3b0dd86). When used together with the
+Deny-PublicPaaSEndpoints initiative, remediation may fail.
+
+### Root Cause
+
+The Microsoft built-in VM Backup DINE policy deploys a Recovery Services Vault
+without explicitly setting `publicNetworkAccess` to `Disabled`. When the
+Deny-PublicPaaSEndpoints initiative is assigned, vault creation can be denied,
+causing remediation to fail.
+
+### Impact
+
+- Recovery Services Vault deployment fails.
+- VM backup remediation tasks fail.
+- VMs remain unprotected until an alternative vault configuration is used.
+
+### Workaround
+
+- Use the existing Recovery Services Vault policy variant
+  (`09ce66bc-1220-4153-8171-535585763365`).
+- Manually create a Recovery Services Vault with Public Network Access set to `Disabled`.
+- If permitted by organizational policy, apply a scoped policy exemption for the remediation deployment.
+
+### Resolution
+
+This behavior originates from a Microsoft built-in Azure Policy and is not an ALZ
+implementation issue. A permanent fix requires an upstream change from the Azure
+Policy product team.
