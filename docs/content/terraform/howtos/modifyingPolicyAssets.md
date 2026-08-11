@@ -98,3 +98,15 @@ management_groups:
 ```
 
 Once you have done this, you can deploy the ALZ module, specifying the `architecture_name` variable to point to your custom architecture definition.
+
+## Cloud-specific policy versions
+
+{{< hint type=note >}}
+Built-in Azure Policy definitions and initiatives are not always available at the same version across all Azure clouds.
+
+For example, Azure Government may not have the same built-in policy or initiative versions that are available in Azure Commercial.
+{{< /hint >}}
+
+If your deployment requires a specific policy definition or initiative version that is unavailable in the target cloud, modifying policy assignments alone may not be sufficient.
+
+In these scenarios, use custom policy assets and archetype overrides to manage policy content and versioning explicitly within your custom library.
