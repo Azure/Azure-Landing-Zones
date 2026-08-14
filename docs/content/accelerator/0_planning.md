@@ -119,9 +119,20 @@ The `starter_locations` setting is in the platform landing zone configuration fi
 
 ### Decision 6 - Choose a parent management group
 
-The parent management group will contain the management groups created by the bootstrap and must already exist.
+The parent management group will contain the management groups created by the bootstrap and must already exist. This can be the `Tenant Root Group` or an existing management group underneath it.
 
-The Platform landing zone hierarchy is built underneath it, with only permission applied at that scope (no policies are applied at that scope).
+The bootstrap creates an intermediate root management group under the parent you choose and builds the Platform landing zone hierarchy underneath that. Role assignments for the identities that run the deployment are applied at the intermediate root management group, and no policies are applied at the parent scope.
+
+Choose either:
+
+* `Tenant Root Group`: The intermediate root management group is created directly underneath it, matching the [Azure landing zone architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-architecture).
+* An existing management group: The intermediate root management group is created one level deeper, underneath that management group. Choose this if you cannot be granted `Owner` on the `Tenant Root Group`, or if the hierarchy needs to inherit policies or role assignments from an existing management group.
+
+You need `Owner` on the parent management group you choose, as described in the [phase 1 prerequisites]({{< relref "1_prerequisites/platform-subscriptions">}}) and the [Permissions FAQ]({{< relref "faq/permissions">}}).
+
+{{< hint type=note >}}
+Adding a management group above the intermediate root management group is not required in order to use your own naming. The intermediate root management group is not fixed to `Azure Landing Zones`. For Terraform, its ID and display name come from the management group with no parent in your architecture definition. See [Customize Management Group Names and IDs]({{< relref "starter-terraform/options/management-groups">}}).
+{{< /hint >}}
 
 Fill out the `Parent management group id` value with the management group you have chosen.
 
