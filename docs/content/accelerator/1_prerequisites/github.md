@@ -58,12 +58,6 @@ This first PAT is referred to as `token-1`.
 
 If you are using self-hosted runners, you will need to create a second PAT that we'll refer to as `token-2` for them. You can do this by following these steps:
 
-1. Select `No expiration` for the `Expiration` field.
-
-    {{< hint type=note >}}
-You may want to set a shorter expiration date for security reasons. In either case, you will need to have a process in place to extend expiration the token before it expires.
-    {{< /hint >}}
-
 1. Navigate to [github.com](https://github.com).
 1. Click on your user icon in the top right and select `Settings`.
 1. Scroll down and click on `Developer Settings` in the left navigation.
@@ -73,11 +67,11 @@ You may want to set a shorter expiration date for security reasons. In either ca
 1. Alter the `Resource owner` drop down and select your organization.
 1. Alter the `Expiration` drop down and select `No Expiration`.
     {{< hint type=note >}}
-You can of course set an expiration date if you prefer, but you'll need to ensure you have a process in place to renew it before it expires.
+You may want to set a shorter expiration date for security reasons. In either case, you will need to have a process in place to renew it before it expires.
     {{< /hint >}}
 1. Alter the `Repository access` radio button and select `All repositories`.
     {{< hint type=note >}}
-You can should this post bootstrap deployment to limit access to only the repository where you will be using self-hosted runner. We'll remind you to do this in the next steps after the bootstrap is complete.
+You can do this post bootstrap deployment to limit access to only the repository where you will be using self-hosted runner. We'll remind you to do this in the next steps after the bootstrap is complete.
     {{< /hint >}}
 1. Add the following `Repository` permissions:
     1. `Administration`: `Read and write`
