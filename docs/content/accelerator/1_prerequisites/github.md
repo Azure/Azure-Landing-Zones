@@ -77,7 +77,7 @@ You can of course set an expiration date if you prefer, but you'll need to ensur
     {{< /hint >}}
 1. Alter the `Repository access` radio button and select `All repositories`.
     {{< hint type=note >}}
-You can do this post bootstrap deployment to limit access to only the repository where you will be using self-hosted runner. We'll remind you to do this in the next steps after the bootstrap is complete.
+You can do this post bootstrap deployment to limit access to only the repository where you will be using the self-hosted runner. We'll remind you to do this in the next steps after the bootstrap is complete.
     {{< /hint >}}
 1. Add the following `Repository` permissions:
     1. `Administration`: `Read and write`
