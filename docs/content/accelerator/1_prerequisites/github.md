@@ -77,12 +77,14 @@ You can of course set an expiration date if you prefer, but you'll need to ensur
     {{< /hint >}}
 1. Alter the `Repository access` radio button and select `All repositories`.
     {{< hint type=note >}}
-You can should this post bootstrap deployment to limit access to only the repository where you will be using self-hosted runner. We'll remind you to do this in the next steps after the bootstrap is complete.
+You can do this post bootstrap deployment to limit access to only the repository where you will be using self-hosted runner. We'll remind you to do this in the next steps after the bootstrap is complete.
     {{< /hint >}}
 1. Add the following `Repository` permissions:
     1. `Administration`: `Read and write`
+    {{< hint type=note >}}
+The accelerator uses `token-2` to request a repository runner registration token through GitHub's REST API. GitHub requires the repository `Administration: Read and write` permission for this endpoint; the permission cannot currently be reduced to `Self-hosted runners: Read and write` for repository-level runners. `token-2` is not used by the runner to execute workflows. After bootstrap, restrict the PAT's repository access to only the repository that uses the self-hosted runner.
+    {{< /hint >}}
 1. Add the following `Organization` permissions:
     1. `Self-hosted runners`: `Read and write`  Only required if you plan to use Runner Groups at the organization level.
 1. Click `Generate token`.
 1. Copy the token and save it somewhere safe.
-
