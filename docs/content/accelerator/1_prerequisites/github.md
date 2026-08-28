@@ -87,7 +87,7 @@ If you use self-hosted GitHub runners, the runner Personal Access Token (`token-
 Symptoms of an expired runner PAT include:
 
 - GitHub runners no longer appear as online.
-- Azure Container Instance logs show `401 Bad credentials` errors.
+- Azure Container Instances (ACI) logs show `401 Bad credentials` errors.
 - Runner registration fails when requesting a new registration token from GitHub.
 
 ### Renew the Runner PAT
