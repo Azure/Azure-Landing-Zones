@@ -98,3 +98,13 @@ management_groups:
 ```
 
 Once you have done this, you can deploy the ALZ module, specifying the `architecture_name` variable to point to your custom architecture definition.
+
+## definitionVersion override limitation
+
+{{< hint type="warning" >}}
+The policy assignment override flow does not currently support `definitionVersion` overrides.
+
+If a specific `definitionVersion` is required, create a custom policy assignment asset in your custom library and replace the built-in assignment using an archetype override.
+{{< /hint >}}
+
+For cloud-specific version requirements, create a custom policy assignment asset in your custom library and replace the built-in assignment using an archetype override.
