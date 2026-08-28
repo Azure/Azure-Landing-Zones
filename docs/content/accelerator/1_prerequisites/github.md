@@ -93,10 +93,10 @@ Symptoms of an expired runner PAT include:
 ### Renew the Runner PAT
 
 1. Generate a new GitHub Personal Access Token using the same permissions described in the `token-2` section above.
-2. Update the `github_runners_personal_access_token` value in your accelerator configuration (`inputs.yaml`) with the new PAT.
+2. Update the `github_runners_personal_access_token` value in `inputs.yaml` with the new PAT.
 3. Re-run `Deploy-Accelerator` using the original accelerator deployment configuration.
 
-### Alternative: Targeted Terraform Update
+### Alternative: Targeted Terraform Update and Apply
 
 If you prefer to update only the runner infrastructure:
 
