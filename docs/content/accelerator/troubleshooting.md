@@ -107,12 +107,13 @@ You have two options to resolve this:
 │
 ╵
 ```
+
 ### GitHub self-hosted runners are offline after the PAT expires
 
-If the GitHub self-hosted runner PAT (token-2) expires, the Azure Container Instances (ACI) may fail to register with GitHub. Common errors include:
+If the GitHub self-hosted runner PAT (`token-2`) expires, the Azure Container Instances (ACI) may fail to register with GitHub. Common errors include:
 
-- 401 Bad credentials
-- An error occurred: Not configured
+- `401 Bad credentials`
+- `An error occurred: Not configured`
 
 #### Recovery
 
@@ -120,27 +121,37 @@ This procedure applies to existing Terraform and Bicep Platform landing zone dep
 
 This procedure updates only the GitHub bootstrap runner ACIs; it does not redeploy the Platform landing zone.
 
-- Create a new GitHub runner PAT with the permissions described in the token-2 section.
-- From the PowerShell session used to run Terraform, set the new PAT:
-  $env:TF_VAR_github_runners_personal_access_token = "<new-pat>"
+1. Create a new GitHub runner PAT with the permissions described in the `token-2` section in the GitHub prerequisites documentation.
 
-- Use the original Accelerator output directory and Terraform state. Do not create a new deployment or use the `-Destroy` parameter.
+1. From the PowerShell session used to run Terraform, set the new PAT:
 
-- Change to the existing GitHub bootstrap Terraform directory and identify the runner resources:
+    ```powershell
+    $env:TF_VAR_github_runners_personal_access_token = "<new-pat>"
+    ```
 
-  terraform state list
+1. Use the original Accelerator output directory and Terraform state. Do not create a new deployment or use the `-Destroy` parameter.
 
-- Run a targeted plan and review it before applying:
+1. Change to the existing GitHub bootstrap Terraform directory and identify the runner resources:
 
-  terraform plan `
-    -target='module.azure.azurerm_container_group.alz["agent_01"]' `
-    -target='module.azure.azurerm_container_group.alz["agent_02"]'
+    ```powershell
+    terraform state list
+    ```
 
-- Apply the reviewed change using the resource addresses returned by `terraform state list`:
+1. Run a targeted plan and review it before applying:
 
-  terraform apply `
-    -target='module.azure.azurerm_container_group.alz["agent_01"]' `
-    -target='module.azure.azurerm_container_group.alz["agent_02"]'
+    ```powershell
+    terraform plan `
+      -target='module.azure.azurerm_container_group.alz["agent_01"]' `
+      -target='module.azure.azurerm_container_group.alz["agent_02"]'
+    ```
+
+1. Apply the reviewed change using the resource addresses returned by `terraform state list`:
+
+    ```powershell
+    terraform apply `
+      -target='module.azure.azurerm_container_group.alz["agent_01"]' `
+      -target='module.azure.azurerm_container_group.alz["agent_02"]'
+    ```
 
 Changing the secure PAT may replace the runner ACIs. This is expected.
 
