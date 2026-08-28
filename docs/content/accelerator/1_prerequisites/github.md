@@ -80,3 +80,34 @@ You can do this post bootstrap deployment to limit access to only the repository
 1. Click `Generate token`.
 1. Copy the token and save it somewhere safe.
 
+## Renewing an Expired GitHub Runner PAT
+
+If you use self-hosted GitHub runners, the runner Personal Access Token (`token-2`) may expire depending on the expiration period selected when it was created.
+
+Symptoms of an expired runner PAT include:
+
+- GitHub runners no longer appear as online.
+- Azure Container Instance logs show `401 Bad credentials` errors.
+- Runner registration fails when requesting a new registration token from GitHub.
+
+### Renew the Runner PAT
+
+1. Generate a new GitHub Personal Access Token using the same permissions described in the `token-2` section above.
+2. Update the `github_runners_personal_access_token` value in your accelerator configuration (`inputs.yaml`) with the new PAT.
+3. Re-run `Deploy-Accelerator` using the original accelerator deployment configuration.
+
+### Alternative: Targeted Terraform Update
+
+If you prefer to update only the runner infrastructure:
+
+1. Update the PAT value used by the bootstrap deployment.
+2. Run a targeted Terraform plan and apply against the Azure Container Instance runner resources.
+3. Verify the runners successfully register with GitHub.
+
+### Validation
+
+After updating the PAT:
+
+- Verify runners appear under GitHub Organization → Settings → Actions → Runners.
+- Verify Azure Container Instance logs show successful runner registration.
+- Confirm runner jobs can be picked up successfully.
