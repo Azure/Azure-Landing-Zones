@@ -150,7 +150,7 @@ This procedure updates only the GitHub bootstrap runner ACIs; it does not redepl
       -target='module.azure.azurerm_container_group.alz["agent_02"]'
     ```
 
-Changing the secure PAT may replace the runner ACIs. This is expected.
+Updating the PAT value may replace the runner ACIs. This is expected.
 
 Do not apply the plan if it includes unexpected changes to GitHub repositories, repository files, management groups, policies, networking, or other customized resources.
 
