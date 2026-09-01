@@ -107,7 +107,7 @@ You have two options to resolve this:
 │
 ╵
 ```
-### GitHub self-hosted runners are offline after the PAT expires
+## GitHub self-hosted runners are offline after the PAT expires
 
 If the GitHub self-hosted runner PAT (`token-2`) expires, the Azure Container Instances (ACI) may fail to register with GitHub. Common errors include:
 
