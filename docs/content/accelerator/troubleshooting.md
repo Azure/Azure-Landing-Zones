@@ -107,3 +107,51 @@ You have two options to resolve this:
 │
 ╵
 ```
+## GitHub self-hosted runners are offline after the PAT expires
+
+If the GitHub self-hosted runner PAT (`token-2`) expires, the Azure Container Instances (ACI) may fail to register with GitHub. Common errors include:
+
+- `401 Bad credentials`
+- `An error occurred: Not configured`
+
+#### Recovery
+
+This procedure applies to existing Terraform and Bicep Platform landing zone deployments. The GitHub bootstrap resources are managed by Terraform in both cases.
+
+This procedure updates only the GitHub bootstrap runner ACIs; it does not redeploy the Platform landing zone.
+
+1. Create a new GitHub runner PAT with the permissions described in the `token-2` section in the GitHub prerequisites documentation.
+1. From the PowerShell session used to run Terraform, set the new PAT:
+
+    ```powershell
+    $env:TF_VAR_github_runners_personal_access_token = "<new-pat>"
+    ```
+
+1. Use the original Accelerator output directory and Terraform state. Do not create a new deployment or use the `-Destroy` parameter.
+1. Change to the existing GitHub bootstrap Terraform directory and identify the runner resources:
+
+    ```powershell
+    terraform state list
+    ```
+
+1. Run a targeted plan and review it before applying:
+
+    ```powershell
+    terraform plan `
+      -target='module.azure.azurerm_container_group.alz["agent_01"]' `
+      -target='module.azure.azurerm_container_group.alz["agent_02"]'
+    ```
+
+1. Apply the reviewed change using the resource addresses returned by `terraform state list`:
+
+    ```powershell
+    terraform apply `
+      -target='module.azure.azurerm_container_group.alz["agent_01"]' `
+      -target='module.azure.azurerm_container_group.alz["agent_02"]'
+    ```
+
+Updating the PAT value may replace the runner ACIs. This is expected.
+
+Do not apply the plan if it includes unexpected changes to GitHub repositories, repository files, management groups, policies, networking, or other customized resources.
+
+After the new runners are online and working, revoke the old PAT.
