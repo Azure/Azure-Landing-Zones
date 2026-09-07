@@ -24,7 +24,7 @@ Follow the Azure landing zone accelerator [user guide](https://azure.github.io/A
 
 ## Copy the SLZ Bicep deployment package
 
-Copy the SLZ `.config` and `templates` files over the top of your existing accelerator `config` folder. This will add the necessary configuration files to enable the SLZ management groups and policies. Run the following PowerShell script during bootstrap after your accelerator configuration is created and before you continue with deployment:
+Copy the SLZ `.config` and `templates` files over the top of your existing accelerator configuration. This will add the necessary configuration files to enable the SLZ management groups and policies, and replace existing files only where the source and destination paths match. Run the following PowerShell script during bootstrap after your accelerator configuration is created and before you continue with deployment:
 
 ```pwsh
 $tempFolderName = "~/accelerator/temp"
@@ -40,13 +40,13 @@ git checkout
 
 cd ~
 Copy-Item `
-  -Path "$tempFolder/$configFolderPath" `
-  -Destination "~/accelerator/config" `
+  -Path "$tempFolder/$configFolderPath/*" `
+  -Destination "~/accelerator/config/.config" `
   -Recurse `
   -Force
 Copy-Item `
-  -Path "$tempFolder/$templatesFolderPath" `
-  -Destination "~/accelerator/config" `
+  -Path "$tempFolder/$templatesFolderPath/*" `
+  -Destination "~/accelerator/config/templates" `
   -Recurse `
   -Force
 Remove-Item -Path $tempFolder -Recurse -Force
@@ -57,4 +57,4 @@ The SLZ package is sourced from:
 1. [`examples/slz/.config`](https://github.com/Azure/alz-bicep-accelerator/tree/main/examples/slz/.config)
 1. [`examples/slz/templates`](https://github.com/Azure/alz-bicep-accelerator/tree/main/examples/slz/templates)
 
-This copy operation overlays only the SLZ-specific files. Existing files with the same paths are replaced, and the rest of the generated accelerator configuration is left as-is.
+This copy operation overlays only the SLZ-specific files into the existing `.config` and `templates` folders. Existing files with the same paths are replaced, and the rest of the generated accelerator configuration is left as-is.
