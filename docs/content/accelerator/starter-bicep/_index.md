@@ -49,6 +49,12 @@ The following table describes the inputs required for the `platform_landing_zone
 * [inputs-github.yaml][example_powershell_inputs_github_bicep_platform_landing_zone]
 * [inputs-local.yaml][example_powershell_inputs_local_bicep_platform_landing_zone]
 
+## Options
+
+The available options are:
+
+1. [Implement Sovereign Landing Zone (SLZ) controls](https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/public/implementation-options)
+
 ## Migration from Classic
 
 If you're considering migrating from the classic framework:
