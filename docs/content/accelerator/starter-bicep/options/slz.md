@@ -22,9 +22,9 @@ Follow the Azure landing zone accelerator [user guide](https://azure.github.io/A
 1. Complete [Phase 3 - Run]({{< relref "../../3_run" >}}).
 1. Iterate, customize, and extend your landing zone through your chosen version control system and CI/CD pipelines.
 
-## Apply the SLZ Bicep deployment package
+## Copy the SLZ Bicep deployment package
 
-To apply the SLZ package, run the following PowerShell script during bootstrap after your accelerator configuration is created and before you continue with deployment:
+Copy the SLZ `.config` and `templates` files over the top of your existing accelerator `config` folder. This will add the necessary configuration files to enable the SLZ management groups and policies. Run the following PowerShell script during bootstrap after your accelerator configuration is created and before you continue with deployment:
 
 ```pwsh
 $tempFolderName = "~/accelerator/temp"
@@ -57,4 +57,4 @@ The SLZ package is sourced from:
 1. [`examples/slz/.config`](https://github.com/Azure/alz-bicep-accelerator/tree/main/examples/slz/.config)
 1. [`examples/slz/templates`](https://github.com/Azure/alz-bicep-accelerator/tree/main/examples/slz/templates)
 
-You can also copy or replace starter module files during the bootstrap process, like the Terraform accelerator approach. This allows the SLZ-specific files to be applied directly while the starter module is being prepared.
+This copy operation overlays only the SLZ-specific files. Existing files with the same paths are replaced, and the rest of the generated accelerator configuration is left as-is.
