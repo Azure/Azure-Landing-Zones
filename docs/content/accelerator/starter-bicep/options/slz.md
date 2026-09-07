@@ -18,14 +18,13 @@ Follow the Azure landing zone accelerator [user guide](https://azure.github.io/A
 
 1. Complete [Phase 0 - Planning]({{< relref "../../0_planning" >}}) and choose Bicep as the IaC type and GitHub or Azure DevOps as the CI/CD platform.
 1. Complete [Phase 1 - Prerequisites]({{< relref "../../1_prerequisites" >}}).
-1. Complete [Phase 2 - Bootstrap]({{< relref "../../2_bootstrap" >}}).
-1. Apply the SLZ Bicep deployment package.
+1. Start [Phase 2 - Bootstrap]({{< relref "../../2_bootstrap" >}}) and apply the SLZ Bicep deployment package before you continue with deployment.
 1. Complete [Phase 3 - Run]({{< relref "../../3_run" >}}).
 1. Iterate, customize, and extend your landing zone through your chosen version control system and CI/CD pipelines.
 
 ## Apply the SLZ Bicep deployment package
 
-To apply the SLZ package, run the following PowerShell script after the bootstrap process creates your accelerator configuration:
+To apply the SLZ package, run the following PowerShell script during bootstrap after your accelerator configuration is created and before you continue with deployment:
 
 ```pwsh
 $tempFolderName = "~/accelerator/temp"
