@@ -53,7 +53,7 @@ The following table describes the inputs required for the `platform_landing_zone
 
 The available options are:
 
-1. [Implement Sovereign Landing Zone (SLZ) controls]({{< relref "options/slz" >}})
+1. [Implement Sovereign Landing Zone (SLZ) controls](https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/public/implementation-options)
 
 ## Migration from Classic
 
