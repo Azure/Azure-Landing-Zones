@@ -16,10 +16,11 @@ The Bicep implementation uses a compact SLZ package containing only the files re
 
 Follow the Azure landing zone accelerator [user guide](https://azure.github.io/Azure-Landing-Zones/accelerator/):
 
-1. Complete [Phase 0 - Planning]({{< relref "../../0_planning" >}}) and choose Bicep as the IaC type and GitHub or Azure DevOps as the CI/CD platform.
-1. Complete [Phase 1 - Prerequisites]({{< relref "../../1_prerequisites" >}}).
-1. Start [Phase 2 - Bootstrap]({{< relref "../../2_bootstrap" >}}) and apply the SLZ Bicep deployment package before you continue with deployment.
-1. Complete [Phase 3 - Run]({{< relref "../../3_run" >}}).
+1. Complete [Phase 0 - Planning](https://azure.github.io/Azure-Landing-Zones/accelerator/0_planning/#decision-1---choose-infrastructure-as-code-iac-tooling) and choose Bicep as the IaC type and
+2. [Select Version Control System (VCS)](https://azure.github.io/Azure-Landing-Zones/accelerator/0_planning/#decision-2---choose-a-version-control-system) - GitHub or Azure DevOps
+1. Complete [Phase 1 - Prerequisites]([{{< relref "../../1_prerequisites" >}}](https://azure.github.io/Azure-Landing-Zones/accelerator/1_prerequisites/).
+1. Start [Phase 2 - Bootstrap](https://azure.github.io/Azure-Landing-Zones/accelerator/2_bootstrap/) and apply the SLZ Bicep deployment package before you continue with deployment.
+1. Complete [Phase 3 - Run](https://azure.github.io/Azure-Landing-Zones/accelerator/3_run/).
 1. Iterate, customize, and extend your landing zone through your chosen version control system and CI/CD pipelines.
 
 ## Copy the SLZ Bicep deployment package
