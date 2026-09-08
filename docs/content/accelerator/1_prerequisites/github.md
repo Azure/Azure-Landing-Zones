@@ -81,5 +81,5 @@ You can do this post bootstrap deployment to limit access to only the repository
 1. Copy the token and save it somewhere safe.
 
 {{< hint type=note >}}
-If your GitHub self-hosted runner PAT (`token-2`) expires and your runners go offline, see {{< relref "../troubleshooting#github-self-hosted-runners-are-offline-after-the-pat-expires" >}} for recovery steps.
+If your GitHub self-hosted runner PAT (`token-2`) expires and your runners go offline, see [recovery steps]({{< relref "../troubleshooting#github-self-hosted-runners-are-offline-after-the-pat-expires" >}}).
 {{< /hint >}}
