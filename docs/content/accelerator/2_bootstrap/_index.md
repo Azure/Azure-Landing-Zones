@@ -44,7 +44,7 @@ The interactive mode wizard only completes the bootstrap configuration file (`in
     1. Open your bootstrap configuration file in VS Code. The file is located at `./config/inputs.yaml` in your target directory.
     1. Review the bootstrap configuration settings and ensure they are correct.
     {{< hint type=note >}}
-    If you are using self-hosted agents or runners, review the bootstrap networking settings before deployment. Bootstrap deployments that use self-hosted agents or runners may create Azure networking resources to support those services, and the configured address spaces should be validated against your existing network design to avoid address range conflicts.
+    If you are using private networking with self-hosted agents or runners, review the bootstrap networking settings before deployment. Bootstrap deployments that use private networking with self-hosted agents or runners create Azure networking resources, including a Virtual Network, Container Instances subnet, Private Endpoints subnet, NAT Gateway, and Public IP address. Review and configure the networking address space settings to ensure they do not overlap with existing corporate or Azure network ranges. Validate the configured address spaces against your existing network design to avoid address range conflicts.
     {{< /hint >}}
     1. Save any changes to the configuration file.
     1. Open the relevant section below for the platform landing zone configuration file:
