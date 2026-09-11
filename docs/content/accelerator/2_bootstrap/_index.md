@@ -45,6 +45,11 @@ The interactive mode wizard only completes the bootstrap configuration file (`in
     1. Review the bootstrap configuration settings and ensure they are correct.
     {{< hint type=note >}}
     If you are using private networking with self-hosted agents or runners, review the bootstrap networking settings before deployment. Bootstrap deployments that use private networking with self-hosted agents or runners create Azure networking resources, including a Virtual Network, Container Instances subnet, Private Endpoints subnet, NAT Gateway, and Public IP address. Review and configure the networking address space settings to ensure they do not overlap with existing corporate or Azure network ranges. Validate the configured address spaces against your existing network design to avoid address range conflicts.
+    Default networking values are:
+
+    - virtual_network_address_space: 10.0.0.0/24
+    - virtual_network_subnet_address_prefix_container_instances: 10.0.0.0/26
+    - virtual_network_subnet_address_prefix_private_endpoints: 10.0.0.64/26
     {{< /hint >}}
     1. Save any changes to the configuration file.
     1. Open the relevant section below for the platform landing zone configuration file:
