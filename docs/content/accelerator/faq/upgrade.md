@@ -14,8 +14,8 @@ Follow the steps in the relevant for your chosen Infrastructure as Code (IaC) to
 * [Terraform Upgrade Guide]({{< relref "../starter-terraform/upgrade-guide" >}})
 * Bicep coming soon.
 
-## Does the Terraform Platform landing zone support AzureRM provider v5.x?
+## Does the Terraform Platform landing zone support AzureRM provider v5?
 
-No. Use AzureRM provider v4 and keep the root provider constraint set to `~> 4.0`.
+No. Continue to use AzureRM provider v4 and keep the root provider constraint set to `~> 4.0`.
 
-We're migrating the Management Resources, Hub and Spoke Virtual Network, and Virtual WAN modules to AzAPI. We don't plan to add AzureRM provider v5 support to these modules.
+We are migrating the remaining AzureRM-based components to AzAPI. We do not plan to add support for AzureRM provider v5.

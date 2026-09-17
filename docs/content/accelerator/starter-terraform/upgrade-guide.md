@@ -22,7 +22,7 @@ With each release of the AVM pattern modules, it's possible that there will be c
 
 The Terraform Platform landing zone currently supports AzureRM provider v4. Keep the root provider constraint set to `~> 4.0`.
 
-The Management Groups and Policy module uses AzAPI and doesn't require AzureRM. We're migrating the Management Resources, Hub and Spoke Virtual Network, and Virtual WAN modules to AzAPI. We don't plan to add AzureRM provider v5 support to these modules.
+We are migrating the remaining AzureRM-based components to AzAPI. We do not plan to add support for AzureRM provider v5.
 
 Upgrade process consists of the following high level steps:
 
