@@ -198,6 +198,18 @@ We offer 3 agent / runner and networking options for the bootstrap. The options 
 
 {{< hint type=note >}}
 Self-hosted agents / runners are required for private networking, so that setting will be ignored if private networking is selected.
+
+When private networking and self-hosted agents or runners are enabled, the bootstrap deployment creates Azure networking resources to support those services.
+
+Review the networking configuration and address spaces before deployment to ensure they do not overlap with existing corporate or Azure network ranges.
+
+Networking address spaces can be customized through bootstrap module configuration, including:
+
+- virtual_network_address_space (default: 10.0.0.0/24)
+- virtual_network_subnet_address_prefix_container_instances (default: 10.0.0.0/26)
+- virtual_network_subnet_address_prefix_private_endpoints (default: 10.0.0.64/26)
+
+Review and update these values as needed to align with your organization's IP addressing plan.
 {{< /hint >}}
 
 Fill out the `Use private networking`, `Use self-hosted agents`, and / or `Use self-hosted runners` values with the settings you have chosen.
