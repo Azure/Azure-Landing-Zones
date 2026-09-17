@@ -18,6 +18,12 @@ This upgrade guide covers the AVM pattern modules that are used to deploy the Pl
 
 With each release of the AVM pattern modules, it's possible that there will be changes that could impact your deployed resources. We do our best to ensure any changes are documented in the release notes. To avoid unexpected or unwanted changes we recommend that you configure your version constraints to pin to a specific module version.
 
+### AzureRM provider version
+
+The Terraform Platform landing zone currently supports AzureRM provider v4. Keep the root provider constraint set to `~> 4.0`.
+
+The Management Groups and Policy module uses AzAPI and doesn't require AzureRM. We're migrating the Management Resources, Hub and Spoke Virtual Network, and Virtual WAN modules to AzAPI. We don't plan to add AzureRM provider v5 support to these modules.
+
 Upgrade process consists of the following high level steps:
 
 1. [Review the release notes](#1-review-the-release-notes)
