@@ -62,8 +62,6 @@ If you're considering migrating from the classic framework:
 * **New Deployments**: Start with the new framework for enhanced capabilities
 * **Existing Deployments**: Start looking at migrating from the classic framework to get the latest capabilities and improvements. Detailed migration guidance will be provided in the coming months.
 
-
-
 {{< hint type=note >}}
 Migration guidance will be provided as the new framework reaches general availability.
 {{< /hint >}}
