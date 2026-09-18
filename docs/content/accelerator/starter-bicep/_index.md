@@ -55,6 +55,7 @@ The available options are:
 
 1. [Implement Sovereign Landing Zone (SLZ) controls](https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/public/implementation-options)
 2. [Turn off Defender Plans]({{< relref "defender">}})
+
 ## Migration from Classic
 
 If you're considering migrating from the classic framework:
