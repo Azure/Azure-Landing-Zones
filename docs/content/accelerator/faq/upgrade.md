@@ -16,6 +16,6 @@ Follow the steps in the relevant for your chosen Infrastructure as Code (IaC) to
 
 ## Does the Terraform Platform landing zone support AzureRM provider v5?
 
-No. Continue to use AzureRM provider v4 and keep the root provider constraint set to `~> 4.0`.
+Not currently. The Platform landing zone requires **AzureRM provider v4**, as we are planning to move to the AzAPI provider. Keep the AzureRM constraint in your root module set to `~> 4.0`.
 
-We are migrating the remaining AzureRM-based components to AzAPI. We do not plan to add support for AzureRM provider v5.
+See [Terraform and provider versions]({{< relref "../starter-terraform/module-index#terraform-and-provider-versions" >}}), or [Troubleshooting]({{< relref "../troubleshooting#no-available-releases-match-the-given-constraints-for-hashicorpazurerm" >}}) if `terraform init` is failing.

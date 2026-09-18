@@ -20,9 +20,7 @@ With each release of the AVM pattern modules, it's possible that there will be c
 
 ### AzureRM provider version
 
-The Terraform Platform landing zone currently supports AzureRM provider v4. Keep the root provider constraint set to `~> 4.0`.
-
-We are migrating the remaining AzureRM-based components to AzAPI. We do not plan to add support for AzureRM provider v5.
+The Platform landing zone currently requires **AzureRM provider v4**. Upgrading the pattern modules does not move you to AzureRM v5.x, so keep the AzureRM constraint in your root module set to `~> 4.0`. See [Terraform and provider versions]({{< relref "module-index#terraform-and-provider-versions" >}}).
 
 Upgrade process consists of the following high level steps:
 

@@ -21,6 +21,10 @@ Ensure all tools are available from a PowerShell Core (pwsh) terminal. Add them 
 
 You also need internet access to download tools, Terraform providers, and connect to Azure and your VCS.
 
+{{< hint type=important >}}
+If you are deploying with Terraform, the Platform landing zone currently requires **AzureRM provider v4**. See [Terraform and provider versions]({{< relref "/accelerator/starter-terraform/module-index#terraform-and-provider-versions" >}}).
+{{< /hint >}}
+
 We **DO NOT** explicitly support:
 
 * Running behind a corporate proxy
