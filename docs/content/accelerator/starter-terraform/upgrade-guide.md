@@ -18,6 +18,10 @@ This upgrade guide covers the AVM pattern modules that are used to deploy the Pl
 
 With each release of the AVM pattern modules, it's possible that there will be changes that could impact your deployed resources. We do our best to ensure any changes are documented in the release notes. To avoid unexpected or unwanted changes we recommend that you configure your version constraints to pin to a specific module version.
 
+### AzureRM provider version
+
+The Platform landing zone currently requires **AzureRM provider v4**. Upgrading the pattern modules does not move you to AzureRM v5.x, so keep the AzureRM constraint in your root module set to `~> 4.0`. See [Terraform and provider versions]({{< relref "module-index#terraform-and-provider-versions" >}}).
+
 Upgrade process consists of the following high level steps:
 
 1. [Review the release notes](#1-review-the-release-notes)
