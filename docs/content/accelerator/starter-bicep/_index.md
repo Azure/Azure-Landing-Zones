@@ -54,7 +54,7 @@ The following table describes the inputs required for the `platform_landing_zone
 The available options are:
 
 1. [Implement Sovereign Landing Zone (SLZ) controls](https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/public/implementation-options)
-
+2. [Turn off Defender Plans]({{< relref "defender">}})
 ## Migration from Classic
 
 If you're considering migrating from the classic framework:
@@ -62,7 +62,7 @@ If you're considering migrating from the classic framework:
 * **New Deployments**: Start with the new framework for enhanced capabilities
 * **Existing Deployments**: Start looking at migrating from the classic framework to get the latest capabilities and improvements. Detailed migration guidance will be provided in the coming months.
 
-2. {{< relref "options/defender" >}}
+
 
 {{< hint type=note >}}
 Migration guidance will be provided as the new framework reaches general availability.
