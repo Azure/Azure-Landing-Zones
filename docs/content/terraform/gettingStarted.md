@@ -9,6 +9,35 @@ This guide is for those that want to deploy Azure landing zone using the Terrafo
 This guide assumes that you are comfortable composing modules.
 {{< /hint >}}
 
+## Configure the required providers
+
+AzureRM provider v5.x is the latest release, but it is not currently supported. Deploying Azure landing zone with these modules requires **AzureRM provider v4**, as we are planning to move to the AzAPI provider.
+
+Declare the following in your root module:
+
+```terraform
+terraform {
+  required_version = "~> 1.12"
+
+  required_providers {
+    alz = {
+      source  = "Azure/alz"
+      version = "~> 0.21"
+    }
+    azapi = {
+      source  = "Azure/azapi"
+      version = "~> 2.0"
+    }
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.0"
+    }
+  }
+}
+```
+
+Check the **Requirements** section of each module's registry page for its current provider constraints.
+
 ## Add `.alzlib` to your gitignore
 
 The [Azure landing zone provider](https://registry.terraform.io/providers/Azure/alz/latest/docs) is used to process the landing zone library data and produce a coherent set of policy assets for deployment.

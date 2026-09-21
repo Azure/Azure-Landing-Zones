@@ -155,3 +155,42 @@ Updating the PAT value may replace the runner ACIs. This is expected.
 Do not apply the plan if it includes unexpected changes to GitHub repositories, repository files, management groups, policies, networking, or other customized resources.
 
 After the new runners are online and working, revoke the old PAT.
+
+## No available releases match the given constraints for hashicorp/azurerm
+
+Error: `Failed to query available provider packages` / `no available releases match the given constraints`
+
+```text
+╷
+│ Error: Failed to query available provider packages
+│
+│ Could not retrieve the list of available versions for provider
+│ hashicorp/azurerm: no available releases match the given constraints ~> 4.35,
+│ ~> 5.4
+╵
+```
+
+This occurs when the AzureRM constraint in your root module requests v5.x, while the AVM pattern modules require v4.
+
+### Resolution
+
+Set the AzureRM constraint in your root module `terraform.tf` to v4:
+
+```terraform
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.0"
+    }
+  }
+}
+```
+
+If you have already run `terraform init` with a v5.x constraint, the selected version is recorded in `.terraform.lock.hcl` and Terraform reports a second error. Run `terraform init -upgrade` to re-resolve the lock file against the new constraint:
+
+```powershell
+terraform init -upgrade
+```
+
+For the supported provider versions, see [Terraform and provider versions]({{< relref "starter-terraform/module-index#terraform-and-provider-versions" >}}).
