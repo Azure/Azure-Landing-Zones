@@ -54,12 +54,7 @@ The following table describes the inputs required for the `platform_landing_zone
 The available options are:
 
 1. [Implement Sovereign Landing Zone (SLZ) controls](https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/public/implementation-options)
-<<<<<<< HEAD
-2. [Turn off Defender Plans]({{< relref "defender">}})
-
-=======
-2. [Turn off Defender Plans]({{< relref "./defender">}})
->>>>>>> 84cb817 (docs: update Defender Plans links in Bicep indexes)
+2. [Turn off Defender Plans]({{< relref "options/defender">}})
 ## Migration from Classic
 
 If you're considering migrating from the classic framework:
