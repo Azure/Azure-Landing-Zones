@@ -1,5 +1,5 @@
 ---
-title: 13 - Turn off Defender Plans
+title: Turn off Defender Plans
 geekdocCollapseSection: true
 weight: 13
 ---
