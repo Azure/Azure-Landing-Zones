@@ -5,11 +5,11 @@ geekdocCollapseSection: true
 weight: 60
 ---
 
-A practical, step-by-step guide for moving an existing **ALZ-Bicep (Classic)** platform to the **Azure Verified Modules (AVM) Bicep accelerator** ([`alz-bicep-accelerator`]({{< relref "/accelerator/starter-bicep" >}})) **without recreating** your live management groups, policies, or logging.
+A practical, step-by-step guide for moving an existing **ALZ-Bicep (Classic)** platform to the **Azure Verified Modules (AVM) Bicep accelerator** ([`alz-bicep-accelerator`]({{< relref "/accelerator/starter-bicep" >}})) **without recreating** your live management groups, policies, or logging. Networking (hub/vWAN) is planned for a future revision.
 
 ## Overview
 
-ALZ-Bicep (Classic, `Azure/ALZ-Bicep`) is being retired — the Classic starter was removed from the Accelerator on **2026-02-16**, and the repository will be **archived on 2027-02-16** (bug/security/policy fixes only in between). The successor is the **Bicep AVM accelerator**, configured through a single `platform-landing-zone.yaml` and the shared **ALZ Library**.
+ALZ-Bicep (Classic, `Azure/ALZ-Bicep`) is being retired — the Classic starter was removed from the Accelerator on **2026-02-16**, and the repository will be **archived on 2027-02-16** (bug/security/policy fixes only in between). The successor is the **Bicep AVM accelerator**, configured through `platform-landing-zone.yaml` (top-level inputs that are rendered into per-module `.bicepparam` files) plus the shared **ALZ Library**, and deployed through its pipelines.
 
 This guide describes the **supported migration path** and the **one hard blocker** you will hit, with its mitigation.
 
@@ -23,7 +23,7 @@ This guide describes the **supported migration path** and the **one hard blocker
 
 - **Audience:** platform/landing-zone operators running ALZ-Bicep Classic today.
 - **In scope:** management groups, policy (definitions/initiatives/assignments/role assignments), logging. RBAC and subscription placement follow the same pattern.
-- **Out of scope (call out separately):** hub/vWAN networking — the same *principles* apply (align names/RGs), but they are not covered in detail here.
+- **Out of scope (call out separately):** hub/vWAN networking — the same *principles* apply (align names/RGs), but they are not covered in detail here. Networking migration guidance is planned for a future revision.
 
 ## The mental model (read this first)
 
@@ -43,8 +43,23 @@ Two facts make this migration tractable:
 | MGs & governance | `managementGroups`, `policy`, `roleAssignments`, `customRoleDefinitions` | `templates/core/governance` + ALZ Library |
 | Logging | `logging`, `mgDiagSettings` | `templates/core/logging` |
 | Networking | `hubNetworking` / `vwanConnectivity` (+ spokes, peerings, DNS) | `templates/networking/hubnetworking` / `virtualwan` |
-| Config model | Per-module `.bicepparam` + orchestration | Single `platform-landing-zone.yaml` + ALZ Library |
-| Deploy driver | Per-module CLI/pipeline | ALZ PowerShell bootstrap (`Deploy-Accelerator`), ordered `deployment_files` |
+| Config model | **Hand-authored** per-module `.bicepparam` + **manual** orchestration | `platform-landing-zone.yaml` (top-level inputs) **rendered into per-module `.bicepparam` files** + ALZ Library |
+| Deploy driver | Per-module CLI/pipeline | **Still pipeline-driven (CI/CD)** — `Deploy-Accelerator` scaffolds the CI/CD pipeline + rendered config; the pipeline runs the ordered `deployment_files` |
+
+### How the AVM accelerator is configured and deployed
+
+The accelerator is **not** a single YAML file, and it is **still pipeline-driven**. Understanding its two-layer model is key to a clean migration.
+
+**Configuration is two layers:**
+
+1. **Top-level inputs** — `config/inputs.yaml` and `config/platform-landing-zone.yaml` in your target repo. These hold the high-level settings you author (MG IDs, subscription placement, feature toggles, and so on).
+2. **Rendered per-module `.bicepparam`** — the `Deploy-Accelerator` bootstrap renders those inputs into concrete `main.bicepparam` files under the generated `templates/` tree (for example `templates/core/logging/main.bicepparam` and `templates/core/governance/mgmt-groups/*/main.bicepparam`). Some settings are exposed **only** in these rendered files — notably the logging resource names — and are edited there after bootstrap.
+
+The shared **ALZ Library** supplies the archetypes and policy definitions/assignments that the governance modules consume.
+
+**Deployment is pipeline-driven (CI/CD).** `Deploy-Accelerator` scaffolds a CI/CD pipeline (GitHub Actions or Azure DevOps) alongside the configuration above. You commit configuration changes and **the pipeline** runs the ordered `deployment_files` (from `.config/ALZ-Powershell.config.json`) — each an `az deployment mg` / `az deployment sub` at the appropriate scope (see Appendix B). The operating model is therefore the same as Classic — edit config, pipeline deploys — just consolidated and config-driven rather than per-module scripts.
+
+**What this means for migration:** align identifiers across **both** layers — MG IDs in `platform-landing-zone.yaml`, logging/resource names in the rendered `.bicepparam` files — then let the pipeline converge onto the existing environment.
 
 ### The two naming differences that matter most
 
@@ -58,11 +73,21 @@ Two facts make this migration tractable:
 - A full **inventory of your Classic environment**: MG IDs, Log Analytics workspace name + RG, custom policy/initiative names, and the identities/DCRs the policies reference.
 - A non-production run first (a sandbox or the same environment with `what-if`).
 
+{{< hint type=note >}}
+**No tenant-root rights?** The Classic `managementGroups` module and the AVM MG layer both deploy at **tenant scope** (deployment rights required at `/`). If you don't have them, pre-create the management groups under a parent MG you own, then deploy only the MG- and subscription-scoped layers (policy, logging).
+{{< /hint >}}
+
+Pre-create example (repeat for each MG, using the nested IDs from Step 2):
+
+```bash
+az account management-group create --name "<prefix>-platform" --display-name "Platform" --parent "<owned-parent-mg-id>"
+```
+
 ## Migration at a glance
 
 ```mermaid
 flowchart TD
-    A[Inventory Classic env: MG IDs, LA workspace, custom policies] --> B[Configure AVM platform-landing-zone.yaml: align MG IDs + logging names]
+    A[Inventory Classic env: MG IDs, LA workspace, custom policies] --> B[Configure AVM platform-landing-zone.yaml + rendered .bicepparam: align MG IDs + logging names]
     B --> C[Converge management groups in place]
     C --> D{Policy definitions changed schema?}
     D -- No --> E[Apply AVM governance: in-place update]
@@ -76,6 +101,10 @@ flowchart TD
 
 ## Step-by-step
 
+{{< hint type=note >}}
+These steps assume you have already **bootstrapped the AVM accelerator** for your platform (see [Bootstrap]({{< relref "/accelerator/2_bootstrap" >}})), which produces your target repository with the `config/` inputs and the generated `templates/` tree. The steps below **adjust that configuration** to converge onto your existing Classic environment rather than deploying greenfield.
+{{< /hint >}}
+
 ### Step 1 — Inventory the existing environment
 
 Record, from the live Classic platform:
@@ -84,7 +113,31 @@ Record, from the live Classic platform:
 - The **Log Analytics workspace** name, its **resource group**, the **user-assigned identity**, and the **data collection rules**.
 - The **custom policy definitions/initiatives** and **policy assignments** (names + scopes).
 
-### Step 2 — Align identifiers in `platform-landing-zone.yaml`
+Discovery commands to enumerate the live environment:
+
+```bash
+# MG hierarchy (IDs + nesting) from tenant root
+az account management-group list -o table
+az account management-group show --name <int-root-id> --expand --recurse -o json
+
+# Logging inventory
+az monitor log-analytics workspace list -o table
+az monitor data-collection rule list -o table
+az identity list -o table
+
+# Governance inventory (custom only)
+az policy definition list --query "[?policyType=='Custom']" -o table
+az policy set-definition list --query "[?policyType=='Custom']" -o table
+az policy assignment list --scope <mg-scope> -o table
+```
+
+{{< hint type=note >}}
+**Multiple hierarchies in one tenant?** Identify the migration source by its top-level MG prefix (for example `<prefix>-platform`, `<prefix>-landingzones`), set by the Classic deployment's `parTopLevelManagementGroupPrefix`. `az account management-group list` shows each hierarchy as a distinct subtree under Tenant Root — confirm by checking which subtree holds the subscriptions and Log Analytics workspace you intend to migrate.
+{{< /hint >}}
+
+### Step 2 — Align identifiers in `platform-landing-zone.yaml` (and the rendered `.bicepparam` files)
+
+The bootstrap renders `platform-landing-zone.yaml` into the per-module `main.bicepparam` files. Set the MG IDs in the YAML; some values (notably the logging resource names) are only exposed in the generated `.bicepparam` files and are edited there after bootstrap.
 
 - **MG IDs (critical):** set **each** `management_group_*_id` to the full Classic ID. Example:
 
@@ -106,11 +159,20 @@ Record, from the live Classic platform:
   A single `management_group_id_prefix` **cannot** reproduce Classic's non-uniform nesting — you must set each ID individually.
   {{< /hint >}}
 
-- **Logging names:** override the AVM workspace/identity/DCR names to your Classic names (`alz-log-analytics`, `alz-logging-mi`, `alz-ama-*-dcr`). Note the AVM logging **RG** name hard-appends `-<loc>`; to adopt a workspace sitting in a Classic RG without that suffix, edit the generated `templates/core/logging` Bicep after bootstrap (the accelerator supports post-bootstrap edits).
+- **Logging names:** these are set in the generated `templates/core/logging/main.bicepparam` (not the YAML) — `parLogAnalyticsWorkspaceName`, `parUserAssignedIdentityName`, `parDataCollectionRule*Name`. Override them to your Classic names (`alz-log-analytics`, `alz-logging-mi`, `alz-ama-*-dcr`). The logging **RG** (`parMgmtLoggingResourceGroup`) hard-appends `-<loc>`; to adopt a workspace in a Classic RG without that suffix, edit that bicepparam after bootstrap.
+
+  {{< hint type=warning >}}
+  If you rename the workspace/DCRs, also update the **governance** references that point at them — `templates/core/governance/mgmt-groups/platform/main.bicepparam` and `.../landingzones/main.bicepparam` embed the workspace/DCR resource IDs. Missing this leaves the diagnostic/AMA policy assignments pointing at a non-existent workspace/DCR.
+  {{< /hint >}}
 
 ### Step 3 — Preview with `what-if`, then converge management groups
 
-Run the governance deployment in `what-if` first. With IDs aligned you should see **in-place Modifies**, not Creates of a new hierarchy. Then apply.
+Preview before you apply. Two equivalent options:
+
+- **Pipeline (recommended):** run the accelerator pipeline's what-if / plan stage on a pull request.
+- **Local:** `az deployment mg what-if --management-group-id <root-parent> --template-file main.bicep --parameters main.bicepparam` for the governance layer.
+
+With IDs aligned you should see **in-place Modifies**, not Creates of a new hierarchy — then apply. This is a standard ARM `az deployment mg` what-if (not Deployment Stacks).
 
 {{< hint type=warning >}}
 A green `what-if` is **not** a guarantee of a successful apply — see Step 4.
@@ -130,6 +192,14 @@ When you apply governance for real, you may hit:
 2. Remove the Classic **custom initiatives** (policy set definitions).
 3. Remove the Classic **custom policy definitions**.
 4. **Apply the AVM governance fresh** — now every policy object is a **Create**, so the parameter-removal rule never triggers.
+
+Example removal commands (run bottom-up — assignments first, then initiatives, then definitions):
+
+```bash
+az policy assignment delete --name "<assignment-name>" --scope "<mg-scope>"
+az policy set-definition delete --name "<initiative-name>" --management-group "<mg>"
+az policy definition delete --name "<definition-name>" --management-group "<mg>"
+```
 
 Because ARM MG deployments are **not atomic**, treat this as **idempotent/re-runnable** and be ready to re-run after a partial failure.
 
