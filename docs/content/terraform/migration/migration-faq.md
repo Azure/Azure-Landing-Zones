@@ -7,6 +7,19 @@ weight: 20
 
 This document contains frequently asked questions about the migration from CAF Enterprise Scale to Azure Verified Modules (AVM) for Platform landing zone (ALZ).
 
+## The bootstrap is moving my platform subscriptions out of their existing management groups
+
+When you run the Accelerator through the end of phase 2, the bootstrap moves your platform subscriptions (management, connectivity, identity, security) under the intermediate root management group by default. For a **brownfield** migration where these subscriptions are **already placed** in your existing CAF Enterprise Scale hierarchy, this would relocate them and temporarily detach any policy or RBAC assigned at their current management group scope.
+
+To prevent this, set the following in your `inputs.yaml` **before** running the bootstrap:
+
+```yaml
+# inputs.yaml
+move_subscriptions_to_target_management_group: false
+```
+
+With this set to `false`, the bootstrap creates the CI/CD resources and adopts the intermediate root management group without moving any subscriptions. Leave it unset (the default) for greenfield deployments where the subscriptions still need to be placed under the management group hierarchy.
+
 ## When applying Terraform, I get the error "The resource operation completed with terminal provisioning state 'Failed'." for the Firewall Policy
 
 This is a known issue with Azure Firewall Policy. The error message is as follows:

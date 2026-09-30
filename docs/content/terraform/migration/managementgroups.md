@@ -84,6 +84,19 @@ The migration process follows a 3 stage approach:
 You can build your own custom module leveraging our AVM modules at this stage if you prefer. Don't do this unless you have a very specific reason and know what you are doing. Even if you choose ignore this advice, we recommend using the ALZ Terraform Accelerator as a starting point anyway. You can find the module code [here](https://github.com/Azure/alz-terraform-accelerator/tree/main/templates/platform_landing_zone).
     {{< /hint >}}
 
+    {{< hint type=warning >}}
+**Brownfield migrations:** By default, the bootstrap moves your platform subscriptions (management, connectivity, identity, security) under the intermediate root management group at the end of phase 2. When you are migrating an existing estate, your platform subscriptions are typically **already placed** in your management group hierarchy, and moving them would temporarily detach any policy or RBAC assigned at their current scope.
+
+To prevent this, set the following in your `inputs.yaml` **before** running the bootstrap so that the bootstrap creates the CI/CD resources without relocating any subscriptions:
+
+```yaml
+# inputs.yaml
+move_subscriptions_to_target_management_group: false
+```
+
+Leave this unset (the default) for greenfield deployments where the subscriptions still need to be placed under the management group hierarchy.
+    {{< /hint >}}
+
 1. At the end of phase 2, you will either have a code repository or a local folder with the target module
 
 1. If you are using Azure DevOps or GitHub, you will need to clone the repository to your local machine. If you are using a local folder, you can skip this step.
