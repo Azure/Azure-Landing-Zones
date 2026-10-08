@@ -95,3 +95,4 @@ The available options are:
 1. [Change Firewall SKU]({{< relref "firewall-sku">}})
 1. [Implement Sovereign Landing Zone (SLZ) controls]({{< relref "slz">}})
 1. [Add custom policy assignments]({{< relref "custom-policy-assignments">}})
+1. [Use customer provided public IPs for Azure Firewall]({{< relref "firewall-customer-public-ips">}})
