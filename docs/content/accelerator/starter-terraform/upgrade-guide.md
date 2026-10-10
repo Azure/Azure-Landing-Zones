@@ -177,6 +177,22 @@ module "virtual_wan" {
 }
 ```
 
+#### Upgrading the Virtual WAN module to AzAPI
+
+When a released Virtual WAN module version includes the AzAPI migration, update the `providers` map in `main.connectivity.virtual.wan.tf` to pass the connectivity AzAPI provider:
+
+```terraform
+providers = {
+  azapi = azapi.connectivity
+}
+```
+
+Use a released module version that includes the migration; do not copy a version number from an unreleased change. The Virtual WAN module's [upgrade guide](https://github.com/Git-PrinceNagar/terraform-azurerm-avm-ptn-alz-connectivity-virtual-wan/blob/docs/release-0-19-0/docs/upgrade-guide.md) describes the state migration and other breaking changes.
+
+Remove the `azurerm` entry from this module's `providers` map because the migrated module no longer declares an AzureRM provider. Keep the root AzureRM provider requirement and configurations: other Platform landing zone modules still use AzureRM. If the `azapi.connectivity` mapping is omitted, Terraform can use the default AzAPI provider configuration; if it targets a different subscription, the deployment can go to the wrong subscription.
+
+Run a normal, refresh-enabled plan before applying. Review all Virtual WAN actions and stop if the plan proposes an unexpected destroy or replacement. Resolve the plan against the release's upgrade guide before applying.
+
 ## 3. Check and Update the Module Code
 
 On some occasions, it is necessary for us to make breaking changes to the module interfaces. We try our best to avoid, but sometimes we have to make a breaking change to support a specific requirement.
