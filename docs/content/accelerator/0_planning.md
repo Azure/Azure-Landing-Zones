@@ -126,9 +126,9 @@ The bootstrap creates an intermediate root management group under the parent you
 Choose either:
 
 * `Tenant Root Group`: The intermediate root management group is created directly underneath it, matching the [Azure landing zone architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-architecture).
-* An existing management group: The intermediate root management group is created one level deeper, underneath that management group. Choose this if you cannot be granted `Owner` on the `Tenant Root Group`, or if the hierarchy needs to inherit policies or role assignments from an existing management group.
+* An existing management group: The intermediate root management group is created one level deeper, underneath that management group. Choose this if you cannot be granted the required permissions on the `Tenant Root Group`, or if the hierarchy needs to inherit policies or role assignments from an existing management group.
 
-You need `Owner` on the parent management group you choose, as described in the [phase 1 prerequisites]({{< relref "1_prerequisites/platform-subscriptions">}}) and the [Permissions FAQ]({{< relref "faq/permissions">}}).
+The permissions you need on the parent management group you choose are listed in the [phase 1 prerequisites]({{< relref "1_prerequisites/platform-subscriptions">}}). Choosing an existing parent does not bypass tenant-wide management group creation restrictions. The [Permissions FAQ]({{< relref "faq/permissions">}}) covers the roles the bootstrap grants to the identities that run the deployment, at the intermediate root management group.
 
 {{< hint type=note >}}
 Adding a management group above the intermediate root management group is not required in order to use your own naming. The intermediate root management group is not fixed to `Azure Landing Zones`. For Terraform, its ID and display name come from the management group with no parent in your architecture definition. See [Customize Management Group Names and IDs]({{< relref "starter-terraform/options/management-groups">}}).
