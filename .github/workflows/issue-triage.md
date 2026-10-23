@@ -29,6 +29,7 @@ features:
 safe-outputs:
   add-comment:
     max: 1
+    target: "*"
   add-labels:
     max: 10
   close-issue:
