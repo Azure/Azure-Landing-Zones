@@ -29,6 +29,7 @@ features:
 safe-outputs:
   add-comment:
     max: 1
+    target: "*"
   add-labels:
     max: 10
   close-issue:
@@ -48,8 +49,12 @@ steps:
     ISSUE_NUMBER: ${{ github.event.inputs.issue_number || github.event.issue.number }}
   run: |
     echo "${ISSUE_NUMBER}" > /tmp/gh-aw/agent/issue-number.txt
+engine:
+  id: copilot
+  copilot-sdk: true
 tools:
   cache-memory: true
+  bash: ["cat", "ls", "find", "grep", "head", "tail", "wc"]
   github:
     min-integrity: none
     toolsets:
