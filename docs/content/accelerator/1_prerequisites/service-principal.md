@@ -48,8 +48,8 @@ Skip this if using a User account as recommended.
 1. Click the parent management group you plan to deploy the Landing Zone into (this could be `Tenant Root Group` or a new management group you created).
 1. Click `Access control (IAM)` in the left navigation.
 1. Click `+ Add` and choose `Add role assignment`.
-1. Choose the `Privileged administrator roles` tab.
-1. Click `Owner` to highlight the row and then click `Next`.
+1. Find and select the parent management group role listed in [Platform Subscriptions and Permissions]({{< relref "platform-subscriptions" >}}) for your IaC type and whether the bootstrap creates a new intermediate root management group.
+    `Management Group Contributor` is on the `Job function roles` tab; `Owner` is on the `Privileged administrator roles` tab.
 1. Click `Next`.
 1. Leave the `User, group or service principal` option checked.
 1. Click `+ Select Members` and search for your SPN in the search box on the right.
