@@ -10,7 +10,33 @@ Here's what's changed in Azure landing zone:
 Azure landing zone IaC accelerator release notes are [HERE]({{% ref "accelerator/accelerator-release-notes" %}})
 {{</hint >}}
 
-{{< expand title="April 2026" icon=">" expandByDefault="true" >}}
+{{< expand title="September 2026" icon=">" expandByDefault="true" >}}
+
+### September 2026
+
+#### Policy
+
+- **Breaking Change** - Moved the [Deny-Windows-Vm-HotPatch](https://www.azadvertizer.net/azpolicyadvertizer/6d02d2f7-e38b-4bdc-96f3-adc0a8726abc.html) policy out of the `Enforce-Guardrails-Automation` initiative and into the `Enforce-Guardrails-Compute` initiative, as it governs Windows VM automatic hotpatching rather than Automation. The existing `Enforce-Guardrails-Automation` initiative is now deprecated (hotpatch policy retained for backwards compatibility with existing assignments) and superseded by `Enforce-Guardrails-Automation_20260910`, which no longer includes the hotpatch policy. The default assignment now targets the new dated initiative, and `Enforce-Guardrails-Compute` has been updated (non-breaking) to include the hotpatch policy.
+
+{{< /expand >}}
+
+{{< expand "August 2026" ">" >}}
+
+### August 2026
+
+#### Policy
+
+- FIX: Added the missing `Deny` value to the `managedDiskPublicNetworkAccess` parameter in the `Deny-PublicPaaSEndpoints` initiative, aligning it with the built-in policy [Managed disks should disable public network access](https://www.azadvertizer.net/azpolicyadvertizer/8405fdab-1faf-48aa-b702-999c9c172094.html), which already supports `Deny`. The default value remains `Audit`, so this is a non-breaking, additive change.
+- Updated the `Enforce-Guardrails-PostgreSQL` initiative to add the built-in policy [Configure Advanced Threat Protection to be enabled on Azure Database for PostgreSQL flexible servers](https://www.azadvertizer.net/azpolicyadvertizer/2a6ae02f-7590-40d7-88ba-b18e205a32fd.html), extending Advanced Threat Protection coverage to `Microsoft.DBforPostgreSQL/flexibleServers` resources, which were previously not evaluated by this guardrail (only legacy Single Server resources were covered).
+- FIX: Corrected two deprecated Microsoft Defender for Cloud sub-plan default values in the `Deploy-MDFC-Config_20240319` initiative, which were causing new deployments/re-enablements to fail with `InvalidInputError`:
+  - `ascForKeyVaultSubPlan` default changed from the deprecated `PerTransaction` to `PerKeyVault`.
+  - `ascForArmSubPlan` default changed from the deprecated `PerApiCall` to `PerSubscription`.
+- **Breaking Change** - The `Enforce-Guardrails-Network_20250326` initiative referenced the built-in policy [Web Application Firewall (WAF) should be enabled for Application Gateway](https://www.azadvertizer.net/azpolicyadvertizer/564feb30-bf6a-4854-b4bb-0d2d2d1e6c66.html) twice (via `Deny-Waf-Fw-rules` and the redundant `Deny-AppGw-Without-Waf`). The initiative is now deprecated and superseded by `Enforce-Guardrails-Network_20260714`, which removes the duplicate reference and the now-unused `appGwWaf` parameter. The default assignment has been repointed to the new dated initiative.
+- FIX: Corrected the casing of the `AKSIngressHttpsOnlyEffect` parameter in the `Enforce-EncryptTransit_20241211` initiative (`deny` → `Deny`) and updated the referenced built-in policy version from `8.*.*` to `9.*.*`, resolving deployment failures caused by the built-in policy no longer accepting lowercase effect values in v9.0.0.
+
+{{< /expand >}}
+
+{{< expand "April 2026" ">" >}}
 
 ### April 2026
 
