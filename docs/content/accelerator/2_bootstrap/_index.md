@@ -76,6 +76,10 @@ Do not continue until you have updated your platform landing zone configuration 
 
 1. Type `yes` when prompted to continue with deployment, or `no` to exit and configure later.
 
+    {{< hint type=warning >}}
+**Migrating from Bicep Classic?** Review the [migration bootstrap checkpoint]({{< relref "/bicep/migration#bootstrap-checkpoint---existing-resources-are-not-automatically-adopted" >}}) before continuing. Bootstrap uses Terraform even when the platform uses Bicep; existing management groups and bootstrap resource groups are not automatically adopted by matching their names. If you answer `no`, the guide includes the command to resume with both configuration files and the same output directory after resolving the bootstrap checks.
+    {{< /hint >}}
+
 1. Once it generates the plan, hit enter to deploy the bootstrap.
 
     {{< hint type=tip >}}
