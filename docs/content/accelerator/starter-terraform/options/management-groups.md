@@ -10,6 +10,22 @@ You may want to customize the management groups names and IDs.
 If you update the management group IDs, you also need to update the `platform-landing-zone.tfvars` file to match the management group IDs you changed. If you don't do this, you will get errors or unexpected behavior when you deploy the Platform landing zone.
 {{< /hint >}}
 
+[!IMPORTANT]
+## Root Management Group Ownership
+
+The management group with `parent_id: null` becomes the intermediate root management group created during Accelerator bootstrap.
+
+Any customizations to the root management group's `id` or `display_name` should be completed **before running bootstrap**.
+
+After bootstrap:
+
+- The generated architecture is updated to mark the root as `exists: true`.
+- Platform deployments treat the root as an existing resource.
+- Changes to the root `display_name` in the generated platform repository are not applied to Azure.
+- Child management groups continue to be managed by the platform deployment.
+
+To avoid unexpected behavior, finalize the root management group ID and display name before executing bootstrap. Changes made after bootstrap may require manual updates directly in Azure and are not automatically applied through subsequent platform deployments.
+
 There are 2 high level steps required to customize the management group names and IDs:
 
 1. (Optional) Update the Platform landing zone configuration file `platform-landing-zone.tfvars` to reflect any changes to management group IDs
