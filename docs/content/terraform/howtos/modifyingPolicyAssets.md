@@ -26,7 +26,7 @@ Which assets you need to create depends on what you want to achieve:
 
 ###  Assigning a built-in policy definition
 
-Create a `<myassignment>.alz_policy_assignment.json` (or YAML) file in your custom library.
+Create a `<myassignment>.alz_policy_assignment.json` file in your custom library. Policy assignment assets must use JSON.
 This file should reference the built-in definition that you want to assign.
 We recommend copying one of the assignments in the [Library](https://github.com/Azure/Azure-Landing-Zones-Library/tree/main/platform/alz/policy_assignments) as a starting point.
 
@@ -39,9 +39,9 @@ We recommend configuring parameters in the [policy_assignments_to_modify]({{< re
 
 ###  Assigning a custom policy definition or policy set definition
 
-In this scenario you will need to create `<mydefinition>.alz_policy_definition.json` / `<mysetdefinition>.alz_policy_set_definition.json` (or YAML) files in your custom library.
+In this scenario you will need to create `<mydefinition>.alz_policy_definition.json` / `<mysetdefinition>.alz_policy_set_definition.json` files in your custom library. Policy definition and policy set definition assets must use JSON.
 
-Then you create a `<myassignment>.alz_policy_assignment.json` (or YAML) file in your custom library, as per the above scenario.
+Then you create a `<myassignment>.alz_policy_assignment.json` file in your custom library, as per the above scenario.
 
 {{< hint type=note >}}
 The resource id of the eventually deployed asset will not be known at the time of the file creation.
@@ -104,7 +104,7 @@ Once you have done this, you can deploy the ALZ module, specifying the `architec
 {{< hint type="warning" >}}
 The policy assignment override flow does not currently support `definitionVersion` overrides.
 
-If a specific `definitionVersion` is required, create a custom policy assignment asset in your custom library and replace the built-in assignment using an archetype override.
+If a specific `definitionVersion` is required, create a custom JSON policy assignment asset (`<myassignment>.alz_policy_assignment.json`) in your custom library with `properties.definitionVersion` set to the required version, and replace the built-in assignment using an archetype override.
 {{< /hint >}}
 
-For cloud-specific version requirements, create a custom policy assignment asset in your custom library and replace the built-in assignment using an archetype override.
+For cloud-specific version requirements, create a custom JSON policy assignment asset in your custom library and replace the built-in assignment using an archetype override.
