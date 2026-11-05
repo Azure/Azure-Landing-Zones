@@ -5,17 +5,17 @@ geekdocCollapseSection: true
 weight: 60
 ---
 
-A practical, step-by-step guide for moving an existing **ALZ-Bicep (Classic)** platform to the **Azure Verified Modules (AVM) Bicep accelerator** ([`alz-bicep-accelerator`]({{< relref "/accelerator/starter-bicep" >}})) **without recreating** your live management groups, policies, or logging. Networking (hub/vWAN) is planned for a future revision.
+A practical, step-by-step guide for moving an existing **ALZ-Bicep (Classic)** platform to the **Azure Verified Modules (AVM) Bicep accelerator** ([`alz-bicep-accelerator`]({{< relref "/accelerator/starter-bicep" >}})), retaining your live management groups and logging resources while re-baselining governance where needed. Networking (hub/vWAN) is planned for a future revision.
 
 ## Overview
 
 ALZ-Bicep (Classic, `Azure/ALZ-Bicep`) is being retired — the Classic starter was removed from the Accelerator on **2026-02-16**, and the repository will be **archived on 2027-02-16** (bug/security/policy fixes only in between). The successor is the **Bicep AVM accelerator**, configured through `platform-landing-zone.yaml` (top-level inputs that are rendered into per-module `.bicepparam` files) plus the shared **ALZ Library**, and deployed through its pipelines.
 
-This guide describes the **supported migration path** and the **one hard blocker** you will hit, with its mitigation.
+This guide describes Bicep platform convergence, its policy-update blocker, and the separate bootstrap checks required before using the Accelerator with an existing environment.
 
 ### What you get from this migration
 
-- Same management-group hierarchy, retained **in place** (no re-parenting, no subscription moves).
+- Same management-group hierarchy, retained **in place** when parent IDs and subscription-placement settings are aligned and reviewed before both bootstrap and platform deployment.
 - Governance (policy/RBAC) re-based onto the maintained AVM library.
 - A modern, config-driven deployment model going forward.
 
@@ -29,7 +29,7 @@ This guide describes the **supported migration path** and the **one hard blocker
 
 Two facts make this migration tractable:
 
-1. **Both frameworks are Bicep/ARM — declarative and idempotent, with no state file.** There is nothing to "import." You **converge** the new configuration onto the existing resources and let ARM reconcile.
+1. **Both platform frameworks are Bicep/ARM — declarative and idempotent, with no Terraform state file for the platform resources.** You **converge** the new configuration onto the existing resources and let ARM reconcile. However, **Accelerator bootstrap uses Terraform even when you select Bicep**. Its management group, managed identities, resource groups, and CI/CD resources have a separate Terraform state and are not automatically adopted when their names match.
 2. **ARM updates in place only when the resource *name/ID* matches.** If a name differs, ARM **creates a new resource** instead of updating the existing one. So the entire migration comes down to **making the AVM configuration produce the same identifiers your Classic deployment already created.**
 
 {{< hint type=important >}}
@@ -87,8 +87,10 @@ az account management-group create --name "<prefix>-platform" --display-name "Pl
 
 ```mermaid
 flowchart TD
-    A[Inventory Classic env: MG IDs, LA workspace, custom policies] --> B[Configure AVM platform-landing-zone.yaml + rendered .bicepparam: align MG IDs + logging names]
-    B --> C[Converge management groups in place]
+    A[Inventory Classic env: MG IDs, LA workspace, custom policies] --> B[Align YAML identifiers and review bootstrap ownership and state]
+    B --> K[Resolve bootstrap conflicts and complete bootstrap]
+    K --> L[Align generated .bicepparam identifiers and logging names]
+    L --> C[Converge management groups in place]
     C --> D{Policy definitions changed schema?}
     D -- No --> E[Apply AVM governance: in-place update]
     D -- Yes --> F[STAGED: remove Classic assignments then initiatives then definitions]
@@ -102,8 +104,71 @@ flowchart TD
 ## Step-by-step
 
 {{< hint type=note >}}
-These steps assume you have already **bootstrapped the AVM accelerator** for your platform (see [Bootstrap]({{< relref "/accelerator/2_bootstrap" >}})), which produces your target repository with the `config/` inputs and the generated `templates/` tree. The steps below **adjust that configuration** to converge onto your existing Classic environment rather than deploying greenfield.
+Inventory your environment and align the YAML identifiers in Steps 1 and 2 **before applying bootstrap**. Complete the bootstrap checkpoint below before proceeding to Step 3. Edit the rendered `.bicepparam` files after bootstrap has generated the target repository, but before running the platform deployment pipeline.
 {{< /hint >}}
+
+### Bootstrap checkpoint - existing resources are not automatically adopted
+
+The [Bootstrap]({{< relref "/accelerator/2_bootstrap" >}}) wizard prepares configuration, then runs a **Terraform bootstrap deployment**. The generated repository's Bicep pipeline deploys the platform separately. Answering `no` at the configuration-review prompt exits before bootstrap deployment; it does not mark existing resources as adopted.
+
+{{< hint type=warning >}}
+**Existing intermediate-root management group:** bootstrap module **v7.3.2** enables creation of this management group for `iac_type: bicep`. If the group already exists but is not recorded in the bootstrap Terraform state, bootstrap fails at `module.azure.azapi_resource.intermediate_root_management_group[0]` with `Resource already exists`. Aligning `management_group_int_root_id` is necessary for Bicep convergence, but does **not** resolve this Terraform state conflict.
+
+In this version, `intermediate_root_management_group_creation_enabled` is a child-module setting, **not an exposed bootstrap input**. Adding it to `inputs.yaml` does not provide a supported existing-group switch. See the [existing management group bootstrap limitation](https://github.com/Azure/Azure-Landing-Zones/issues/4033) and [migration bootstrap report](https://github.com/Azure/Azure-Landing-Zones/issues/4329).
+{{< /hint >}}
+
+Before approving the bootstrap plan:
+
+1. Record the existing intermediate-root group's **actual parent**. `root_parent_management_group_id` identifies that parent, not the intermediate-root group itself. Do not change the hierarchy to bypass a bootstrap error.
+2. Determine whether the bootstrap resources are already managed by an earlier bootstrap deployment. Preserve its working directory and Terraform state; recover the correct state before retrying. Do not start a second state for resources still managed by the original deployment.
+3. If the management group was created outside bootstrap, adopting it into bootstrap state requires a **reviewed manual Terraform import workaround**, not ordinary Bicep convergence. Confirm the exact downloaded bootstrap configuration, resource address, parent, and lifecycle ownership before importing. Importing makes Terraform responsible for the resource; a later destroy or configuration change can affect it. Do not delete the live group, change its ID, or create a parallel hierarchy to make bootstrap pass.
+4. Review the bootstrap identity resource group independently. An `already exists` error for `module.azure.azurerm_resource_group.identity` can indicate existing bootstrap infrastructure or a partial previous run. Establish its ownership and recover the corresponding state before considering a reviewed import. A management-group import alone does not resolve other resource conflicts. Do not delete the resource group or rename resources blindly.
+5. For Azure DevOps, decide whether to create a project or use an existing one. The default `azure_devops_create_project: true` requires permission to create projects. Set `azure_devops_create_project: false` in `inputs.yaml` only when `azure_devops_project_name` names an existing project and the bootstrap account has the required access to configure its repositories, pipelines, and service connections. This is separate from Azure management-group permissions.
+6. To retain current subscription placement during bootstrap, set `move_subscriptions_to_target_management_group: false` in `inputs.yaml`. This input is available in v7.3.2; its Bicep default otherwise allows bootstrap to move the platform subscriptions. Also review subscription placement in the generated Bicep configuration before deploying the platform; the bootstrap input does not control later Bicep deployments.
+
+If the state or ownership cannot be established, **stop before apply** and resolve the bootstrap limitation with the maintainers. Do not proceed to platform convergence until bootstrap is complete and its plan has no unintended management-group, subscription-placement, or resource changes.
+
+#### Manual management-group adoption workaround
+
+The following is a **manual workaround**, not a supported automatic existing-group flow. It applies to the reported combination of **ALZ PowerShell v7.1.5**, **bootstrap v7.3.2**, and **Azure DevOps**. Resource-level adoption was validated using Terraform **1.16.6** and AzAPI **2.13.0**, with the exact v7.3.2 management-group resource at the address below in a minimal isolated fixture. That test did not exercise the PowerShell wizard, full Azure DevOps bootstrap, or adoption of the identity resource group. Test your complete adoption plan in an isolated environment before using it for a live hierarchy.
+
+{{< hint type=warning >}}
+Importing the intermediate-root management group into bootstrap state transfers its lifecycle management to Terraform. A later bootstrap destroy can attempt to delete the group. Proceed only when the platform owner has explicitly agreed to this ownership model and the group is not managed by another Terraform state. Do not use this workaround to bypass missing management-group permissions or to take ownership of someone else's infrastructure.
+{{< /hint >}}
+
+1. Back up the entire existing Accelerator working directory, including bootstrap state and module-version metadata, to a secure location. State and generated variable files can contain secrets; do not post them in an issue or commit them to the generated repository.
+2. Ensure `auto_approve` is disabled in the configuration, environment, and command line. If the bootstrap files have not yet been generated, use the resume command below to reach the Terraform plan, then select **No** at the **Confirm Terraform plan** prompt. This is a different prompt from the wizard's earlier configuration-review question. Do not approve the create plan for the existing group.
+3. Locate the **bootstrap Terraform root**, not the generated Bicep starter or repository. With the resume command below and these versions, the Azure DevOps root is normally `<existing-accelerator-folder>/output/bootstrap/v7.3.2/alz/azuredevops`. Confirm the path printed in the Terraform command and the presence of its `terraform.tfvars.json` before editing. A different bootstrap variant, release, or output path changes this location.
+4. In that bootstrap root, add an `imports.tf` file with the following block, replacing `<existing-intermediate-root-id>` with the actual group ID:
+
+   ```hcl
+   import {
+     to = module.azure.azapi_resource.intermediate_root_management_group[0]
+     id = "/providers/Microsoft.Management/managementGroups/<existing-intermediate-root-id>"
+   }
+   ```
+
+5. Confirm that the YAML produces the existing group's ID, display name, and actual parent. In particular, `root_parent_management_group_id` must be the current parent, and the composed intermediate-root ID must match the import ID. Re-run the same resume command without replacing files or upgrading modules. Review the **new** Terraform plan: the existing MG must be **imported**, not created, replaced, deleted, or re-parented. Review all other bootstrap changes as well; this block does not adopt the identity resource group or fix Azure DevOps permissions.
+6. Only approve apply after all existing-resource conflicts and intended bootstrap changes have been reviewed. The import is recorded in state during that approved apply. Preserve the resulting bootstrap state and the adoption record. Removing an import block later does not undo adoption or remove Terraform's lifecycle responsibility.
+
+An import plan is not necessarily a pure import with zero changes. In the isolated test, AzAPI imported API version `2024-02-01-preview`, while the bootstrap resource configured `2023-04-01`; the plan contained **one import and one in-place update** for API-version/provider-metadata reconciliation. The resource ID, parent, display name, and request body were unchanged, and the next plan was no-op after the reviewed apply. Inspect the actual diff; do not approve an update merely because its action is described as in-place.
+
+If the plan still shows a conflicting create or an unexpected change, select **No** and investigate rather than repeatedly applying. Do not copy the Terraform-platform-specific `parent_resource_id` or architecture `exists` settings from other migration guides into this Bicep workflow.
+
+#### Resume after answering `no`
+
+After completing the YAML alignment and resolving the bootstrap checks above, use the same target directory selected in the wizard. For Bicep, resume with both configuration files:
+
+```pwsh
+$targetFolderPath = "<existing-accelerator-folder>"
+Deploy-Accelerator `
+  -inputs "$targetFolderPath/config/inputs.yaml", "$targetFolderPath/config/platform-landing-zone.yaml" `
+  -output "$targetFolderPath/output"
+```
+
+This command **runs bootstrap**, not the Bicep platform convergence in Step 3. Review its Terraform plan before approving apply. If the existing management group or another owned resource is still proposed as a new resource, stop and resolve its bootstrap state first; repeating the command does not fix that conflict.
+
+For ALZ PowerShell **v7.1.5**, the output directory contains the versioned `bootstrap/` working files and the recorded module-version metadata. Keep the entire working directory and its state backups. Do not use a fresh output directory, `-replace_files`, `-cleanBootstrapFolder`, or `-upgrade` as a workaround for an `already exists` error. Once bootstrap completes, clone the generated repository (or use the generated files for the local option), align the rendered `.bicepparam` files in Step 2, and review the platform pipeline before starting it.
 
 ### Step 1 — Inventory the existing environment
 
@@ -219,6 +284,9 @@ Replace the Classic per-module pipelines with the AVM accelerator bootstrap. **D
 
 | Issue | Cause | Mitigation |
 |---|---|---|
+| `Resource already exists` for `intermediate_root_management_group` during bootstrap | Terraform bootstrap tries to create an existing MG that is absent from its state | Follow the bootstrap checkpoint; recover existing state or review the manual adoption workaround. YAML naming alignment alone is insufficient |
+| Bootstrap identity resource group already exists | Existing infrastructure is absent from the active bootstrap state | Establish ownership and recover the original bootstrap state; review any import separately. Do not delete the RG to retry |
+| Azure DevOps `TF50309` when creating a project | Bootstrap account lacks project-creation permission | Obtain the required permission, or use `azure_devops_create_project: false` for an existing, accessible project |
 | Parallel/duplicate MG hierarchy | AVM flat IDs ≠ Classic nested IDs | Override each `management_group_*_id` to the full Classic ID |
 | `InvalidPolicyParameterUpdate` on apply | Policy definition parameters removed between library versions; **`what-if` misses it** | Staged remove (assignments→initiatives→definitions) → apply AVM fresh |
 | Duplicate Log Analytics workspace | AVM logging names differ (`law-alz-<loc>` etc.) | Override AVM logging names; edit Bicep for the RG `-<loc>` suffix if needed |
@@ -236,7 +304,7 @@ After convergence, confirm:
 
 ## Rollback
 
-Because there is no state file, rollback = re-deploy the Classic modules (they are still available until archival). Keep the Classic config/pipeline until the AVM convergence is validated in production.
+The Bicep platform resources have no Terraform state file. Keep the Classic configuration and pipeline for a reviewed platform rollback (the modules are still available until archival); policy schema changes may require staged recovery rather than a simple re-deployment. **Bootstrap has separate Terraform state:** preserve it and do not destroy bootstrap to roll back the platform migration, especially if it has adopted the existing management group.
 
 ## Post-migration cleanup
 
@@ -246,7 +314,7 @@ Because there is no state file, rollback = re-deploy the Classic modules (they a
 
 ## Appendix A — Validated results
 
-The migration path above was validated end-to-end (real deployments), Classic **v0.25.6** → AVM accelerator:
+The governance convergence and policy re-baseline below were validated with real deployments from Classic **v0.25.6**, using directly invoked Bicep deployments and rendered parameters. Logging naming differences were checked with `what-if`. A separate test on **2026-11-03** validated management-group adoption using the exact bootstrap **v7.3.2** resource in an isolated fixture; test-owned cleanup and the unchanged parent hierarchy were verified. Neither test exercised the full interactive Azure DevOps bootstrap path, identity-resource-group adoption, or a customer-state migration.
 
 | Scenario | Result | Meaning |
 |---|---|---|
@@ -255,6 +323,7 @@ The migration path above was validated end-to-end (real deployments), Classic **
 | Logging, AVM defaults (what-if) | All Creates | Duplicate logging stack |
 | Governance **real apply** (in place) | **Failed** — `InvalidPolicyParameterUpdate` | Definition param removal blocked |
 | Staged remove + **re-apply** | **Succeeded** — converged in place, no duplicates | Mitigation proven |
+| Manual MG adoption, isolated resource fixture | **Succeeded** — one import plus a reviewed in-place reconciliation; next plan no-op; cleanup verified | Validates the resource-level import boundary, not the complete Azure DevOps bootstrap |
 
 ## Appendix B — Reference
 

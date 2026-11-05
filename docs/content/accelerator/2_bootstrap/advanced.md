@@ -87,6 +87,10 @@ Terraform options can be found in the [options docs]({{< relref "../starter-terr
 
 1. In your terminal run the ALZ module to bootstrap your environment:
 
+    {{< hint type=warning >}}
+**Migrating from Bicep Classic?** Complete the [migration bootstrap checkpoint]({{< relref "/bicep/migration#bootstrap-checkpoint---existing-resources-are-not-automatically-adopted" >}}) before running this command. Bootstrap uses Terraform even for Bicep, so matching an existing management-group ID does not automatically adopt that group into bootstrap state. If resuming after answering `no` in the wizard, use the same configuration files and output directory, and resolve existing-resource conflicts before approving apply.
+    {{< /hint >}}
+
     {{< hint type=important title="JSON instead of YAML">}}
 If you are unable to install the [`powershell-yaml` module](https://www.powershellgallery.com/packages/powershell-yaml) (the ALZ module tries to install this automatically for you when invoked), you **can** use `.json` files instead; see [Configuration Files]({{< relref "../configuration-files" >}}) for more information.
     {{< /hint >}}
