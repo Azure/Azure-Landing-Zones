@@ -27,7 +27,9 @@ The `platform_landing_zone` starter module declares the following version constr
 | Local provider | `hashicorp/local` | `~> 2.5` |
 
 {{< hint type=important >}}
-AzureRM provider v5.x is the latest release, but it is not currently supported. The Platform landing zone requires **AzureRM provider v4**, as we are planning to move to the AzAPI provider. Keep the AzureRM constraint in your root module set to `~> 4.0`.
+AzureRM provider v5.x is the latest release, but it is not currently supported. The Platform landing zone requires **AzureRM provider v4** for modules that still use it, so keep the AzureRM constraint in your root module set to `~> 4.0`.
+
+The Virtual WAN module is moving to AzAPI. When upgrading to a release that includes this change, follow the [Virtual WAN AzAPI upgrade guidance]({{< relref "upgrade-guide#upgrading-the-virtual-wan-module-to-azapi" >}}).
 {{< /hint >}}
 
 The **Requirements** section of each module's registry page lists its current provider constraints. If your root module requests AzureRM v5.x, `terraform init` fails — see [Troubleshooting]({{< relref "../troubleshooting#no-available-releases-match-the-given-constraints-for-hashicorpazurerm" >}}).
