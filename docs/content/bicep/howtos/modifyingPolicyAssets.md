@@ -279,7 +279,7 @@ The ALZ accelerator includes automated CI/CD pipelines that will automatically r
    - Policy assignments that will be added or updated
 
 {{< hint type=note >}}
-The What-If analysis uses standard Azure deployments with the `-WhatIf` parameter, not deployment stacks, because deployment stacks don't support what-if operations yet.
+The What-If analysis uses standard Azure deployments with the `-WhatIf` parameter, not deployment stacks. Deployment stacks support what-if, but the accelerator pipelines don't use it yet. Standard what-if doesn't report the resources that the stack deletes when you remove them from your templates, such as deprecated policies. To preview those deletions, run a stack what-if. For more information, see [Preview deployment stack changes with what-if](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deployment-stacks-what-if).
 {{< /hint >}}
 
 **Review the CI Pipeline Results:**
