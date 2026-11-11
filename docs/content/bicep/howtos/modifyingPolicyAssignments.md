@@ -28,6 +28,10 @@ param parPolicyAssignmentParameterOverrides = {
 }
 ```
 
+{{< hint type=warning >}}
+In alz-bicep-accelerator v2.5.0 and earlier, `parPolicyAssignmentParameterOverrides` doesn't support `enforcementMode`. If you add it, the deployment succeeds, but the enforcement mode doesn't change. To enforce an assignment that ships in `DoNotEnforce` mode, see [Enforcing a policy assignment that ships in DoNotEnforce mode](#enforcing-a-policy-assignment-that-ships-in-donotenforce-mode).
+{{< /hint >}}
+
 ## Disabling a Policy Assignment
 
 You can either set a policy assignment's enforcement mode to DoNotEnforce or exclude it entirely from deployment.
@@ -55,6 +59,57 @@ param landingZonesConfig = {
   ]
 }
 ```
+
+`managementGroupDoNotEnforcePolicyAssignments` can only set an assignment to `DoNotEnforce`. If you remove an assignment from the list, it goes back to the enforcement mode in the ALZ library file, which is `DoNotEnforce` for some assignments. See [Enforcing a policy assignment that ships in DoNotEnforce mode](#enforcing-a-policy-assignment-that-ships-in-donotenforce-mode).
+
+## Enforcing a Policy Assignment That Ships in DoNotEnforce Mode
+
+Some ALZ policy assignments are deployed with `enforcementMode` set to `DoNotEnforce` in the ALZ library, so you can review their compliance results before you enforce them. These include most of the **Enforce recommended guardrails** assignments (`Enforce-GR-*`), `Enforce-Encrypt-CMK0` and `Enforce-Subnet-Private` at the `landingzones` and `platform` management groups.
+
+In alz-bicep-accelerator v2.5.0 and earlier, you can't change the enforcement mode with `parPolicyAssignmentParameterOverrides`. To enforce one of these assignments without editing the library files, exclude the ALZ assignment, then deploy it again as a customer policy assignment with a new name.
+
+**landingzones/main.bicepparam:**
+
+```bicep-params
+// Intermediate root management group ID (same value as managementGroupIntermediateRootName)
+var intRootMgId = 'alz'
+
+var enforceGrStorage = loadJsonContent('../../lib/alz/landingzones/Enforce-GR-Storage0.alz_policy_assignment.json')
+
+param landingZonesConfig = {
+  // ... other config
+  managementGroupExcludedPolicyAssignments: [
+    'Enforce-GR-Storage0'
+  ]
+  customerPolicyAssignments: [
+    union(enforceGrStorage, {
+      name: 'Enforce-GR-Storage-Cust'
+      location: parLocations[0]
+      properties: union(enforceGrStorage.properties, {
+        enforcementMode: 'Default'
+        policyDefinitionId: replace(
+          enforceGrStorage.properties.policyDefinitionId,
+          '/managementGroups/alz/',
+          '/managementGroups/${intRootMgId}/'
+        )
+        roleDefinitionIds: [
+          '/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c' // Contributor
+        ]
+      })
+    })
+  ]
+}
+```
+
+For the `platform` management group, make the same change in `platform/main.bicepparam` (`platformConfig`), and load the file from `../../lib/alz/platform/`.
+
+Before you apply this change:
+
+- **Use a new name** of up to 24 characters. If you keep the ALZ name, the ALZ entry takes precedence and the assignment stays in `DoNotEnforce` mode.
+- **Set `roleDefinitionIds`.** Customer policy assignments don't get the role definitions that the template assigns to ALZ assignments. Use the roles listed for the original assignment in `alzPolicyAssignmentRoleDefinitions` in the management group's `main.bicep`. All `Enforce-GR-*` assignments use Contributor.
+- **Set `intRootMgId`** to your intermediate root management group ID, so that the policy set definition ID resolves.
+- **Expect the assignment to be replaced.** The accelerator deploys with deployment stacks that use `ActionOnUnmanage = DeleteAll`, so the next deployment deletes the original assignment and its role assignments, then creates the new one. Compliance history starts again, and you need to recreate any policy exemptions that target the original assignment.
+- **Review the impact.** Check the assignment's compliance results first. Once an assignment is enforced, its deny effects block non-compliant create and update requests. Test the change in a non-production hierarchy before you deploy it to production.
 
 ## Modifying Policy Parameters
 
