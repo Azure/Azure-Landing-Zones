@@ -50,12 +50,25 @@ You need either an Azure User Account or Service Principal with the following pe
 
 ### Bicep and Terraform both require the following permissions:
 
-- `Owner` on your chosen parent management group.
-  - `Owner` is required because this account grants permissions to the identities that run the management group deployment. Those identities are granted only the permissions they need.
 - `Owner` on each of your platform landing zone subscriptions (4 for standard deployments, or 2 for SMB deployments).
 
-### Bicep has one additional requirement:
+If the bootstrap moves your subscriptions, you also need permission to move them out of their current management groups. This requires `Microsoft.Management/managementGroups/write` on the current parent as well as the destination parent. If either the current or the destination parent is the `Tenant Root Group`, these management group permissions aren't needed. Subscription-level `Owner` does not grant access to its parent management group. See [Move management groups and subscriptions](https://learn.microsoft.com/azure/governance/management-groups/manage#move-management-groups-and-subscriptions) for the full requirements.
 
+### Terraform parent management group permissions:
+
+- `Management Group Contributor` on your chosen parent management group when the bootstrap creates a new intermediate root management group (the default).
+  - Azure grants the creator of a new management group the `Owner` role on it, which lets the bootstrap assign the deployment identities' roles at the intermediate root management group. See [Create a management group](https://learn.microsoft.com/azure/governance/management-groups/create-management-group-portal#prerequisites).
+
+If [hierarchy protection requires authorization](https://learn.microsoft.com/azure/governance/management-groups/how-to/protect-resource-hierarchy#setting-require-authorization), creating child management groups also requires `Microsoft.Management/managementGroups/write` on the `Tenant Root Group`, even when you choose a different parent. Obtain the required authorization rather than disabling hierarchy protection.
+
+{{< hint type=important >}}
+If you reuse an existing intermediate root management group instead of creating one, the bootstrap identity needs role-assignment permissions at that management group, including `Microsoft.Authorization/roleAssignments/write`. `Management Group Contributor` alone does not grant those permissions.
+{{< /hint >}}
+
+### Bicep parent management group and root permissions:
+
+- `Owner` on your chosen parent management group.
+  - `Owner` is required because this account grants permissions to the identities that run the management group deployment. Those identities are granted only the permissions they need.
 - `User Access Administrator` at that root `/` level.
   - `User Access Administrator` is required for the same reason: this account delegates access to the identities that run the management group deployment using least privilege.
 
