@@ -138,6 +138,8 @@ To add a completely new management group, you can either:
 
 ### Option 1: Create a New Folder (Recommended)
 
+You can add a management group after bootstrap; it does not need to be defined before the initial bootstrap. For a sibling of the default Platform, Landing Zones, Sandbox, and Decommissioned groups, set its parent to the existing intermediate root management group.
+
 1. Copy an existing management group folder (e.g., `sandbox`) as a template
 2. Rename the folder to your new management group name
 3. Update the configuration in `main.bicepparam`:
@@ -151,7 +153,7 @@ param parEnableTelemetry = true
 param customMgConfig = {
   createOrUpdateManagementGroup: true
   managementGroupName: 'myorg-custom'
-  managementGroupParentId: 'landingzones'  // Parent MG ID
+  managementGroupParentId: 'alz'  // Replace 'alz' with your configured intermediate root ID
   managementGroupDisplayName: 'Custom Workloads'
   managementGroupDoNotEnforcePolicyAssignments: []
   managementGroupExcludedPolicyAssignments: []
@@ -173,7 +175,21 @@ param parPolicyAssignmentParameterOverrides = {}
 ```
 
 4. Update `main.bicep` parameter name to match (e.g., change `sandboxConfig` to `customMgConfig`)
-5. Deploy the new management group
+5. Register the new template in the Bicep deployment configuration so it is included in both CI and CD (for the generated accelerator, add it to `deployment_files` in `.config/ALZ-Powershell.config.json`). Copying the folder alone does not add a pipeline deployment.
+6. Create the management group before running CI What-If for it:
+   - Current generated Bicep CD templates deploy management-group templates at the existing intermediate-root scope; do not use the new group's ID as the deployment scope. `managementGroupParentId` separately determines where the new group is placed.
+   - Have an authorized operator create only the management group under its intended parent, using the same ID as `managementGroupName`. For example, `az account management-group create --name myorg-custom --display-name "Custom Workloads" --parent alz` creates the sibling shown above; replace the IDs with your configured values.
+   - Wait until the group is visible under the intended parent and the pipeline identity's inherited permissions are effective. Then run normal CI and CD with What-If enabled, selecting the new management group deployment where applicable. The Bicep deployment configures the pre-created group and its policy resources.
+
+For the generated GitHub workflows, CI runs automatically for pull requests targeting `main` and includes What-If for registered deployments. A pull request adding a management group that does not yet exist may fail its CI What-If before it can be merged. Pre-create the group through your approved change process, then rerun the pull request's CI and require it to pass before merging. This does not require deploying unmerged Bicep code through CD.
+
+CD can be manually dispatched from a pull request branch for What-If, but the generated apply environment allows deployment only from protected branches. An unprotected pull request branch is rejected at the deployment job even if What-If passes. Merge the validated change into `main` and follow the apply environment's approval process for normal CD; do not relax the environment protection to create the group.
+
+Azure DevOps' generated CI pipeline does not declare an automatic trigger; its pipeline configuration and any repository branch policies determine when PR validation runs.
+
+{{< hint type=important >}}
+If CI/CD What-If reports `Microsoft.Management/managementGroups/read` or `Microsoft.Resources/deployments/read` at a newly added group's scope, check whether the group exists before changing permissions. Setting CD's `skip_what_if` input to `true` does not bypass deployment validation: deploying the group and nested policy resources together can still fail on `Microsoft.Resources/deployments/write` at the not-yet-existing scope. Pre-create the group before running the pipeline.
+{{< /hint >}}
 
 ### Option 2: Use Custom Policy Assignments
 
