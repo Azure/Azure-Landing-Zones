@@ -43,3 +43,33 @@ Select the assignment:
 
 Update the assignment parameter:
 {{< img name="diagsetting-assignment-params" size="origin" lazy=true >}}
+
+## Policy: Microsoft Defender for Cloud configuration remediation conflicts
+
+The Deploy-MDFC-Config_20240319 initiative includes multiple DeployIfNotExists policies that configure Microsoft Defender for Cloud plans by deploying individual Microsoft.Security/pricings resources at subscription scope.
+
+When multiple Defender for Cloud plans are non-compliant and remediated at the same time, the pricing updates can overlap. In this situation, some remediation deployments can succeed while others fail with a conflict similar to:
+
+"Another update operation is in progress. Please retry in a few minutes"
+
+As a result, not all selected Defender for Cloud plans might be enabled after the first remediation attempt. Policy compliance state and the Defender for Cloud configuration shown in the Azure portal might also take time to reflect completed changes.
+
+### Workaround
+
+If a remediation deployment fails with this conflict:
+
+1. Allow the Defender for Cloud pricing operations that are already in progress to complete.
+2. Re-evaluate policy compliance for the affected scope.
+3. Identify the policy definitions in the initiative that remain non-compliant.
+4. Create new remediation tasks for the remaining non-compliant policy definitions.
+5. Verify the resulting Defender for Cloud pricing configuration after the remediation tasks complete.
+
+Avoid starting multiple additional remediation attempts while Defender for Cloud pricing operations are still in progress, as this can result in further conflicts.
+
+### Batch pricing alternative
+
+The Azure built-in policy "Configure selected Microsoft Defender for Cloud plans with managed extensions" (27ac9ca0-9bc7-4f82-be36-a9023a132e01) configures selected Defender for Cloud plans through the Microsoft.Security/batchPricings resource. This reduces the need for separate pricing deployments when several supported Defender plans are enabled together.
+
+The built-in policy is not a direct replacement for Deploy-MDFC-Config_20240319. For selected plans, it applies predefined subplans and managed extension settings. It does not currently expose the same level of fine-grained subplan and extension configuration available through the individual policies referenced by the Azure landing zone initiative.
+
+Review the configuration requirements for each Defender for Cloud plan before deciding which approach is appropriate for your environment.
