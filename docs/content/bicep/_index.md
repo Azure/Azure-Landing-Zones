@@ -119,7 +119,9 @@ New-AzManagementGroupDeploymentStack `
 ### What-If Support
 
 {{< hint type=note >}}
-Azure Deployment Stacks do not currently support what-if operations although it is planned for the near future. To provide preview capabilities, the CI/CD pipelines run what-if analysis using standard Azure deployments with the `-WhatIf` parameter before executing the deployment stack.
+Azure Deployment Stacks support what-if. A stack what-if previews the changes that creating or updating a stack would make, including the resources that the stack would detach or delete based on `ActionOnUnmanage`. For more information, see [Preview deployment stack changes with what-if](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deployment-stacks-what-if).
+
+The accelerator's CI/CD pipelines don't use stack what-if yet. They run what-if analysis using standard Azure deployments with the `-WhatIf` parameter before executing the deployment stack.
 
 This means:
 
@@ -128,7 +130,7 @@ This means:
 {{< /hint >}}
 
 {{< hint type=important >}}
-Be aware that what-if analysis using standard deployments may not perfectly reflect the final state after deployment stack execution, especially regarding resource deletions. Always review the deployment stack results carefully.
+Be aware that what-if analysis using standard deployments may not perfectly reflect the final state after deployment stack execution, especially regarding resource deletions. Standard what-if doesn't report the resources that the stack deletes when you remove them from your templates. To preview those deletions, run a stack what-if with `New-AzManagementGroupDeploymentStackWhatIfResult` (Azure PowerShell) or `az stack-whatif mg create` (Azure CLI). Always review the deployment stack results carefully.
 {{< /hint >}}
 
 ### Updating Your Landing Zone
@@ -137,6 +139,6 @@ When updating your Azure Landing Zone (e.g., updating the ALZ library version):
 
 1. **Update templates** - Modify Bicep files and/or parameter files
 2. **Commit and PR** - Create pull request with changes
-3. **CI validation** - What-if analysis shows what will change (currently uses standard deployments; will transition to deployment stacks once what-if support is added)
+3. **CI validation** - What-if analysis shows what will change (the accelerator pipelines currently run a standard deployment what-if)
 4. **Merge and deploy** - CD pipeline creates/updates deployment stack
 5. **Automatic cleanup** - Stack automatically removes deprecated resources that are no longer defined in the configuration
