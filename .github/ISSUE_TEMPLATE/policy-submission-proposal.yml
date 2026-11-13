@@ -3,8 +3,6 @@ description: Submit an Azure policy/initiative for Azure landing zone
 title: "[Policy Proposal]: "
 labels: ["Topic: Policy :pencil:","Needs: Triage :mag:"]
 projects: []
-assignees:
-  - springstone
 body:
   - type: markdown
     attributes:
