@@ -36,10 +36,14 @@ Take note of the subscription id of each subscription as we will need them later
 
 You need either an Azure User Account or Service Principal with the following permissions to run the bootstrap. For simplicity, we recommend using a User account since this is a one off process that you are unlikely to repeat.
 
-### Bicep and Terraform both require the following permissions:
+### Permissions for your deployment:
 
-- `Owner` on your chosen parent management group.
-  - `Owner` is required because this account grants permissions to the identities that run the management group deployment. Those identities are granted only the permissions they need.
+For the Azure landing zone IaC Accelerator bootstrap, follow [Platform Subscriptions and Permissions]({{< relref "/accelerator/1_prerequisites/platform-subscriptions" >}}). The parent management group permissions depend on your IaC type and whether the bootstrap creates a new intermediate root management group.
+
+When deploying your own modules directly, grant the permissions those modules require at your chosen management group, including role-assignment permissions if they assign roles. Do not assume the Accelerator's new-root bootstrap permissions are sufficient for a direct deployment.
+
+Both Bicep and Terraform also require:
+
 - `Owner` on each of your 4 Azure landing zone subscriptions.
 
 ### Bicep has one additional requirement:
