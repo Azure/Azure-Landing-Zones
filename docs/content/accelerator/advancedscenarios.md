@@ -68,3 +68,9 @@ This will result in the bootstrap resources being deployed in the new subscripti
 
 This will result in the bootstrap resources being deployed in the new subscription.
 When you then deploy the Azure Landing Zone your subscription will be moved under the `management` management group.
+
+## Scenario 2 - Manage firewall rules independently
+
+For Terraform and Bicep AVM deployments, use a separate rules repository or pipeline to manage frequently changing workload rules on the platform-owned firewall policy. Assign each rule collection group to one deployment owner to avoid competing updates.
+
+See [Manage firewall rules independently]({{< relref "firewall-rules" >}}) for the resource handoff, Terraform and Bicep examples, rule-priority guidance and deployment lifecycle considerations.
